@@ -89,14 +89,14 @@ As a system, it will notify members of a co-awarded badge.
  
 ** Software **
 
-* [Oracle]: <https://www.oracle.com/database/technologies/112010-win64soft.html>
-* [AWS-RDS]: <https://aws.amazon.com/rds/>
-* [AWS-S3]: <https://aws.amazon.com/s3/>
-* [Angular]: <https://angular.io/>
-* [BS4]: <https://numpy.org/>
-* [Selenium]: <https://selenium.dev/documentation/en/>
-* [Jenkins]: <https://jenkins.io/> 
-* [CodeBuild]:<https://aws.amazon.com/codebuild/> 
+  [Oracle]: <https://www.oracle.com/database/technologies/112010-win64soft.html>
+  [AWS-RDS]: <https://aws.amazon.com/rds/>
+  [AWS-S3]: <https://aws.amazon.com/s3/>
+  [Angular]: <https://angular.io/>
+  [BS4]: <https://numpy.org/>
+  [Selenium]: <https://selenium.dev/documentation/en/>
+  [Jenkins]: <https://jenkins.io/> 
+  [CodeBuild]:<https://aws.amazon.com/codebuild/> 
    
   website: [groot.io](http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com)
 #### TESTS

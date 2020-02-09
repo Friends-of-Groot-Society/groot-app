@@ -13,10 +13,7 @@ Java Application for Friends of Groot Society
 > Thomas Maestas 
 
 ### Application Overview
-The mission of the app is to organize and persist Groot Fan Club News and Guardians-of-the-Galaxy Events
-
-#### Purposes
-The mission of the app is to organize and persist Groot Fan Club News and Guardians-of-the-Galaxy Events
+The mission of the app is to organize and persist Groot Fan Club News and Guardians-of-the-Galaxy Events.
 
 ### Technologies 
 | Fx | Tools | URLS |
@@ -72,25 +69,22 @@ As an society-administrator, I can add news-bulletins.
 As an society-administrator, I can add notes about Groot and the Guardians.
 As an society-administrator, I add notes about Groot and the Guardians news-bulletins.
 As an society-administrator, I can view my upcoming news-bulletins.
-As an society-administrator, I can view information about the client.
+As an society-administrator, I can view information about the members.
 As an society-administrator, I can view information about Groot and the Guardians.
 As an society-administrator, I can add society-member (fan)s.
-As an society-administrator, I can add pets to the society-member (fan)
-As an society-administrator, I can add vaccinations to an pet
-As an society-administrator, I can view the weights of Groot and the Guardians on the dates of their news-bulletins.
+As an society-administrator, I can add badges to the society-member (fan)
+As an society-administrator, I can add news-updates to society-members
+As an society-administrator, I can view the status of Groot and the Guardians on the dates of events.
 -----------
 As a society-member (fan), I can login to an account.
-As a society-member (fan), I can fill out a form with my information.
-As a society-member (fan), I can see notes on what my pet was treated for.
-As a society-member (fan), I can view a list of my owned pets.
-As a society-member (fan), I add a new pet.
-As a society-member (fan) I can book an news-bulletins    
-As a society-member (fan), I can upload relevant documents about my dog into the system.
-As a society-member (fan), I download copies of my vaccination/health records.
-As a society-member (fan), I can see the age of my pet. 
+As a society-member (fan), I can fill out a form with my information. 
+As a society-member (fan), I can view a list of my owned badges.
+As a society-member (fan), I add a new badge.
+As a society-member (fan) I can sign up for news-bulletins    
+As a society-member (fan), I can upload my photo into the system.  
 --------------
-As a system, it will notify us in some way if the vaccination record has expired.
-As a system, it will notify us if the vaccination record will expire before the scheduled visit.
+As a system, it will notify members if an event is upcoming.
+As a system, it will notify members of a co-awarded badge.
 ```
  
 ** Software **
@@ -104,8 +98,14 @@ As a system, it will notify us if the vaccination record will expire before the 
 * [Jenkins]: <https://jenkins.io/> 
 * [CodeBuild]:<https://aws.amazon.com/codebuild/> 
    
-  website: [doggywood.io](http://doggywood.s3-website-us-east-1.amazonaws.com/t)
- 
+  website: [groot.io](http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com)
+#### TESTS
+##### Behavior-Driven Design Tests
+> Cucumber feature usability testing
+
+##### Test-Driven Design
+> Front: Selenium (Protractor)-automated Jasmine tests
+> Server: Selenium-TestNG automated JUnit tests
 
 #### URLS for Angular/Material:
 #### https://material.io

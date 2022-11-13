@@ -2,12 +2,11 @@
 
 ## groot-app
 Java Application for Friends of Groot Society
-<a style="margin-left:20%;" href="http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com
-">
+<a style="margin-left:20%;" href="https://friendsofgroot.com">
 <img width="200" src="https://friends-of-groot-society.s3.amazonaws.com/assets/grootsmall.png" title="Friends_of_Groot_Society_App" alt="Friends_of_Groot_Society_Image"></a>
 
 ### Groot Society Fan Club Groot NFT Tracker 
-> <a style="text-decoration:none;color:black;" href="https://friends-of-groot-society.s3-website-us-east-1.amazonaws.com/grootedex">Friends_of_Groot_Society</a>
+> <a style="text-decoration:none;color:black;" href="https://friendsofgroot.com">Friends_of_Groot_Society - https://friendsofgroot.com</a>
 
 > Full-Stack application that manages Groot Fan Club News and Features
  
@@ -126,7 +125,7 @@ CliLogger => [Singleton Logger Log4j]
   [Jenkins]: <https://jenkins.io/> 
   [CodeBuild]:<https://aws.amazon.com/codebuild/> 
    
-  website: [groot.io](http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com)
+  website: [groot.io](https://friendsofgroot.com)
 #### TESTS
 ##### Behavior-Driven Design Tests
 > Cucumber feature usability testing

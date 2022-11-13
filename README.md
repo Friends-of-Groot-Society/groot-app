@@ -1,20 +1,57 @@
+
+
 ## groot-app
 Java Application for Friends of Groot Society
 <a style="margin-left:20%;" href="http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com
 ">
 <img width="200" src="https://friends-of-groot-society.s3.amazonaws.com/assets/grootsmall.png" title="Friends_of_Groot_Society_App" alt="Friends_of_Groot_Society_Image"></a>
 
-### Groot Society Fan Club Groot News Tracker 
-> <a style="text-decoration:none;color:black;" href="http://friends-of-groot-society.s3-website-us-east-1.amazonaws.com/grootedex">Friends_of_Groot_Society</a>
+### Groot Society Fan Club Groot NFT Tracker 
+> <a style="text-decoration:none;color:black;" href="https://friends-of-groot-society.s3-website-us-east-1.amazonaws.com/grootedex">Friends_of_Groot_Society</a>
 
 > Full-Stack application that manages Groot Fan Club News and Features
  
 ### Author 
 > Thomas Maestas 
 
-### Application Overview
-The mission of the app is to organize and persist Groot Fan Club News and Guardians-of-the-Galaxy Events.
 
+
+### Application Overview
+The mission of the app is to organize and persist Groot Fan Club News and NFT-related Activies.
+
+
+#### Application User Stories
+```sh
+
+* -----------
+* As an society-administrator, I can login.
+* As an society-administrator, I can add news-bulletins.
+* As an society-administrator, I can add notes about Groot and the Guardians.
+* As an society-administrator, I add notes about Groot and the Guardians news-bulletins.
+* As an society-administrator, I can view my upcoming news-bulletins.
+* As an society-administrator, I can view information about the members.
+* As an society-administrator, I can view information about Groot and the Guardians.
+* As an society-administrator, I can add society-member (fan)s.
+* As an society-administrator, I can add badges to the society-member (fan)
+* As an society-administrator, I can add news-updates to society-members
+* As an society-administrator, I can view the status of Groot and the Guardians on the dates of events.
+* -----------
+* As a society-member (fan), I can login to an account.
+* As a society-member (fan), I can fill out a form with my information. 
+* As a society-member (fan), I can view a list of my owned badges.
+* As a society-member (fan), I add a new badge.
+* As a society-member (fan) I can sign up for news-bulletins    
+* As a society-member (fan), I can upload my photo into the system.  
+* --------------
+* As a system, it will notify members if an event is upcoming.
+* As a system, it will notify members of a co-awarded badge.
+--------------
+* As a customer, I can view the nfts on the lot. 
+* As a customer, I can make an offer for a nft. 
+* As a customer, I am alerted if offer APPROVED/DECLINED
+* As a customer, I can view the nfts that I own. 
+* As a customer, I can view my remaining payments for a nft(s) I own.
+```
 ### Technologies 
 | Fx | Tools | URLS |
 |-----------------|:-----------------:|---------:|
@@ -62,30 +99,21 @@ ORM enables developers to more easily write applications whose data outlives the
 "ts-node": "~7.0.0",
 "tslint": "~5.15.0",
 ```
-#### Application User Stories
-```sh 
-As an society-administrator, I can login.
-As an society-administrator, I can add news-bulletins.
-As an society-administrator, I can add notes about Groot and the Guardians.
-As an society-administrator, I add notes about Groot and the Guardians news-bulletins.
-As an society-administrator, I can view my upcoming news-bulletins.
-As an society-administrator, I can view information about the members.
-As an society-administrator, I can view information about Groot and the Guardians.
-As an society-administrator, I can add society-member (fan)s.
-As an society-administrator, I can add badges to the society-member (fan)
-As an society-administrator, I can add news-updates to society-members
-As an society-administrator, I can view the status of Groot and the Guardians on the dates of events.
------------
-As a society-member (fan), I can login to an account.
-As a society-member (fan), I can fill out a form with my information. 
-As a society-member (fan), I can view a list of my owned badges.
-As a society-member (fan), I add a new badge.
-As a society-member (fan) I can sign up for news-bulletins    
-As a society-member (fan), I can upload my photo into the system.  
---------------
-As a system, it will notify members if an event is upcoming.
-As a system, it will notify members of a co-awarded badge.
-```
+INNER-ARCHITECTURE
+CliApplication => ServletInitializer()
+
+CliApplication => 
+    View() => 
+        [singleton]Controller() => 
+            [singleton]Manager()  => 
+                DaoImpl => DataStore
+
+CliApplication =>
+    MainDashboard.mainUser(args) => [[VARS: DRIVER, SRC_DATA_STARTUP_TEXT_TXT]]
+
+CliLogger => [Singleton Logger Log4j]
+
+
  
 ** Software **
 

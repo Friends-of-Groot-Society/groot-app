@@ -70,12 +70,12 @@ public class CliLoader {
         System.out.println("\n2. Start Bookmarking");
         for (User user: users) {
             ClientActions.browse(user,bookmarks);
-            ClientActions.shareBookmark(user, bookmarks);
-            ClientActions.buyCoin(user, coins);
+            ClientActions.automatedShareBookmarks(user, bookmarks);
+            ClientActions.automatedBuyCoins(user, coins);
 
         }
     }
-    // random loader
+
 
 
     // Multi-Threaded Background offline html loader

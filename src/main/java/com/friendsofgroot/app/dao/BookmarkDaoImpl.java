@@ -3,6 +3,7 @@ package com.friendsofgroot.app.dao;
 
 import com.friendsofgroot.app.dataLoader.TestDataStore;
 import com.friendsofgroot.app.models.Bookmark;
+import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.UserBookmark;
 import com.friendsofgroot.app.models.Weblink;
 import com.friendsofgroot.app.util.JDBCConnection;
@@ -101,9 +102,11 @@ public class BookmarkDaoImpl   implements BookmarkDAO {
         TestDataStore.add(userBookmark);
     }
 
-    public  void saveUserBookmark(UserBookmark userBookmark) {
+    public  void saveLocalUserBookmark(UserBookmark userBookmark) {
         TestDataStore.add(userBookmark);
     }
 
-
+    public List<Bookmark> getLocalUserBookmarksByUser(User user) {
+      return TestDataStore.getLocalUserBookmarksByUser(user);
+    }
 }

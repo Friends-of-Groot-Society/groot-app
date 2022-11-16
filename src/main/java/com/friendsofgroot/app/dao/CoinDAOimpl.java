@@ -2,6 +2,7 @@ package com.friendsofgroot.app.dao;
 
 import com.friendsofgroot.app.dataLoader.TestDataStore;
 import com.friendsofgroot.app.models.Coin;
+import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.UserCoinbuy;
 import com.friendsofgroot.app.util.JDBCConnection;
 
@@ -166,10 +167,5 @@ String sql = "SELECT o.username,  o.coinid,  o.offerstatus,  o.offermos, c.coini
 		return false;
 	}
 
-	public void saveUserCoinbuy(UserCoinbuy userCoinbuy) {
-		TestDataStore.add(userCoinbuy);
-	}
 
-
-	 
 }

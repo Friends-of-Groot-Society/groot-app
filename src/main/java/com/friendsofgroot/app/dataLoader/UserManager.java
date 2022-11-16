@@ -1,14 +1,17 @@
 package com.friendsofgroot.app.dataLoader;
 
+import com.friendsofgroot.app.dao.CoinDAOimpl;
 import com.friendsofgroot.app.dao.UserDAOimpl;
 import com.friendsofgroot.app.models.*;
 
 import java.util.List;
 
 public class UserManager {
+	private static CoinDAOimpl coinDAOimpl = new CoinDAOimpl();
 
 	private static UserManager instance = new UserManager();
 	private static UserDAOimpl userDAOimpl = new UserDAOimpl();
+
 	private UserManager() {
 	}
 
@@ -17,9 +20,9 @@ public class UserManager {
 		return instance;
 	}
 
-	public User createUser(int userId, String userName, String password,  String lastName, String firstName,
-						   int groups, int userType,   String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id ) {
-		
+	public User createUser(int userId, String userName, String password, String lastName, String firstName,
+						   int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id) {
+
 		User user = new User();
 		user.setUserId(userId);
 		user.setId(id);
@@ -37,12 +40,13 @@ public class UserManager {
 		user.setIsActive(isActive);
 		user.setContactType(contactType);
 		user.setId(id);
-		
+
 		return user;
 
 	}
-	public List<User>  getUsers() {// THis is just relaying the call to the DaoImpl
-			return userDAOimpl.getLocalUsers();
+
+	public List<User> getUsers() {// THis is just relaying the call to the DaoImpl
+		return userDAOimpl.getLocalUsers();
 	}
 
 
@@ -53,7 +57,7 @@ public class UserManager {
 		userDAOimpl.saveUserCoinbuy(userCoinbuy);
 	}
 
-    public Groups createGroups(int id, int id2, String name_groups) {
+	public Groups createGroups(int id, int id2, String name_groups) {
 		Groups groups = new Groups();
 		groups.setGroupsId(id);
 		groups.setGroupsHeadId(id2);
@@ -62,4 +66,21 @@ public class UserManager {
 		return groups;
 	}
 
+	public void saveLocalUserCoin(User user, Coin coin) {
+
+		userDAOimpl.saveLocalUserCoinbuy(user, coin);
+
+	}
+
+	public List<Coin> getLocalUserCoinsByUser(User user) {
+		return userDAOimpl.getLocalUserCoinbuysByUser(user);
+	}
+
+	public void saveLocalUserCoinbuy(UserCoinbuy userCoinbuy) {
+		userDAOimpl.saveLocalUserCoinbuy(userCoinbuy);
+	}
+
+	public List<Coin> getLocalUserCoinbuysByUser(User user) {
+		return 	userDAOimpl.getLocalUserCoinbuysByUser(user);
+	}
 }

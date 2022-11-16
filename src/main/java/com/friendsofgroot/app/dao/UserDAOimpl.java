@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.friendsofgroot.app.models.Coin;
 import com.friendsofgroot.app.models.Groups;
 import com.friendsofgroot.app.models.UserCoinbuy;
 import com.friendsofgroot.app.util.JDBCConnection;
@@ -16,6 +17,7 @@ import java.util.List;
 import com.friendsofgroot.app.dataLoader.TestDataStore;
 //import db.DB;
 import com.friendsofgroot.app.models.User;
+import org.apache.logging.log4j.core.config.plugins.util.ResolverUtil;
 
 
 public class UserDAOimpl implements UserDAO { // can't make static! so use the service layer!
@@ -172,7 +174,6 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	public List<User> getUsers() {
@@ -261,8 +262,8 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 		return false;
 	}
 
-	///////////////////////// //	OFFLINE TESTDATA
 
+	///////////////////////// //	OFFLINE TESTDATA
 	@Override
 	public boolean createUserPrePop(User u) {
 		return false;
@@ -273,12 +274,12 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 	 */
 	@Override
 	public void saveUserCoinbuy(UserCoinbuy userCoinbuy) {
+
 		TestDataStore.add(userCoinbuy);
 	}
 
 	@Override
 	public  List<User> getLocalUsers() {
-
 		return TestDataStore.getUsers();
 	}
 
@@ -288,4 +289,22 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
     }
 
 
+	public void saveLocalUserCoinbuy(User user, Coin coin) {
+		TestDataStore.saveLocalUserCoinbuy(user, coin);
+	}
+
+	public void saveLocalUserCoinbuy(UserCoinbuy userCoinbuy) {
+		TestDataStore.add(userCoinbuy);
+	}
+
+	public List<Coin> getLocalUserCoinbuysByUser(User user) {
+		List<Coin> listOfCoinsOwnedByUser = new ArrayList<>();
+		List<UserCoinbuy> allUserCoins = new ArrayList<>();
+		for(UserCoinbuy userCoinbuy: allUserCoins ) {
+			if (userCoinbuy.getUser()==user) {
+				listOfCoinsOwnedByUser.add(userCoinbuy.getCoin());
+			}
+		}
+		return listOfCoinsOwnedByUser;
+	}
 }

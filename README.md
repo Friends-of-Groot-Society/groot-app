@@ -74,7 +74,7 @@ hosting application for Jenkins to run tests
 ##### AWS S3  
 hosts static assets like our 
 ##### AWS CodeBuild:  
-fully managed continuous integration service that compiles #source code, runs tests, and produces software packages 
+        fully managed continuous integration service that compiles #source code, runs tests, and produces software packages 
 ##### AWS RDS:  
 set up, operate, and scale a DB in the cloud. Cost-efficient and resizable capacity automating administration tasks such as hardware provisioning, database setup, patching and backups. 
 ##### PostMan
@@ -85,18 +85,18 @@ Apache Tomcat is an open-source implementation of the Java Servlet, JavaServer P
 ORM enables developers to more easily write applications whose data outlives the application process. As an Object/Relational Mapping (ORM) framework, Hibernate is concerned with data persistence as it applies to relational databases (via JDBC)
 #### Testing Libraries:
 ```json
-"Jenkins" : "2.0",
-"codelyzer": "^5.0.0",
-"jasmine-core": "~3.4.0",
-"jasmine-spec-reporter": "~4.2.1",
-"karma": "~4.1.0",
-"karma-chrome-launcher": "~2.2.0",
-"karma-coverage-istanbul-reporter": "~2.0.1",
-"karma-jasmine": "~2.0.1",
-"karma-jasmine-html-reporter": "^1.4.0",
-"protractor": "~5.4.0",
-"ts-node": "~7.0.0",
-"tslint": "~5.15.0",
+{"Jenkins" : "2.0",
+  "codelyzer": "^5.0.0",
+  "jasmine-core": "~3.4.0",
+  "jasmine-spec-reporter": "~4.2.1",
+  "karma": "~4.1.0",
+  "karma-chrome-launcher": "~2.2.0",
+  "karma-coverage-istanbul-reporter": "~2.0.1",
+  "karma-jasmine": "~2.0.1",
+  "karma-jasmine-html-reporter": "^1.4.0",
+  "protractor": "~5.4.0",
+  "ts-node": "~7.0.0",
+  "tslint": "~5.15.0"}
 ```
 INNER-ARCHITECTURE
 CliApplication => ServletInitializer()

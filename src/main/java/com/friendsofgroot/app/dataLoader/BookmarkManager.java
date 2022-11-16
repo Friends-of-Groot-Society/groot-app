@@ -61,12 +61,20 @@ public class BookmarkManager {
 	return weblink;
 	}
 
+	public List<List<Bookmark>> getBookmarksArray() {
+		return bookmarkDaoImpl.getBookmarksArray();
+	}
 
-	public static void saveUserBookmark(User user, Bookmark bookmark) {
+	public List<Bookmark> getLocalUserBookmarksByUser(User user) {
+		return bookmarkDaoImpl.getLocalUserBookmarksByUser(user);
+	}
+
+
+	public static void saveLocalUserBookmark(User user, Bookmark bookmark) {
 	    UserBookmark userBookmark = new UserBookmark();
 	    userBookmark.setUser(user);
 	    userBookmark.setBookmark(bookmark);
-		bookmarkDaoImpl.saveUserBookmark(userBookmark);   // JOIN TABLE
+		bookmarkDaoImpl.saveLocalUserBookmark(userBookmark);   // JOIN TABLE
 
 		if(bookmark instanceof Weblink) {
 			try {
@@ -99,7 +107,4 @@ public class BookmarkManager {
 }
 
 
-	public List<List<Bookmark>> getBookmarksArray() {
-		return bookmarkDaoImpl.getBookmarksArray();
-	}
 }

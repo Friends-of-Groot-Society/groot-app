@@ -41,10 +41,9 @@ public class TestDataStore {
 	public static List<List<Bookmark>> getBookmarksArray() {
 		return bookmarks;
 	}
-
 	public static List<UserBookmark> userBookmarks = new ArrayList<>();
+
 	public static int bookmarkIndex; // initialized to zero
-  
 	public static void loadData() throws FileNotFoundException, UnsupportedEncodingException {
 		loadUsers();
 		loadWeblinks();
@@ -54,6 +53,7 @@ public class TestDataStore {
 		loadOffers();
 		loadGroups();
 	}
+
 
 		private static void loadUsers() throws FileNotFoundException, UnsupportedEncodingException {
 //		users[0] = UserManager.getInstance().createUser(500,  "user0", "password", "Smith", "Tom", Group.MALE,  UserType.USER, "user0@cryptomaven.xyz",  "5055087707" ,"http://www.dailytech.net", "1000");
@@ -160,6 +160,33 @@ public class TestDataStore {
 	public static List<Nft> getNfts() {
 		return nfts;
 	}
+
+	public static void saveLocalUserCoinbuy(User user, Coin coin) {
+		UserCoinbuy userCoinbuy = new UserCoinbuy();
+		userCoinbuy.setUser(user);
+		userCoinbuy.setCoin(coin);
+	}
+
+	public static List<Coin> getLocalCoinsByUser(User user) {
+		List<Coin> coinsOwnedByUser = new ArrayList<>();
+		for(UserCoinbuy userCoinbuy : userCoinbuys) {
+			if(userCoinbuy.getUser() == user) {
+				coinsOwnedByUser.add(userCoinbuy.getCoin());
+			}
+		}
+		return coinsOwnedByUser;
+	}
+
+	public static List<Bookmark> getLocalUserBookmarksByUser(User user) {
+		List<Bookmark> bookmarksOwnedByUser = new ArrayList<>();
+		for(UserBookmark userbookmark: userBookmarks) {
+			if(userbookmark.getUser()==user) {
+				bookmarksOwnedByUser.add(userbookmark.getBookmark());
+			}
+		}
+		return bookmarksOwnedByUser;
+	}
+
 }
 
 

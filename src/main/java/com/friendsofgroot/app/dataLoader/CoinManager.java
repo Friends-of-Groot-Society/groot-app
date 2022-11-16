@@ -2,17 +2,20 @@ package com.friendsofgroot.app.dataLoader;
 
 import com.friendsofgroot.app.dao.CoinDAOimpl;
 import com.friendsofgroot.app.dao.OfferDAOimpl;
+import com.friendsofgroot.app.dao.UserDAOimpl;
 import com.friendsofgroot.app.models.Coin;
 import com.friendsofgroot.app.models.Offer;
+import com.friendsofgroot.app.models.User;
 
 import java.util.List;
 
 public class CoinManager {
 
 	private static CoinManager instance = new CoinManager(); 
-	private static CoinDAOimpl carDaoImpl = new CoinDAOimpl();
+	private static CoinDAOimpl coinDaoImpl = new CoinDAOimpl();
 
 	private static OfferDAOimpl offerDaoImpl= new OfferDAOimpl();
+	private static UserDAOimpl userDAOimpl = new UserDAOimpl();
 	private CoinManager() {
 	}
 
@@ -33,7 +36,7 @@ public class CoinManager {
 		return car; 
 	}
 	public List<Coin> getCoins() {
-		return carDaoImpl.getCoins(); 
+		return coinDaoImpl.getCoins(); 
 }
 
 
@@ -51,4 +54,6 @@ public class CoinManager {
 	public List<Offer> getOffers() {
 		return offerDaoImpl.getOffers();
 	}
+
+
 }

@@ -6,9 +6,6 @@ public class Bookmark {
 	private String profileUrl;
 
 
-
-
-
 	private User sharedBy;
 
 	public Bookmark(long id, String title, String profileUrl) {

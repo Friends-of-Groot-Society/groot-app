@@ -1,6 +1,10 @@
 package com.friendsofgroot.app.controllers;
 
+import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersService;
@@ -13,13 +17,17 @@ import java.util.List;
 @RestController
 //@Api(tags={"Users"})
 public class UsersController {
-
+    @Autowired
+    UserMapper userMapper;
     @Autowired
     private UsersService usersService;
 
     @PostMapping("/users")
-    public User createUser(@RequestBody User user) {
-        return usersService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
+        return new ResponseEntity<>(
+                usersService.createUser(
+                        userMapper.userDtoToUser(userDto)),
+                 HttpStatus.CREATED);
     }
     @GetMapping(value="/users/{userId}")
     public User getUser(@PathVariable("userId") int userId) {

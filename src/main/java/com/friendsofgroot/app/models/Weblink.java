@@ -1,11 +1,28 @@
 package com.friendsofgroot.app.models;
 
 import com.friendsofgroot.app.util.Shareable;
+import lombok.*;
+
+import javax.persistence.*;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Getter @Setter @ToString
+@Table(name = "weblinks")
 
 public class Weblink extends Bookmark implements Shareable {
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
+	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+	@Column(name="id")
+	private long id;
 	private String url;
 	private String host;
+	@Column(name="htmlpage")
 	private String htmlPage;
+	@Column(name="downloadstatus")
 	private DownloadStatus downloadStatus = DownloadStatus.NOT_ATTEMPTED;
 
 	public enum DownloadStatus {
@@ -14,38 +31,6 @@ public class Weblink extends Bookmark implements Shareable {
 		FAILED,
 		NOT_ELIGIBLE;
 	}
-	public Weblink() {
-
-	}
-
-
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public String getHost() {
-		return host;
-	}
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-/*  {web3, dapp, crypto} in title
-*
- */
-//	@Override
-//	public boolean isWeb3Link() {
-//		return true;
-//	}
-
-	@Override
-	public String toString() {
-		return "Weblink [url=" + url + ", host=" + host + "]";
-	}
-
-
 	@Override
 	public String getItemData() {
 		StringBuilder builder = new StringBuilder();
@@ -57,21 +42,54 @@ public class Weblink extends Bookmark implements Shareable {
 		builder.append("</item>");
 		return builder.toString();
 	}
-
-	public String getHtmlPage() {
-		return htmlPage;
+	@Override
+	public boolean isWeb3Link() {
+		return true;
 	}
 
-	public void setHtmlPage(String htmlPage) {
-		this.htmlPage = htmlPage;
-	}
+	//	public Weblink() {
+//
+//	}
 
-	public DownloadStatus getDownloadStatus() {
-		return downloadStatus;
-	}
+//
+//	public String getUrl() {
+//		return url;
+//	}
+//	public void setUrl(String url) {
+//		this.url = url;
+//	}
+//	public String getHost() {
+//		return host;
+//	}
+//	public void setHost(String host) {
+//		this.host = host;
+//	}
+//public String getHtmlPage() {
+//	return htmlPage;
+//}
+//
+//	public void setHtmlPage(String htmlPage) {
+//		this.htmlPage = htmlPage;
+//	}
+//
+//	public DownloadStatus getDownloadStatus() {
+//		return downloadStatus;
+//	}
+//
+//	public void setDownloadStatus(DownloadStatus downloadStatus) {
+//
+//		this.downloadStatus = downloadStatus;
+//	}
+/*  {web3, dapp, crypto} in title
+*
+ */
 
-	public void setDownloadStatus(DownloadStatus downloadStatus) {
-		this.downloadStatus = downloadStatus;
-	}
+//	@Override
+//	public String toString() {
+//		return "Weblink [url=" + url + ", host=" + host + "]";
+//	}
+
+
+
 
 }

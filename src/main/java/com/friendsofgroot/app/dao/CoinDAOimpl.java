@@ -29,7 +29,7 @@ public class CoinDAOimpl implements CoinDAO {
 			cs.setString(1, c.getCoinToken());
 			cs.setString(2, c.getCoinSymbol()); 
 			cs.setString(3, Double.toString(c.getPriceTotal())); 
-			cs.setString(4, Integer.toString(c.isPurchased()));  
+			cs.setString(4, Integer.toString(c.isPurchased()));
 			cs.execute();
 			return true;
 
@@ -137,7 +137,7 @@ String sql = "SELECT o.username,  o.coinid,  o.offerstatus,  o.offermos, c.coini
 			ps.setString(1, change.getCoinToken());
 			ps.setString(2, change.getCoinSymbol()); 
 			ps.setString(3, Double.toString(change.getPriceTotal())); 
-			ps.setString(4, Integer.toString(change.isPurchased())); 
+			ps.setString(4, Integer.toString(change.isPurchased()));
 			ps.setString(5, Integer.toString(change.getCoinId())); 
 			ps.executeQuery();
 			return true;

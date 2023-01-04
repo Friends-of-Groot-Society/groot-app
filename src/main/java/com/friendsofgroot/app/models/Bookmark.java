@@ -1,11 +1,28 @@
 package com.friendsofgroot.app.models;
 
-public class Bookmark {
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+import static javax.persistence.DiscriminatorType.STRING;
+
+//@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter @ToString
+public class Bookmark implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+ 	@Id
 	private long id;
 	private String title;
+
+	@Column(name="profileurl")
 	private String profileUrl;
 
 
+	@ManyToOne
+	@JoinColumn(name = "shared_by_userid")
 	private User sharedBy;
 
 	public Bookmark(long id, String title, String profileUrl) {
@@ -42,11 +59,8 @@ public class Bookmark {
 		this.profileUrl = profileUrl;
 	}
 
-//	public abstract boolean isWeb3Link();
-
-	@Override
-	public String toString() {
-		return "Bookmark [id=" + id + ", title=" + title + ", profileUrl=" + profileUrl + "]";
+	public boolean isWeb3Link() {
+		return false;
 	}
 
 	public User getSharedBy() {
@@ -55,4 +69,9 @@ public class Bookmark {
     public void setSharedBy(User sharedBy) {
 	this.sharedBy = sharedBy;
     }
+	@Override
+	public String toString() {
+		return "Bookmark [id=" + id + ", title=" + title + ", profileUrl=" + profileUrl + "]";
+	}
+
 }

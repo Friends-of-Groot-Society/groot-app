@@ -30,31 +30,45 @@ public class UsersController {
                  HttpStatus.CREATED);
     }
     @GetMapping(value="/users/{userId}")
-    public User getUser(@PathVariable("userId") int userId) {
-        return usersService.getUser(userId);
+    public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
+        return new ResponseEntity<>(
+                userMapper.userToUserDto(
+                        usersService.getUser(userId)),
+                HttpStatus.OK);
     }
     @GetMapping(value="/users/email/{email}")
-    public User getUserByEmail(@PathVariable("email") String email) {
-        return usersService.getUser(email);
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
+        return new ResponseEntity<>(
+                userMapper.userToUserDto(
+                        usersService.getUser(email)),
+                HttpStatus.OK);
     }
+
     @GetMapping("/users")
-    public List<User> getUsers() {
-        return usersService.getUsers();
+    public ResponseEntity<List<UserDto>> getUsers() {
+        return new ResponseEntity<>(
+                userMapper.usersToUserDtos(
+                        usersService.getUsers()),
+                HttpStatus.OK);
     }
 
     @PutMapping(value="/users", consumes="application/json")  // userId in body
-    public User updateUser(@RequestBody User change) {
-        return usersService.updateUser(change);
+    public ResponseEntity<User> updateUser(@RequestBody UserDto userDto) {
+        return new ResponseEntity<>(
+                usersService.createUser(
+                        userMapper.userDtoToUser(userDto)),
+                HttpStatus.CREATED);
     }
-    @DeleteMapping(value="/users/{id}")
-    public boolean deleteUser(@PathVariable("id") int id) {
+
+    @DeleteMapping(value="/users/{userId}")
+    public ResponseEntity<Boolean> deleteUser(@PathVariable("userId") int userId) {
         try {
-            usersService.deleteUser(usersService.getUser(id));
+            usersService.deleteUser(usersService.getUser(userId));
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            return false;
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
-        return true;
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
 
@@ -62,7 +76,6 @@ public class UsersController {
 
 //    public User getUserByPassword(String username, String password) {
 //        return null;
-//    }
-
+//    }ResponseEntity
 
 }

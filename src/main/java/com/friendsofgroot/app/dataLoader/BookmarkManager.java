@@ -33,7 +33,7 @@ public class BookmarkManager {
 	movie.setCast(cast);
 	movie.setDirectors(directors);
 	movie.setGenre(genre);
-	movie.setImbdRating(imbdRating);
+	movie.setImdbRating(imbdRating);
 	return movie;
 	}
  

@@ -6,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.Groups;
-import com.friendsofgroot.app.models.UserCoinbuy;
+import com.friendsofgroot.app.models.*;
 import com.friendsofgroot.app.util.JDBCConnection;
 
 import java.util.ArrayList;
@@ -16,7 +14,6 @@ import java.util.List;
 
 import com.friendsofgroot.app.dataLoader.TestDataStore;
 //import db.DB;
-import com.friendsofgroot.app.models.User;
 import org.apache.logging.log4j.core.config.plugins.util.ResolverUtil;
 
 
@@ -111,7 +108,8 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 						rs.getString("userGroup"),
 						rs.getInt("isActive"),
 						rs.getInt("contactType"),
-						rs.getString("id")
+						rs.getString("id"),
+						(List<Address>) rs.getObject("user")
 				);
 			}
 
@@ -146,7 +144,8 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 						rs.getString("userGroup"),
 						rs.getInt("isActive"),
 						rs.getInt("contactType"),
-						rs.getString("id")
+						rs.getString("id"),
+						(List<Address>) rs.getObject("user")
 				);
 			}
 
@@ -198,7 +197,8 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 						rs.getString("userGroup"),
 						rs.getInt("isActive"),
 						rs.getInt("contactType"),
-						rs.getString("id")
+						rs.getString("id"),
+						(List<Address>) rs.getObject("user")
 				));
 			}
 			return userArr;

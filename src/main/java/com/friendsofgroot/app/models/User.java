@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Data
@@ -54,6 +55,9 @@ public class User implements Serializable {
     private int contactType; // ContactType contactType
     @Column(name="id")
     private String id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses ;
 
     // overloaded for getUsersByCArs() call to DB
     public User(int userId, String userName) {

@@ -1,53 +1,58 @@
 package com.friendsofgroot.app.service;
 
 
-import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.repositories.CoinsRepository;
+import com.friendsofgroot.app.models.Chain;
+import com.friendsofgroot.app.repositories.ChainsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CoinsServiceImpl implements CoinsService {
+public class ChainsServiceImpl implements ChainsService {
 
 @Autowired
-private CoinsRepository coinsRepository;
+private ChainsRepository chainsRepository;
     @Override
-    public Coin createCoin(Coin c) {
-         return  coinsRepository.save(c);
+    public Chain createChain(Chain c) {
+         return  chainsRepository.save(c);
     }
     @Override
-    public Coin getCoin(int coinId) {
+    public Chain getChain(int id) {
     try {
-            return coinsRepository.findById(coinId).get();
+            return chainsRepository.findById(id).get();
         } catch (Exception e) {
             return null;
         }
     }
 //    @Autowired
-//    public List<Coin> getAllCoinsIOwn(String username) {
-//        return null; //(List<Coin>)  coinsRepository.findByUsername(username);
+//    public List<Chain> getAllChainsIOwn(String username) {
+//        return null; //(List<Chain>)  chainsRepository.findByUsername(username);
 //    }
     @Override
-    public List<Coin> getAllCoins() {
-        return (List<Coin>) coinsRepository.findAll();
+    public List<Chain> getAllChains() {
+        return (List<Chain>) chainsRepository.findAll();
+    }
+
+    /**
+     * @return
+     */
+
+
+    @Override
+    public  Chain  getChainByName(String name) {
+        return chainsRepository.findByName(name);
     }
     @Override
-    public List<Coin> getAllCoinsCust() {
-        return null; // (List<Coin>) coinsRepository.findAll();
+    public Chain updateChain(Chain change) {
+         return   chainsRepository.save(change);
     }
     @Override
-    public Coin updateCoin(Coin change) {
-         return   coinsRepository.save(change);
-    }
-    @Override
-    public boolean deleteCoin(int coinId) {
+    public boolean deleteChain(int chainId) {
 
         try {
-            Coin c = coinsRepository.findById(coinId).get();
-            coinsRepository.delete(c);
+            Chain c = chainsRepository.findById(chainId).get();
+            chainsRepository.delete(c);
 
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -55,9 +60,6 @@ private CoinsRepository coinsRepository;
         }
         return true;
     }
-    @Override
-    public void coinMarketViewAll() {
-        System.out.println(getAllCoinsCust());
-    }
+
 
 }

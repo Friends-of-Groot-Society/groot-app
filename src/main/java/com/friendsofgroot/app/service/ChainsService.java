@@ -1,29 +1,28 @@
 package com.friendsofgroot.app.service;
 
 
-import com.friendsofgroot.app.models.Coin;
-import org.springframework.stereotype.Service;
+import com.friendsofgroot.app.models.Chain;
 
 import java.util.List;
 
 
-public interface CoinsService {
+public interface ChainsService {
 
 
-    public Coin createCoin(Coin c);
+    public Chain createChain(Chain c);
 
-    public Coin getCoin(int coinId);
+    public Chain getChain(int chainId);
 
-//    public List<Coin> getAllCoinsIOwn(String username);
+//    public List<Chain> getAllChainsIOwn(String username);
 
-    public List<Coin> getAllCoins();
+    public List<Chain> getAllChains();
 
-    public List<Coin> getAllCoinsCust();
+    Chain  getChainByName(String name);
 
-    public Coin updateCoin(Coin change);
+    public Chain updateChain(Chain change);
 
-    public boolean deleteCoin(int id);
+    public boolean deleteChain(int id);
 
-    public void coinMarketViewAll();
+
 
 }

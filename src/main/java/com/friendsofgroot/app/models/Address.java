@@ -29,7 +29,7 @@ public class Address {
     private String blockExplorerUrl;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="owner_id",foreignKey = @ForeignKey(name = "users_fk"))
+    @JoinColumn(name ="userid",foreignKey = @ForeignKey(name = "userid"))
     private User user;
 
     @Column(name="chain_id")

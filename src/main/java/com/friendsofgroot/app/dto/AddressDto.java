@@ -4,10 +4,11 @@ import com.friendsofgroot.app.models.User;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Data
-public class AddressDto {
+public class AddressDto  implements Serializable {
     private int id;
 
     private String description;

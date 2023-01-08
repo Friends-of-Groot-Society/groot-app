@@ -1,15 +1,11 @@
-package net.ourdailytech.rest.webservice.services;
+package com.friendsofgroot.app.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.friendsofgroot.app.models.PostEntity;
+import  com.friendsofgroot.app.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.ourdailytech.rest.webservice.entities.PostEntity;
-import net.ourdailytech.rest.webservice.repositories.PostRepository;
-
-import net.ourdailytech.rest.webservice.services.PostService; 
+import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -27,6 +23,17 @@ public class PostServiceImpl implements PostService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/**
+	 * @param username
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public PostEntity getPostByUsernameAndId(String username, long id) {
+		return null;
+	}
+
 	@Override
 	public PostEntity getPostById(Long id) {
 		return pr.findById(id).get();
@@ -34,20 +41,15 @@ public class PostServiceImpl implements PostService {
 
 	
 	
-//	@Override
-//	public PostEntity getPostByUsername(String username) {
-//	try {
-//		return pr.findByUsername(username).get(); 
-//	} catch (Exception e) {
-//	return null;
-//	}
-//	}
+	@Override
+	public List<PostEntity> getAllPostsByUsername(String username) {
+	try {
+		return (List<PostEntity>) pr.findAllByUsername(username) ;
+	} catch (Exception e) {
+	return null;
+	}
+	}
 
-//	@Override
-//	public Object getPostByUsernameAndPassword(String email, String password) {
-//		return er.findByUsernameAndPassword(email).get(); 
-//	}
-	
 	@Override
 	public List<PostEntity> getAllPosts() {
 		return (List<PostEntity>) pr.findAll();

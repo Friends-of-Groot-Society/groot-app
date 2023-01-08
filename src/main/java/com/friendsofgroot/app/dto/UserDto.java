@@ -3,10 +3,13 @@ package com.friendsofgroot.app.dto;
 import com.friendsofgroot.app.models.Address;
 import lombok.*;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-@Getter @Setter @ToString
-public class UserDto {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDto  implements Serializable {
 
     @Id
     private int id; // userId

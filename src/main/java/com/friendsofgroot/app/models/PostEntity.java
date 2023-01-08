@@ -1,4 +1,4 @@
-package net.ourdailytech.rest.webservice.entities;
+package com.friendsofgroot.app.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,7 +46,7 @@ public class PostEntity {
 	}
 	
 	public PostEntity(Long id, String did, String date, String author, String monthOrder, String cat3, String title, String post,
-			String blogcite, String username) {
+                      String blogcite, String username) {
 		super();
 		this.id = id;
 		this.did = did;

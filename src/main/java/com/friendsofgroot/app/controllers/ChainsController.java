@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.controllers;
 
-import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.service.CoinsService;
+import com.friendsofgroot.app.models.Chain;
+import com.friendsofgroot.app.service.ChainsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,45 +10,42 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
 @RestController
-public class CoinsController {
+public class ChainsController {
     @Autowired
-    CoinsService coinsService;
+    ChainsService chainsService;
 
-    @RequestMapping(value = "/coins", method = RequestMethod.POST, consumes = "application/json")
-    public Coin createCoin(@RequestBody Coin c) {
-        return coinsService.createCoin(c);
-    }
-    @GetMapping(value = "/coins/{coinId}")
-    public Coin getCoin(@PathVariable("coinId") int coinId) {
-
-        return coinsService.getCoin(coinId);
+    @RequestMapping(value = "/chains", method = RequestMethod.POST, consumes = "application/json")
+    public Chain createChain(@RequestBody Chain c) {
+        return chainsService.createChain(c);
     }
 
-    @GetMapping(value = "/coins/{username}")
-    public List<Coin> getAllCoinsIOwn(@PathVariable("username") String username) {
-        return null; // coinsService.getAllCoinsIOwn(username);
+
+    @GetMapping(value = "/chains")
+    public List<Chain> getAllChains() {
+        return chainsService.getAllChains();
+    }
+    @GetMapping(value = "/chains/{id}")
+    public Chain getChain(@PathVariable("id") int id) {
+
+        return chainsService.getChain(id);
     }
 
-    @GetMapping(value = "/coins")
-    public List<Coin> getAllCoins() {
-        return coinsService.getAllCoins();
+//    @GetMapping(value = "/chains/{username}")
+//    public List<Chain> getAllChainsIOwn(@PathVariable("username") String username) {
+//        return null; // chainsService.getAllChainsIOwn(username);
+//    }
+    @GetMapping(value = "/chains/name/{name}")
+    public Chain getChainByName(@PathVariable("name") String name) {
+        return chainsService.getChainByName(name);
+    }
+   @PutMapping(value = "/chains", consumes = "application/json")
+    public Chain updateChain(@RequestBody Chain change) {
+        return chainsService.updateChain(change);
+    }
+    @DeleteMapping(value = "/chains/{chainId}")
+    public boolean deleteChain(@PathVariable("chainId") int chainId) {
+        return chainsService.deleteChain(chainId);
     }
 
-    @GetMapping(value = "/coins/{id}")
-    public List<Coin> getAllCoinsCust(@PathVariable("id") int id) {
-        return coinsService.getAllCoinsCust();
-    }
-   @PutMapping(value = "/coins", consumes = "application/json")
-    public Coin updateCoin(@RequestBody Coin change) {
-        return coinsService.updateCoin(change);
-    }
-    @DeleteMapping(value = "/coins/{coinId}")
-    public boolean deleteCoin(@PathVariable("coinId") int coinId) {
-        return coinsService.deleteCoin(coinId);
-    }
-    @GetMapping(value = "/coins/market")
-    public void coinMarketViewAll() {
-        coinsService.coinMarketViewAll();
-    }
 
 }

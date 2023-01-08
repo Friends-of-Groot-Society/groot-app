@@ -19,11 +19,5 @@ public class CoinDto implements Serializable {
     /**
      * A DTO for the {@link Weblink} entity
      */
-    @Data
-    public static class WeblinkDto implements Serializable {
-        private final long id;
-        private final String url;
-        private final String host;
-        private final String htmlPage;
-    }
+
 }

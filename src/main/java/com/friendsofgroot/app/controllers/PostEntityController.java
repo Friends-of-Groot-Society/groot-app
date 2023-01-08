@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.controllers;
 
 import com.friendsofgroot.app.dto.PostEntityDto;
+import com.friendsofgroot.app.dto.PostEntityResponse;
 import com.friendsofgroot.app.mapper.PostEntityMapper;
 import com.friendsofgroot.app.models.PostEntity;
 import com.friendsofgroot.app.repositories.PostRepository;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/posts")
 @CrossOrigin(origins = "*")
 @RestController
 public class PostEntityController {
@@ -26,71 +27,92 @@ public class PostEntityController {
 	@Autowired
 	private PostEntityMapper postEntityMapper;
 
-
-    @PostMapping(path = "/posts/{username}")
-    public ResponseEntity<PostEntity> createPost(
-            @PathVariable String username,
-            @RequestBody PostEntity post
-    ) {
-        post.setUsername(username);
-        PostEntity postCreated = postService.createPost(post);
-
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(postCreated.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    @PostMapping
+    public ResponseEntity<PostEntityDto> createPost(@RequestBody PostEntityDto postEntityDto){
+        return new ResponseEntity<>(postService.createPost(postEntityDto), HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "/posts")
-    public ResponseEntity<List<PostEntity>> getAllPosts() {
-        return new ResponseEntity<>(
-                postEntityMapper.PostEntitysToPostEntityDTOs(
-                        postService.getAllPosts()
-                ), HttpStatus.OK);
+    @GetMapping
+    public PostEntityResponse getAllPosts(
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir
+    ){
+        return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
     }
-
-
-    @GetMapping(path = "/posts/{username}")
-    public ResponseEntity<List<PostEntity>> getAllPostsByUsername(@PathVariable String username) {
-        return new ResponseEntity<>(
-				postEntityMapper.PostEntitysToPostEntityDTOs(
-						postService.getAllPostsByUsername(username)
-                ), HttpStatus.OK);
+//    @GetMapping(path = "/posts")
+//    public ResponseEntity<List<PostEntity>> getAllPosts() {
+//        return new ResponseEntity<>(
+//                postEntityMapper.PostEntitysToPostEntityDTOs(
+//                        postService.getAllPosts()
+//                ), HttpStatus.OK);
+//    }
+    @GetMapping("/username/{username}")
+    public PostEntityResponse getAllPostsByUsername(
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir,
+            @PathVariable String username
+    ){
+        return postService.getAllPostsByUsername(pageNo, pageSize, sortBy, sortDir, username);
     }
-
-
-
-    @GetMapping(path = "/posts/{username}/{id}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<PostEntityDto> getPostByUsernameAndId(@PathVariable String username, @PathVariable long id) {
-//        return postRepository.findById(id).get();
-        		return new ResponseEntity<>(
-                                        postEntityMapper.PostEntityToPostEntityDTO(
-                                                postService.getPostByUsernameAndId(username, id)),
-                                        HttpStatus.OK);
+//    @GetMapping(path = "/posts/{username}")
+//    public ResponseEntity<List<PostEntity>> getAllPostsByUsername(@PathVariable String username) {
+//        return new ResponseEntity<>(
+//				postEntityMapper.PostEntitysToPostEntityDTOs(
+//						postService.getAllPostsByUsername(username)
+//                ), HttpStatus.OK);
+//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<PostEntityDto> getPostById(@PathVariable(name = "id") long id){
+        return ResponseEntity.ok(postService.getPostById(id));
     }
-
-
-    @PutMapping(path = "/posts/{username}/{id}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<PostEntity> updatePost(
-            @PathVariable String username,
-            @PathVariable long id, @RequestBody PostEntity postEntity) {
-        postEntity.setUsername(username);
-        PostEntity postUpdated = postService.createPost(postEntity);
-        		 return new ResponseEntity<PostEntity>(postEntity, HttpStatus.OK);
+    @GetMapping("/date/{did}")
+    public ResponseEntity<PostEntityDto> getPostByDid(@PathVariable(name = "did") String did){
+        return ResponseEntity.ok(postService.getPostByDid(did));
     }
-
-    @DeleteMapping(path = "/posts/{username}/{id}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> deletePost(
-            @PathVariable String username, @PathVariable long id) {
-          PostEntity post = postService.getPostByUsernameAndId(username, id);
-          postService.deletePost(post);
-        		if(post!=null) {
-                    return new ResponseEntity<>(true, HttpStatus.OK);
-        		}
-//        		return ResponseEntity.notFound().build();
-                return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+//    @GetMapping(path = "/posts/{username}/{id}")
+//    public ResponseEntity<PostEntityDto> getPostByUsernameAndId(@PathVariable String username, @PathVariable long id) {
+////        return postRepository.findById(id).get();
+//        		return new ResponseEntity<>(
+//                                        postEntityMapper.PostEntityToPostEntityDTO(
+//                                                postService.getPostByUsernameAndId(username, id)),
+//                                        HttpStatus.OK);
+//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<PostEntityDto> updatePost(@RequestBody PostEntityDto postEntityDto, @PathVariable(name = "id") long id){
+        PostEntityDto postResponse = postService.updatePost(postEntityDto, id);
+        return new ResponseEntity<>(postResponse, HttpStatus.OK);
     }
+//    @PutMapping(path = "/posts/{username}/{id}")
+//    public ResponseEntity<PostEntity> updatePost(
+//            @PathVariable String username,
+//            @PathVariable long id, @RequestBody PostEntity postEntity) {
+//        postEntity.setUsername(username);
+//        PostEntity postUpdated = postService.createPost(postEntity);
+//        		 return new ResponseEntity<PostEntity>(postEntity, HttpStatus.OK);
+//    }
+@DeleteMapping("/{id}")
+public ResponseEntity<Boolean> deletePostById(@PathVariable(name = "id") long id){
+    try {
+        postService.deletePostById(id);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+    }
+}
+//    @DeleteMapping(path = "/posts/{username}/{id}")
+//    public ResponseEntity<Boolean> deletePost(
+//            @PathVariable String username, @PathVariable long id) {
+//          PostEntity post = postService.getPostByUsernameAndId(username, id);
+//          postService.deletePost(post);
+//        		if(post!=null) {
+//                    return new ResponseEntity<>(true, HttpStatus.OK);
+//        		}
+////        		return ResponseEntity.notFound().build();
+//                return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+//    }
 
 }

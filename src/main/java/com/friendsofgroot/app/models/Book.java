@@ -11,8 +11,9 @@ import javax.persistence.*;
 @Table(name = "books")
 public class Book extends Bookmark implements Shareable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "BOOK_SEQUENCE" )
-	@SequenceGenerator(name = "BOOK_SEQUENCE", sequenceName = "BOOK_SEQUENCE", allocationSize = 1)
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "BOOK_SEQUENCE" )
+//	@SequenceGenerator(name = "BOOK_SEQUENCE", sequenceName = "BOOK_SEQUENCE", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private long id;
 	@Column(name="pubyear")

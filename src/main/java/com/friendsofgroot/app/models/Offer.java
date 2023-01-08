@@ -14,8 +14,9 @@ import java.io.Serializable;
 public class Offer {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
-	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
+//	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "offerid", nullable = false)
 	int offerID;
 //	int userID;

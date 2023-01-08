@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.cli;
 
+import com.friendsofgroot.app.CliApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

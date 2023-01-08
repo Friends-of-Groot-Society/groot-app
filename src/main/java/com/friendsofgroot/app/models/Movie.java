@@ -1,58 +1,42 @@
 package com.friendsofgroot.app.models;
 
-public class Movie extends Bookmark {
+import com.friendsofgroot.app.util.Shareable;
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name = "movies")
+public class Movie extends Bookmark implements Shareable {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "MOVIE_SEQUENCE" )
+	@SequenceGenerator(name = "MOVIE_SEQUENCE", sequenceName = "MOVIE_SEQUENCE", allocationSize = 1)
+	@Column(name="id")
+	private long id;
 	private int releaseYear;
 	private String cast;
 	private String directors;
 	private String genre;
-	private double imbdRating;
+	private double imdbRating;
+	private String title;
 
-	public Movie(long id, String title, String profileUrl) {
-		super(id, title, profileUrl);
-	}
-
-    public Movie() {
-
-    }
-
-	public int getReleaseYear() {
-		return releaseYear;
-	}
-	public void setReleaseYear(int releaseYear) {
-		this.releaseYear = releaseYear;
-	}
-	public String getCast() {
-		return cast;
-	}
-	public void setCast(String cast) {
-		this.cast = cast;
-	}
-	public String getDirectors() {
-		return directors;
-	}
-	public void setDirectors(String directors) {
-		this.directors = directors;
-	}
-	public double getImbdRating() {
-		return imbdRating;
-	}
-	public void setImbdRating(double imbdRating) {
-		this.imbdRating = imbdRating;
-	}
-	public void setGenre(String genre) {
-	this.genre = genre;
-		
-	}
-
-//	@Override
-//	public boolean isWeb3Link() {
-//		return true;
-//	}
-
+	/**
+	 * @return
+	 */
 	@Override
-	public String toString() {
-		return "Movie [releaseYear=" + releaseYear + ", cast=" + cast + ", directors="
-				+ directors + ", genre=" + genre + ", imbdRating=" + imbdRating + "]";
+	public String getItemData() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<item>");
+		builder.append("<type>Book</type>");
+		builder.append("<title>").append(getTitle()).append("</title>");
+		builder.append("<directors>").append(directors).append("</directors>");
+		builder.append("<cast>").append(cast).append("</cast>");
+		builder.append("<imdbRating>").append(imdbRating).append("</imdbRating>");
+		builder.append("<releaseYear>").append(releaseYear).append("</releaseYear>");
+		builder.append("<genre").append(genre).append("</genre>");
+		builder.append("</item>");
+		return builder.toString();
 	}
-	
 }

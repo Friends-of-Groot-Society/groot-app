@@ -6,12 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Entity
-@Getter @Setter @ToString
 @Table(name = "weblinks")
-
 public class Weblink extends Bookmark implements Shareable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
@@ -46,50 +43,5 @@ public class Weblink extends Bookmark implements Shareable {
 	public boolean isWeb3Link() {
 		return true;
 	}
-
-	//	public Weblink() {
-//
-//	}
-
-//
-//	public String getUrl() {
-//		return url;
-//	}
-//	public void setUrl(String url) {
-//		this.url = url;
-//	}
-//	public String getHost() {
-//		return host;
-//	}
-//	public void setHost(String host) {
-//		this.host = host;
-//	}
-//public String getHtmlPage() {
-//	return htmlPage;
-//}
-//
-//	public void setHtmlPage(String htmlPage) {
-//		this.htmlPage = htmlPage;
-//	}
-//
-//	public DownloadStatus getDownloadStatus() {
-//		return downloadStatus;
-//	}
-//
-//	public void setDownloadStatus(DownloadStatus downloadStatus) {
-//
-//		this.downloadStatus = downloadStatus;
-//	}
-/*  {web3, dapp, crypto} in title
-*
- */
-
-//	@Override
-//	public String toString() {
-//		return "Weblink [url=" + url + ", host=" + host + "]";
-//	}
-
-
-
 
 }

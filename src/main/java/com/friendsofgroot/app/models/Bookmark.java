@@ -8,8 +8,7 @@ import java.io.Serializable;
 import static javax.persistence.DiscriminatorType.STRING;
 
 //@NoArgsConstructor
-@AllArgsConstructor
-@Getter @Setter @ToString
+@Data
 public class Bookmark implements Serializable {
 
 	private static final long serialVersionUID = 1L;

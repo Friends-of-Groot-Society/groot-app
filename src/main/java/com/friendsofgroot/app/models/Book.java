@@ -6,15 +6,13 @@ import lombok.*;
 import javax.persistence.*;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Entity
-@Getter @Setter @ToString
 @Table(name = "books")
 public class Book extends Bookmark implements Shareable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
-	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "BOOK_SEQUENCE" )
+	@SequenceGenerator(name = "BOOK_SEQUENCE", sequenceName = "BOOK_SEQUENCE", allocationSize = 1)
 	@Column(name="id")
 	private long id;
 	@Column(name="pubyear")
@@ -24,9 +22,7 @@ public class Book extends Bookmark implements Shareable {
 	private String genre;
 	private double rating;
 
-//	public Book(int id, String title, String profileUrl) {
-//		super(id, title, profileUrl);
-//	}
+	private String title;
 
 	@Override
 	public  String getItemData() {
@@ -41,52 +37,5 @@ public class Book extends Bookmark implements Shareable {
 		builder.append("</item>");
 		return builder.toString();
 	}
-//	public Book() {
-//		super();
-//	}
-//
-//	public int getPublicationYear() {
-//		return publicationYear;
-//	}
-//	public void setPublicationYear(int publicationYear) {
-//		this.publicationYear = publicationYear;
-//	}
-//	public String getPublisher() {
-//		return publisher;
-//	}
-//	public void setPublisher(String publisher) {
-//		this.publisher = publisher;
-//	}
-//	public String getAuthors() {
-//		return authors;
-//	}
-//	public void setAuthors(String authors) {
-//		this.authors = authors;
-//	}
-//	public String getGenre() {
-//		return genre;
-//	}
-//	public void setGenre(String genre) {
-//		this.genre = genre;
-//	}
-//	public double getRating() {
-//		return rating;
-//	}
-//	public void setRating(double rating) {
-//		this.rating = rating;
-//	}
-
-//	@Override
-//	public boolean isWeb3Link() {
-//		return true;
-//	}
-
-//	@Override
-//	public String toString() {
-//		return "Book [publicationYear=" + publicationYear + ", publisher=" + publisher + ", authors="
-//				+  authors + ", genre=" + genre + ", rating=" + rating + "]";
-//	}
-
-
 
 }

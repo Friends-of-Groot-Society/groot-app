@@ -28,8 +28,8 @@ public class Address {
     @Column(name="block_explorer_url")
     private String blockExplorerUrl;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="userid",foreignKey = @ForeignKey(name = "userid"))
+    @ManyToOne(cascade = CascadeType.ALL) //,fetch = FetchType.LAZY
+    @JoinColumn(name ="userid")//,foreignKey = @ForeignKey(name = "userid"))
     private User user;
 
     @Column(name="chain_id")

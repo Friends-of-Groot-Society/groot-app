@@ -15,8 +15,9 @@ import java.io.Serializable;
 public class Coin implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
-	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
+//	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "coinid", nullable = false)
 	int coinId;
 	@Column(name = "cointoken")

@@ -11,8 +11,9 @@ import javax.persistence.*;
 public class Movie extends Bookmark implements Shareable {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "MOVIE_SEQUENCE" )
-	@SequenceGenerator(name = "MOVIE_SEQUENCE", sequenceName = "MOVIE_SEQUENCE", allocationSize = 1)
+//	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "MOVIE_SEQUENCE" )
+//	@SequenceGenerator(name = "MOVIE_SEQUENCE", sequenceName = "MOVIE_SEQUENCE", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private long id;
 	private int releaseYear;

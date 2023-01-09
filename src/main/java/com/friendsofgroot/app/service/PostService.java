@@ -1,20 +1,20 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.models.PostEntity;
+import com.friendsofgroot.app.dto.PostEntityDto;
+import com.friendsofgroot.app.dto.PostEntityResponse;
 
 import java.util.List;
 
 public interface PostService {
-	public PostEntity createPost(PostEntity post);
-	public PostEntity getPostById(Long id); 
-	public PostEntity getPostByDid(String did);
+	public PostEntityDto createPost(PostEntityDto postEntityDto);
 
-	public PostEntity getPostByUsernameAndId(String username, long id);
-	public List<PostEntity> getAllPostsByUsername(String username);
+	public PostEntityResponse getAllPosts(int pageNo, int pageSize, String sortBy, String sortDir);
+	public PostEntityResponse getAllPostsByUsername(int pageNo, int pageSize, String sortBy, String sortDir, String username);
 
-	public List<PostEntity> getAllPosts();
-	public List<PostEntity> findAll();
-	public PostEntity updatesPost(PostEntity change);
-	public boolean deletePost(PostEntity post);
+	public PostEntityDto getPostById(long id);
+	public PostEntityDto getPostByDid(String did);
+	public PostEntityDto updatePost(PostEntityDto change, long id);
+//	public boolean deletePost(PostEntityDto post);
+	public boolean deletePostById(long id);
 
 }

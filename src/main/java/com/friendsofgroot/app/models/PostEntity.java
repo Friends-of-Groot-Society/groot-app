@@ -1,26 +1,46 @@
 package com.friendsofgroot.app.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+//import org.springframework.beans.factory.annotation.Value;
+
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
+@Table(
+		name = "POST_ENTITY", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})}
+)
 public class PostEntity {
-	
+
+	public interface SimplePost {
+		String getTitle();
+//		@Value("#{target.author.name}")  //TODO MAKE AUTHOR OBJECT
+		String getAuthor();
+		String getPost();
+		String getCat3();
+		String getBlogcite();
+	}
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "DID")
+	@Column(name = "DID", nullable = false)
 	private String did;
 
 	@Column(name = "DATE_")
 	private String date;
 	
 	@Column(name = "AUTHOR")
-	private String author;
+	private String author; //TODO MAKE AUTHOR OBJECT
 	
 	@Column(name = "MONTH_ORDER")
 	private String monthOrder;
@@ -28,125 +48,20 @@ public class PostEntity {
 	@Column(name = "CAT3")
 	private String cat3;
 	
-	@Column(name = "TITLE")
+	@Column(name = "TITLE", nullable = false)
 	private String title;
 	
-	@Column(name = "POST")
+	@Column(name = "POST", nullable = false)
 	private String post;
 	
-	@Column(name = "BLOGCITE")
+	@Column(name = "BLOGCITE", nullable = false)
 	private String blogcite;	
 	
-	@Column(name = "USERNAME")
+	@Column(name = "USERNAME", nullable = false)
 	private String username;
-	 
-	
-	protected PostEntity() {
-		
-	}
-	
-	public PostEntity(Long id, String did, String date, String author, String monthOrder, String cat3, String title, String post,
-                      String blogcite, String username) {
-		super();
-		this.id = id;
-		this.did = did;
-		this.date = date;
-		this.author = author;
-		this.monthOrder = monthOrder;
-		this.cat3 = cat3;
-		this.title = title;
-		this.post = post;
-		this.blogcite = blogcite;
-		this.username = username;
-	}
- 
- 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Comment> comments = new HashSet<>();
 
-	public String getDid() {
-		return did;
-	}
-
-	public void setDid(String did) {
-		this.did = did;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	
-	public String getMonthOrder() {
-		return monthOrder;
-	}
-
-
-	public void setMonthOrder(String monthOrder) {
-		this.monthOrder = monthOrder;
-	}
-	public String getCat3() {
-		return cat3;
-	}
-
-	public void setCat3(String cat3) {
-		this.cat3 = cat3;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getPost() {
-		return post;
-	}
-
-	public void setPost(String post) {
-		this.post = post;
-	}
-
-	public String getBlogcite() {
-		return blogcite;
-	}
-
-	public void setBlogcite(String blogcite) {
-		this.blogcite = blogcite;
-	}
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) { 
-		this.username = username;
-	}
-
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", did=" + did + ", date=" + date + ", author=" + author + ", monthOrder="
-				+ monthOrder + ", cat3=" + cat3 + ", title=" + title + ", post=" + post + ", blogcite=" + blogcite
-				+ ", username=" + username + "]";
-	}
-
-	 
 	
 }

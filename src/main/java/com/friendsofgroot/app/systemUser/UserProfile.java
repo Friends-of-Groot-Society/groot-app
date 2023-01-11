@@ -6,7 +6,7 @@ import com.friendsofgroot.app.service.UserService;
 
 import java.util.Scanner;
 
-import static com.friendsofgroot.app.constants.Cmds.*;
+import static com.friendsofgroot.app.util.constants.Cmds.*;
 import static com.friendsofgroot.app.util.Utilities._earlyQuit; // RETURNS TO MainConsole
 
 public class UserProfile {

@@ -9,9 +9,9 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-import static com.friendsofgroot.app.constants.Datum.FILE_IN_USERS;
-import static com.friendsofgroot.app.constants.Datum.FILE_OUT_USERS;
-import static com.friendsofgroot.app.constants.Datum.*;
+import static com.friendsofgroot.app.util.constants.Datum.FILE_IN_USERS;
+import static com.friendsofgroot.app.util.constants.Datum.FILE_OUT_USERS;
+import static com.friendsofgroot.app.util.constants.Datum.*;
 
 public class InputOutput {
     //    each line data chunk

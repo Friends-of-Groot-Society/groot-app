@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.constants;
+package com.friendsofgroot.app.util.constants;
 
 public enum UserType {
 		USER(0),

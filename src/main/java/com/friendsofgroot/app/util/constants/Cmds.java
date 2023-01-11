@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.constants;
+package com.friendsofgroot.app.util.constants;
 
 public class Cmds {
     public static final String WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL = "Welcome to My Personal Librarian, my name is MaPL.";

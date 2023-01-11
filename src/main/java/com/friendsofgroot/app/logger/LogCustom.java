@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.logger;
 
-import com.friendsofgroot.app.constants.Cmds;
+import com.friendsofgroot.app.util.constants.Cmds;
 
 public class LogCustom {
 

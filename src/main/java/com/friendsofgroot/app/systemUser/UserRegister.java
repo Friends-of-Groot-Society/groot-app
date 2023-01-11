@@ -3,7 +3,7 @@ package com.friendsofgroot.app.systemUser;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.friendsofgroot.app.constants.Cmds;
+import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UserService;
 

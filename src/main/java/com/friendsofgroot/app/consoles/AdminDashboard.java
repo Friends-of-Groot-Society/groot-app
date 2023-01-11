@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.friendsofgroot.app.constants.Cmds;
+import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.commands.MaPLInvoker;
 import com.friendsofgroot.app.models.Coin;
 import com.friendsofgroot.app.models.ElectroLot;

@@ -11,7 +11,7 @@ import com.friendsofgroot.app.service.OfferService;
 import com.friendsofgroot.app.service.UserService;
 import com.friendsofgroot.app.systemUser.UserProfile;
 
-import static com.friendsofgroot.app.constants.Cmds.*;
+import static com.friendsofgroot.app.util.constants.Cmds.*;
 
 public class UserDashboard {
 

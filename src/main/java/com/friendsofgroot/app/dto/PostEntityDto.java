@@ -32,5 +32,5 @@ public class PostEntityDto implements Serializable {
 
     private String username;
 
-    private Set<CommentDto> comments;
+//    private Set<CommentDto> comments;
 }

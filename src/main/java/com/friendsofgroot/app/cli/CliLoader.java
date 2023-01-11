@@ -9,7 +9,7 @@ import com.friendsofgroot.app.dataLoader.BookmarkManager;
 import com.friendsofgroot.app.dataLoader.CoinManager;
 import com.friendsofgroot.app.dataLoader.UserManager;
 import com.friendsofgroot.app.util.InputOutput;
-import com.friendsofgroot.app.utilConcurrency.DownloadThreadTask;
+import com.friendsofgroot.app.util.utilConcurrency.DownloadThreadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

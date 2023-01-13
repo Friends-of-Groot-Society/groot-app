@@ -27,12 +27,12 @@ public class PostEntityController {
 	@Autowired
 	private PostEntityMapper postEntityMapper;
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<PostEntityDto> createPost(@RequestBody PostEntityDto postEntityDto){
         return new ResponseEntity<>(postService.createPost(postEntityDto), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("")
     public PostEntityResponse getAllPosts(
             @RequestParam(value = "pageNo", defaultValue = Datum.DEFAULT_PAGE_NUMBER,  required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = Datum.DEFAULT_PAGE_SIZE, required = false) int pageSize,

@@ -1,8 +1,12 @@
 package com.friendsofgroot.app.controllers;
 
+import com.friendsofgroot.app.dto.ChainDto;
+import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.service.ChainsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,18 +18,22 @@ public class ChainsController {
     @Autowired
     ChainsService chainsService;
 
+    @Autowired
+    private ChainMapper chainMapper;
+
     @RequestMapping(value = "/chains", method = RequestMethod.POST, consumes = "application/json")
-    public Chain createChain(@RequestBody Chain c) {
-        return chainsService.createChain(c);
+    public ResponseEntity<ChainDto> createChain(@RequestBody ChainDto cd) {
+        return new ResponseEntity<>(chainsService.createChain(cd), HttpStatus.CREATED);
     }
 
 
     @GetMapping(value = "/chains")
-    public List<Chain> getAllChains() {
-        return chainsService.getAllChains();
+    public ResponseEntity<List<ChainDto>> getAllChains() {
+        return new ResponseEntity<>(chainsService.getAllChains(), HttpStatus.OK);
     }
+
     @GetMapping(value = "/chains/{id}")
-    public Chain getChain(@PathVariable("id") int id) {
+    public ChainDto getChain(@PathVariable("id") int id) {
 
         return chainsService.getChain(id);
     }
@@ -35,12 +43,12 @@ public class ChainsController {
 //        return null; // chainsService.getAllChainsIOwn(username);
 //    }
     @GetMapping(value = "/chains/name/{name}")
-    public Chain getChainByName(@PathVariable("name") String name) {
-        return chainsService.getChainByName(name);
+    public ResponseEntity<ChainDto> getChainByName(@PathVariable("name") String name) {
+        return  new ResponseEntity<>(chainsService.getChainByName(name), HttpStatus.OK);
     }
    @PutMapping(value = "/chains", consumes = "application/json")
-    public Chain updateChain(@RequestBody Chain change) {
-        return chainsService.updateChain(change);
+    public ResponseEntity<ChainDto> updateChain(@RequestBody ChainDto change) {
+        return new ResponseEntity<>(chainsService.updateChain(change), HttpStatus.OK);
     }
     @DeleteMapping(value = "/chains/{chainId}")
     public boolean deleteChain(@PathVariable("chainId") int chainId) {

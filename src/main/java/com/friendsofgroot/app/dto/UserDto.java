@@ -14,11 +14,11 @@ public class UserDto  implements Serializable {
     @Id
     private int id; // userId
     private String userName;
-    private String LName; // lastName
-    private String FName; // firstName
+    private String lastName; // lastName
+    private String firstName; // firstName
     private String photoPath;
 
-    private String groupType; // usergroup
+    private String userGroup; // usergroup
 
     private String email;
 

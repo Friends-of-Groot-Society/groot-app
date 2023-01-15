@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.commands;
 
-import com.friendsofgroot.app.constants.Cmds;
+import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.util.Utilities;
 
 import java.io.File;

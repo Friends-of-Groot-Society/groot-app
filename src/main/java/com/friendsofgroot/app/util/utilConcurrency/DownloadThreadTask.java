@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.utilConcurrency;
+package com.friendsofgroot.app.util.utilConcurrency;
 
 import com.friendsofgroot.app.dao.BookmarkDAO;
 import com.friendsofgroot.app.dao.BookmarkDaoImpl;

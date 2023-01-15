@@ -22,7 +22,6 @@ public interface PostRepository extends CrudRepository<PostEntity, Long> {
 			null,
 			null,
 			null,
-			null,
 			null
 	);
 	Example<PostEntity> lenient = Example.of(pattern, ExampleMatcher.matchingAll().withIgnoreCase());

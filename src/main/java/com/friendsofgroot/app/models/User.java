@@ -25,9 +25,9 @@ public class User implements Serializable {
     @Column(name="userid")
     private int userId;
 
-    @Column(name="username")
+    @Column(name="username", nullable = false, unique = true)
     private String userName;
-    @Column(name="password")
+    @Column(name="password", nullable = false)
     private String password;
     @Column(name="lastname")
     private String lastName;
@@ -38,7 +38,7 @@ public class User implements Serializable {
     private int groups;
     @Column(name="usertype")
     private int userType;
-    @Column(name="email")
+    @Column(name="email", nullable = false, unique = true)
     private String email;
     @Column(name="phone")
     private String phone;
@@ -59,6 +59,7 @@ public class User implements Serializable {
     @Column(name="id")
     private String id;
 
+    // parent of many
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 

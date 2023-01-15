@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.service;
 
 
+import com.friendsofgroot.app.dto.ChainDto;
 import com.friendsofgroot.app.models.Chain;
 
 import java.util.List;
@@ -9,17 +10,17 @@ import java.util.List;
 public interface ChainsService {
 
 
-    public Chain createChain(Chain c);
+    ChainDto createChain(ChainDto cd);
 
-    public Chain getChain(int chainId);
+    public ChainDto getChain(int chainId);
 
 //    public List<Chain> getAllChainsIOwn(String username);
 
-    public List<Chain> getAllChains();
+    public List<ChainDto> getAllChains();
 
-    Chain  getChainByName(String name);
+    ChainDto  getChainByName(String name);
 
-    public Chain updateChain(Chain change);
+    public ChainDto updateChain(ChainDto change);
 
     public boolean deleteChain(int id);
 

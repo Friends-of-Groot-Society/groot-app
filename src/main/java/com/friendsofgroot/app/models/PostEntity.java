@@ -60,8 +60,9 @@ public class PostEntity {
 	@Column(name = "USERNAME", nullable = false)
 	private String username;
 
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Comment> comments = new HashSet<>();
+//	parent of many
+//	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private Set<Comment> comments = new HashSet<>();
 
 	
 }

@@ -69,38 +69,37 @@ private ChainMapper chainMapper;
     @Override
     public ChainDto updateChain(ChainDto change) {
         try {
-            Chain chain = chainMapper.toEntity(change);
+            Chain chainOld = chainMapper.toEntity(change);
 
-            chain = chainsRepository.findById(change.getId()).get();
-            chain.setName(change.getName());
-            chain.setSymbol(change.getSymbol());
-            chain.setDescription(change.getDescription());
-            chain.setLongDescription(change.getLongDescription());
-            chain.setChainListIcon(change.getChainListIcon());
-            chain.setAddressesCount(change.getAddressesCount());
-            chain.setCategory(change.getCategory());
+            chainOld = chainsRepository.findById(change.getId()).get();
+            chainOld.setName(change.getName());
+            chainOld.setSymbol(change.getSymbol());
+            chainOld.setDescription(change.getDescription());
+            chainOld.setLongDescription(change.getLongDescription());
+            chainOld.setChainListIcon(change.getChainListIcon());
+            chainOld.setAddressesCount(change.getAddressesCount());
+            chainOld.setCategory(change.getCategory());
+            chainOld.setRpcUrl(change.getRpcUrl());
+            chainOld.setIconUrl(change.getIconUrl());
 
-            chain = chainsRepository.save(chain);
+            chainOld = chainsRepository.save(chainOld);
 
-            return chainMapper.toOneDto(chain);
+            System.out.println(chainOld.getRpcUrl());
+            return chainMapper.toOneDto(chainOld);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return null;
         }
 
     }
     @Override
-    public boolean deleteChain(int chainId) {
-
+    public boolean deleteChain(int id) {
         try {
-            Chain c = chainsRepository.findById(chainId).get();
-            chainsRepository.delete(c);
-
-        } catch (IllegalArgumentException e) {
+            chainsRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        return true;
     }
-
-
 }

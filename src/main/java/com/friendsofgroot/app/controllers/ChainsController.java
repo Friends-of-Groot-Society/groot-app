@@ -50,9 +50,11 @@ public class ChainsController {
     public ResponseEntity<ChainDto> updateChain(@RequestBody ChainDto change) {
         return new ResponseEntity<>(chainsService.updateChain(change), HttpStatus.OK);
     }
-    @DeleteMapping(value = "/chains/{chainId}")
-    public boolean deleteChain(@PathVariable("chainId") int chainId) {
-        return chainsService.deleteChain(chainId);
+    @DeleteMapping(value = "/chains/{id}")
+    public boolean deleteChain(@PathVariable("id") int id) {
+
+        System.out.println("deletcce"+ id);
+        return chainsService.deleteChain(id);
     }
 
 

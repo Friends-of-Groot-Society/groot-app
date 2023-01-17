@@ -13,8 +13,8 @@ import java.util.List;
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    @Mapping(source = "userId", target = "id") // int
-    @Mapping(source = "id", target = "userId") // string
+//    @Mapping(source = "userId", target = "id") // int
+//    @Mapping(source = "id", target = "userId") // string
 //    @Mapping(  target = "userName", expression = "java(user.getEmail().truncate(10))")
     @Mapping(source = "lastName", target = "lastName")
     @Mapping(source = "firstName", target = "firstName")

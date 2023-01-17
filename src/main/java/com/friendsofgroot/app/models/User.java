@@ -22,10 +22,10 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
     @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
-    @Column(name="userid")
+    @Column(name="userid", nullable = false, unique = true)
     private int userId;
 
-    @Column(name="username", nullable = false, unique = true)
+    @Column(name="username", nullable = false )
     private String userName;
     @Column(name="password", nullable = false)
     private String password;
@@ -38,7 +38,7 @@ public class User implements Serializable {
     private int groups;
     @Column(name="usertype")
     private int userType;
-    @Column(name="email", nullable = false, unique = true)
+    @Column(name="email", nullable = false )
     private String email;
     @Column(name="phone")
     private String phone;
@@ -61,7 +61,7 @@ public class User implements Serializable {
 
     // parent of many
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Address> addresses = new ArrayList<>();
+    private List<Address> addresses;
 
     // overloaded for getUsersByCArs() call to DB
     public User(int userId, String userName) {

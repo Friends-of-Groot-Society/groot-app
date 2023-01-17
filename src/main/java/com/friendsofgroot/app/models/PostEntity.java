@@ -13,7 +13,6 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 @Table(
 		name = "POST_ENTITY", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})}
@@ -29,8 +28,8 @@ public class PostEntity {
 		String getBlogcite();
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
 	@Column(name = "DID", nullable = false)
@@ -47,7 +46,7 @@ public class PostEntity {
 	
 	@Column(name = "CAT3")
 	private String cat3;
-	
+
 	@Column(name = "TITLE", nullable = false)
 	private String title;
 	
@@ -60,7 +59,10 @@ public class PostEntity {
 	@Column(name = "USERNAME", nullable = false)
 	private String username;
 
-//	parent of many
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
+	private Category category;
+
 //	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
 //	private Set<Comment> comments = new HashSet<>();
 

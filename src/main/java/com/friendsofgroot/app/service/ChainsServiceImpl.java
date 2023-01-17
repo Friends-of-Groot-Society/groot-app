@@ -69,23 +69,22 @@ private ChainMapper chainMapper;
     @Override
     public ChainDto updateChain(ChainDto change) {
         try {
-            Chain chainOld = chainMapper.toEntity(change);
+            Chain chainUpdate = chainMapper.toEntity(change);
 
-            chainOld = chainsRepository.findById(change.getId()).get();
-            chainOld.setName(change.getName());
-            chainOld.setSymbol(change.getSymbol());
-            chainOld.setDescription(change.getDescription());
-            chainOld.setLongDescription(change.getLongDescription());
-            chainOld.setChainListIcon(change.getChainListIcon());
-            chainOld.setAddressesCount(change.getAddressesCount());
-            chainOld.setCategory(change.getCategory());
-            chainOld.setRpcUrl(change.getRpcUrl());
-            chainOld.setIconUrl(change.getIconUrl());
+            chainUpdate = chainsRepository.findById(change.getId()).get();
+            chainUpdate.setName(change.getName());
+            chainUpdate.setSymbol(change.getSymbol());
+            chainUpdate.setDescription(change.getDescription());
+            chainUpdate.setLongDescription(change.getLongDescription());
+            chainUpdate.setChainListIcon(change.getChainListIcon());
+            chainUpdate.setAddressesCount(change.getAddressesCount());
+            chainUpdate.setCategory(change.getCategory());
+            chainUpdate.setRpcUrl(change.getRpcUrl());
+            chainUpdate.setIconUrl(change.getIconUrl());
 
-            chainOld = chainsRepository.save(chainOld);
+            Chain chainDone = chainsRepository.save(chainUpdate);
 
-            System.out.println(chainOld.getRpcUrl());
-            return chainMapper.toOneDto(chainOld);
+            return chainMapper.toOneDto(chainDone);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

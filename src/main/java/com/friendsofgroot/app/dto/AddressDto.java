@@ -24,7 +24,7 @@ public class AddressDto  implements Serializable {
 
     private String blockExplorerUrl;
 
-//    private UserDto userDto;
+    private int userDto;
 
     private int chainIdDto;
 

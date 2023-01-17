@@ -35,5 +35,7 @@ public class PostEntityDto implements Serializable {
 
     private String username;
 
+    private Long categoryId;
+
 //    private Set<CommentDto> comments;
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDto  implements Serializable {
 
     @Id
-    private int id; // userId
+    private int userId; // userId
     private String userName;
     private String lastName; // lastName
     private String firstName; // firstName
@@ -22,7 +22,7 @@ public class UserDto  implements Serializable {
 
     private String email;
 
-    private String userId; // id
+    private String id; // id
 
     private List<Address> addresses ;
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "addresses")
+@Table(name = "address")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,8 +28,8 @@ public class Address {
     @Column(name="block_explorer_url")
     private String blockExplorerUrl;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name ="owner_id")//,foreignKey = @ForeignKey(name = "userid"))
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name ="userid",foreignKey = @ForeignKey(name = "userid"))
     private User user;
 
     @Column(name="chain_id")

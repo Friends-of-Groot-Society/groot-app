@@ -69,38 +69,36 @@ private ChainMapper chainMapper;
     @Override
     public ChainDto updateChain(ChainDto change) {
         try {
-            Chain chain = chainMapper.toEntity(change);
+            Chain chainUpdate = chainMapper.toEntity(change);
 
-            chain = chainsRepository.findById(change.getId()).get();
-            chain.setName(change.getName());
-            chain.setSymbol(change.getSymbol());
-            chain.setDescription(change.getDescription());
-            chain.setLongDescription(change.getLongDescription());
-            chain.setChainListIcon(change.getChainListIcon());
-            chain.setAddressesCount(change.getAddressesCount());
-            chain.setCategory(change.getCategory());
+            chainUpdate = chainsRepository.findById(change.getId()).get();
+            chainUpdate.setName(change.getName());
+            chainUpdate.setSymbol(change.getSymbol());
+            chainUpdate.setDescription(change.getDescription());
+            chainUpdate.setLongDescription(change.getLongDescription());
+            chainUpdate.setChainListIcon(change.getChainListIcon());
+            chainUpdate.setAddressesCount(change.getAddressesCount());
+            chainUpdate.setCategory(change.getCategory());
+            chainUpdate.setRpcUrl(change.getRpcUrl());
+            chainUpdate.setIconUrl(change.getIconUrl());
 
-            chain = chainsRepository.save(chain);
+            Chain chainDone = chainsRepository.save(chainUpdate);
 
-            return chainMapper.toOneDto(chain);
+            return chainMapper.toOneDto(chainDone);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return null;
         }
 
     }
     @Override
-    public boolean deleteChain(int chainId) {
-
+    public boolean deleteChain(int id) {
         try {
-            Chain c = chainsRepository.findById(chainId).get();
-            chainsRepository.delete(c);
-
-        } catch (IllegalArgumentException e) {
+            chainsRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        return true;
     }
-
-
 }

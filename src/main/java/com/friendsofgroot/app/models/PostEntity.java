@@ -59,8 +59,8 @@ public class PostEntity {
 	@Column(name = "USERNAME", nullable = false)
 	private String username;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
 
 //	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)

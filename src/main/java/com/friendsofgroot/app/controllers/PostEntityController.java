@@ -57,6 +57,13 @@ public class PostEntityController {
     public ResponseEntity<PostEntityDto> getPostById(@PathVariable(name = "id") long id){
         return ResponseEntity.ok(postService.getPostById(id));
     }
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<PostEntityDto>> getPostsByCategoryId(@PathVariable( "categoryId") long categoryId){
+        List<PostEntityDto> postEntityDtoList = (List<PostEntityDto>) postService.getPostsByCategoryId(categoryId);
+        return ResponseEntity.ok(postEntityDtoList);
+    }
+
+
     @GetMapping("/date/{did}")
     public ResponseEntity<PostEntityDto> getPostByDid(@PathVariable(name = "did") String did){
         return ResponseEntity.ok(postService.getPostByDid(did));

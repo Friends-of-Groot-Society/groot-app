@@ -11,6 +11,9 @@ import java.util.Optional;
 @Repository
 //public interface PostRepository extends JpaRepository<PostEntity, Long> {
 public interface PostRepository extends CrudRepository<PostEntity, Long> {
+	List<PostEntity> findByCategoryId(Long categoryId);
+
+
 
 	PostEntity pattern = new PostEntity(
 			null,

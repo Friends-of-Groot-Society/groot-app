@@ -1,10 +1,11 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.CommentDto;
 import com.friendsofgroot.app.dto.PostEntityResponse;
 import com.friendsofgroot.app.exception.PostApiException;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.models.Comment;
+import com.friendsofgroot.app.models.CommentDto;
+import com.friendsofgroot.app.models.CommentMapper;
 import com.friendsofgroot.app.models.PostEntity;
 import com.friendsofgroot.app.repositories.CommentsRepository;
 import com.friendsofgroot.app.repositories.PostRepository;
@@ -24,7 +25,7 @@ public class CommentsServiceImpl implements CommentsService {
     PostRepository postRepository;
 
     @Autowired
-    private PostEntityResponse.CommentMapper commentMapper;
+    private CommentMapper commentMapper;
 
     /**
      * @param postId

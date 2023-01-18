@@ -1,6 +1,5 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models;
 
-import com.friendsofgroot.app.models.Comment;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")

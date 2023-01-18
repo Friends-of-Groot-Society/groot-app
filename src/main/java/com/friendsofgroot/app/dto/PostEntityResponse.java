@@ -1,7 +1,9 @@
 package com.friendsofgroot.app.dto;
 
 
+import com.friendsofgroot.app.mapper.PostEntityMapper;
 import com.friendsofgroot.app.models.Comment;
+import com.friendsofgroot.app.models.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,13 +22,5 @@ public class PostEntityResponse {
     private int totalPages;
     private boolean last;
 
-    @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
-    public static interface CommentMapper {
-        Comment toEntity(CommentDto commentDto);
 
-        CommentDto toDto(Comment comment);
-
-        @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-        Comment partialUpdate(CommentDto commentDto, @MappingTarget Comment comment);
-    }
 }

@@ -1,30 +1,28 @@
 package com.friendsofgroot.app.models;
 
+import lombok.Data;
+
+import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+@Data
+@Entity
+@Table(name = "NFT")
 public class Nft {
 
-	int nftId;
-	String name;
+	@Id
+	int id;
+	int name;
 	int amount;
-	double priceTotal;
-	int metadata;
+	@OneToOne
+	@JoinColumn(name = "metadata_metaid")
+	Metadata metadata;
+
+	int nft_address_id;
 
 
-	class nftmetadata {
-		int metaid;
-		String name;
-		String description;
-		String image;
-		int attributes;
-	}
 
-	class nftattributes {
-		int attrid;
-		String value;
-		String trait_type;
-		Map<String, String> attrs = new HashMap<>();
-		int attrsId;
-	}
 }

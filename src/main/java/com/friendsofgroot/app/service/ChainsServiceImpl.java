@@ -77,10 +77,11 @@ private ChainMapper chainMapper;
             chainUpdate.setDescription(change.getDescription());
             chainUpdate.setLongDescription(change.getLongDescription());
             chainUpdate.setChainListIcon(change.getChainListIcon());
-            chainUpdate.setAddressesCount(change.getAddressesCount());
+            chainUpdate.setChainId(change.getChainId());
             chainUpdate.setCategory(change.getCategory());
             chainUpdate.setRpcUrl(change.getRpcUrl());
             chainUpdate.setIconUrl(change.getIconUrl());
+            chainUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
 
             Chain chainDone = chainsRepository.save(chainUpdate);
 

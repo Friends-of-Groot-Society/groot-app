@@ -3,10 +3,8 @@ package com.friendsofgroot.app.controllers;
 import com.friendsofgroot.app.dto.PostEntityDto;
 import com.friendsofgroot.app.dto.PostEntityResponse;
 import com.friendsofgroot.app.mapper.PostEntityMapper;
-import com.friendsofgroot.app.models.PostEntity;
-import com.friendsofgroot.app.repositories.PostRepository;
+
 import com.friendsofgroot.app.service.PostService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

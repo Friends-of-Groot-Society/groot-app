@@ -9,6 +9,7 @@ import com.friendsofgroot.app.dataLoader.BookmarkManager;
 import com.friendsofgroot.app.dataLoader.CoinManager;
 import com.friendsofgroot.app.dataLoader.UserManager;
 import com.friendsofgroot.app.util.InputOutput;
+import com.friendsofgroot.app.util.constants.Datum;
 import com.friendsofgroot.app.util.utilConcurrency.DownloadThreadTask;
 
 import java.io.FileNotFoundException;
@@ -25,21 +26,23 @@ public class CliLoader {
 
     // launch methods
     public static void cliDataLoader() throws IOException {
-        System.out.println("1. LOADING BOOKMARK DATA");
+        System.out.println(Datum.ANSI_CYAN+  "1. ANSI_CYAN LOADING BOOKMARK DATA");
         TestDataStore.loadData();
         users = UserManager.getInstance().getUsers();
         bookmarks = BookmarkManager.getInstance().getBookmarksArray();
         coins = CoinManager.getInstance().getCoins();
         offers = CoinManager.getInstance().getOffers();
 
-        System.out.println("printing user data: ");
+        System.out.println(Datum.ANSI_GREEN+  "ANSI_GREEN printing user data: ");
         printUserData();
-        System.out.println("printing bookmark data: ***Paused until AWS DB PS/SQL UPDATED");
+        System.out.println(Datum.ANSI_BLUE+   "ANSI_BLUE printing bookmark data: ***Paused until AWS DB PS/SQL UPDATED");
         printBookmarks();
-        System.out.println("printing coin data: ");
+        System.out.println(Datum.ANSI_RED+ "ANSI_RED printing coin data: ");
         printCoins();
-        System.out.println("printing offer data: ");
+
+        System.out.println(Datum.ANSI_RESET+ "ANSI_RESET printing offer data: ");
         printCoins();
+
     }
     private static void printCoins() {
         for (Coin c: coins) {

@@ -17,4 +17,5 @@ public interface AddressMapper {
 
     @InheritInverseConfiguration
     AddressDto addressToAddressDto(Address address);
+
 }

@@ -11,9 +11,9 @@ import java.util.List;
  */
 @Data
 public class NftAddressDto implements Serializable {
-    private final int id;
-    private final String address;
-    private final Double nativeToken;
-    private final HashMap<String, Double> tokens;
-    private final List<NftDto> nfts;
+    private  int id;
+    private  String address;
+    private  Double nativeToken;
+    private  HashMap<String, Double> tokens;
+    private  List<NftDto> nfts;
 }

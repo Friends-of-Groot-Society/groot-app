@@ -1,5 +1,7 @@
 package com.friendsofgroot.app.dto;
 
+import com.friendsofgroot.app.models.Nft;
+import com.friendsofgroot.app.models.NftAddress;
 import com.friendsofgroot.app.models.User;
 import lombok.Data;
 
@@ -27,5 +29,7 @@ public class AddressDto  implements Serializable {
     private User user;
 
     private int chainId;
+
+    private NftAddress nft;
 
 }

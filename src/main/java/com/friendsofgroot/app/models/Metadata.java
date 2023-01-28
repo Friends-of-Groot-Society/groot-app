@@ -15,11 +15,9 @@ public class Metadata {
     String name;
     String description;
     String image;
-
     @OneToOne(mappedBy = "metadata")
     @JoinColumn(name = "nft_id")
     Nft nft;
-
 //    @OneToMany
 //    List<Attribute> attributes;
 

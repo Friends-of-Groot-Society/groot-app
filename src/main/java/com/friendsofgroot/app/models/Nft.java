@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.models;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.lang.reflect.Array;
@@ -13,14 +14,14 @@ import java.util.Map;
 @Table(name = "NFT")
 public class Nft {
 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	int id;
-	int name;
+	String name;
 	int amount;
 	@OneToOne
 	@JoinColumn(name = "metadata_metaid")
 	Metadata metadata;
-
 	int nft_address_id;
 
 

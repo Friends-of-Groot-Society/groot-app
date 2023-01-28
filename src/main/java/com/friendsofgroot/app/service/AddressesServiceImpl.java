@@ -1,8 +1,12 @@
 package com.friendsofgroot.app.service;
 
 import com.friendsofgroot.app.dto.AddressDto;
+import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.mapper.AddressMapper;
 import com.friendsofgroot.app.models.Address;
+import com.friendsofgroot.app.mapper.NftMapper;
+import com.friendsofgroot.app.models.Nft;
+import com.friendsofgroot.app.repositories.NftRepository;
 import com.friendsofgroot.app.repositories.AddressesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,11 @@ public class AddressesServiceImpl implements AddressesService {
     private AddressesRepository addressesRepository;
     @Autowired
     private AddressMapper addressMapper;
+    @Autowired
+    private NftRepository nftRepository;
+
+    @Autowired
+    private NftMapper nftMapper;
 
     @Override
     public AddressDto createAddress(AddressDto addrDto) {
@@ -63,6 +72,7 @@ public class AddressesServiceImpl implements AddressesService {
        addUpdate.setOwner(change.getOwner());
        addUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
        addUpdate.setChainId(change.getChainId());
+       addUpdate.setNftAddress(change.getNftAddress());
 
        Address newAddress = addressesRepository.save(addUpdate);
 
@@ -80,5 +90,28 @@ public class AddressesServiceImpl implements AddressesService {
             } catch (Exception e) {
                 return false;
             }
+    }
+/////////////////////////
+@Override
+public NftDto createNft(NftDto nftDto) {
+    Nft nft = nftMapper.toEntity(nftDto);
+
+//    if (nft != null && (nft.getChainId() == 0)) {
+//        nft.setChainId(nftDto.getChainId());
+//    }
+
+    Nft newNft = nftRepository.save(nft);
+    NftDto newNftDto = nftMapper.toDto(newNft);
+    return newNftDto;
+}
+    /**
+     * @return
+     */
+    @Override
+    public List<NftDto> getAllNFTs() {
+
+        List<Nft> adds = nftRepository.findAll();
+        List<NftDto> nftDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
+        return nftDtos;
     }
 }

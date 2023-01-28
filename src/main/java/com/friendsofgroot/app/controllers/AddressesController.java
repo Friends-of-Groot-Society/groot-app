@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.controllers;
 
 import com.friendsofgroot.app.dto.AddressDto;
+import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.models.Address;
 import com.friendsofgroot.app.service.AddressesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class AddressesController {
         return addressesService.getAllAddresses();
     }
 
+
     @PutMapping(value = "", consumes = "application/json")
     public AddressDto updateAddress(@RequestBody AddressDto change) {
         return addressesService.updateAddress(change);
@@ -40,5 +42,17 @@ public class AddressesController {
     @DeleteMapping(value = "/{addressId}")
     public boolean deleteAddress(@PathVariable("addressId") int addressId) {
         return addressesService.deleteAddress(addressId);
+    }
+
+    /////////
+
+    @RequestMapping(value = "/nfts", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<NftDto> createNft(@RequestBody NftDto n) {
+
+        return new ResponseEntity<>(addressesService.createNft(n), HttpStatus.CREATED);
+    }
+    @GetMapping(value = "/nfts")
+    public ResponseEntity<List<NftDto>> getAllNFTs() {
+        return new ResponseEntity<>(addressesService.getAllNFTs(), HttpStatus.OK);
     }
 }

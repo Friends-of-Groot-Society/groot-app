@@ -30,6 +30,9 @@ public class AddressDto  implements Serializable {
 
     private int chainId;
 
-    private NftAddress nft;
+    private NftAddress nftAddress;
 
+    public NftAddress getNftAddress() {
+        return nftAddress;
+    }
 }

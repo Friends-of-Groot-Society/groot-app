@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Data
 @Entity
-@Table(name = "NFT_ADDRESS")
+@Table(name = "NFT_ADDRESS") /// ANGULAR's NFT.ts
 public class NftAddress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class CliLoader {
+public class CliStaticLoader {
     // app-wide vars
     private static List<User> users;
     private static List<List<Bookmark>> bookmarks;
@@ -25,7 +25,7 @@ public class CliLoader {
     private static List<Offer> offers;
 
     // launch methods
-    public static void cliDataLoader() throws IOException {
+    public static void cliStaticDataLoader() throws IOException {
         System.out.println(Datum.ANSI_CYAN+  "1. ANSI_CYAN LOADING BOOKMARK DATA");
         TestDataStore.loadData();
         users = UserManager.getInstance().getUsers();

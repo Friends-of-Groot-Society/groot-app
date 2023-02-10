@@ -8,19 +8,21 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.friendsofgroot.app.util.constants.Datum.*;
+
 import static com.friendsofgroot.app.util.constants.Datum.*;
 
 
-public class TestDataStore {
+public class TestDataStore extends InputOutput{
 
-	public static   int USER_BOOKMARK_LIMIT = 5; // Non-member User
-//	public static   int USER_BOOKMARK_LIMIT = Integer.MAX_VALUE; //Premium -member
+	public static int USER_BOOKMARK_LIMIT = 5; // Non-member User
+//	public   int USER_BOOKMARK_LIMIT = Integer.MAX_VALUE; //Premium -member
 	// DATA SOURCES
 	private static int COIN_INVENTORY;
 	public static final int BOOKMARK_COUNT_PER_TYPE = 5;
 	public static final int BOOKMARK_TYPES_COUNT = 3;
 
-	public static List<Groups> groups = new ArrayList<>();
+	public List<Groups> groups = new ArrayList<>();
 	public static List<Coin> coins = new ArrayList<>();
 	public static List<Nft> nfts = new ArrayList<>();
 	public static List<Offer> offers = new ArrayList<>();
@@ -31,9 +33,9 @@ public class TestDataStore {
 
 	private static int TEST_USERS;
 	public static List<UserCoinbuy> userCoinbuys = new ArrayList<>();
-	public static List<UserNftbuy> userNftbuys = new ArrayList<>(); 
+	public static List<UserNftbuy> userNftbuys = new ArrayList<>();
 	private static List<User> users = new ArrayList<>();
-	public static  List<User> getUsers() {
+	public static List<User> getUsers() {
 		return users;
 	}
 	public static List<Offer> getOffers() { return offers;	}
@@ -43,7 +45,7 @@ public class TestDataStore {
 	}
 	public static List<UserBookmark> userBookmarks = new ArrayList<>();
 
-	public static int bookmarkIndex; // initialized to zero
+	public int bookmarkIndex; // initialized to zero
 	public static void loadData() throws FileNotFoundException, UnsupportedEncodingException {
 		loadUsers();
 		loadWeblinks();
@@ -167,7 +169,7 @@ public class TestDataStore {
 		userCoinbuy.setCoin(coin);
 	}
 
-	public static List<Coin> getLocalCoinsByUser(User user) {
+	public List<Coin> getLocalCoinsByUser(User user) {
 		List<Coin> coinsOwnedByUser = new ArrayList<>();
 		for(UserCoinbuy userCoinbuy : userCoinbuys) {
 			if(userCoinbuy.getUser() == user) {

@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.cli;
+package com.friendsofgroot.app.config;
 
 import com.friendsofgroot.app.CliApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

@@ -53,7 +53,6 @@ public class ChainsController {
     @DeleteMapping(value = "/chains/{id}")
     public boolean deleteChain(@PathVariable("id") int id) {
 
-        System.out.println("deletcce"+ id);
         return chainsService.deleteChain(id);
     }
 

@@ -7,10 +7,8 @@ import java.util.*;
 import com.friendsofgroot.app.systemUser.UserLogin;
 import com.friendsofgroot.app.systemUser.UserRegister;
 
+import static com.friendsofgroot.app.cli.CliStaticLoader.*;
 import static com.friendsofgroot.app.service.CoinService.coinMarketViewAll; // 3 DB
-import static com.friendsofgroot.app.cli.CliLoader.runDownloaderJob; //4 download
-import static com.friendsofgroot.app.cli.CliLoader.cliDataLoader; // 5 browse offline lot
-import static com.friendsofgroot.app.cli.CliLoader.startBrowsingBuying; // 6 auto user
 import static com.friendsofgroot.app.consoles.GeoDashboard.mainNavigator; // 7 Local
 
 
@@ -67,7 +65,7 @@ public class MainDashboard {
                         }
                         case 4: {
                             System.out.println("\n Ok, Initiating Local Offline Data Loader....");
-                            cliDataLoader();  // Local Offline Automated USER
+                            cliStaticDataLoader();  // Local Offline Automated USER
                             break;
                         }
                         case 5: {

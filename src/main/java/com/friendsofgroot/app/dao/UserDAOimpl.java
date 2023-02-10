@@ -14,7 +14,7 @@ import java.util.List;
 
 import com.friendsofgroot.app.dataLoader.TestDataStore;
 //import db.DB;
-import org.apache.logging.log4j.core.config.plugins.util.ResolverUtil;
+
 
 
 public class UserDAOimpl implements UserDAO { // can't make static! so use the service layer!

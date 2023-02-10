@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.CommentDto;
+import com.friendsofgroot.app.models.CommentDto;
 
 import java.util.List;
 

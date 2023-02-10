@@ -28,10 +28,14 @@ public class Address {
     @Column(name="block_explorer_url")
     private String blockExplorerUrl;
 
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name ="userid",foreignKey = @ForeignKey(name = "userid"))
     private User user;
 
     @Column(name="chain_id")
     private int chainId;
+
+    @OneToOne( fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name ="nft_address")//,foreignKey = @ForeignKey(name = "nft_address_id"))
+    private NftAddress nftAddress;
 }

@@ -23,6 +23,8 @@ public class CliApplication {
 
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 		SpringApplication.run(CliApplication.class, args);
+		System.out.println("INSIDE ____________CliApplication.main()");
+
 		LogCustom.logger();
 
 

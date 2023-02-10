@@ -5,6 +5,7 @@ import com.friendsofgroot.app.dao.BookmarkDaoImpl;
 import com.friendsofgroot.app.models.Weblink;
 import com.friendsofgroot.app.util.DownloadSequential;
 import com.friendsofgroot.app.util.InputOutput;
+import com.friendsofgroot.app.util.constants.Datum;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -62,16 +63,17 @@ public class DownloadThreadTask implements Runnable {
             List<Weblink> weblinks = getWeblinks();
             // Download concurrently
             if(weblinks.size() > 0) {
+                System.out.println(Datum.ANSI_CYAN+ "Downloading "+weblinks.size()+" weblinks");
                 downloadThread(weblinks);
             } else {
-                System.out.println("no new weblinks to download");
+                System.out.println(Datum.ANSI_PURPLE+ "no new weblinks to download");
             }
             // Waits a few seconds, then continues with next weblinks to download
             try {
                 TimeUnit.SECONDS.sleep(15);
                 count++;
                 if(SUBSEQUENTS ==count) {
-                    System.out.println(       "Download task interval stopping now after " +count+ " intervals."       );}
+                    System.out.println( Datum.ANSI_RED+      "Download task interval stopping now after " +count+ " intervals."       );}
             }  catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -98,9 +100,9 @@ public class DownloadThreadTask implements Runnable {
                   if (webpage != null) {
                       InputOutput.writeWebpage(webpage, weblink.getId());
                       weblink.setDownloadStatus(Weblink.DownloadStatus.FAILED);
-                      System.out.println("Concurrent webpage Download Succeeded: " + weblink.getUrl());
+                      System.out.println(Datum.ANSI_PURPLE+ "Concurrent webpage Download Succeeded: " + weblink.getUrl());
                   } else {
-                      System.out.println("Concurrent webpage NOT Downloaded: " + weblink.getUrl());
+                      System.out.println(Datum.ANSI_RED+ "Concurrent webpage NOT Downloaded: " + weblink.getUrl());
                     }
                 } else {
                     System.out.println("\n\nTask is cancelled --> " + Thread.currentThread());

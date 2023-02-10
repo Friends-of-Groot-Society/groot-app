@@ -19,5 +19,6 @@ public class ChainDto implements Serializable {
     private String category;
     private String chainListIcon;
     private String rpcUrl;
-    private Integer addressesCount;
+    private Integer chainId;
+    private String blockExplorerUrl;
 }

@@ -17,4 +17,5 @@ public interface PostService {
 //	public boolean deletePost(PostEntityDto post);
 	public boolean deletePostById(long id);
 
+    Object getPostsByCategoryId(long categoryId);
 }

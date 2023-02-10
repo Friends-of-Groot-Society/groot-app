@@ -23,5 +23,8 @@ public class Chain {
     private String chainListIcon;
 
     private String rpcUrl;
-    private Integer addressesCount;
+    private Integer chainId;
+
+
+    private String blockExplorerUrl;
 }

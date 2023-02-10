@@ -15,7 +15,7 @@ class CliLoaderTest {
     }
 
     @Test
-    void cliDataLoader() {
+    void cliStaticDataLoader() {
     }
 
     @Test

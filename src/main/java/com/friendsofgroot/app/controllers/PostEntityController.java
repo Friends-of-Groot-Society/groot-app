@@ -3,10 +3,8 @@ package com.friendsofgroot.app.controllers;
 import com.friendsofgroot.app.dto.PostEntityDto;
 import com.friendsofgroot.app.dto.PostEntityResponse;
 import com.friendsofgroot.app.mapper.PostEntityMapper;
-import com.friendsofgroot.app.models.PostEntity;
-import com.friendsofgroot.app.repositories.PostRepository;
+
 import com.friendsofgroot.app.service.PostService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +55,13 @@ public class PostEntityController {
     public ResponseEntity<PostEntityDto> getPostById(@PathVariable(name = "id") long id){
         return ResponseEntity.ok(postService.getPostById(id));
     }
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<PostEntityDto>> getPostsByCategoryId(@PathVariable( "categoryId") long categoryId){
+        List<PostEntityDto> postEntityDtoList = (List<PostEntityDto>) postService.getPostsByCategoryId(categoryId);
+        return ResponseEntity.ok(postEntityDtoList);
+    }
+
+
     @GetMapping("/date/{did}")
     public ResponseEntity<PostEntityDto> getPostByDid(@PathVariable(name = "did") String did){
         return ResponseEntity.ok(postService.getPostByDid(did));

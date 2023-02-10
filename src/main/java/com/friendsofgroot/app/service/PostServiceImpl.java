@@ -4,7 +4,9 @@ import com.friendsofgroot.app.dto.PostEntityDto;
 import com.friendsofgroot.app.dto.PostEntityResponse;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.PostEntityMapper;
+import com.friendsofgroot.app.models.Category;
 import com.friendsofgroot.app.models.PostEntity;
+import com.friendsofgroot.app.repositories.CategoryRepository;
 import  com.friendsofgroot.app.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,13 +25,21 @@ public class PostServiceImpl implements PostService {
 	PostRepository pr;
 //	public PostServiceImpl(PostRepository postRepository) {
 //		this.pr = postRepository;
+	// this.catRepository = catRepository;
 //	}
+
+	@Autowired
+	CategoryRepository categoryRepository;
 	@Autowired
 	private PostEntityMapper postEntityMapper;
 
 	@Override
 	public PostEntityDto createPost(PostEntityDto postEntityDto) {
+		Category cat = categoryRepository.findById(postEntityDto.getCategoryId()).orElseThrow(
+				() -> new ResourceNotFoundException("Category", "id", Long.toString(postEntityDto.getCategoryId())));
+		System.out.println("cat: " + postEntityDto.getCategoryId());
 		PostEntity postEntity = postEntityMapper.PostEntityDTOToPostEntity(postEntityDto);
+		postEntity.setCategory(cat);
 		PostEntity newPostEntity = pr.save(postEntity);
 
 		PostEntityDto postResponse = postEntityMapper.PostEntityToPostEntityDTO(newPostEntity);
@@ -48,7 +58,6 @@ public class PostServiceImpl implements PostService {
 
 		// get content for page object
 		List<PostEntity> listOfPosts = posts.getContent();
-
 		List<PostEntityDto> content= listOfPosts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDTO(post)).collect(Collectors.toList());
 
 		PostEntityResponse postResponse = new PostEntityResponse();
@@ -107,12 +116,26 @@ public class PostServiceImpl implements PostService {
 		return postEntityMapper.PostEntityToPostEntityDTO(post);
 	}
 
-//	@Override
-//	public PostEntityDto updatesPost(PostEntityDto change) {
-//		return pr.save(change);
-//	}
+
+	/**
+	 * @param categoryId
+	 * @return
+	 */
+	@Override
+	public List<PostEntityDto> getPostsByCategoryId(long categoryId) {
+		Category category = categoryRepository.findById(categoryId).orElseThrow(
+				() -> new ResourceNotFoundException("Category", "id", Long.toString(categoryId)));
+		List<PostEntity> posts = pr.findByCategoryId(categoryId);
+		return posts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDTO(post)).collect(Collectors.toList());
+	}
+
 	@Override
 	public PostEntityDto updatePost(PostEntityDto postDto, long id) {
+		Category cat = categoryRepository.findById(postDto.getCategoryId()).orElseThrow(
+				() -> new ResourceNotFoundException("Category", "id", Long.toString(postDto.getCategoryId())));
+		System.out.println("cat: " + postDto.getCategoryId());
+
+
 		// get post by id from the database
 		PostEntity postOld = pr.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post", "id", Long.toString(id)));
 
@@ -123,6 +146,8 @@ public class PostServiceImpl implements PostService {
 		postOld.setCat3(postDto.getCat3());
 		postOld.setMonthOrder(postDto.getMonthOrder());
 		postOld.setBlogcite(postDto.getBlogcite());
+		postOld.setCategory(cat);
+		System.out.println("cat: " + cat.toString());
 
 		PostEntity updatedPost = pr.save(postOld);
 		return postEntityMapper.PostEntityToPostEntityDTO(updatedPost);
@@ -140,5 +165,5 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
- 
+
 }

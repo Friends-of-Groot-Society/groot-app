@@ -17,7 +17,7 @@ public interface PostEntityMapper {
 
     PostEntityDto PostEntityToPostEntityDTO(PostEntity postByUsernameAndId);
 
-    List<PostEntity> PostEntitysToPostEntityDTOs(List<PostEntity> allPostsByUsername );
+    List<PostEntity> PostEntitysToPostEntityDTOs(List<PostEntity> allPostsByUsername);
 
     PostEntity PostEntityDTOToPostEntity(PostEntityDto postEntityDto);
 

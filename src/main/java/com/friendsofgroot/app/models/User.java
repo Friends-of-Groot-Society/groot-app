@@ -4,15 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter @Setter @ToString
 @Entity
 @Table(name = "users")
@@ -63,6 +59,47 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 
+//    @ManyToMany(fetch = FetchType.EAGER)
+//   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private List<Role> roles = new ArrayList<>();
+////
+    public User(int userid, String username, String password, String lastname, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
+        super();
+
+        this.userName = username;
+        this.password = password;
+        this.lastName = lastname;
+        this.firstName = firstName;
+        this.userType = userType;
+        this.groups = groups;
+        this.email = email;
+        this.phone = phone;
+        this.cusUrl = cusUrl;
+        this.photoPath = photoPath;
+        this.userGroup = userGroup;
+        this.isActive = isActive;
+        this.contactType = contactType;
+        this.id = id;
+    }
+
+
+//    public void addRole(Role role){
+//        if(!this.roles.contains(role)){
+//            this.roles.add(role);
+//        }
+//
+//        if(!role.getUsers().contains(this)){
+//            role.getUsers().add(this);
+//        }
+//    }
+//
+//    public void removeRole(Role role){
+//        this.roles.remove(role);
+//        role.getUsers().remove(this);
+//    }
+
+
+    //////////////////////////////////////
     // overloaded for getUsersByCArs() call to DB
     public User(int userId, String userName) {
         super();
@@ -86,19 +123,6 @@ public class User implements Serializable {
         this.groups = groups;
     }
 
-    // overloaded For REGISTER userId is AutoIncrement, lastname, firstname, email, phone, cusurl
-//    public User(String userName, String password, String lastName, String firstName, int groups, int userType, String email, String phone, String cusUrl) {
-//        super();
-//        this.userName = userName;
-//        this.password = password;
-//        this.lastName = lastName;
-//        this.firstName = firstName;
-//        this.userType = userType;
-//        this.groups = groups;
-//        this.email = email;
-//        this.phone = phone;
-//        this.cusUrl = cusUrl;
-//    }
 
     //	 overloaded WITHOUT userId  FOR Creating TO ORACLE DB  FOR ORACLE DB INSERTION/RETRIEVAL
     public User(String userName, String password, String lastName, String firstName,
@@ -154,7 +178,4 @@ public User(  String password, String lastName, String firstName,
     this.contactType = contactType;
     this.id = id;
 }
-
-
-
 }

@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.controllers;
 
-import com.friendsofgroot.app.dto.CommentDto;
+import com.friendsofgroot.app.models.CommentDto;
 import com.friendsofgroot.app.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

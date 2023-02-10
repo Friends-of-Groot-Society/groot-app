@@ -18,6 +18,10 @@ Java Application for Friends of Groot Society
 ### Application Overview
 The mission of the app is to organize and persist Groot Fan Club News and NFT-related Activies.
 
+#### Features
+
+#### Data Structures
+Address -> NftAddress -> nfts[] Nft-> Metadata
 
 #### Application User Stories
 ```sh

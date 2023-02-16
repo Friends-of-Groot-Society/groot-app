@@ -80,7 +80,7 @@ import java.util.*;
                 System.out.println("Pathway restricted");
             }
         }
-        MainDashboard.mainUser(new String[] {});
+        MainDashboard.mainConsole(new String[] {});
     }
 
         private static class Location {

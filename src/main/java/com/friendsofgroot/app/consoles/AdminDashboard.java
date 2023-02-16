@@ -51,12 +51,14 @@ public class AdminDashboard {
                         scan.nextLine();
                         System.out.println(ElectroLotService.getAllElectroLot());
                         adminConsole();
+                        break;
                     }
                     case 2: {
                         System.out.println("Entering CoinLot View...");
                         System.out.println(CoinService.getAllCoins());
                         System.out.println(Cmds.ADMIN_PERKS);
                         adminConsole();
+                        break;
                     }
                     case 3: {
                         scan.nextLine();

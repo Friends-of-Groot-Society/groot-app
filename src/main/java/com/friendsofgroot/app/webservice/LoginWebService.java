@@ -7,10 +7,8 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 
 //https://github.com/google/gson/blob/master/UserGuide.md
 
@@ -21,7 +19,10 @@ import com.friendsofgroot.app.models.Groups;
 import com.friendsofgroot.app.service.UserService;
 import com.friendsofgroot.app.service.GroupsService;
 
-public class LoginWebService {
+@WebServlet("/signin")
+public class LoginWebService   extends HttpServlet {
+
+
 
 	public static void login(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -129,4 +130,8 @@ public class LoginWebService {
 
   	}
 
+	public static void logout(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("logging out...");
+
+	}
 }

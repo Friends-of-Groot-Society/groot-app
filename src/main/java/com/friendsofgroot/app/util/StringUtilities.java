@@ -1,4 +1,4 @@
-package com.friendsofgroot.metrics;
+package com.friendsofgroot.app.util;
 
 
 public class StringUtilities {

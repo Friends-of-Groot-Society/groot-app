@@ -6,13 +6,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+
+import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.context.ApplicationContext;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import com.friendsofgroot.app.consoles.MainDashboard;
 import com.friendsofgroot.app.logger.LogCustom;
 
-
+@ServletComponentScan("com.friendsofgroot.app")
 @EnableJpaRepositories("com.friendsofgroot.app.repositories")
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
 @ComponentScan("com.friendsofgroot.app")
@@ -22,14 +26,20 @@ public class CliApplication {
 
 
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
-		SpringApplication.run(CliApplication.class, args);
 		System.out.println("INSIDE ____________CliApplication.main()");
+		ApplicationContext ctx = SpringApplication.run(CliApplication.class, args);
+
+		for (String name : ctx.getBeanDefinitionNames()){
+			System.out.println(name);
+		}
+		System.out.println("******* Bean Count *******");
+		System.out.println(ctx.getBeanDefinitionCount());
 
 		LogCustom.logger();
 
 
 		// USER MAIN
-		MainDashboard.mainUser(args);
+		MainDashboard.mainConsole(args);
 	}
 
 

@@ -1,4 +1,6 @@
-package com.friendsofgroot.metrics;
+package com.friendsofgroot.app.util;
+
+import com.friendsofgroot.app.util.StringUtilities;
 
 import java.util.Random;
 

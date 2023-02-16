@@ -15,15 +15,15 @@ import static com.friendsofgroot.app.consoles.GeoDashboard.mainNavigator; // 7 L
 public class MainDashboard {
     private static final int MAIN_OPTIONS_COUNT = 7;
 
-    public static void mainUser(String[] args) throws SQLException, ClassNotFoundException, IOException {
-        try {
-            /// #1  Loading Recursive Console Scanner accepting Integer Input
-            mainConsole();
-        } catch (Exception e) {
-            System.out.println("oops!  mainConsole fail"+ e.getMessage());
-
-        }
-    }
+//    public static void mainUser(String[] args) throws SQLException, ClassNotFoundException, IOException {
+//        try {
+//            /// #1  Loading Recursive Console Scanner accepting Integer Input
+//            mainConsole();
+//        } catch (Exception e) {
+//            System.out.println("oops!  mainConsole fail"+ e.getMessage());
+//
+//        }
+//    }
 
     private static void frontConsoleMenu() {
         System.out.println("\n1.) Log in \n"
@@ -36,7 +36,7 @@ public class MainDashboard {
                 + "Stop Application, press '0'.\n");
     }
 
-    public static void mainConsole() {
+    public static void mainConsole(String[] ...args) {
 
         System.out.println("Now Loading frontConsoleMenu()");
         frontConsoleMenu();

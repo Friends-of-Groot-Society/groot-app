@@ -7,13 +7,8 @@
 <title>Search Result</title>
 </head>
 <body>
-<% 
-int result = (Integer) request.getAttribute("result");
-out.println("Average of 2: "+ result);
-%>
-<div>
-MVC: ${msg}</div>
-<jsp:useBean id="userDetails" type="xyz.cryptomaven.app.models.User" scope="request"/>
+
+<jsp:useBean id="userDetails" type="com.friendsofgroot.app.models.User" scope="request"/>
 Id: <jsp:getProperty property="id" name="userDetails"/>
 Name: <jsp:getProperty property="userName" name="userDetails"/>
 </body>

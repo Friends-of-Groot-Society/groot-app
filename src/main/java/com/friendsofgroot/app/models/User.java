@@ -63,12 +63,12 @@ public class User implements Serializable {
 //   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    private List<Role> roles = new ArrayList<>();
 ////
-    public User(int userid, String username, String password, String lastname, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
+    public User(int userid, String userName, String password, String lastName, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
         super();
 
-        this.userName = username;
+        this.userName = userName;
         this.password = password;
-        this.lastName = lastname;
+        this.lastName = lastName;
         this.firstName = firstName;
         this.userType = userType;
         this.groups = groups;
@@ -178,4 +178,11 @@ public User(  String password, String lastName, String firstName,
     this.contactType = contactType;
     this.id = id;
 }
+
+//    public void registerThis(String un, String pw, String ln, String fn) {
+//        this.userName = un;
+//        this.password = pw;
+//        this.lastName = ln;
+//        this.firstName = fn;
+//    }
 }

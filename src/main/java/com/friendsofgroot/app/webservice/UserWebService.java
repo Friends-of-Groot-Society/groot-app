@@ -105,7 +105,7 @@ public class UserWebService {
 		ObjectMapper om = new ObjectMapper();
 		try {
 			String userJSON = om.writeValueAsString(d);
-//			response.getWriter().append("\n\n\n Welcome to Subservlet. You are accessing .do File");
+			response.getWriter().append("\n\n\n Welcome to Subservlet. You are accessing .do File");
 			
 			response.getWriter().append(userJSON);
 		} catch (IOException e1) {
@@ -113,5 +113,25 @@ public class UserWebService {
 			e1.printStackTrace();
 		} // ("Served at: ").append(request.getContextPath());
 
+	}
+
+	public static void register(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("register");
+	}
+
+	public static void update(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("update");
+	}
+
+	public static void delete(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("delete");
+	}
+
+	public static void get(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("get");
+	}
+
+	public static void getAll(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("getAll");
 	}
 }

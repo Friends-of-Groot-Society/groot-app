@@ -3,7 +3,6 @@ package com.friendsofgroot.app.cli;
 import com.friendsofgroot.app.dataLoader.TestDataStore;
 import com.friendsofgroot.app.models.Bookmark;
 import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.Offer;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.dataLoader.BookmarkManager;
 import com.friendsofgroot.app.dataLoader.CoinManager;
@@ -22,7 +21,6 @@ public class CliStaticLoader {
     private static List<User> users;
     private static List<List<Bookmark>> bookmarks;
     private static List<Coin> coins;
-    private static List<Offer> offers;
 
     // launch methods
     public static void cliStaticDataLoader() throws IOException {
@@ -31,29 +29,20 @@ public class CliStaticLoader {
         users = UserManager.getInstance().getUsers();
         bookmarks = BookmarkManager.getInstance().getBookmarksArray();
         coins = CoinManager.getInstance().getCoins();
-        offers = CoinManager.getInstance().getOffers();
+          System.out.println(Datum.ANSI_PURPLE+ "ANSI_PURPLE printing user data: ");
 
         System.out.println(Datum.ANSI_GREEN+  "ANSI_GREEN printing user data: ");
         printUserData();
         System.out.println(Datum.ANSI_BLUE+   "ANSI_BLUE printing bookmark data: ***Paused until AWS DB PS/SQL UPDATED");
         printBookmarks();
-        System.out.println(Datum.ANSI_RED+ "ANSI_RED printing coin data: ");
-        printCoins();
+        System.out.println(Datum.ANSI_RED+ "ANSI_RED printing startBrowsingBuying: ");
+        startBrowsingBuying();
 
-        System.out.println(Datum.ANSI_RESET+ "ANSI_RESET printing offer data: ");
-        printCoins();
+        System.out.println(Datum.ANSI_RESET+ "ANSI_RESET runDownloaderJob ");
+        runDownloaderJob();
 
     }
-    private static void printCoins() {
-        for (Coin c: coins) {
-            System.out.println(c);
-            for (Offer o : offers) {
-                if (c.getCoinId() ==o.getCoinId()) {
-                    System.out.println("Coin #"+ c.getCoinId()+": matched Offer: "+o.getCoinId());
-                }
-            }
-        }
-    }
+
     private static void printUserData() throws IOException {
         for (User u : users) {
             System.out.println(u);

@@ -8,7 +8,6 @@ public interface IMaPL {
     String SRC_DATA_STARTUP_TEXT_TXT = null;
 
 
-
     default void register(String cmdName, MaPL cmd) {}
     default void registerCmds(Map<String, String> dataMap) {}
 

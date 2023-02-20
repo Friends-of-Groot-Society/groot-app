@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.Offer;
 import com.friendsofgroot.app.service.CoinService;
-import com.friendsofgroot.app.service.ElectroLotService;
-import com.friendsofgroot.app.service.OfferService;
+ 
 import com.friendsofgroot.app.service.UserService;
 import com.friendsofgroot.app.systemUser.UserProfile;
 
@@ -27,8 +25,7 @@ public class UserDashboard {
 	 */
 	public static void dashboardChoice(String username) {
 		System.out.println("\n Welcome to your Dashboard! *" + username + "*, ");
-		System.out.println(WHAT_TO_DO);
-		System.out.println("1: "+VIEW_MY_CARS);
+		System.out.println(WHAT_TO_DO); 
 		System.out.println("2: "+VIEW_ALL_CARS);
 		System.out.println("3: "+VIEW_CAR_DETAILS);
 		System.out.println("4: "+MAKE_AN_OFFER);
@@ -46,21 +43,20 @@ try(Scanner scan = new Scanner(System.in)) {
 		switch (val) {
 		case 1: {
 			try {
-				System.out.println("_____Coins I own:_______");
-				System.out.println(ElectroLotService.getAllElectroLot(username));
-				ElectroLotService.getAllElectroLot(username);
-
-//				}
+				List<Coin> coinList = CoinService.getAllCoinsCust();
+				System.out.println(COINMARKET_TITLE);
+				System.out.println(coinList);
+				System.out.println("4: "+PRESS_DIGIT);
+				System.out.println();
 			} catch (Exception e) {
 				dashboardChoice(username);
 			}
 			dashboardChoice(username);
-			break;
 		}
 		case 2: {
 			try {
 				List<Coin> coinList = CoinService.getAllCoinsCust();
-				System.out.println(CARLOT_TITLE);
+				System.out.println(COINMARKET_TITLE);
 				System.out.println(coinList);
 				System.out.println("4: "+PRESS_DIGIT);
 				System.out.println();
@@ -108,9 +104,9 @@ try(Scanner scan = new Scanner(System.in)) {
 				scan.nextLine();
 				System.out.println(HOW_MANY_MONTHS);
 				int mos = scan.nextInt();
-				Offer offering = new Offer(777, username, val, down, mos, "PENDING");
-				 
-				System.out.println(OfferService.createOffer(offering));
+//				Offer offering = new Offer(777, username, val, down, mos, "PENDING");
+//				 /////////////////////////////////////////////////////////////////
+//				System.out.println(OfferService.createOffer(offering));
 				System.out.println(NICE+ " $" + down + " down, over *" + mos + "* months\n"
 						+ "We'll let you know in less than 24 hours!!\n");
 			} catch (Exception e) {
@@ -120,19 +116,19 @@ try(Scanner scan = new Scanner(System.in)) {
 		}
 		case 5: {
 			try {
-				List<Offer> offerList = OfferService.getAllOffersCust(username);
- 				for (Offer offer : offerList) {
-					System.out.println(offer);
-				}
-
+//				List<Offer> offerList = OfferService.getAllOffersCust(username);
+// 				for (Offer offer : offerList) {
+//					System.out.println(offer);
+//				}
+				System.out.println("Pressed 5");
+//				 /////////////////////////////////////////////////////////////////
 			} catch (Exception e) {
 				dashboardChoice(username);
 			}
 			dashboardChoice(username);
 		}
 		case 6: {
-			try { // pass in Loggeed in user object for Profile Edit
-//				User user = UserService.getUser(username);
+			try {
 				UserProfile.editProfile(UserService.getUser(username));
 
 			} catch (Exception e) {

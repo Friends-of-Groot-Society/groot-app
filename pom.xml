@@ -118,12 +118,12 @@
 			<version>2.2</version>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
+<!--		<dependency>-->
+<!--			<groupId>javax.servlet</groupId>-->
+<!--			<artifactId>javax.servlet-api</artifactId>-->
+<!--			<version>4.0.1</version>-->
 <!--			<scope>provided</scope>-->
-		</dependency>
+<!--		</dependency>-->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -194,8 +194,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 
 				<configuration>
-					<source>16</source>
-					<target>16</target>
+					<source>11</source>
+					<target>11</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.mapstruct</groupId>

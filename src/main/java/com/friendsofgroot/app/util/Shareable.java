@@ -4,4 +4,5 @@ public interface Shareable {
 
     String getItemData();
 
+    boolean isWeb3Link();
 }

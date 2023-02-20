@@ -25,8 +25,7 @@ public class TestDataStore extends InputOutput{
 	public List<Groups> groups = new ArrayList<>();
 	public static List<Coin> coins = new ArrayList<>();
 	public static List<Nft> nfts = new ArrayList<>();
-	public static List<Offer> offers = new ArrayList<>();
- 
+
 	public static int getCoinInventory() {
 		return COIN_INVENTORY;
 	}
@@ -38,7 +37,7 @@ public class TestDataStore extends InputOutput{
 	public static List<User> getUsers() {
 		return users;
 	}
-	public static List<Offer> getOffers() { return offers;	}
+
 	protected static List<List<Bookmark>> bookmarks= new ArrayList<>();
 	public static List<List<Bookmark>> getBookmarksArray() {
 		return bookmarks;
@@ -49,10 +48,8 @@ public class TestDataStore extends InputOutput{
 	public static void loadData() throws FileNotFoundException, UnsupportedEncodingException {
 		loadUsers();
 		loadWeblinks();
-		loadMovies();
-		loadBooks();
+
 		loadCoins();
-		loadOffers();
 		loadGroups();
 	}
 
@@ -69,17 +66,7 @@ public class TestDataStore extends InputOutput{
 				TEST_USERS = users.size();
 			}
 		}
-		private static void loadOffers() throws FileNotFoundException, UnsupportedEncodingException {
-			List<String> data = new ArrayList<>();
-			InputOutput.readFromFilename(data, FILE_IN_OFFERS);
-			System.out.println("OFFER-FILE IN::::::: "+data.toString());
-			for (String row: data) {
-				String[] values = row.split(",");
-				Offer offer = CoinManager.getInstance().createOffer(Integer.parseInt(values[0]),  values[1], Integer.parseInt(values[2]), Double.parseDouble(values[3]), Integer.parseInt(values[4]), values[5]);
-				offers.add(offer);
-			}
 
-		}
 		private static void loadWeblinks() throws FileNotFoundException, UnsupportedEncodingException {
 //			bookmarks[0][0] = BookmarkManager.getInstance().createWeblink(2000,  "http://www.javaworld.com/article/2072759/core-java/taming-tiger--part-2.html","http://www.javaworld.com" );
 			List<String>  data = new ArrayList<>();
@@ -93,30 +80,6 @@ public class TestDataStore extends InputOutput{
 			bookmarks.add(WeblinkList);   // First of Three
 		}
 
-		private static void loadBooks() throws FileNotFoundException, UnsupportedEncodingException {
-//		bookmarks[1][1] = BookmarkManager.getInstance().createBook(4001,"Self-Reliance and Other Essays",	1993,	"Dover Publications", new String[] {"Ralph Waldo Emerson"},	BookGenre.PHILOSOPHY,	4.3  );
-			List<String> data = new ArrayList<>();
-			InputOutput.readFromFilename(data, FILE_IN_BOOKS);
-			List<Bookmark> bookList = new ArrayList<>();
-			for (String row : data) {
-				String[] values = row.split(",");
-				Bookmark book = BookmarkManager.getInstance().createBook(Long.parseLong(values[0]), values[1], Integer.parseInt(values[2]), values[3], values[4], values[5], Double.parseDouble(values[6]));
-				bookList.add(book);
-			}
-			bookmarks.add(bookList); // Second of Three
-		}
-		private static void loadMovies() throws FileNotFoundException, UnsupportedEncodingException {
-//		bookmarks[2][0] = BookmarkManager.getInstance().createMovie(3000, "Citizen Kane", 1941, new String[] {"Orson Welles"," Joseph Cotten"},new String[] {"Orson Welles"}, MovieGenre.CLASSICS, 8.5);
- 			List<String> data = new ArrayList<>();
-			InputOutput.readFromFilename(data, FILE_IN_MOVIES);
-			List<Bookmark> movieList = new ArrayList<>();
-			for (String row : data) {
-				String[] values = row.split(",");
-				Bookmark movie = BookmarkManager.getInstance().createMovie(Long.parseLong(values[0]), values[1],  Integer.parseInt(values[2]), values[3], values[4], values[5], Double.parseDouble(values[6]));
-				movieList.add(movie);
-			}
-			bookmarks.add(movieList);  // Third of Three
-		}
 		public static void loadCoins() throws FileNotFoundException, UnsupportedEncodingException {
 //		Coin coin1 = CoinManager.getInstance().createCoin(5000, CoinMake.TESLA, "Cyber-Truck", 37000.99, 0);
 			List<String> data =new ArrayList<>();

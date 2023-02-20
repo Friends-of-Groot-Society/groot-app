@@ -1,11 +1,10 @@
 package com.friendsofgroot.app.cli;
 
 import com.friendsofgroot.app.dataLoader.TestDataStore;
-import com.friendsofgroot.app.dataLoader.UserManager;
 import com.friendsofgroot.app.models.Bookmark;
 import com.friendsofgroot.app.models.Coin;
 import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.service.BookmarkLocalService;
+import com.friendsofgroot.app.service.BookmarkServlet;
 import com.friendsofgroot.app.service.CoinLocalService;
 
 import java.io.FileNotFoundException;
@@ -28,7 +27,7 @@ public class ClientActions {
 			if(isBookmarked) {
 				count++;
 				System.out.println(count+ "[Bookmarke]"+bookmark);
-				BookmarkLocalService.getInstance().saveLocalUserBookmark(user, bookmark);
+				BookmarkServlet.getInstance().saveLocalUserBookmark(user, bookmark);
 				subset.add(bookmark);
 			}
 		}
@@ -45,7 +44,7 @@ public class ClientActions {
 		for(int x = 0;x<=1;x++) {
 			int bookmarkOffset = (int) (Math.random() * TestDataStore.BOOKMARK_COUNT_PER_TYPE);
 			Bookmark bookmark = bookmarks.get(x).get(bookmarkOffset);
-			BookmarkLocalService.getInstance().shareBookmark(user, bookmark);
+			BookmarkServlet.getInstance().shareBookmark(user, bookmark);
 			System.out.println("User: " + user.getEmail() + "inside View; bookmark: " + bookmark.getTitle()+ bookmark.getClass());
 		}
 	}

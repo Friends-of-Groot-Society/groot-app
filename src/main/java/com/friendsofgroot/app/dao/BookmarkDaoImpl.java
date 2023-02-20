@@ -47,7 +47,11 @@ public class BookmarkDaoImpl   implements BookmarkDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                return new Bookmark(rs.getInt("id"), rs.getString("title"), rs.getString("profileurl"));
+                Bookmark bookmark = new Bookmark();
+                bookmark.setId(rs.getInt("id"));
+                bookmark.setTitle(rs.getString("title"));
+                bookmark.setProfileUrl(rs.getString("profileurl"));
+                return  bookmark;
             }
         } catch (SQLException e) {
             System.out.println("Double-check DB connection o BOokmakr get-id");

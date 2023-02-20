@@ -49,7 +49,7 @@ public class Cmds {
     public static final String OOPS_TRY_AGAIN = "Oops, something went wrong, try again please\n";
 
     // titles
-    public static final String CARLOT_TITLE = "I-*heart*- ETH   tokens: Market view...";
+    public static final String COINMARKET_TITLE = "I-*heart*- ETH   tokens: Market view...";
 
     // DIGITS
     public static final String ZERO = "0.) ";

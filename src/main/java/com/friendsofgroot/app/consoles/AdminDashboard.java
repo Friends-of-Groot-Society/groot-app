@@ -9,12 +9,8 @@ import java.util.Scanner;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.commands.MaPLInvoker;
 import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.ElectroLot;
-import com.friendsofgroot.app.models.Offer;
 
 import com.friendsofgroot.app.service.CoinService;
-import com.friendsofgroot.app.service.ElectroLotService;
-import com.friendsofgroot.app.service.OfferService;
 import com.friendsofgroot.app.service.UserService;
 
 public class AdminDashboard {
@@ -48,8 +44,9 @@ public class AdminDashboard {
                         break;
                     }
                     case 1: {
-                        scan.nextLine();
-                        System.out.println(ElectroLotService.getAllElectroLot());
+                        System.out.println("Entering Financials View...");
+                        System.out.println(CoinService.getAllCoins());
+                        System.out.println(Cmds.ADMIN_PERKS);
                         adminConsole();
                         break;
                     }
@@ -69,9 +66,9 @@ public class AdminDashboard {
                                 scan.nextInt();
                                 scan.nextLine();
                                 System.out.println("Coin TOKEN?");
-                                String make = scan.nextLine();
+                                String coinToken = scan.nextLine();
                                 System.out.println("Coin Symbol?");
-                                String model = scan.nextLine();
+                                String coinSymbol = scan.nextLine();
                                 System.out.println("Coin Price?");
                                 double price = scan.nextDouble();
                                 scan.nextLine();
@@ -81,13 +78,13 @@ public class AdminDashboard {
                                     price = scan.nextDouble();
                                     scan.nextLine();
                                 }
-                                System.out.println("Umkay,coin's make is *" + make + "*,\n model is *" + model
+                                System.out.println("Umkay,coin's coinToken is *" + coinToken + "*,\n coinSymbol is *" + coinSymbol
                                         + "*,\n and price at *$" + price + "*\n");
                                 System.out.println("   Everything look right? (y) or (no)\n");
                                 while (true) {
                                     String decide = scan.next();
                                     if (decide.contentEquals("y")) {
-                                        Coin createdCoin = new Coin(999, make, model, price, 0); //CoinId overwritten later
+                                        Coin createdCoin = new Coin(999, coinToken , coinSymbol, price, 0); //CoinId overwritten later
                                         CoinService.createCoin(createdCoin);
                                         System.out.println(
                                                 "This " + createdCoin.getCoinToken() + " has been Successfully added!!\n");
@@ -150,8 +147,7 @@ public class AdminDashboard {
                         }
                     }
                     case 5: {
-                        System.out.println(OfferService.getAllOffers());
-                        checkOffer();
+                        System.out.println("OfferService.getAllOffers()");
                         adminConsole();
                         break;
                     }
@@ -193,75 +189,6 @@ public class AdminDashboard {
                 mapleInvokerSession.execute(nextCommand);
                 System.out.println("Invoked command executed.\n");
                 sessionMaPL(mapleInvokerSession);
-            }
-        }
-    }
-
-    static void checkOffer() throws SQLException {
-        try (Scanner scan = new Scanner(System.in)) {
-            System.out.println("\n>>>Please type offer ID to view or modify. 0 to exit.");
-            int oInt = scan.nextInt();
-            scan.nextLine();
-            if (oInt == 0) {
-                adminConsole();
-            }
-            Offer offerLook = OfferService.getOffer(oInt);
-            System.out.println(">>>Great, looking up offer #" + oInt + "....\n");
-            if (offerLook == null) {
-                System.out.println(">>>Oops, couldn't find it, " + "maybe double check the #id?\n");
-                checkOffer();
-            } else {
-                System.out.println(offerLook);
-                approveOrReject(offerLook);
-                adminConsole();
-            }
-            adminConsole();
-        }
-    }
-
-    static void approveOrReject(Offer offerLook) {
-        try (Scanner scan = new Scanner(System.in)
-        ) {
-            System.out.println("\n>>>Accept this offer (y)?\n" + "or (r) to reject an offer\n"
-                    + "\nOtherwise hit any key+'enter' to return to dashboard");
-            String decide = scan.nextLine();
-            if (!decide.contentEquals("y") && !decide.contentEquals("r")) {
-                adminConsole();
-            } else if (decide.contentEquals("y")) {
-                Offer offering = new Offer(offerLook.getOfferID(), offerLook.getUserName(), offerLook.getCoinId(),
-                        offerLook.getOfferAmt(), offerLook.getOfferMos(), "APPROVED");
-                // Finalize New-Owner's Offer details
-                OfferService.updateOffer(offering);
-                // make New-Owner contract
-                System.out.println(ElectroLot.makeElectro(offering));
-                ElectroLotService.addElectroLot(ElectroLot.makeElectro(offering));
-                // Remove coin from customer lot
-                Coin uCoin = CoinService.getCoin(offerLook.getCoinId());
-                Coin removePurchase = new Coin(uCoin.getCoinId(), uCoin.getCoinToken(), uCoin.getCoinSymbol(), uCoin.getPriceTotal(),
-                        1);
-                CoinService.updateCoin(removePurchase);
-                // Reject all other offers for same coin
-                Offer rejectOffers = new Offer(0, "", uCoin.getCoinId(), 0.0, 0, "PENDING");  // Reject all other pending offers!!
-//				int offerID, String userName, int coinID, double offerAmt, int offerMos, String offerStatus
-                OfferService.rejectOtherOffers(rejectOffers);
-                System.out.println(
-                offering.toString() + "\n.....#" + offering.getOfferID() + " successfully approved!!\n");
-                adminConsole();
-
-            } else if (decide.contentEquals("r")) {
-                Offer offering = new Offer(offerLook.getOfferID(), offerLook.getUserName(), offerLook.getCoinId(),
-                        offerLook.getOfferAmt(), offerLook.getOfferMos(), "REJECTED");
-                OfferService.updateOffer(offering);
-                System.out.println(
-                        offering.toString() + "\n" + "...\n..#" + offering.getOfferID() + " successfully rejected!!\n");
-            }
-        } catch (SQLException e) {
-            System.out.println("first sql" + e.getMessage());
-            try {
-                adminConsole();
-            } catch (SQLException e1) {
-                System.out.println("2nd sql problem " + e.getMessage());
-                MainDashboard.mainConsole();
             }
         }
     }

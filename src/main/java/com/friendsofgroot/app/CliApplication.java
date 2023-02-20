@@ -29,11 +29,15 @@ public class CliApplication {
 		System.out.println("INSIDE ____________CliApplication.main()");
 		ApplicationContext ctx = SpringApplication.run(CliApplication.class, args);
 
-		for (String name : ctx.getBeanDefinitionNames()){
-			System.out.println(name);
-		}
+//		for (String name : ctx.getBeanDefinitionNames()){
+//			System.out.println(name);
+//		}
 		System.out.println("******* Bean Count *******");
 		System.out.println(ctx.getBeanDefinitionCount());
+		System.out.println("******* Class Loader *******");
+		System.out.println(ctx.getClassLoader());
+		System.out.println("******* Environment *******");
+		System.out.println(ctx.getEnvironment());
 
 		LogCustom.logger();
 

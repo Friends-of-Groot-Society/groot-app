@@ -39,4 +39,12 @@ public class Book extends Bookmark implements Shareable {
 		return builder.toString();
 	}
 
+	/**
+	 * @return
+	 */
+	@Override
+	public boolean isWeb3Link() {
+		return false;
+	}
+
 }

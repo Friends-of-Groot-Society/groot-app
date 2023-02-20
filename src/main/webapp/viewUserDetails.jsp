@@ -9,7 +9,7 @@
 <body>
 
 <jsp:useBean id="userDetails" type="com.friendsofgroot.app.models.User" scope="request"/>
-Id: <jsp:getProperty property="id" name="userDetails"/>
+Id: <jsp:getProperty property="userId" name="userDetails"/>
 Name: <jsp:getProperty property="userName" name="userDetails"/>
 </body>
 </html>

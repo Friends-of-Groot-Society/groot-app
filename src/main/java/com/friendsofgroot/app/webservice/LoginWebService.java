@@ -16,11 +16,13 @@ import javax.servlet.http.*;
 
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.Groups;
-import com.friendsofgroot.app.service.UserService;
+//import com.friendsofgroot.app.service.UserService;
 import com.friendsofgroot.app.service.GroupsService;
+import com.friendsofgroot.app.service.UsersServiceImpl;
 
-@WebServlet("/signin")
+@WebServlet(urlPatterns = { "/signin", "/login}" })
 public class LoginWebService   extends HttpServlet {
+
 
 
 
@@ -48,15 +50,16 @@ public class LoginWebService   extends HttpServlet {
 		List<Integer> myGroupsMemberIds = new ArrayList<>();
 
 		/// ALL SUPER's subs' IDs LISTED
-		List<User> allSuperIds = UserService.getUsers();
+		UsersServiceImpl userService = new UsersServiceImpl();
+		List<User> allSuperIds = userService.getUsers();
 		List<Integer> mySubsIds = new ArrayList<>();
 
 		// ALL SUPER's subs' OBJECTS LISTED
 		List<User> mySubsObjs = new ArrayList<User>();
 		// (GSON) ALL SUPER's subs' OBJECTS LISTED
 
-		List<User> uu = UserService.getUsers();
-		List<User> uuu = UserService.getUsers();
+		List<User> uu = userService.getUsers();
+		List<User> uuu = userService.getUsers();
 		Boolean valid = false;
 		Boolean isSuper = false;
 		System.out.println("this user is not verified as a Supervisor, checking tho...");
@@ -69,7 +72,7 @@ public class LoginWebService   extends HttpServlet {
 						+ u.getPassword() + " matches " + password + " :-)... welcome");
 				valid = true;
 				/// GET USER DETAILS
-				User userLogged = UserService.getUser(u.getUserName());
+				User userLogged = userService.getUser(u.getUserName());
 				System.out.println(userLogged.toString());
 				dbUser = userLogged.getUserName();
 				dbId = userLogged.getUserId();

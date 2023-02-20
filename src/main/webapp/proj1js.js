@@ -3,7 +3,8 @@
 // proj1js.js
 /////////////////////////////
 // METHODS FOR ALL 
-
+let varFullAddress = "http://localhost:8080/listRequestServlet";
+let varAddress = "listRequestServlet";
 //let updateReq = new Function();
 
 let sessdata;
@@ -11,7 +12,7 @@ let sessDataArray1;
 // pass in my employee's requests as an array optionals[];
 
 // atstart:false=; true-
-// oId: param->userAdminId(7777=wipe table)
+// oId: param->userId(7777=wipe table)
 const listRequest = function (atstart, oId) {
 
 	console.log("clicked list");
@@ -27,7 +28,8 @@ const listRequest = function (atstart, oId) {
 			console.log(d);
 			if (atstart == true) {
 				document.getElementById("table").innerHTML = ""
-			}; //erase empty list 
+			}; //erase empty list
+
 			if (d == "undefined" || d.length == 0 || !d || d == null) {
 				document.getElementById("table").innerHTML += `
 			<h6>No Reimbursements have been requested.</h6>
@@ -81,7 +83,7 @@ const listRequest = function (atstart, oId) {
 	oId = (oId != 8888) ? oId : getall;  // OTHERS if oID !=8888; GET ALL REQUESTS
 	oId = (oId != 0) ? oId : myId;  //GET OTHERS if oId !=0;  GET myId if 0
 	console.log("collecting request for: " + oId)
-	xhttp.open("GET", "listRequest.do?userAdminId=" + oId, true);
+	xhttp.open("GET", `${varAddress}?userId=` + oId, true);
 	xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');  // http://mydomain.com
 	xhttp.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
 	xhttp.send();
@@ -122,38 +124,38 @@ const sessionInfo = function () {
 	//	}			
 	//	findSessOids3();
 
-	sessUser = getCookie("sessUser")|| "guestsessUser";
-	sessId = getCookie("sessId")|| "guestsessId";
-	sessSuper = getCookie("sessSuper")|| "guestsessSuper";
-	sessDept = getCookie("sessDept")|| "guestsessDept";
-	killCookie("userAdminname");
-	document.cookie = `userAdminname=${sessUser}`;
-	killCookie("userAdminid");
-	document.cookie = `userAdminid=${sessId}`;
-	killCookie("userAdminsuper");
-	document.cookie = `userAdminsuper=${sessSuper}`;
-	killCookie("userAdmindept");
-	document.cookie = `userAdmindept=${sessDept}`;
-	let userAdminname = getCookie("userAdminname") || "guest";
+	sessUser = getCookie("sessUser");
+	sessId = getCookie("sessId");
+	sessSuper = getCookie("sessSuper");
+	sessDept = getCookie("sessDept");
+	killCookie("username");
+	document.cookie = `username=${sessUser}`;
+	killCookie("userid");
+	document.cookie = `userid=${sessId}`;
+	killCookie("usersuper");
+	document.cookie = `usersuper=${sessSuper}`;
+	killCookie("userdept");
+	document.cookie = `userdept=${sessDept}`;
+	let username = getCookie("username");
 	let headerName = document.getElementById("headerId");
-	headerName.innerHTML = ` ${userAdminname}`;
+	headerName.innerHTML = ` ${username}`;
 
-	let userAdminid = getCookie("userAdminid");
-	let id = document.getElementById("userAdminId");
-	id.innerHTML = ` ${userAdminid}`;
+	let userid = getCookie("userid");
+	let id = document.getElementById("userId");
+	id.innerHTML = ` ${userid}`;
 
-	let userAdminsuper = getCookie("userAdminsuper");
-	let superid = document.getElementById("userAdminSuper");
-	superid.innerHTML = ` ${userAdminsuper}`;
+	let usersuper = getCookie("usersuper");
+	let superid = document.getElementById("userSuper");
+	superid.innerHTML = ` ${usersuper}`;
 
-	let userAdmindept = getCookie("userAdmindept");
-	let deptid = document.getElementById("userAdminDept");
-	deptid.innerHTML = ` ${userAdmindept}`;
+	let userdept = getCookie("userdept");
+	let deptid = document.getElementById("userDept");
+	deptid.innerHTML = ` ${userdept}`;
 
 }
 
 
-let userAdminname;  // just declare
+let username;  // just declare
 
 let adminEntry = function () {
 	let sessUser = 'Cyndi'; //getCookie("sessUser");
@@ -162,25 +164,25 @@ let adminEntry = function () {
 	let sessDept = 404; //getCookie("sessDept");
 
 	console.log("sessDept: " + sessDept + ",sessUser:" + sessUser + " logged in as admin");
-	killCookie("userAdminname");
-	document.cookie = `userAdminname=${sessUser}`;
+	killCookie("username");
+	document.cookie = `username=${sessUser}`;
 	document.cookie = `sessUser=${sessUser}`;
-	killCookie("userAdminid");
-	document.cookie = `userAdminid=${sessId}`;
+	killCookie("userid");
+	document.cookie = `userid=${sessId}`;
 	document.cookie = `sessId=${sessId}`;
-	killCookie("userAdminsuper");
-	document.cookie = `userAdminsuper=${sessSuper}`;
+	killCookie("usersuper");
+	document.cookie = `usersuper=${sessSuper}`;
 	document.cookie = `sessSuper=${sessSuper}`;
-	killCookie("userAdmindept");
-	document.cookie = `userAdmindept=${sessDept}`;
+	killCookie("userdept");
+	document.cookie = `userdept=${sessDept}`;
 	document.cookie = `sessDept=${sessDept}`;
 	window.location.href = "index.html";
 }
 
 let login = function () {
 
-	let u = document.getElementById("userAdminname");
-	let userAdminname = u.value; // overwrite
+	let u = document.getElementById("username");
+	let username = u.value; // overwrite
 
 	let p = document.getElementById("password");
 	let password;
@@ -193,7 +195,7 @@ let login = function () {
 			console.log("readyState: " + this.readyState + ", status: " + this.status);
 		}
 	}
-	xhttp.open("GET", "login.do?userAdminname=" + userAdminname + "&password=" + password, true);
+	xhttp.open("GET", "login.do?username=" + username + "&password=" + password, true);
 	//        xhttp.open("POST", "login2.do", true);
 
 	xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -202,18 +204,18 @@ let login = function () {
 	xhttp.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
 
 	xhttp.send();
-	console.log(" submitted by: *" + userAdminname + ", password *" + password);
+	console.log(" submitted by: *" + username + ", password *" + password);
 
-	redirect(userAdminname);
+	redirect(username);
 
 
 }
 //  LOGOUT
 let logout = function () {
-	killCookie("userAdminname");
-	killCookie("userAdminid");
-	killCookie("userAdminsuper");
-	killCookie("userAdmindept");
+	killCookie("username");
+	killCookie("userid");
+	killCookie("usersuper");
+	killCookie("userdept");
 
 	killCookie("sessUser");
 	killCookie("sessId");
@@ -267,14 +269,14 @@ let redirect = function (u) {
 		if ((u == getCookie("sessUser")) || (u == certifiedUser)) {
 
 			console.log("sessDept: " + sessDept + ",sessUser:" + sessUser + " logged in as " + u);
-			killCookie("userAdminname");
-			document.cookie = `userAdminname=${u}`;
-			killCookie("userAdminid");
-			document.cookie = `userAdminid=${sessId}`;
-			killCookie("userAdminsuper");
-			document.cookie = `userAdminsuper=${sessSuper}`;
-			killCookie("userAdmindept");
-			document.cookie = `userAdmindept=${sessDept}`;
+			killCookie("username");
+			document.cookie = `username=${u}`;
+			killCookie("userid");
+			document.cookie = `userid=${sessId}`;
+			killCookie("usersuper");
+			document.cookie = `usersuper=${sessSuper}`;
+			killCookie("userdept");
+			document.cookie = `userdept=${sessDept}`;
 			window.location.href = "index.html";
 		} else {
 			alert("please try again! you entered " + u + " and not found!");
@@ -393,19 +395,19 @@ const statusCase = function (code) {
 			//   ---->send reason to requestor
 			break;
 		case 4:
-			stage = "Approved by Group. Head;<br />Awaiting Benco";
+			stage = "Approved by Dept. Head;<br />Awaiting Benco";
 			// Awaiting 
 			break;
 		case 5:
-			stage = "Pending Doc Request (Group.)";
+			stage = "Pending Doc Request (Dept.)";
 			// Awaiting --->need docs from requestor
 			break;
 		case 6:
-			stage = "Denied by Group. Head";
+			stage = "Denied by Dept. Head";
 			// Awaiting 
 			break
 		case 7:
-			stage = "Pending Doc Request (Group.)";
+			stage = "Pending Doc Request (Dept.)";
 			//
 			break;
 		case 8:

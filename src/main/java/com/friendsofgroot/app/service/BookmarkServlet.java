@@ -1,7 +1,6 @@
 package com.friendsofgroot.app.service;
 
 
-import com.friendsofgroot.app.dataLoader.UserManager;
 import com.friendsofgroot.app.models.Bookmark;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.dataLoader.BookmarkManager;
@@ -11,17 +10,17 @@ import java.util.List;
 
 // Like Singleton Managers, This Service is a Controllers return singletons
 
-import java.util.List;
 
-public class BookmarkLocalService {
+public class BookmarkServlet {
 
-    private static BookmarkLocalService instance = new BookmarkLocalService();
-    private BookmarkLocalService() {}
-    public static BookmarkLocalService getInstance() {
+    private static BookmarkServlet instance = new BookmarkServlet();
+    private BookmarkServlet() {}
+    public static BookmarkServlet getInstance() {
         return instance;
     }
     public void saveLocalUserBookmark(User user, Bookmark bookmark) {
         BookmarkManager.getInstance().saveLocalUserBookmark(user, bookmark);
+
     }
     public List<Bookmark> getLocalUserBookmarksByUser(User user) {
         List bookmarks = BookmarkManager.getInstance().getLocalUserBookmarksByUser(user);

@@ -40,4 +40,12 @@ public class Movie extends Bookmark implements Shareable {
 		builder.append("</item>");
 		return builder.toString();
 	}
+
+	/**
+	 * @return
+	 */
+	@Override
+	public boolean isWeb3Link() {
+		return false;
+	}
 }

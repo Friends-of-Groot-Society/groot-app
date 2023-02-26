@@ -3,7 +3,7 @@ package com.friendsofgroot.app.models;
 import com.friendsofgroot.app.util.Shareable;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 @Data

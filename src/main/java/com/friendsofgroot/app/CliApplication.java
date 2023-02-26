@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 
@@ -15,13 +16,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import com.friendsofgroot.app.consoles.MainDashboard;
 import com.friendsofgroot.app.logger.LogCustom;
-
 @ServletComponentScan("com.friendsofgroot.app")
 @EnableJpaRepositories("com.friendsofgroot.app.repositories")
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
 @ComponentScan("com.friendsofgroot.app")
 @EntityScan("com.friendsofgroot.app.models")
-@SpringBootApplication
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class CliApplication {
 
 
@@ -38,6 +38,7 @@ public class CliApplication {
 		System.out.println(ctx.getClassLoader());
 		System.out.println("******* Environment *******");
 		System.out.println(ctx.getEnvironment());
+
 
 		LogCustom.logger();
 

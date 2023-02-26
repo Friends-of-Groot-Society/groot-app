@@ -5,7 +5,7 @@ import com.friendsofgroot.app.models.NftAddress;
 import com.friendsofgroot.app.models.User;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 

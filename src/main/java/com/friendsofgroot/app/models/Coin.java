@@ -4,7 +4,7 @@ package com.friendsofgroot.app.models;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Data

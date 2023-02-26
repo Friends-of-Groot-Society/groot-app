@@ -3,7 +3,7 @@ package com.friendsofgroot.app.models;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;

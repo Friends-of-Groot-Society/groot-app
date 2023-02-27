@@ -6,14 +6,16 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.friendsofgroot.app.service.UsersServiceImpl;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.commands.MaPLInvoker;
 import com.friendsofgroot.app.models.Coin;
 
-import com.friendsofgroot.app.service.CoinService;
-import com.friendsofgroot.app.service.UserService;
+import com.friendsofgroot.app.service.CoinsServiceImpl;
 
 public class AdminDashboard {
+
+    CoinsServiceImpl coinsService = new CoinsServiceImpl();
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;
@@ -44,20 +46,26 @@ public class AdminDashboard {
                         break;
                     }
                     case 1: {
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
                         System.out.println("Entering Financials View...");
-                        System.out.println(CoinService.getAllCoins());
+                        System.out.println(coinsService.getAllCoins());
                         System.out.println(Cmds.ADMIN_PERKS);
                         adminConsole();
                         break;
                     }
                     case 2: {
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
                         System.out.println("Entering CoinLot View...");
-                        System.out.println(CoinService.getAllCoins());
+                        System.out.println(coinsService.getAllCoins());
                         System.out.println(Cmds.ADMIN_PERKS);
                         adminConsole();
                         break;
                     }
                     case 3: {
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
                         scan.nextLine();
                         System.out.println("Adding a coin? Let me get my notepad ...");
                         System.out.println("Coin ID?");
@@ -85,7 +93,8 @@ public class AdminDashboard {
                                     String decide = scan.next();
                                     if (decide.contentEquals("y")) {
                                         Coin createdCoin = new Coin(999, coinToken , coinSymbol, price, 0); //CoinId overwritten later
-                                        CoinService.createCoin(createdCoin);
+
+                                        coinsService.createCoin(createdCoin);
                                         System.out.println(
                                                 "This " + createdCoin.getCoinToken() + " has been Successfully added!!\n");
                                         adminConsole();
@@ -100,14 +109,16 @@ public class AdminDashboard {
                         }
                     }
                     case 4: {
-                        System.out.println(CoinService.getAllCoins());
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
+                        System.out.println(coinsService.getAllCoins());
                         scan.nextLine();
                         System.out.println("Removing a coin? \nLet me get my notepad ...");
                         System.out.println("\nCoin ID to be removed?");
                         while (true) {
                             try {
                                 val = scan.nextInt();
-                                Coin uCoin = CoinService.getCoin(val);
+                                Coin uCoin = coinsService.getCoin(val);
                                 scan.nextLine();
                                 System.out.println("1.) Remove coin #" + uCoin.getCoinId() + "? Type \"y\" or \"yes\"."
                                         + "\n\n2.)To permanently delete from records?\n" + "If so, type \"delete\" \n");
@@ -117,7 +128,7 @@ public class AdminDashboard {
                                     Coin removeCoin = new Coin(uCoin.getCoinId(), uCoin.getCoinToken(), uCoin.getCoinSymbol(),
                                             uCoin.getPriceTotal(), 2); // 2 = remove unpurchased
                                     try {
-                                        CoinService.updateCoin(removeCoin);
+                                        coinsService.updateCoin(removeCoin);
                                         System.out.println(removeCoin.toString() + "\n" + " ...\n..#" + uCoin.getCoinId()
                                                 + " Successfully removed!!\n");
 
@@ -127,7 +138,7 @@ public class AdminDashboard {
                                 } else if (decide.contentEquals("delete")) {// delete & unpurchased
                                     try {
                                         int deleted = uCoin.getCoinId();
-                                        CoinService.deleteCoin(deleted);
+                                        coinsService.deleteCoin(deleted);
                                         System.out.println("\n" + "\n...#" + deleted + " Permanently deleted!\n");
 
                                     } catch (Exception e) {
@@ -139,7 +150,7 @@ public class AdminDashboard {
                                 }
                             } catch (Exception e) {
                                 System.out.println("I could not find that coin ...\nTry again. Here's the current lot:");
-                                List<Coin> coinList = CoinService.getAllCoins();
+                                List<Coin> coinList = coinsService.getAllCoins();
                                 System.out.println(coinList);
                                 adminConsole();
                             }
@@ -152,7 +163,9 @@ public class AdminDashboard {
                         break;
                     }
                     case 6: {
-                        System.out.println(UserService.getUsersWithCoins());
+                        UsersServiceImpl u = new UsersServiceImpl();
+
+                        System.out.println(u.getUsersWithCoins());
                         adminConsole();
                         break;
                     }

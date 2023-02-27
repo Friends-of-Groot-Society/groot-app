@@ -4,7 +4,7 @@ import com.friendsofgroot.app.dao.BookmarkDAO;
 import com.friendsofgroot.app.dao.BookmarkDaoImpl;
 import com.friendsofgroot.app.models.Weblink;
 import com.friendsofgroot.app.util.DownloadSequential;
-import com.friendsofgroot.app.util.InputOutput;
+import com.friendsofgroot.app.util.ReadWriteFile;
 import com.friendsofgroot.app.util.constants.Datum;
 
 import java.io.IOException;
@@ -98,7 +98,7 @@ public class DownloadThreadTask implements Runnable {
                   Weblink weblink = future.get();
                   String webpage = weblink.getHtmlPage();
                   if (webpage != null) {
-                      InputOutput.writeWebpage(webpage, weblink.getId());
+                      ReadWriteFile.writeWebpage(webpage, weblink.getId());
                       weblink.setDownloadStatus(Weblink.DownloadStatus.FAILED);
                       System.out.println(Datum.ANSI_PURPLE+ "Concurrent webpage Download Succeeded: " + weblink.getUrl());
                   } else {

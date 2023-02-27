@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.dao;
 
-import com.friendsofgroot.app.dataLoader.TestDataStore;
+import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Coin;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.UserCoinbuy;
@@ -81,7 +81,7 @@ String sql = "SELECT o.username,  o.coinid,  o.offerstatus,  o.offermos, c.coini
 ////////////// GET OFFLINE CARS AND OFFERS ///////////////////
 	@Override
 	public List<Coin> getCoins() {
-		return  TestDataStore.getCoins();
+		return  FileDataStore.getCoins();
 	}
 
 ////////////// GETALL (ADMIN VIEW)  ///////////////////

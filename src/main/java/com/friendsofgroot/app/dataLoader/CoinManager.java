@@ -3,6 +3,7 @@ package com.friendsofgroot.app.dataLoader;
 import com.friendsofgroot.app.dao.CoinDAOimpl;
 import com.friendsofgroot.app.dao.UserDAOimpl;
 import com.friendsofgroot.app.models.Coin;
+import com.friendsofgroot.app.models.User;
 
 import java.util.List;
 
@@ -19,7 +20,9 @@ public class CoinManager {
 
 		return instance;
 	}
-
+	public void saveLocalUserCoin(User user, Coin bookmark) {
+		UsersData.getInstance().saveLocalUserCoin(user, bookmark);
+	}
 	public Coin createCoin(int carId, String carToken, String carSymbol, double priceTotal, int purchased) {
 
 		Coin car = new Coin(); 

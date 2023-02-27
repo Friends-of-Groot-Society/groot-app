@@ -3,9 +3,10 @@ package com.friendsofgroot.app.systemUser;
 
 import com.friendsofgroot.app.consoles.AdminDashboard;
 import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.service.UserService;
 import com.friendsofgroot.app.consoles.MainDashboard;
 import com.friendsofgroot.app.consoles.UserDashboard;
+import com.friendsofgroot.app.service.UsersService;
+import com.friendsofgroot.app.service.UsersServiceImpl;
 
 import java.util.Scanner;
 import java.sql.SQLException;
@@ -71,7 +72,8 @@ public class UserLogin {
     }
 
     static boolean checkDbUsernameAndPassword(String un, String pw)  {
-        User login = UserService.getUser(un); // returns null if not in DB
+        UsersServiceImpl usersService = new UsersServiceImpl();
+        User login = usersService.getUser(un); // returns null if not in DB
 //	    VALIDATION #2 - Check targeted DB User against logged-in Username & password
         if (login != null && (un.contentEquals(
                 login.getUserName()) && pw.contentEquals(

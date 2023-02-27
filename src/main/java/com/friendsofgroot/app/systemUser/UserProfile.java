@@ -2,7 +2,7 @@ package com.friendsofgroot.app.systemUser;
 
 import com.friendsofgroot.app.consoles.UserDashboard;
 import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.service.UserService;
+import com.friendsofgroot.app.service.UsersServiceImpl;
 
 import java.util.Scanner;
 
@@ -160,6 +160,8 @@ public class UserProfile {
         user.setIsActive(isActive);
         user.setContactType(contactType);
         user.setId(id);
-        System.out.println("Successfully Updated: " + UserService.updateUser(user) + "\nChanges: " + user);
+
+        UsersServiceImpl usersService = new UsersServiceImpl();
+        System.out.println("Successfully Updated: " + usersService.updateUser(user) + "\nChanges: " + user);
     }
 }

@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.dao;
 
-import com.friendsofgroot.app.dataLoader.TestDataStore;
+import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.models.UserNftbuy;
 import com.friendsofgroot.app.util.JDBCConnection;
@@ -34,7 +34,7 @@ public class NftDAOimpl  implements NftDAO {
 ////////////// GET OFFLINE CARS AND OFFERS ///////////////////
 	@Override
 	public List<Nft> getNfts() {
-		return  TestDataStore.getNfts();
+		return  FileDataStore.getNfts();
 	}
 
 ////////////// GETALL (ADMIN VIEW)  ///////////////////
@@ -75,7 +75,7 @@ public class NftDAOimpl  implements NftDAO {
 	}
 
 	public void saveUserNftbuy(UserNftbuy userNftbuy) {
-		TestDataStore.add(userNftbuy);
+		FileDataStore.add(userNftbuy);
 	}
 
 

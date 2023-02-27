@@ -6,49 +6,19 @@ import com.friendsofgroot.app.models.*;
 
 import java.util.List;
 
-public class UserManager {
-	private static CoinDAOimpl coinDAOimpl = new CoinDAOimpl();
+public class UsersData {
+	private static UsersData instance = new UsersData();
 
-	private static UserManager instance = new UserManager();
+	private static CoinDAOimpl coinDAOimpl = new CoinDAOimpl();
 	private static UserDAOimpl userDAOimpl = new UserDAOimpl();
 
-	private UserManager() {
+	private UsersData() {
 	}
 
-	public static UserManager getInstance() {
+	public static UsersData getInstance() {
 
 		return instance;
 	}
-
-	public User createUser(int userId, String userName, String password, String lastName, String firstName,
-						   int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id) {
-
-		User user = new User();
-		user.setUserId(userId);
-		user.setId(id);
-		user.setLastName(lastName);
-		user.setFirstName(firstName);
-		user.setUserName(userName);
-		user.setPassword(password);
-		user.setGroups(groups);
-		user.setUserType(userType);
-		user.setEmail(email);
-		user.setPhone(phone);
-		user.setCusUrl(cusUrl);
-		user.setPhotoPath(photoPath);
-		user.setUserGroup(userGroup);
-		user.setIsActive(isActive);
-		user.setContactType(contactType);
-		user.setId(id);
-
-		return user;
-
-	}
-
-	public List<User> getUsers() {// THis is just relaying the call to the DaoImpl
-		return userDAOimpl.getLocalUsers();
-	}
-
 
 	public void saveUserCoin(User user, Coin coin) {
 		UserCoinbuy userCoinbuy = new UserCoinbuy();
@@ -83,4 +53,10 @@ public class UserManager {
 	public List<Coin> getLocalUserCoinbuysByUser(User user) {
 		return 	userDAOimpl.getLocalUserCoinbuysByUser(user);
 	}
+
+//	public User createUser(int parseInt, String value, String value1, String value2, String value3, int parseInt1, int parseInt2, String value4, String value5, String value6, String value7, String value8, int parseInt3, int parseInt4, String value9) {
+//	 User u = new User(  value, value1, value2, value3, parseInt1, parseInt2, value4, value5, value6, value7, value8, parseInt3, parseInt4, value9);
+//		userDAOimpl.createUser(u);
+//		return u;
+//	}
 }

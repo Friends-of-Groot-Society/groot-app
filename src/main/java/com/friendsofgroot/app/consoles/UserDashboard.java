@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.service.CoinService;
- 
-import com.friendsofgroot.app.service.UserService;
+import com.friendsofgroot.app.service.CoinsServiceImpl;
+
+import com.friendsofgroot.app.service.UsersServiceImpl;
 import com.friendsofgroot.app.systemUser.UserProfile;
 
 import static com.friendsofgroot.app.util.constants.Cmds.*;
@@ -43,7 +43,9 @@ try(Scanner scan = new Scanner(System.in)) {
 		switch (val) {
 		case 1: {
 			try {
-				List<Coin> coinList = CoinService.getAllCoinsCust();
+				CoinsServiceImpl coinService = new CoinsServiceImpl();
+
+				List<Coin> coinList = coinService.getAllCoinsCust();
 				System.out.println(COINMARKET_TITLE);
 				System.out.println(coinList);
 				System.out.println("4: "+PRESS_DIGIT);
@@ -54,8 +56,9 @@ try(Scanner scan = new Scanner(System.in)) {
 			dashboardChoice(username);
 		}
 		case 2: {
+			CoinsServiceImpl coinService = new CoinsServiceImpl();
 			try {
-				List<Coin> coinList = CoinService.getAllCoinsCust();
+				List<Coin> coinList = coinService.getAllCoinsCust();
 				System.out.println(COINMARKET_TITLE);
 				System.out.println(coinList);
 				System.out.println("4: "+PRESS_DIGIT);
@@ -66,13 +69,15 @@ try(Scanner scan = new Scanner(System.in)) {
 			dashboardChoice(username);
 		}
 		case 3: {
+			CoinsServiceImpl coinService = new CoinsServiceImpl();
 			try {
-				List<Coin> coinList = CoinService.getAllCoinsCust();
+				List<Coin> coinList = coinService.getAllCoinsCust();
+				System.out.println(coinList);
 				scan.nextLine();
 				System.out.println("Which coin #?");
 				int id = scan.nextInt();
 				scan.nextLine();
-				Coin newest = CoinService.getCoin(id);
+				Coin newest = coinService.getCoin(id);
 				System.out.println(newest);
 				System.out.println("\n Coin #" + id + 
 										NICE + PRESS_DIGIT + FOUR);
@@ -82,15 +87,16 @@ try(Scanner scan = new Scanner(System.in)) {
 			dashboardChoice(username);
 		}
 		case 4: {
+			CoinsServiceImpl coinService = new CoinsServiceImpl();
 			try {
-				List<Coin> coinList = CoinService.getAllCoinsCust();
+				List<Coin> coinList = coinService.getAllCoinsCust();
 				System.out.println("e-Coins Lot:");
 				System.out.println(coinList);
 				System.out.println("\nOk, type in the Coin ID to begin.\n"
 						+ " ...change your mind? press 'no' (or any letter)");
 				val = scan.nextInt();
 
-				Coin newest = CoinService.getCoin(val);
+				Coin newest = coinService.getCoin(val);
 				System.out.println("Voila, coin id #" + val + "\n");
 				System.out.println(newest);
 				
@@ -128,8 +134,9 @@ try(Scanner scan = new Scanner(System.in)) {
 			dashboardChoice(username);
 		}
 		case 6: {
+			UsersServiceImpl usersService = new UsersServiceImpl();
 			try {
-				UserProfile.editProfile(UserService.getUser(username));
+				UserProfile.editProfile(usersService.getUser(username));
 
 			} catch (Exception e) {
 				dashboardChoice(username);

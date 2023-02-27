@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import com.friendsofgroot.app.consoles.MainDashboard;
-import com.friendsofgroot.app.logger.LogCustom;
+import com.friendsofgroot.app.util.logger.LogCustom;
 @ServletComponentScan("com.friendsofgroot.app")
 @EnableJpaRepositories("com.friendsofgroot.app.repositories")
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
@@ -25,7 +25,7 @@ import com.friendsofgroot.app.logger.LogCustom;
 public class CliApplication {
 
 
-	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, InterruptedException {
 		System.out.println("INSIDE ____________CliApplication.main()");
 		ApplicationContext ctx = SpringApplication.run(CliApplication.class, args);
 
@@ -35,12 +35,13 @@ public class CliApplication {
 		System.out.println("******* Bean Count *******");
 		System.out.println(ctx.getBeanDefinitionCount());
 		System.out.println("******* Class Loader *******");
-		System.out.println(ctx.getClassLoader());
+		System.out.println(ctx.getClassLoader().toString());
 		System.out.println("******* Environment *******");
-		System.out.println(ctx.getEnvironment());
+//		System.out.println(ctx.getEnvironment());
+		System.out.println("******* Application Name *******");
+		System.out.println(ctx.getApplicationName());
 
-
-		LogCustom.logger();
+		LogCustom.loggerInstance(new String[] { "CliApplication.main()" });
 
 
 		// USER MAIN

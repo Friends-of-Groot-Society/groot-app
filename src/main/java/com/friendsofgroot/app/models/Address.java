@@ -5,6 +5,8 @@ import lombok.*;
 import jakarta.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "address")
 public class Address {
@@ -35,7 +37,7 @@ public class Address {
     @Column(name="chain_id")
     private int chainId;
 
-    @OneToOne( fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToOne( fetch = FetchType.EAGER) //, cascade=CascadeType.ALL
     @JoinColumn(name ="nft_address")//,foreignKey = @ForeignKey(name = "nft_address_id"))
     private NftAddress nftAddress;
 }

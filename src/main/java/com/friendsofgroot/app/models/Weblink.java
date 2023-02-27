@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "weblinks")
 public class Weblink extends Bookmark implements Shareable {

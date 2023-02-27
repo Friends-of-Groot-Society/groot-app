@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.friendsofgroot.app.models.User;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -18,4 +19,5 @@ public interface UsersRepository extends JpaRepository<User, Integer> {
 
 
     User findByUserNameAndPassword(String username, String password);
+
 }

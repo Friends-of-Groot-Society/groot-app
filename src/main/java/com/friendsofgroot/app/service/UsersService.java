@@ -15,9 +15,7 @@ public interface UsersService {
 
 	public User updateUser(User change);
 
-
-	public List<String> getUsersWithCars();
-
+ 	public List<User> getUsersWithCoins();
 	public User getUserByPassword(String username, String password);
 	public boolean deleteUser(String username);
 

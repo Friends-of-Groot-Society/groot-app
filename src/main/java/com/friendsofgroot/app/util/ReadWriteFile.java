@@ -13,7 +13,7 @@ import static com.friendsofgroot.app.util.constants.Datum.FILE_IN_USERS;
 import static com.friendsofgroot.app.util.constants.Datum.FILE_OUT_USERS;
 import static com.friendsofgroot.app.util.constants.Datum.*;
 
-public class InputOutput {
+public class ReadWriteFile {
     //    each line data chunk
 
 
@@ -65,6 +65,42 @@ public class InputOutput {
         }
     }
 
+    public static void writeUsers(List<User> users) {
+        try {
+            Writer output = null;
+            File file = new File(FILE_OUT_USERS);
+            output = new BufferedWriter(new FileWriter(file));
+            for(int i = 0;i < users.size();i++) {
+                output.write(users.get(i).toString());
+                output.write("\n");
+            }
+            output.close();
+            System.out.println("File has been written");
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not create file");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("Could not create file");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    // Dynamically name webpage based on ID /// HARD-CODED LOCATION!
+    public static boolean writeWebpage(String webpage, long id) {
+        try(BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILE_OUT_WEBLINKS+String.valueOf(id)+".html"), "UTF-8"))) {
+            wr.write(webpage);
+            return true;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     // Most common way to read byte streams from a file
     public static void fileCopyWithBufferAndArray() {
         System.out.println("\nInside fileCopyWithBufferAndArray ...");
@@ -85,42 +121,6 @@ public class InputOutput {
         elapsedTime = System.nanoTime() - startTime;
         System.out.println("fileCopyWithBufferAndArray: " + (elapsedTime / 1000000.0) + " msec");
     }
-
-    public static void writeUsers(List<User> users) {
-        try {
-            Writer output = null;
-            File file = new File(FILE_OUT_USERS);
-            output = new BufferedWriter(new FileWriter(file));
-           for(int i = 0;i < users.size();i++) {
-               output.write(users.get(i).toString());
-               output.write("\n");
-           }
-            output.close();
-            System.out.println("File has been written");
-        } catch (FileNotFoundException e) {
-            System.out.println("Could not create file");
-        } catch (UnsupportedEncodingException e) {
-            System.out.println("Could not create file");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // Dynamically name webpage based on ID /// HARD-CODED LOCATION!
-    public static boolean writeWebpage(String webpage, long id) {
-        try(BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILE_OUT_WEBLINKS+String.valueOf(id)+".html"), "UTF-8"))) {
-            wr.write(webpage);
-            return true;
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public static void urlHeaders(String in_url ) {
         try {
             URL url= new URL(in_url);

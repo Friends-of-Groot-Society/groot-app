@@ -2,7 +2,7 @@ package com.friendsofgroot.app.models;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
@@ -30,9 +30,9 @@ public class User implements Serializable {
 
     @Column(name="firstname")
     private String firstName;
-    @Column(name="groups")
+    @Column(name="groups")    /// 0 = admin, 1 = user
     private int groups;
-    @Column(name="usertype")
+    @Column(name="usertype") /// 0 = admin, 1 = user
     private int userType;
     @Column(name="email", nullable = false )
     private String email;
@@ -56,7 +56,7 @@ public class User implements Serializable {
     private String id;
 
     // parent of many
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 
 //    @ManyToMany(fetch = FetchType.EAGER)

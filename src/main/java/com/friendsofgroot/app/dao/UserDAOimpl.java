@@ -6,13 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.*;
 import com.friendsofgroot.app.util.JDBCConnection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.friendsofgroot.app.dataLoader.TestDataStore;
+
 //import db.DB;
 
 
@@ -53,14 +54,14 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 
 	}
 
-	/// SQL ERROR HERE? 
+	/// SQL ERROR HERE?
 	@Override
 	public User getUserByPassword(String username, String password) {
 		try {
 			String sql = "SELECT users.username  FROM users WHERE users.username = ? AND users.password = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
-			ps.setString(2, password); 
+			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -162,7 +163,7 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 		String sql = "SELECT DISTINCT users.userid, users.username FROM users,electrolot WHERE users.username = electrolot.username";
 		List<String> usersWithCoins = new ArrayList<>();
 		try {
-			PreparedStatement ps = conn.prepareStatement(sql); 
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				usersWithCoins.add(rs.getString("username"));
@@ -275,26 +276,26 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 	@Override
 	public void saveUserCoinbuy(UserCoinbuy userCoinbuy) {
 
-		TestDataStore.add(userCoinbuy);
+		FileDataStore.add(userCoinbuy);
 	}
 
 	@Override
 	public  List<User> getLocalUsers() {
-		return TestDataStore.getUsers();
+		return FileDataStore.getUsers();
 	}
 
 
     public void createLocalGroups(Groups groups) {
-		TestDataStore.add(groups);
+		FileDataStore.add(groups);
     }
 
 
 	public void saveLocalUserCoinbuy(User user, Coin coin) {
-		TestDataStore.saveLocalUserCoinbuy(user, coin);
+		FileDataStore.saveLocalUserCoinbuy(user, coin);
 	}
 
 	public void saveLocalUserCoinbuy(UserCoinbuy userCoinbuy) {
-		TestDataStore.add(userCoinbuy);
+		FileDataStore.add(userCoinbuy);
 	}
 
 	public List<Coin> getLocalUserCoinbuysByUser(User user) {

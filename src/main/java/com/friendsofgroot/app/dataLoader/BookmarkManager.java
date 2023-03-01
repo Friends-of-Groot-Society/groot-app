@@ -6,7 +6,7 @@ import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.UserBookmark;
 import com.friendsofgroot.app.models.Weblink;
 import com.friendsofgroot.app.util.DownloadSequential;
-import com.friendsofgroot.app.util.InputOutput;
+import com.friendsofgroot.app.util.ReadWriteFile;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,9 +32,6 @@ public class BookmarkManager {
 	return weblink;
 	}
 
-	public List<List<Bookmark>> getBookmarksArray() {
-		return bookmarkDaoImpl.getBookmarksArray();
-	}
 
 	public List<Bookmark> getLocalUserBookmarksByUser(User user) {
 		return bookmarkDaoImpl.getLocalUserBookmarksByUser(user);
@@ -53,7 +50,7 @@ public class BookmarkManager {
 				if(!url.endsWith(".pdf")) {
 					String website = DownloadSequential.downloadFromUrl(((Weblink) bookmark).getUrl());
 					if(website != null) {
-						InputOutput.writeWebpage(website, bookmark.getId());
+						ReadWriteFile.writeWebpage(website, bookmark.getId());
 					}
 				}
 			} catch (IOException e) {

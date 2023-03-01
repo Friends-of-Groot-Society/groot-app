@@ -8,34 +8,34 @@ import org.junit.jupiter.api.Test;
 import com.friendsofgroot.app.systemAdmin.AdminLotState;
 
 //AdminLotState nov26 = new AdminLotState(date, carLotCount);
-//nov26.getCarCount(); 
+//nov26.getCoinCount(); 
 
 public class AdminLotStateTest {
 
-private AdminLotState nov28;
+private AdminLotState als;
 
 	@BeforeEach
-	public void setup()  { 
-    	nov28 = new AdminLotState("11/28", 10);  
+	public void setup()  {
+        als = new AdminLotState("11/28", 10);  
 	}
 
     @Test
-    public void getCarCount() { 
-		int carCount =  nov28.getCarCount(); 
-		System.out.println("nov 28 inventory ORIGINAL getCarCount: " + carCount);
+    public void getCoinCount() { 
+		int carCount =  als.getCoinCount(); 
+		System.out.println("nov 28 inventory ORIGINAL getCoinCount: " + carCount);
     }
     
     @Test
-    public void addCar() { 
-		int carCount =  nov28.addCar(2);  
-		System.out.println("nov 28 inventory addCar(2): " + carCount);
+    public void addCoin() { 
+		int carCount =  als.addCoin(2);  
+		System.out.println("nov 28 inventory addCoin(2): " + carCount);
 		
     }
 
     @Test
-    public void removeCar() { 
-		int carCount =  nov28.removeCar(3, true); // # if purchased
-		System.out.println("nov 28 inventory removeCar(3, true): " + carCount);
+    public void removeCoin() { 
+		int carCount =  als.removeCoin(3, true); // # if purchased
+		System.out.println("nov 28 inventory removeCoin(3, true): " + carCount);
     }
 
     @Test

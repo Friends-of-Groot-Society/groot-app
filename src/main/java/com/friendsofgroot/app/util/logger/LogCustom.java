@@ -1,19 +1,23 @@
-package com.friendsofgroot.app.logger;
+package com.friendsofgroot.app.util.logger;
 
 import com.friendsofgroot.app.util.constants.Cmds;
 
+import static java.lang.Thread.sleep;
+
 public class LogCustom {
 
-	public static void logger() {
-		System.out.println(Cmds.NOW_LOGGING);
-		logCheck();
+	public static void loggerInstance(String[] ...msg)   {
+		logErrorCheck();
+		loggerInfo();
 		CliLogger.getInstance().always();
+		System.out.println(Cmds.NOW_LOGGING+ msg[0]);
+		System.out.println(Cmds.LOGGING_AT+System.nanoTime());
 
 	}
-	public static void info() {
+	public static void loggerInfo() {
 		CliLogger.getInstance().atInfo();
 	}
-	public static void logCheck() {
+	public static void logErrorCheck() {
 		CliLogger.getInstance().info("Program Started");
 		 
 		try {

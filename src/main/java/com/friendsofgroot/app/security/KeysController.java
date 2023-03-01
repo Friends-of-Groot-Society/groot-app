@@ -1,19 +1,31 @@
-package com.friendsofgroot.app.controllers;
+package com.friendsofgroot.app.security;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static com.friendsofgroot.app.security.SpringSecurityConfiguration.getAuthenticatedUserName;
+
+
 @RestController 
 @CrossOrigin(origins="*")
 @RequestMapping("/login")
+@SessionAttributes("name")
 public class KeysController {
+	HashMap<String, String> map = new HashMap<>();
+
+	@GetMapping(value="/")
+	public ResponseEntity<String> userHome() {
+		String name = getAuthenticatedUserName();
+		map.put("name", name);
+		return new ResponseEntity<>("Auth Controller Complete: "+name, HttpStatus.OK);
+	}
+
 	@GetMapping("/getMoralisApi")
 	public Map<String, Set<String>> getMoralisApi() {
 		Map<String, Set<String>> info = new HashMap<>();

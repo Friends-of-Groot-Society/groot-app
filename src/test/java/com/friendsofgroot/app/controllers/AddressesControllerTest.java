@@ -1,20 +1,10 @@
 package com.friendsofgroot.app.controllers;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddressesControllerTest {
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void createAddress() {
@@ -26,7 +16,6 @@ class AddressesControllerTest {
 
     @Test
     void getAllAddresses() {
-
     }
 
     @Test
@@ -35,5 +24,13 @@ class AddressesControllerTest {
 
     @Test
     void deleteAddress() {
+    }
+
+    @Test
+    void createNft() {
+    }
+
+    @Test
+    void getAllNFTs() {
     }
 }

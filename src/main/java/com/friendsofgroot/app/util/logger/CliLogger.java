@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.logger;
+package com.friendsofgroot.app.util.logger;
 
 import java.io.Serializable;
 

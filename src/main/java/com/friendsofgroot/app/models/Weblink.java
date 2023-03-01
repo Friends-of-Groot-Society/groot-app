@@ -3,10 +3,12 @@ package com.friendsofgroot.app.models;
 import com.friendsofgroot.app.util.Shareable;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "weblinks")
 public class Weblink extends Bookmark implements Shareable {

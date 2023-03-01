@@ -1,63 +1,143 @@
 package com.friendsofgroot.app.service;
 
 
+import com.friendsofgroot.app.dto.CoinDto;
+import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.User;
+import com.friendsofgroot.app.mapper.CoinMapper;
 import com.friendsofgroot.app.repositories.CoinsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CoinsServiceImpl implements CoinsService {
 
-@Autowired
-private CoinsRepository coinsRepository;
+    @Autowired
+    private CoinsRepository coinsRepository;
+
+    @Autowired
+    private CoinMapper coinMapper;
+
+    /**
+     * @param c
+     * @return
+     */
+
     @Override
-    public Coin createCoin(Coin c) {
-         return  coinsRepository.save(c);
+    public CoinDto createCoin(CoinDto cd) {
+        Coin coin = coinMapper.toEntity(cd);
+        Coin newCoin = coinsRepository.save(coin);
+
+        CoinDto newCoinDto = coinMapper.toDto(newCoin);
+        return newCoinDto;
     }
     @Override
-    public Coin getCoin(int coinId) {
-    try {
-            return coinsRepository.findById(coinId).get();
-        } catch (Exception e) {
-            return null;
-        }
+    public CoinDto getCoin(int id) {
+        Coin coin = coinsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Integer.toString(id)));
+        return coinMapper.toDto(coin);
     }
-//    @Autowired
+    //    @Autowired
 //    public List<Coin> getAllCoinsIOwn(String username) {
 //        return null; //(List<Coin>)  coinsRepository.findByUsername(username);
 //    }
     @Override
-    public List<Coin> getAllCoins() {
-        return (List<Coin>) coinsRepository.findAll();
-    }
-    @Override
-    public List<Coin> getAllCoinsCust() {
-        return null; // (List<Coin>) coinsRepository.findAll();
-    }
-    @Override
-    public Coin updateCoin(Coin change) {
-         return   coinsRepository.save(change);
-    }
-    @Override
-    public boolean deleteCoin(int coinId) {
+    public List<CoinDto> getAllCoins() {
+        List<Coin> coins = coinsRepository.findAll();
+        List<CoinDto> content = coins.stream().map(coinMapper::toDto).collect(Collectors.toList());
 
+
+        return content;
+
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<CoinDto> getAllCoinsCust() {
+        List<Coin> coins = coinsRepository.findAll();
+        List<CoinDto> content = coins.stream().map(coinMapper::toDto).collect(Collectors.toList());
+
+
+        return content;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<Coin> getAllCoinsCustCLI() {
+        return coinsRepository.findAll();
+    }
+
+
+    @Override
+    public CoinDto updateCoin(CoinDto change) {
         try {
-            Coin c = coinsRepository.findById(coinId).get();
-            coinsRepository.delete(c);
+            Coin coinUpdate = coinMapper.toEntity(change);
 
-        } catch (IllegalArgumentException e) {
+            coinUpdate = coinsRepository.findById(change.getCoinId()).get();
+            coinUpdate.setCoinId(change.getCoinId()); // this is the only thing that should be changed);
+            coinUpdate.setCoinToken(change.getCoinToken());
+            coinUpdate.setCoinSymbol(change.getCoinSymbol());
+            coinUpdate.setPriceTotal(change.getPriceTotal());
+            coinUpdate.setPurchased(change.getPurchased());
+
+            Coin coinDone = coinsRepository.save(coinUpdate);
+
+            return coinMapper.toDto(coinDone);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+    }
+    @Override
+    public boolean deleteCoin(int id) {
+        try {
+            coinsRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        return true;
-    }
-    @Override
-    public void coinMarketViewAll() {
-        System.out.println(getAllCoinsCust());
     }
 
+    /**
+     *
+     */
+    @Override
+    public void coinMarketViewAll() {
+
+    }
+
+    /**
+     * @param username
+     * @return
+     */
+    @Override
+    public List<CoinDto> getAllCoinsIOwn(String username) {
+        return null;
+    }
+
+    /// CLI
+    public List<Coin> getAllCoinsCLI() {
+        return coinsRepository.findAll();
+    }
+
+    public void updateCoinCLI(Coin removeCoin) {
+        coinsRepository.save(removeCoin);
+    }
+
+    public Coin getCoinCLI(int val) {
+        return coinsRepository.findById(val).get();
+    }
+
+    public void createCoinCLI(Coin createdCoin) {
+        coinsRepository.save(createdCoin);
+    }
 }

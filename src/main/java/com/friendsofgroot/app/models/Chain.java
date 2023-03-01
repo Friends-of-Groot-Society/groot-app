@@ -2,7 +2,7 @@ package com.friendsofgroot.app.models;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 @Data
 @Entity
 @Table(name = "chain")

@@ -3,28 +3,28 @@ package com.friendsofgroot.app.systemAdmin;
 public class AdminLotState {
 
 	private String date; 
-	private int carLotCount;
+	private int coinMarketsCount;
 
-	public AdminLotState(String date, int carLotCount) {// , boolean ifPurchased, int carQuantity
+	public AdminLotState(String date, int coinMarketsCount) {// , boolean ifPurchased, int coinQuantity
 		this.setDate(date);
-		this.carLotCount = carLotCount; 
+		this.coinMarketsCount = coinMarketsCount; 
 	}
 
-	public int addCar(int carQuantity) { // String carMake, String carModel, double priceTotal
-		carLotCount += carQuantity;
-		return carLotCount;
+	public int addCoin(int coinQuantity) { // String coinMake, String coinModel, double priceTotal
+		coinMarketsCount += coinQuantity;
+		return coinMarketsCount;
 	}
 
 	// The purchased argument is true if admin is removing as a purchase
 	// It's false if admin is removing for no-sale or recall...
-	public int removeCar(int carQuantity, boolean ifPurchased) { // ,
-		carLotCount -= carQuantity;
-		return carLotCount;
+	public int removeCoin(int coinQuantity, boolean ifPurchased) { // ,
+		coinMarketsCount -= coinQuantity;
+		return coinMarketsCount;
 	}
 
-	public   int getCarCount() {
-		return carLotCount; 
-//		System.out.println(carLotCount);
+	public   int getCoinCount() {
+		return coinMarketsCount; 
+//		System.out.println(coinMarketsCount);
 	}
 
 	public String getDate() {

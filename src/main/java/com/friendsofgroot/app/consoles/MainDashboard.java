@@ -4,10 +4,12 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.*;
 
-import com.friendsofgroot.app.systemUser.UserLogin;
-import com.friendsofgroot.app.systemUser.UserRegister;
+import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
+import com.friendsofgroot.app.security.UserLogin;
+import com.friendsofgroot.app.security.UserRegister;
 
-import static com.friendsofgroot.app.cli.CliStaticLoader.*;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner.runDownloaderJob;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner.startBrowsingBuying;
 import static com.friendsofgroot.app.service.CoinService.coinMarketViewAll; // 3 DB
 import static com.friendsofgroot.app.consoles.GeoDashboard.mainNavigator; // 7 Local
 
@@ -65,7 +67,8 @@ public class MainDashboard {
                         }
                         case 4: {
                             System.out.println("\n Ok, Initiating Local Offline Data Loader....");
-                            cliStaticDataLoader();  // Local Offline Automated USER
+                            UserDetailsCommandLineRunner cliDataLoader = new UserDetailsCommandLineRunner();
+                            cliDataLoader.run();  // Local Offline Automated USER
                             break;
                         }
                         case 5: {

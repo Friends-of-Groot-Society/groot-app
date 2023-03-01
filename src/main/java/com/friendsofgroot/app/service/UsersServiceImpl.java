@@ -6,12 +6,14 @@ import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.repositories.UsersRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 
     @Autowired
     UsersRepository usersRepository;
+
     /**
      * @param user
      * @return
@@ -62,15 +64,7 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public User updateUser(User change) {
-       return usersRepository.save(change);
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public List<String> getUsersWithCars() {
-        return null;
+        return usersRepository.save(change);
     }
 
     /**
@@ -91,8 +85,8 @@ public class UsersServiceImpl implements UsersService {
     public boolean deleteUser(String email) {
 
         try {
-         User u = usersRepository.findByEmail(email).get();
-         usersRepository.delete(u);
+            User u = usersRepository.findByEmail(email).get();
+            usersRepository.delete(u);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return false;
@@ -114,5 +108,15 @@ public class UsersServiceImpl implements UsersService {
             return false;
         }
         return true;
+    }
+
+    public List<User> getUsersWithCoins() {
+        if (usersRepository.findAll().size() == 0) return null;
+        return usersRepository.findAll()
+                .stream()
+                .filter(u ->
+                        u.getAddresses().size() > 0 && u.getIsActive() != 0
+                )
+                .collect(Collectors.toList());
     }
 }

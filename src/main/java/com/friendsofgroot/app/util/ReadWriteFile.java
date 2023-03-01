@@ -1,11 +1,14 @@
 package com.friendsofgroot.app.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.models.User;
+import org.objectweb.asm.TypeReference;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +17,32 @@ import static com.friendsofgroot.app.util.constants.Datum.FILE_OUT_USERS;
 import static com.friendsofgroot.app.util.constants.Datum.*;
 
 public class ReadWriteFile {
-    //    each line data chunk
 
+
+    public static String readFromJson(String dataPath, String filename) {
+        List<User> uList = new ArrayList<>();
+        try {
+            File jsonFileDir = new File(dataPath);
+            if (jsonFileDir != null && jsonFileDir.exists() && jsonFileDir.isDirectory()) {
+                for (File file : jsonFileDir.listFiles()) {
+                    if (file.isFile() && file.getName().equals(filename)) {
+                            System.out.println("file found: "+file.getAbsolutePath()+ file);
+                        }
+                    }
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    uList =  objectMapper.readValue(new File(jsonFileDir+filename) , objectMapper.getTypeFactory().constructCollectionType(List.class, User.class));
+                    }  catch (IOException e) {
+                    e.printStackTrace();
+                    return uList.toString();
+                }
+                return null;
+            }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+    }
 
     public static String readFromFilename(List<String> data, String filename) throws FileNotFoundException, UnsupportedEncodingException {
         StringBuilder text = new StringBuilder();

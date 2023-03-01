@@ -1,23 +1,21 @@
-package com.friendsofgroot.app.systemUser;
+package com.friendsofgroot.app.security;
 
 
 import com.friendsofgroot.app.consoles.AdminDashboard;
-import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.consoles.MainDashboard;
 import com.friendsofgroot.app.consoles.UserDashboard;
-import com.friendsofgroot.app.service.UsersService;
-import com.friendsofgroot.app.service.UsersServiceImpl;
 
 import java.util.Scanner;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 
+
+import static com.friendsofgroot.app.security.SpringSecurityConfiguration.checkDbUsernameAndPassword;
+import static com.friendsofgroot.app.security.SpringSecurityConfiguration.hardCodedAdminNameAndPassword;
 import static com.friendsofgroot.app.util.Utilities._earlyQuit; //RETURNS TO MainConsole
 
 public class UserLogin {
 
-    public static final String ADMIN = "admin";
-    public static final String ADMIN_PASSWORD = "pass";
 
     public static void login() throws SQLException {
 
@@ -33,7 +31,6 @@ public class UserLogin {
 
             //  admin   hardcoded backdoor
             if (hardCodedAdminNameAndPassword(un, pw)) {
-//                User login = UserService.getUser(un);
                 AdminDashboard.adminConsole(); //
             }
 
@@ -71,30 +68,6 @@ public class UserLogin {
         }
     }
 
-    static boolean checkDbUsernameAndPassword(String un, String pw)  {
-        UsersServiceImpl usersService = new UsersServiceImpl();
-        User login = usersService.getUser(un); // returns null if not in DB
-//	    VALIDATION #2 - Check targeted DB User against logged-in Username & password
-        if (login != null && (un.contentEquals(
-                login.getUserName()) && pw.contentEquals(
-                login.getPassword()
-        ))) {
-            System.out.println(
-                    "...grreat, password checks out! *" + un + "* #1, now logging you into your Dashboard");
-            String name = (login.getFirstName() != null) ? login.getFirstName() : un;
-            return true;
-        }
-        return false;
-    }
 
-    static boolean hardCodedAdminNameAndPassword(String un, String pw) {
-        if (un.contentEquals(ADMIN) && pw.contentEquals(ADMIN_PASSWORD)) {
-            System.out.println("Welcome Internal Administrator, *" + un + "*\n  " +
-                    "  ... now preparing your Dashboard");
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 }

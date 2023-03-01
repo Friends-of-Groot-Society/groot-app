@@ -4,33 +4,29 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddressesControllerTest {
+class ChainsControllerTest {
 
     @Test
-    void createAddress() {
+    void createChain() {
     }
 
     @Test
-    void getAddress() {
+    void getAllChains() {
     }
 
     @Test
-    void getAllAddresses() {
+    void getChain() {
     }
 
     @Test
-    void updateAddress() {
+    void getChainByName() {
     }
 
     @Test
-    void deleteAddress() {
+    void updateChain() {
     }
 
     @Test
-    void createNft() {
-    }
-
-    @Test
-    void getAllNFTs() {
+    void deleteChain() {
     }
 }

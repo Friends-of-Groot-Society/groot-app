@@ -1,7 +1,9 @@
 package com.friendsofgroot.app.service;
 
 
+import com.friendsofgroot.app.dto.CoinDto;
 import com.friendsofgroot.app.models.Coin;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,20 +12,23 @@ import java.util.List;
 public interface CoinsService {
 
 
-    public Coin createCoin(Coin c);
+    public CoinDto createCoin(CoinDto c);
 
-    public Coin getCoin(int coinId);
+    public CoinDto getCoin(int coinId);
 
-//    public List<Coin> getAllCoinsIOwn(String username);
+    public List<CoinDto> getAllCoins();
 
-    public List<Coin> getAllCoins();
+    public List<CoinDto> getAllCoinsCust();
 
-    public List<Coin> getAllCoinsCust();
-
-    public Coin updateCoin(Coin change);
+    public CoinDto updateCoin(CoinDto change);
 
     public boolean deleteCoin(int id);
 
     public void coinMarketViewAll();
 
+    List<CoinDto> getAllCoinsIOwn(String username);
+
+    // CLI
+    public Coin getCoinCLI(int coinId);
+    public List<Coin> getAllCoinsCustCLI();
 }

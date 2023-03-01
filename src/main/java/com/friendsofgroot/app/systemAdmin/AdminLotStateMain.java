@@ -10,7 +10,7 @@ public class AdminLotStateMain {
 		   int carLotCount = 3;
 		   
 		   AdminLotState nov26 = new AdminLotState(date, carLotCount);
-		   nov26.getCarCount(); 
+		   nov26.getCoinCount();
 			
 	}
  

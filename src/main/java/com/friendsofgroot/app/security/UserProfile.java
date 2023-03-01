@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.systemUser;
+package com.friendsofgroot.app.security;
 
 import com.friendsofgroot.app.consoles.UserDashboard;
 import com.friendsofgroot.app.models.User;

@@ -94,7 +94,7 @@ public class AdminDashboard {
                                     if (decide.contentEquals("y")) {
                                         Coin createdCoin = new Coin(999, coinToken , coinSymbol, price, 0); //CoinId overwritten later
 
-                                        coinsService.createCoin(createdCoin);
+                                        coinsService.createCoinCLI(createdCoin);
                                         System.out.println(
                                                 "This " + createdCoin.getCoinToken() + " has been Successfully added!!\n");
                                         adminConsole();
@@ -118,7 +118,7 @@ public class AdminDashboard {
                         while (true) {
                             try {
                                 val = scan.nextInt();
-                                Coin uCoin = coinsService.getCoin(val);
+                                Coin uCoin = coinsService.getCoinCLI(val);
                                 scan.nextLine();
                                 System.out.println("1.) Remove coin #" + uCoin.getCoinId() + "? Type \"y\" or \"yes\"."
                                         + "\n\n2.)To permanently delete from records?\n" + "If so, type \"delete\" \n");
@@ -128,7 +128,7 @@ public class AdminDashboard {
                                     Coin removeCoin = new Coin(uCoin.getCoinId(), uCoin.getCoinToken(), uCoin.getCoinSymbol(),
                                             uCoin.getPriceTotal(), 2); // 2 = remove unpurchased
                                     try {
-                                        coinsService.updateCoin(removeCoin);
+                                        coinsService.updateCoinCLI(removeCoin);
                                         System.out.println(removeCoin.toString() + "\n" + " ...\n..#" + uCoin.getCoinId()
                                                 + " Successfully removed!!\n");
 
@@ -150,7 +150,7 @@ public class AdminDashboard {
                                 }
                             } catch (Exception e) {
                                 System.out.println("I could not find that coin ...\nTry again. Here's the current lot:");
-                                List<Coin> coinList = coinsService.getAllCoins();
+                                List<Coin> coinList = coinsService.getAllCoinsCLI();
                                 System.out.println(coinList);
                                 adminConsole();
                             }

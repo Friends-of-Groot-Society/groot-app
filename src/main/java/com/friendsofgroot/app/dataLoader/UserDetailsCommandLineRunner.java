@@ -21,10 +21,14 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
 public class UserDetailsCommandLineRunner implements CommandLineRunner {
+
+    private static final Logger log =
+            LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
     @Autowired
     private UsersRepository usersRepository;
     private List<User> users;
@@ -34,8 +38,6 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
     private List<Coin> coins;
     private static List<Coin> coinsStatic;
 
-    private static final Logger log =
-            LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
     @Autowired
     private WeblinksRepository weblinksRepository;
     @Autowired
@@ -49,6 +51,7 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws IOException {
+
         LogCustom.loggerInstance(new String[]{"UserDetailsCommandLineRunner.run()"});
 
         System.out.println(Datum.ANSI_CYAN + "1. ANSI_CYAN LOADING BOOKMARK DATA");
@@ -69,6 +72,12 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
         usersRepository.save(new User("admin", "password", "lastName", "firstName",
                 0, 0, "phone", "admin@gmail.com", "cusUrl", "photoPath", "userGroup", 1, 3, "0"));
 
+
+        Optional<User> userWithIdOne = usersRepository.findById(1);
+        log.info("User is retrieved : " + userWithIdOne);
+
+        List<User> users = usersRepository.findAll();
+        log.info("All Users : " + users);
 
         // WEBLINKS
         try {

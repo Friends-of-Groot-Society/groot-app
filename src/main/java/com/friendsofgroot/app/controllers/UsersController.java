@@ -15,6 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
 @RestController
+@SessionAttributes("name")
 //@Api(tags={"Users"})
 public class UsersController {
     @Autowired
@@ -29,6 +30,7 @@ public class UsersController {
                         userMapper.userDtoToUser(userDto)),
                  HttpStatus.CREATED);
     }
+
     @GetMapping(value="/users/{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
         return new ResponseEntity<>(

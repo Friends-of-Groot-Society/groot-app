@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.config;
+package com.friendsofgroot.app.util.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

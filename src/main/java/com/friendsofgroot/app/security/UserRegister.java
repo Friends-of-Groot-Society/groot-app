@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.systemUser;
+package com.friendsofgroot.app.security;
 
 import java.sql.SQLException;
 import java.util.Scanner;

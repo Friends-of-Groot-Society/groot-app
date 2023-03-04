@@ -10,7 +10,6 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.friendsofgroot.app.models.User;
@@ -20,38 +19,32 @@ import java.util.Arrays;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {      // *NOTE: change PK usernames before sending to DB
+public class UserServiceMockTest {      // *NOTE: change PK usernames before sending to DB
 
 //    @InjectMocks
 //	private UsersService userServiceTester;
     @Mock
-    private UsersServiceImpl usersServiceImpl = mock(UsersServiceImpl.class);
+    private UsersService userServiceMock;
+    // Impl usersServiceImpl = mock(UsersServiceImpl.class);
+    @InjectMocks
+    private UsersServiceImpl usersServiceImpl;
 
-//    @BeforeAll
-//    public final static void setup() {
-//
+    @BeforeAll
+    public final static void setup() {
 //        MockitoAnnotations.openMocks(UsersServiceImpl.class);
-//    }
-    //TODO mockito Service INJECTION
+    }
+//    TODO mockito Service INJECTION
     @Test
     public void add_new_user() {
-        User u = new User(
-                "user0", "passwordX",
-                "Smith", "Tom", 3, 1,
-                "user4@cryptomaven.xyz", "5055087707", "http://www.dailytech.net",
-                "photoPath",
-                "userGroup",
-                0,
-                1,
-                "id");
-        when(usersServiceImpl.createUser(u)).thenReturn(assertInstanceOf(User.class, u));
-        assertEquals(usersServiceImpl.createUser(u), u);
+        User u = new User( );
+        when(userServiceMock.createUser(u)).thenReturn(assertInstanceOf(User.class, u));
+        assertEquals(userServiceMock.createUser(u), u);
      }
 
     @Test
     public void get_users() {
 
-        when(usersServiceImpl.getUsers()).thenReturn(Arrays.asList(
+        when(userServiceMock.getUsers()).thenReturn(Arrays.asList(
                 new User(
                         "user1", "password1",
                         "Smith", "Tom", 3, 1,
@@ -70,7 +63,7 @@ public class UserServiceTest {      // *NOTE: change PK usernames before sending
                         0,
                         1,
                         "id")));
-        List<User> users = usersServiceImpl.getUsers();
+        List<User> users = userServiceMock.getUsers();
         assertEquals("user1", users.get(0).getUserName());
         assertEquals("password2", users.get(1).getPassword());
     }
@@ -86,7 +79,7 @@ public class UserServiceTest {      // *NOTE: change PK usernames before sending
                 0,
                 1,
                 "id");
-        when(usersServiceImpl.getUser("user1")).thenReturn(
+        when(userServiceMock.getUser("user1")).thenReturn(
                     new User(
                         "user1", "password1",
                         "Smith", "Tom", 3, 1,
@@ -96,7 +89,7 @@ public class UserServiceTest {      // *NOTE: change PK usernames before sending
                         0,
                         1,
                         "id"));
-        User user = usersServiceImpl.getUser("user1");
+        User user = userServiceMock.getUser("user1");
         assertEquals("user1", user.getUserName());
     }
 
@@ -106,21 +99,23 @@ public class UserServiceTest {      // *NOTE: change PK usernames before sending
 				0,
 				1,
 				"id");   // PASSES
-        when(usersServiceImpl.updateUser(uUpdated)).thenReturn(assertInstanceOf(User.class, uUpdated));
-        assertEquals(usersServiceImpl.updateUser(uUpdated), uUpdated);
+        when(userServiceMock.updateUser(uUpdated)).thenReturn(assertInstanceOf(User.class, uUpdated));
+        assertEquals(userServiceMock.updateUser(uUpdated), uUpdated);
     }
 
     @Test
     public void delete_user() {
-//		User u = new User("user4"+rand, "passwordX", "Smith", "Tom", 3, 1, "user4@cryptomaven.xyz",  "5055087707" ,"http://www.dailytech.net",
-//				"photoPath",
-//				"userGroup",
-//				0,
-//				1,
-//				"id");    // PASSES
-//		String x = u.getUserName()+rand;
-//		System.out.println("about to delete just  ..."+x);
-//		assertTrue(UserService.deleteUser(x));
+		User u = new User("user4", "passwordX", "Smith", "Tom", 3, 1, "user4@cryptomaven.xyz",  "5055087707" ,"http://www.dailytech.net",
+				"photoPath",
+				"userGroup",
+				0,
+				1,
+				"id");    // PASSES
+		String x = u.getEmail();
+		System.out.println("about to delete just  ..."+x);
+        when(userServiceMock.deleteUser(u)).thenReturn( assertInstanceOf(Boolean.class, true));
+
+        assertTrue(userServiceMock.deleteUser(u));
 //		System.out.println("deleteed just now ..."+ x);
     }
 

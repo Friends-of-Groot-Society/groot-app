@@ -7,7 +7,7 @@ import com.friendsofgroot.app.repositories.WeblinksRepository;
 import com.friendsofgroot.app.service.BookmarkServlet;
 import com.friendsofgroot.app.util.ReadWriteFile;
 import com.friendsofgroot.app.util.constants.Datum;
-import com.friendsofgroot.app.util.logger.LogCustom;
+import com.friendsofgroot.app.util.logger.CliLogger;
 import com.friendsofgroot.app.util.utilConcurrency.DownloadThreadTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +27,10 @@ import java.util.stream.Collectors;
 @Component
 public class UserDetailsCommandLineRunner implements CommandLineRunner {
 
+//    import org.slf4j.Logger;
     private static final Logger log =
             LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
+
     @Autowired
     private UsersRepository usersRepository;
     private List<User> users;
@@ -51,8 +53,7 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws IOException {
-
-        LogCustom.loggerInstance(new String[]{"UserDetailsCommandLineRunner.run()"});
+        CliLogger.getInstance().info("UserDetailsCommandLineRunner.run()");
 
         System.out.println(Datum.ANSI_CYAN + "1. ANSI_CYAN LOADING BOOKMARK DATA");
 //        FileDataStore.loadData();

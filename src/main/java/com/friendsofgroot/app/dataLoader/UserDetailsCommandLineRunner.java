@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @Component
 public class UserDetailsCommandLineRunner implements CommandLineRunner {
 
+//    import org.slf4j.Logger;
     private static final Logger log =
             LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
     @Autowired

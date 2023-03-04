@@ -4,7 +4,7 @@
         <Property name="basePath">src/main/resources</Property>
     </Properties>
     <Appenders>
-        <!-- File Appender -->
+<!--         File Appender -->
 <!--        <File name="FILE" fileName="${basePath}/Project0logfile.log" append="true">-->
 <!--            <PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n" />-->
 <!--        </File>-->
@@ -15,7 +15,7 @@
 
     </Appenders>
     <Loggers>
-        <Logger name="com.jcg" level="debug" />
+        <Logger name="com.friendsofgroot.app" level="debug" />
         <Root level="info">
             <AppenderRef ref="STDOUT" />
 <!--            <AppenderRef ref="FILE" />-->

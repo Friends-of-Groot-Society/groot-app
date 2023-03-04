@@ -2,6 +2,8 @@ package com.friendsofgroot.app;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import com.friendsofgroot.app.util.logger.LoggerImpl;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,7 +17,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import com.friendsofgroot.app.consoles.MainDashboard;
-import com.friendsofgroot.app.util.logger.LogCustom;
 @ServletComponentScan("com.friendsofgroot.app")
 @EnableJpaRepositories("com.friendsofgroot.app.repositories")
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
@@ -41,7 +42,7 @@ public class CliApplication {
 		System.out.println("******* Application Name *******");
 		System.out.println(ctx.getApplicationName());
 
-		LogCustom.loggerInstance(new String[] { "CliApplication.main()" });
+		LoggerImpl.loggerInstance(new String[] { "CliApplication.main()" });
 
 
 		// USER MAIN

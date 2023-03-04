@@ -2,7 +2,9 @@ package com.friendsofgroot.app.consoles;
 
 
 import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
-import com.friendsofgroot.app.util.logger.LogCustom;
+
+import com.friendsofgroot.app.util.ParseDynamicJson;
+import com.friendsofgroot.app.util.logger.LoggerImpl;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
@@ -13,16 +15,13 @@ import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
 
-    //    import org.slf4j.Logger;
-    private static final Logger log =
-            LoggerFactory.getLogger(Locations.class);
-
+    private  static Logger logger = LoggerFactory.getLogger(ParseDynamicJson.class);
     private static String L_DIR = "src/main/resources/locations/";
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 //    FileWriter locFile = new FileWriter(L_DIR+ "locations.txt")
     public static void mainLocationsTXT(String[] args) throws IOException {
-
-        LogCustom.loggerInstance(new String[]{"___________________mainLocationsTXT.run()"});
+        logger.info("___________________mainLocationsTXT()");
+        LoggerImpl.loggerInstance(new String[]{"___________________mainLocationsTXT.run()"});
         try(BufferedWriter locFile = new BufferedWriter(new FileWriter(L_DIR+ "locations_big_wr.txt"));
             BufferedWriter dirFile = new BufferedWriter(new FileWriter(L_DIR+ "directions_big_wr.txt"))) {
             for(Location location : locations.values()) {
@@ -34,8 +33,9 @@ public class Locations implements Map<Integer, Location> {
         }
     }
     public static void mainLocationsDAT(String[] args) throws IOException {
+        logger.info("___________________mainLocationsDAT()");
+        LoggerImpl.loggerInstance(new String[]{"___________________mainLocationsDAT()"});
 
-        LogCustom.loggerInstance(new String[]{"___________________mainLocationsDAT()"});
         try(DataOutputStream locFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "locations_big.dat")));
             DataOutputStream dirFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "directions_big.dat")))) {
             for(Location location : locations.values()) {
@@ -56,7 +56,8 @@ public class Locations implements Map<Integer, Location> {
     }
     public static void mainLocationsBIN(String[] args) throws IOException {
 
-        LogCustom.loggerInstance(new String[]{"__________________mainLocationsBIN()"});
+
+        LoggerImpl.loggerInstance(new String[] { "CliApplication.main()" });
         try(ObjectOutputStream locFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "locations_big.bin")));
             ObjectOutputStream dirFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "directions_big.bin")))) {
             for(Location location : locations.values()) {

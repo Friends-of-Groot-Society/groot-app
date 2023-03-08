@@ -36,12 +36,12 @@ public class Utilities {
         if (args.length < 1) return;
         if (args.length < 2) {
             if (args[0].matches("quit|exit|q")) {
-                MainDashboard.mainConsole();
+                MainDashboard.console();
             }
         } else {
             for (String s : args) {
                 if (s.matches("quit|exit|q")) {
-                    MainDashboard.mainConsole();
+                    MainDashboard.console();
                 }
             }
         }

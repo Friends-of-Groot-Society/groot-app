@@ -1,5 +1,8 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.exception.ResourceNotFoundException;
+import com.friendsofgroot.app.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.models.User;
@@ -14,13 +17,28 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     UsersRepository usersRepository;
 
+    @Autowired
+    private UserMapper userMapper;
+
+
     /**
      * @param user
      * @return
      */
     @Override
-    public User createUser(User user) {
-        return usersRepository.save(user);
+    public User createUserCLI(User user) {
+        User u = usersRepository.save(user);
+        return u;
+    }
+
+    /**
+     * @param user
+     * @return
+     */
+    @Override
+    public UserDto createUser(UserDto user) {
+        User u = usersRepository.save(userMapper.toEntity(user));
+        return userMapper.toDto(u);
     }
 
     /**
@@ -28,9 +46,10 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public User getUser(int id) {
+    public UserDto getUser(int id) {
         try {
-            return usersRepository.findById(id).get();
+            User u = usersRepository.findById(id).get();
+            return userMapper.toDto(u);
         } catch (Exception e) {
             return null;
         }
@@ -41,9 +60,10 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public User getUser(String email) {
+    public UserDto getUser(String email) {
         try {
-            return usersRepository.findByEmail(email).get();
+            User u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
+            return userMapper.toDto(u);
         } catch (Exception e) {
             return null;
         }
@@ -53,9 +73,11 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public List<User> getUsers() {
+    public List<UserDto> getUsers() {
+        List<User> users = usersRepository.findAll();
+        List<UserDto> userDtos = users.stream().map(userMapper::toDto).collect(Collectors.toList());
+        return userDtos;
 
-        return (List<User>) usersRepository.findAll();
     }
 
     /**
@@ -63,9 +85,22 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public User updateUser(User change) {
-        return usersRepository.save(change);
+    public UserDto updateUser(UserDto change) {
+        try {
+            User u = userMapper.toEntity(change);
+            u = usersRepository.findByEmail(change.getEmail()).get();
+            u.setFirstName(change.getFirstName());
+            u.setLastName(change.getLastName());
+            u.setEmail(change.getEmail());
+            u.setIsActive(change.getIsActive());
+            User uDone = usersRepository.save(u);
+            return userMapper.toDto(uDone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return change;
     }
+
 
     /**
      * @param username
@@ -73,7 +108,7 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public User getUserByPassword(String username, String password) {
+    public UserDto getUserByPassword(String username, String password) {
         return null;
     }
 
@@ -83,7 +118,6 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public boolean deleteUser(String email) {
-
         try {
             User u = usersRepository.findByEmail(email).get();
             usersRepository.delete(u);
@@ -99,10 +133,11 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public boolean deleteUser(User user) {
+    public boolean deleteUser(UserDto user) {
 
         try {
-            usersRepository.delete(user);
+            User u = usersRepository.findByEmail(user.getEmail()).get();
+            usersRepository.delete(u);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return false;
@@ -118,5 +153,16 @@ public class UsersServiceImpl implements UsersService {
                         u.getAddresses().size() > 0 && u.getIsActive() != 0
                 )
                 .collect(Collectors.toList());
+    }
+
+    public UserDto getUserByEmail(String email) {
+        User u;
+        try {
+
+            u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
+        } catch (Exception e) {
+            return null;
+        }
+        return userMapper.toDto(u);
     }
 }

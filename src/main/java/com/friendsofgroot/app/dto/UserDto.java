@@ -9,21 +9,34 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class UserDto  implements Serializable {
-
-    @Id
-    private int userId; // userId
-    private String userName;
-    private String lastName; // lastName
-    private String firstName; // firstName
-    private String photoPath;
-
-    private String userGroup; // usergroup
-
+    private static final long serialVersionUID = 1L;
+    private int userId;
+    private String username;
+    private String password;
+    private String lastName;
+    private String firstName;
+    private int groups;
+    private int userType;
     private String email;
+    private String phone;
+    private String cusUrl;
 
-    private String id; // id
+    private String photoPath;
+    private String userGroup;
+    private int isActive;
+    private int contactType;
+    private String id;
 
-    private List<Address> addresses ;
+    // parent of many
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses;
 
+
+    public UserDto(String user1, String password1, String smith, String tom, int i, int i1, String s, String s1, String s2, String photoPath, String userGroup, int i2, int i3, String id) {
+
+
+    }
 }

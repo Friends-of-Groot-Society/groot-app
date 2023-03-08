@@ -4,6 +4,7 @@ package com.friendsofgroot.app.security;
 import com.friendsofgroot.app.consoles.AdminDashboard;
 import com.friendsofgroot.app.consoles.MainDashboard;
 import com.friendsofgroot.app.consoles.UserDashboard;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import static com.friendsofgroot.app.security.SpringSecurityConfiguration.checkD
 import static com.friendsofgroot.app.security.SpringSecurityConfiguration.hardCodedAdminNameAndPassword;
 import static com.friendsofgroot.app.util.Utilities._earlyQuit; //RETURNS TO MainConsole
 
+@Component
 public class UserLogin {
 
 
@@ -31,7 +33,7 @@ public class UserLogin {
 
             //  admin   hardcoded backdoor
             if (hardCodedAdminNameAndPassword(un, pw)) {
-                AdminDashboard.adminConsole(); //
+                AdminDashboard.console(); //
             }
 
             // VALIDATION #1 - LOOK UP AND GET Targeted DB USER
@@ -43,7 +45,7 @@ public class UserLogin {
                     login(); // login input clears for next attempt
                 } catch (InputMismatchException e) {
                     e.getMessage();
-                    MainDashboard.mainConsole();
+                    MainDashboard.console();
                 }
             }
             scanner.close();
@@ -54,17 +56,17 @@ public class UserLogin {
         }
     }
 
-    static void decideDashboard(String resp, String userName) {
+    static void decideDashboard(String resp, String username) {
 		if (resp.matches("y|yes|true")) {
             try {
-                System.out.println("...sounds good, *" + userName + "*, now logging you into your Dashboard");
-                UserDashboard.dashboardChoice(userName);
+                System.out.println("...sounds good, *" + username + "*, now logging you into your Dashboard");
+                UserDashboard.console(username);
             } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
-                MainDashboard.mainConsole();
+                MainDashboard.console();
             }
         } else {
-            MainDashboard.mainConsole();
+            MainDashboard.console();
         }
     }
 

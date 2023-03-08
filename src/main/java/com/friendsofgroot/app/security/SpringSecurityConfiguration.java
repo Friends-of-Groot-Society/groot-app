@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.security;
 
 import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
+import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,8 @@ public class SpringSecurityConfiguration {
 
     private static final Logger log =
             LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
-// DISABLE WHEN CONNECTED TO LDAP or DB
+
+    // DISABLE WHEN CONNECTED TO LDAP or DB
     @Bean
     InMemoryUserDetailsManager createUserDetailsManager() {
         log.info("createUserDetailsManager");
@@ -94,43 +96,52 @@ public class SpringSecurityConfiguration {
     static final String ADMIN = "admin";
     static final String ADMIN_PASSWORD = "pass";
 
-    static String getAuthenticatedUserName() {
-        log.info("getAuthenticatedUserName");
+    static String getAuthenticatedUsername() {
+        System.out.println("getAuthenticatedUsername");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = null;
-        currentUserName = authentication.getName();
+        String currentUsername = null;
+        currentUsername = authentication.getName();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            currentUserName = "SETUP FOR: *" + currentUserName + "* now complete.\n  " +
+            currentUsername = "SETUP FOR: *" + currentUsername + "* now complete.\n  " +
                     "  ... now preparing your Dashboard";
-            return currentUserName ;
+            return currentUsername;
         }
-        currentUserName = "SETUP FOR AnonymousAuthenticationToken:" + currentUserName + "* now complete.\n  " +
+        currentUsername = "SETUP FOR AnonymousAuthenticationToken:" + currentUsername + "* now complete.\n  " +
                 "  ... now preparing your Dashboard";
-        return currentUserName;
+        return currentUsername;
     }
 
     static boolean checkDbUsernameAndPassword(String un, String pw) {
-        log.info("checkDbUsernameAndPassword");
 
         UsersServiceImpl usersService = new UsersServiceImpl();
-        com.friendsofgroot.app.models.User login = usersService.getUser(un); // returns null if not in DB
-//	    VALIDATION #2 - Check targeted DB User against logged-in Username & password
+        System.out.println("checkDbUsernameAndPassword"+usersService.getUsers());
+       // returns null if not in DB params: EMAIL
+        UserDto login = new UserDto();
+        try {
+              login = usersService.getUserByEmail(un);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      //	    VALIDATION #2 - Check targeted DB User against logged-in Username & password
         if (login != null && (un.contentEquals(
-                login.getUserName()) && pw.contentEquals(
-                login.getPassword()
-        ))) {
-            ;
+                login.getEmail())
+                && pw.contentEquals(  login.getPassword()  )
+        )) {
             System.out.println(
                     "...grreat, password checks out! *" + un + "* #1, now logging you into your Dashboard");
             String name = (login.getFirstName() != null) ? login.getFirstName() : un;
+            System.out.println("Welcome, *" + name + "*\n  " +
+                    "  ... now preparing your Dashboard");
             return true;
+        } else {
+            System.out.println("...sorry, password does not match our records for *" + un + "* #1");
         }
         return false;
     }
 
     static boolean hardCodedAdminNameAndPassword(String un, String pw) {
-        log.info("hardCodedAdminNameAndPassword");
+        log.info("hardCodedAdminNameAndPassword"+" un: "+un+" pw: "+pw+" ADMIN: "+ADMIN+" ADMIN_PASSWORD: "+ADMIN_PASSWORD);
 
         if (un.contentEquals(ADMIN) && pw.contentEquals(ADMIN_PASSWORD)) {
             System.out.println("Welcome Internal Administrator, *" + un + "*\n  " +

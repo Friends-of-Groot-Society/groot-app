@@ -1,48 +1,22 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dao.NftDAO;
-import com.friendsofgroot.app.dao.NftDAOimpl;
+import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.models.Nft;
 
 import java.util.List;
 
-public class NftService {
+public interface NftService {
+    boolean createNft(NftDto c);
 
-	public static NftDAO nftdao = new NftDAOimpl();
- 
-//	 * This method is now a static version of the getNft() method. To get a nft by
-//	 * its ID, call: NftService.getNft(id);
-	 
-	public static boolean createNft(Nft c) {
-		return nftdao.createNft(c);
-	}
+    NftDto getNft(int id) ;
 
-	public static Nft getNft(int id) {
-		return nftdao.getNft(id);
-	};
+    List<NftDto> getAllNftsIOwn(String username);
 
-	public static List<Nft> getAllNftsIOwn(String username) {
-		return nftdao.getAllNftsIOwn(username);
-	};
+    List<NftDto> getAllNfts();
 
-	public static List<Nft> getAllNfts() {
-		return nftdao.getAllNfts();
-	};
+    boolean updateNft(NftDto change);
 
-	public static List<Nft> getAllNftsCust() {
-		return nftdao.getAllNftsCust();
-	};
+    boolean deleteNft(int id) ;
 
-	public static boolean updateNft(Nft change) {
-		return nftdao.updateNft(change);
-	}
-
-	public static boolean deleteNft(int id) {
-		return nftdao.deleteNft(id);
-	}
-
-	public static void nftlotViewAll() {
-		System.out.println(getAllNftsCust());
-	};
-
+    void nftlotViewAll();
 }

@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.friendsofgroot.app.security.SpringSecurityConfiguration.getAuthenticatedUserName;
+import static com.friendsofgroot.app.security.SpringSecurityConfiguration.getAuthenticatedUsername;
 
 
 @RestController 
@@ -21,7 +21,7 @@ public class KeysController {
 
 	@GetMapping(value="/")
 	public ResponseEntity<String> userHome() {
-		String name = getAuthenticatedUserName();
+		String name = getAuthenticatedUsername();
 		map.put("name", name);
 		return new ResponseEntity<>("Auth Controller Complete: "+name, HttpStatus.OK);
 	}

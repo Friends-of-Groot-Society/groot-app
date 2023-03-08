@@ -62,7 +62,7 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
         usersStatic = FileDataStore.loadUsers();
         users = usersStatic;
         users.stream().map(user -> {
-            user.setUserName(user.getEmail());
+            user.setUsername(user.getEmail());
             user.setAddresses(new ArrayList<>(List.of(new Address ( 0, "description", "owner", "address", "chain", "iconUrl", "blockExplorerUrl", new User(),1, new NftAddress() ))));
             return user;
         });

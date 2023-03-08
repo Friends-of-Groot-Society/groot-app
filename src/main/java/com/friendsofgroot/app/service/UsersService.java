@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.models.User;
 
 import java.util.List;
@@ -7,17 +8,19 @@ import java.util.List;
 
 public interface UsersService {
 
-	public User createUser(User user);
+	public UserDto createUser(UserDto user);
 
-	public User getUser(int id);
-	public User getUser(String username );
-	public List<User> getUsers();
+	User createUserCLI(User user);
 
-	public User updateUser(User change);
+	public UserDto getUser(int id);
+	public UserDto getUser(String username );
+	public List<UserDto> getUsers();
+
+	public UserDto updateUser(UserDto change);
 
  	public List<User> getUsersWithCoins();
-	public User getUserByPassword(String username, String password);
+	public UserDto getUserByPassword(String username, String password);
 	public boolean deleteUser(String username);
 
-	boolean deleteUser(User user);
+	boolean deleteUser(UserDto user);
 }

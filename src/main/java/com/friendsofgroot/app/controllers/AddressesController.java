@@ -45,15 +45,4 @@ public class AddressesController {
         return new ResponseEntity<>(addressesService.deleteAddress(addressId), HttpStatus.OK);
     }
 
-    /////////
-
-    @RequestMapping(value = "/nfts", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<NftDto> createNft(@RequestBody NftDto n) {
-
-        return new ResponseEntity<>(addressesService.createNft(n), HttpStatus.CREATED);
-    }
-    @GetMapping(value = "/nfts")
-    public ResponseEntity<List<NftDto>> getAllNFTs() {
-        return new ResponseEntity<>(addressesService.getAllNFTs(), HttpStatus.OK);
-    }
 }

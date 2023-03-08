@@ -28,7 +28,7 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 		String sql = "CALL add_new_users(?,?,?, ?,?,?, ?,?,?, ?,?,?, ?,?)";
 		try {
 			CallableStatement cs = conn.prepareCall(sql);
-			cs.setString(1, u.getUserName());
+			cs.setString(1, u.getUsername());
 			cs.setString(2, u.getPassword());
 			cs.setString(3, u.getLastName());
 			cs.setString(4, u.getFirstName());
@@ -232,7 +232,7 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 			cs.setString(11, Integer.toString(change.getIsActive()));
 			cs.setString(12, Integer.toString(change.getContactType()));
 			cs.setString(13, change.getId());
-			cs.setString(14, change.getUserName());
+			cs.setString(14, change.getUsername());
 //			ps.executeQuery();
 			cs.execute();
 

@@ -6,43 +6,82 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.friendsofgroot.app.commands.IMaPL;
+import com.friendsofgroot.app.commands.MaPL;
+import com.friendsofgroot.app.commands.MaPLInvoker;
+import com.friendsofgroot.app.commands.MaPLwriter;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import com.friendsofgroot.app.util.constants.Cmds;
-import com.friendsofgroot.app.commands.MaPLInvoker;
 import com.friendsofgroot.app.models.Coin;
 
 import com.friendsofgroot.app.service.CoinsServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
-public class AdminDashboard {
 
-    CoinsServiceImpl coinsService = new CoinsServiceImpl();
+@Component
+public class AdminDashboard implements IMaPL {
+
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;
 
+
+    @Override
+    public void openMaPLControl() throws SQLException {
+        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
+        MaPLInvoker mc = new MaPLInvoker();
+        mc.getMapleState();
+
+        sessionMaPL(mc);
+    }
+
+    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
+        // LOAD UP THE COMMANDS FROM THE DB ADMIN TABLE
+        System.out.println(mapleInvokerSession.getMaplCommands());
+        while (true) {
+            try (Scanner scan = new Scanner(System.in)) {
+                System.out.println("______________Session MaPL: AdminDashboard______________");
+                System.out.println("What next? - enter number; 0 to quit()");
+                int nextCommand = scan.nextInt();
+                if (nextCommand == 0)
+                    console();
+
+                mapleInvokerSession.execute(nextCommand);
+                System.out.println("Invoked command executed.\n");
+                sessionMaPL(mapleInvokerSession);
+            }
+        }
+    }
+
+    private static void frontConsoleMenu() {
+        System.out.println("*--------- -------*\n" +
+                "Welcome to your Admin dashboard\n " + " ... What's Next? \n"
+                + Cmds.ONE + "View Financials and Payments\n"
+                + Cmds.TWO + "View Coin Lot\n"
+                + Cmds.THREE + "Add Coin\n"
+                + Cmds.FOUR + "Remove Unpurchased Coin\n"
+                + Cmds.FIVE + "View and/or Accept Offers\n"
+                + Cmds.SIX + "get Users With Coins\n"
+                + OPTION_COUNT_MAX + ".) open MaPL Control(); \n"
+                + Cmds.ZERO + "Logout");
+    }
+
     // RECURSIVE LOOP, breaks out at option 0
-    public static void adminConsole() throws SQLException {
-        System.out.println(
-                "*---------------------------------*\n" +
-                        "Welcome to your Admin dashboard\n " + " ... What's Next? \n"
-                        + Cmds.ONE + "View Financials and Payments\n"
-                        + Cmds.TWO + "View Coin Lot\n"
-                        + Cmds.THREE+"Add Coin\n"
-                        + Cmds.FOUR +"Remove Unpurchased Coin\n"
-                        + Cmds.FIVE + "View and/or Accept Offers\n"
-                        + Cmds.SIX + "get Users With Coins\n"
-                        + OPTION_COUNT_MAX + ".) open MaPL Control(); \n"
-                        + Cmds.ZERO + "Logout");
+    public static void console() throws SQLException {
+
+        frontConsoleMenu();
         try (Scanner scan = new Scanner(System.in)) {
             int val = scan.nextInt();
             if (val < MIN_OPTIONS && val > OPTION_COUNT_MAX) {
                 System.out.println("Please enter digits " + MIN_OPTIONS + "-" + OPTION_COUNT_MAX);
-                adminConsole();
+                console();
             } else {
                 switch (val) {
                     case 0: {
                         System.out.println("At your service, back to MainDashboard ...\n");
-                        MainDashboard.mainConsole();
+                        MainDashboard.console();
                         break;
                     }
                     case 1: {
@@ -51,7 +90,7 @@ public class AdminDashboard {
                         System.out.println("Entering Financials View...");
                         System.out.println(coinsService.getAllCoins());
                         System.out.println(Cmds.ADMIN_PERKS);
-                        adminConsole();
+                        console();
                         break;
                     }
                     case 2: {
@@ -60,7 +99,7 @@ public class AdminDashboard {
                         System.out.println("Entering CoinLot View...");
                         System.out.println(coinsService.getAllCoins());
                         System.out.println(Cmds.ADMIN_PERKS);
-                        adminConsole();
+                        console();
                         break;
                     }
                     case 3: {
@@ -92,20 +131,20 @@ public class AdminDashboard {
                                 while (true) {
                                     String decide = scan.next();
                                     if (decide.contentEquals("y")) {
-                                        Coin createdCoin = new Coin(999, coinToken , coinSymbol, price, 0); //CoinId overwritten later
+                                        Coin createdCoin = new Coin(999, coinToken, coinSymbol, price, 0); //CoinId overwritten later
 
                                         coinsService.createCoinCLI(createdCoin);
                                         System.out.println(
                                                 "This " + createdCoin.getCoinToken() + " has been Successfully added!!\n");
-                                        adminConsole();
+                                        console();
                                     } else {
-                                        adminConsole();
+                                        console();
                                     }
                                 }
                             } catch (Exception e) {
                                 System.out.println(Cmds.OOPS_TRY_AGAIN);
                             }
-                            adminConsole();
+                            console();
                         }
                     }
                     case 4: {
@@ -146,32 +185,36 @@ public class AdminDashboard {
                                     }
                                 } else {
                                     System.out.println("Not implemented, returning to dashboard");
-                                    adminConsole();
+                                    console();
                                 }
                             } catch (Exception e) {
                                 System.out.println("I could not find that coin ...\nTry again. Here's the current lot:");
                                 List<Coin> coinList = coinsService.getAllCoinsCLI();
                                 System.out.println(coinList);
-                                adminConsole();
+                                console();
                             }
-                            adminConsole();
+                            console();
                         }
                     }
                     case 5: {
                         System.out.println("OfferService.getAllOffers()");
-                        adminConsole();
+                        console();
                         break;
                     }
                     case 6: {
                         UsersServiceImpl u = new UsersServiceImpl();
 
                         System.out.println(u.getUsersWithCoins());
-                        adminConsole();
+                        console();
                         break;
                     }
                     case OPTION_COUNT_MAX: {
-                        openMaPLControl();
-                        adminConsole();
+                        System.out.println("Opening MaPLControl...");
+                        MaPLInvoker newMaPLInvokerl = new MaPLInvoker(); // create new MaPLInvoker
+
+                        NavigateRunner open = new NavigateRunner( ); // open MaPLControl
+                        open.runNavigate(newMaPLInvokerl);
+                        console();
                         break;
                     }
                 } // end switch
@@ -179,31 +222,134 @@ public class AdminDashboard {
         } catch (InputMismatchException e) {
             // go round again. Read past the end of line in the input first
             System.out.println("Please enter digits 0 to 5");
-            adminConsole();
+            console();
         }
     }
 
-    private static void openMaPLControl() throws SQLException {
-        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
-        MaPLInvoker mc = new MaPLInvoker();
-        mc.getMapleState();
-
-        sessionMaPL(mc);
-    }
-    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
-        System.out.println(mapleInvokerSession.getMaplCommands());
-        while(true) {
-            try(Scanner scan = new Scanner(System.in)) {
-                System.out.println("What next? - enter number; 0 to quit()");
-                int nextCommand = scan.nextInt();
-                if (nextCommand==0)
-                    adminConsole();
-
-                mapleInvokerSession.execute(nextCommand);
-                System.out.println("Invoked command executed.\n");
-                sessionMaPL(mapleInvokerSession);
-            }
-        }
+    /**
+     * @return
+     */
+    @Override
+    public String[] getCmds() {
+        return new String[0];
     }
 
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPL cmd) {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void getMapleState() {
+
+    }
+
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(String cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdId
+     */
+    @Override
+    public void execute(int cmdId) {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void execute() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void up() {
+        System.out.println("jump");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void down() {
+        System.out.println("go into a hole");
+    }
+
+
+    /**
+     *
+     */
+    @Override
+    public void left() {
+        System.out.println("stop");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void right() {
+
+        System.out.println("go faster");
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void up(Object o) {
+
+        System.out.println("go faster" + o.toString());
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void down(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void left(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void right(Object o) {
+
+    }
 }

@@ -11,6 +11,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MaPLInvoker implements IMaPL {
+    public MaPLInvoker() {
+        System.out.println("MaPLInvoker.getMapleState() = "  );
+
+    };
     private String suggestRegEx = "HOW |MAY |CAN |SHALL |I |AM |YOU |YOUR |MY |WANT |ABOUT |READY|'s|[!?.,:]+|SO ";
     private static  int duplicate = 0;
     MaPL mw = new MaPLwriter();
@@ -82,8 +86,6 @@ public class MaPLInvoker implements IMaPL {
     }
 
     @Override
-
-
     public void getMapleState() {
         /// #0  Load STARTUP_TEXT.txt User State, Oracle JDBC Driver
             System.out.println(Utilities.startupTime());
@@ -136,7 +138,7 @@ public class MaPLInvoker implements IMaPL {
      */
     @Override
     public void register(String cmdName, MaPLwriter cmd) {
-
+    maplCommands.put(Integer.valueOf(cmdName), cmd);
     }
 
     /**
@@ -191,6 +193,70 @@ public class MaPLInvoker implements IMaPL {
     public void execute() {
         System.out.println("... MaPLInvoker execute()");
     }
+
+    /**
+     *
+     */
+    @Override
+    public void up() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void down() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void left() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void right() {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void up(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void down(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void left(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void right(Object o) {
+
+    }
     //    private Map<String, Map<Integer,MaPL>> commandsMapping = new HashMap<>();
 //    public Map<String, Map<Integer, MaPL>> getCommandsMapping() {
 //        return commandsMapping;
@@ -202,4 +268,8 @@ public class MaPLInvoker implements IMaPL {
     public String[] getCmds() {
         return new String[0];
     }
+
+
+//    public void setCommand(MaPLControl maPLControl) {
+//    }
 }

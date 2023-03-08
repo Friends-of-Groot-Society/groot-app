@@ -7,7 +7,6 @@ import com.friendsofgroot.app.models.Coin;
 import com.friendsofgroot.app.mapper.CoinMapper;
 import com.friendsofgroot.app.repositories.CoinsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,7 +70,10 @@ public class CoinsServiceImpl implements CoinsService {
      */
     @Override
     public List<Coin> getAllCoinsCustCLI() {
-        return coinsRepository.findAll();
+
+        List<Coin> coins = coinsRepository.findAll();
+        List<CoinDto> content = coins.stream().map(coinMapper::toDto).collect(Collectors.toList());
+        return coins;
     }
 
 

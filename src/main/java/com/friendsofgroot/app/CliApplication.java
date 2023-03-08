@@ -46,7 +46,7 @@ public class CliApplication {
 
 
 		// USER MAIN
-		MainDashboard.mainConsole(args);
+		MainDashboard.console(args);
 	}
 
 

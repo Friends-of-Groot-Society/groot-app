@@ -3,6 +3,7 @@ package com.friendsofgroot.app.security;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersServiceImpl;
@@ -38,9 +39,9 @@ public class UserRegister {
 //				0,
 //				1,
 //				"id" );
-		User newUser =  new User();
+		UserDto newUser =  new UserDto();
 		newUser.setUserId((int) Math.round(Math.random()*100));
-		newUser.setUserName(un);
+		newUser.setUsername(un);
 		newUser.setPassword(pw);
 		newUser.setLastName(ln);
 		newUser.setFirstName(fn);
@@ -71,7 +72,7 @@ public class UserRegister {
 	User registerThis(String un, String pw, String ln, String fn) {
 		User newUser =  new User();
 		newUser.setUserId((int) Math.round(Math.random()*100));
-		newUser.setUserName(un);
+		newUser.setUsername(un);
 		newUser.setPassword(pw);
 		newUser.setLastName(ln);
 		newUser.setFirstName(fn);

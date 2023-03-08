@@ -24,41 +24,36 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         return new ResponseEntity<>(
-                usersService.createUser(
-                        userMapper.userDtoToUser(userDto)),
+                usersService.createUser( userDto) ,
                  HttpStatus.CREATED);
     }
 
     @GetMapping(value="/users/{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
         return new ResponseEntity<>(
-                userMapper.userToUserDto(
-                        usersService.getUser(userId)),
+                        usersService.getUser(userId),
                 HttpStatus.OK);
     }
     @GetMapping(value="/users/email/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         return new ResponseEntity<>(
-                userMapper.userToUserDto(
-                        usersService.getUser(email)),
+                        usersService.getUser(email),
                 HttpStatus.OK);
     }
 
     @GetMapping("/users")
     public ResponseEntity<List<UserDto>> getUsers() {
         return new ResponseEntity<>(
-                userMapper.usersToUserDtos(
-                        usersService.getUsers()),
+                        usersService.getUsers(),
                 HttpStatus.OK);
     }
 
     @PutMapping(value="/users", consumes="application/json")  // userId in body
-    public ResponseEntity<User> updateUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
         return new ResponseEntity<>(
-                usersService.createUser(
-                        userMapper.userDtoToUser(userDto)),
+                usersService.createUser(userDto),
                 HttpStatus.CREATED);
     }
 

@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.controllers;
+package com.friendsofgroot.app.controllerTests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

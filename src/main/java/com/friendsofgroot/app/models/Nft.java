@@ -25,5 +25,4 @@ public class Nft {
 	int nft_address_id;
 
 
-
 }

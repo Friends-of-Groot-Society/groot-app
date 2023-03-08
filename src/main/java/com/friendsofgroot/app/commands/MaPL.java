@@ -75,6 +75,70 @@ public   class MaPL implements IMaPL {
         System.out.println("... MaPL execute()");
     }
 
+    /**
+     *
+     */
+    @Override
+    public void up() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void down() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void left() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void right() {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void up(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void down(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void left(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void right(Object o) {
+
+    }
+
     public void getMapleState() {
     }
 

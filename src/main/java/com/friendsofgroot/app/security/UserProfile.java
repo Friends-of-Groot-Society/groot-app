@@ -1,8 +1,12 @@
 package com.friendsofgroot.app.security;
 
 import com.friendsofgroot.app.consoles.UserDashboard;
+import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.models.User;
+import com.friendsofgroot.app.repositories.UsersRepository;
 import com.friendsofgroot.app.service.UsersServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
 
@@ -11,7 +15,14 @@ import static com.friendsofgroot.app.util.Utilities._earlyQuit; // RETURNS TO Ma
 
 public class UserProfile {
 
-    public static void editProfile(User user) {
+    @Autowired
+    UsersRepository usersRepository;
+
+    @Autowired
+    private UserMapper userMapper;
+
+
+    public static void editProfile(UserDto user) {
         System.out.println("editProfile "  + user);
         String pw = user.getPassword() != null ? user.getPassword() : "";
         String fn = user.getFirstName() != null ? user.getFirstName() : "";
@@ -29,7 +40,7 @@ public class UserProfile {
         System.out.println(user+ pw+ ln+fn+  groups+userType+  phone+email+ cusurl+ photoPath+ userGroup+ isActive+contactType+  id);
         editLoop(user, pw, ln,fn,  groups, userType,  phone,email, cusurl, photoPath, userGroup, isActive,contactType,  id);
     }
-     static void editLoop(User user, String pw, String ln,String fn, int groups, int userType,  String phone,String email,  String cusurl, String photoPath,
+     static void editLoop(UserDto user, String pw, String ln,String fn, int groups, int userType,  String phone,String email,  String cusurl, String photoPath,
                           String userGroup,
                           int isActive,
                           int contactType, // ContactType contactType
@@ -126,7 +137,7 @@ public class UserProfile {
                 System.out.println("saveProfile"+  user+ pw+ ln+fn+  groups+userType+  phone+email+ cusurl+ photoPath+ userGroup+ isActive+contactType+  id);
                 saveProfile(user, pw,  ln, fn, groups, userType, phone,  email, cusurl, photoPath, userGroup,isActive,contactType, id);
 
-                UserDashboard.dashboardChoice(user.getUserName());
+                UserDashboard.console(user.getUsername());
                 break;
         }
         editLoop(user, pw, ln, fn,  groups, userType,  phone,email, cusurl, photoPath, userGroup, isActive,contactType,  id);
@@ -135,12 +146,12 @@ public class UserProfile {
         System.out.println(" Continue to dashboard?  'yes'/'no':");
 
         String response = scan.next();
-        UserLogin.decideDashboard(response, user.getUserName());
+        UserLogin.decideDashboard(response, user.getUsername());
         scan.close();
 
     }
 
-     static void saveProfile(User user, String pw,  String ln, String fn, int groups, int userType, String phone, String email,String cusurl, String photoPath,
+     static void saveProfile(UserDto user, String pw,  String ln, String fn, int groups, int userType, String phone, String email,String cusurl, String photoPath,
                              String userGroup,
                              int isActive,
                              int contactType, // ContactType contactType
@@ -148,20 +159,23 @@ public class UserProfile {
 //(username VARCHAR2, password VARCHAR2, lastName varchar2, firstName varchar2,   groups NUMBER, usertype NUMBER,
 //                         email VARCHAR2, phone VARCHAR2, cusURl VARCHAR2)
         user.setPassword(pw);
-        user.setFirstName(fn);
-        user.setLastName(ln);
-         user.setGroups(groups);
-         user.setUserType(userType);
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setCusUrl(cusurl);
-        user.setPhotoPath(photoPath);
-        user.setUserGroup(userGroup);
-        user.setIsActive(isActive);
-        user.setContactType(contactType);
-        user.setId(id);
+        UserDto userDto = new UserDto();
+        userDto.setUsername(user.getUsername());
+//        user.setFirstName(fn);
+//        user.setLastName(ln);
+//         user.setGroups(groups);
+//         user.setUserType(userType);
+//        user.setEmail(email);
+//        user.setPhone(phone);
+//        user.setCusUrl(cusurl);
+//        user.setPhotoPath(photoPath);
+//        user.setUserGroup(userGroup);
+//        user.setIsActive(isActive);
+//        user.setContactType(contactType);
+//        user.setId(id);
 
         UsersServiceImpl usersService = new UsersServiceImpl();
         System.out.println("Successfully Updated: " + usersService.updateUser(user) + "\nChanges: " + user);
     }
+
 }

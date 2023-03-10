@@ -1,8 +1,6 @@
 package com.friendsofgroot.app.util;
 
 
-import com.friendsofgroot.app.consoles.Locations;
-import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
 import com.friendsofgroot.app.util.logger.CliLogger;
 import com.friendsofgroot.app.util.logger.LoggerImpl;
 import com.google.gson.Gson;
@@ -17,7 +15,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import static org.json.simple.JSONValue.toJSONString;
 
 public class ParseDynamicJson {
     public static void parseObject(JSONObject json, String key) {

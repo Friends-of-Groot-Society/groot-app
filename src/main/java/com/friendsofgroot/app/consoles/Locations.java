@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.consoles;
 
 
-import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
+import com.friendsofgroot.app.dataLoader.UserDetailsCLR;
 
 import com.friendsofgroot.app.util.ParseDynamicJson;
 import com.friendsofgroot.app.util.logger.LoggerImpl;

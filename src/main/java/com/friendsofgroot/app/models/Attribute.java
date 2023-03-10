@@ -9,7 +9,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "ATTRIBUTE")
 public class Attribute {
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(name = "attrid", nullable = false)
     int attrid;
     String value;
     String trait_type;

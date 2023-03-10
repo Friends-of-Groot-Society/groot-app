@@ -16,6 +16,6 @@ public class NftAddressDto implements Serializable {
     private  String address;
     private  Double nativeToken;
 //    @JsonProperty("tokens")
-    private  HashMap<String, Double> tokens;
+    private  Float tokens;
     private  List<NftDto> nfts;
 }

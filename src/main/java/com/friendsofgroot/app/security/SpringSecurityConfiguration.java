@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.security;
 
-import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
+import com.friendsofgroot.app.dataLoader.UserDetailsCLR;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SpringSecurityConfiguration {
 
     private static final Logger log =
-            LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
+            LoggerFactory.getLogger(UserDetailsCLR.class);
 
     // DISABLE WHEN CONNECTED TO LDAP or DB
     @Bean

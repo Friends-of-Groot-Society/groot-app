@@ -17,7 +17,7 @@ public class Nft {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	int id;
-	String name;
+	int name;
 	int amount;
 	@OneToOne
 	@JoinColumn(name = "metadata_metaid")

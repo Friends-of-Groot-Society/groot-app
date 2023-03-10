@@ -30,6 +30,8 @@ public interface IMaPL {
 
     void getMapleState();
 
+    void getMapleState(String startupText);
+
     void register(String cmdName, MaPLwriter cmd);
 
     void register(Integer cmdName, MaPLwriter cmd);

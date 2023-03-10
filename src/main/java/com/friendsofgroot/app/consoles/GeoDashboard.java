@@ -12,41 +12,11 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Component
-public class GeoDashboard implements IMaPL {
+public class GeoDashboard  {
     //    private static Map<Integer, Location> locations = new HashMap<>();//
 //        Map<String, Integer> options = null;
     private static Locations locations = new Locations();
 
-    @Override
-    public void openMaPLControl() throws SQLException {
-        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
-        MaPLInvoker mc = new MaPLInvoker();
-        mc.getMapleState();
-
-        sessionMaPL(mc);
-    }
-
-    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
-        // LOAD UP THE COMMANDS FROM THE DB ADMIN TABLE
-        System.out.println(mapleInvokerSession.getMaplCommands());
-        while (true) {
-            try (Scanner scan = new Scanner(System.in)) {
-                System.out.println("______________Session MaPL: AdminDashboard______________");
-                System.out.println("What next? - enter number; 0 to quit()");
-                int nextCommand = scan.nextInt();
-                if (nextCommand == 0)
-                    console(Arrays.toString(new String[]{"GeoDashboard"}));
-
-                mapleInvokerSession.execute(nextCommand);
-                System.out.println("Invoked command executed.\n");
-                sessionMaPL(mapleInvokerSession);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
     public static void console(String args) throws SQLException, IOException, ClassNotFoundException {
 
@@ -100,126 +70,4 @@ public class GeoDashboard implements IMaPL {
         MainDashboard.console(new String[]{});
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public String[] getCmds() {
-        return new String[0];
-    }
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(Integer cmdName, MaPL cmd) {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void getMapleState() {
-
-    }
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(String cmdName, MaPLwriter cmd) {
-
-    }
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(Integer cmdName, MaPLwriter cmd) {
-
-    }
-
-    /**
-     * @param cmdId
-     */
-    @Override
-    public void execute(int cmdId) {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void execute() {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void up() {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void down() {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void left() {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void right() {
-
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void up(Object o) {
-
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void down(Object o) {
-
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void left(Object o) {
-
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void right(Object o) {
-
-    }
 }

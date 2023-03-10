@@ -4,19 +4,16 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.*;
 
-import com.friendsofgroot.app.commands.IMaPL;
-import com.friendsofgroot.app.commands.MaPL;
-import com.friendsofgroot.app.commands.MaPLInvoker;
-import com.friendsofgroot.app.commands.MaPLwriter;
-import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
+import com.friendsofgroot.app.commands.*;
+import com.friendsofgroot.app.dataLoader.UserDetailsCLR;
 import com.friendsofgroot.app.security.UserLogin;
 import com.friendsofgroot.app.security.UserRegister;
 import com.friendsofgroot.app.util.constants.Cmds;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import static com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner.runDownloaderJob;
-import static com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner.startBrowsingBuying;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCLR.runDownloaderJob;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCLR.startBrowsingBuying;
 import static com.friendsofgroot.app.service.CoinService.coinMarketViewAll; // 3 DB
 
 @Component
@@ -95,8 +92,8 @@ public class MainDashboard implements IMaPL {
                             break;
                         }
                         case 4: {
-                            System.out.println("\n Ok, Initiating Local Offline Data Loader....");
-                            UserDetailsCommandLineRunner cliDataLoader = new UserDetailsCommandLineRunner();
+                            System.out.println("\n Ok, Initiating Local Offline User Details Loader....");
+                            UserDetailsCLR cliDataLoader = new UserDetailsCLR();
                             cliDataLoader.run();  // Local Offline Automated USER
                             break;
                         }
@@ -117,10 +114,10 @@ public class MainDashboard implements IMaPL {
                         }
                         case MAIN_OPTIONS_COUNT: {
                             System.out.println("\n   #8 () Opening MaPLControl...");
-                            MaPLInvoker newMaPLInvokerl = new MaPLInvoker(); // create new MaPLInvoker
+                            MaPLAdminInvoker newMaPLInvokerl = new MaPLAdminInvoker(""); // create new MaPLInvoker
 
-                            NavigateRunner open = new NavigateRunner( ); // open MaPLControl
-                            open.runNavigate( newMaPLInvokerl ); // open MaPLControl
+                            NavigateRunner openSession = new NavigateRunner( newMaPLInvokerl); // open MaPLControl
+                            openSession.runNavigate(); // open MaPLControl
                             console( );
                             break;
                         }
@@ -172,6 +169,14 @@ public class MainDashboard implements IMaPL {
      */
     @Override
     public void getMapleState() {
+
+    }
+
+    /**
+     * @param startupText
+     */
+    @Override
+    public void getMapleState(String startupText) {
 
     }
 

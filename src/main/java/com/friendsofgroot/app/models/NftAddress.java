@@ -19,11 +19,14 @@ public class NftAddress {
 
 	 String address;
 
-	@Column(name="native")
+	@Column(name="native_token")
 	Double nativeToken;
 
-@ElementCollection
-	HashMap<String, Double> tokens; // token name, token amount	@OneToOne
+	@Column(name="native")
+	Double nativeTokenAmount ;
+ 	@Column(name="tokens")
+	Float tokensAmount;
+	  // token name, token amount	@OneToOne
 	@OneToMany
 	@Column(name = "nft_address_id")
 	List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id

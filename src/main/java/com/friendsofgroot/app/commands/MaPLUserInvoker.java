@@ -1,7 +1,10 @@
 package com.friendsofgroot.app.commands;
 
-import com.friendsofgroot.app.util.constants.Cmds;
+import com.friendsofgroot.app.models.User;
+import com.friendsofgroot.app.repositories.UsersRepository;
 import com.friendsofgroot.app.util.Utilities;
+import com.friendsofgroot.app.util.constants.Cmds;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,38 +15,27 @@ import java.util.stream.Collectors;
 
 import static com.friendsofgroot.app.util.constants.Datum.SRC_DATA_STARTUP_TEXT_ADMIN_TXT;
 
-public class MaPLInvoker extends MaPL{
-    public MaPLInvoker() {
-        System.out.println("SRC_DATA_STARTUP_TEXT_TXT MaPLInvoker.getMapleState() = " );
+public class MaPLUserInvoker extends MaPL {
 
+    private UsersRepository usersRepository;
+    @Autowired
+    private User u = new User();
+
+    static String STARTUP_TEXT = SRC_DATA_STARTUP_TEXT_TXT;
+
+
+    public MaPLUserInvoker() {
         System.out.println("MaPLInvoker.getMapleState() = "  );
 
     };
-
-
-    public MaPLInvoker(String startupText) {
-        if (startupText == null) {
+    public MaPLUserInvoker(String startupText) {
+        if (startupText.equals("")) {
             startupText = SRC_DATA_STARTUP_TEXT_TXT;
         }
-        System.out.println("SRC_DATA_STARTUP_TEXT_TXT MaPLInvok er.getMapleState() = "+startupText  );
+        System.out.println("SRC_DATA_STARTUP_TEXT_TXT MaPLInvoker.getMapleState() = "+startupText  );
 
     };
 
-    private String suggestRegEx = "HOW |MAY |CAN |SHALL |I |AM |YOU |YOUR |MY |WANT |ABOUT |READY|'s|[!?.,:]+|SO ";
-    private static  int duplicate = 0;
-    MaPL mw = new MaPLwriter();
-    public static final String DRIVER = "oracle.jdbc.driver.OracleDriver"; //  DEFAULT DRIVER
-    private Map<String, String> instructionMap = new TreeMap<>(); // STARTUP INSTRUCTION SET   "11=Run Websites Health Check"
-    private Map<Integer,MaPL> maplCommands = new HashMap<>();
-    private static Map<Integer, String> sessionHistory = new LinkedHashMap<>();
-
-    static void showHistory() {
-        System.out.println("CMD HISTORY = ");
-        // print history of each time a command invoked
-        for(Map.Entry<Integer, String> key: sessionHistory.entrySet()) {
-            System.out.print("key: "+key.getKey() + ", command: "+ key.getValue() + " || ");
-        }
-    }
     static Map<Integer, String> replayLast(int numberOfCommands) {
 
         List<Integer> arrayKeys = new ArrayList<Integer>(sessionHistory.keySet());
@@ -65,66 +57,19 @@ public class MaPLInvoker extends MaPL{
         return subMap;
     }
 
-    public Map<Integer, MaPL> getMaplCommands() {
-        return maplCommands;
-    }
-
-    @Override
-    public void register(Integer cmdName, MaPL cmd) {
-        // IMaPL.super.register(
-        // cmdName, cmd)
-        //  implement & register commands to MaPL instance tasks
-        maplCommands.put(cmdName, cmd);
-    }
 
     /**
      *
      */
     @Override
     public void getMapleState() {
-
-    }
-
-
-    public Map<Integer,MaPL> registerCmds(String commandID, String suggestion) {
         //  implement pre-registered commands to MaPL instance tasks
-        MaPL mapl = new MaPL(); // Concrete Command
-        mapl.setCmdId( Integer.valueOf(commandID) );
-        mapl.setSuggestion(suggestion);
-        mapl.setCommandName( suggToCmd(suggestion) );
-        maplCommands.put( mapl.
-
-                getCmdId(), mapl );
-
-        System.out.println(mapl.getCmdId() + ": "+mapl.getCommandName());
-        return maplCommands;
-    }
-
-    private String suggToCmd(String sugg) {
-        String[] sArr = sugg.toUpperCase().replaceAll(suggestRegEx," ").stripLeading()
-        .split("\\s+");
-        String newString = String.join("_",sArr);
-        return newString;
-    }
-
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(String cmdName, MaPLwriter cmd) {
-    maplCommands.put(Integer.valueOf(cmdName), cmd);
-    }
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(Integer cmdName, MaPLwriter cmd) {
+        usersRepository.findAll().forEach(System.out::println);
 
     }
+
+
+
     protected static void loadDefault() {
         readStartupFile(SRC_DATA_STARTUP_TEXT_TXT);
     }

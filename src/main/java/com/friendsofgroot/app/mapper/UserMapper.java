@@ -15,15 +15,20 @@ public interface UserMapper {
 
 //    @Mapping(source = "userId", target = "id") // int
 //    @Mapping(source = "id", target = "userId") // string
-//    @Mapping(  target = "userName", expression = "java(user.getEmail().truncate(10))")
+//    @Mapping(  target = "username", expression = "java(user.getEmail().truncate(10))")
     @Mapping(source = "lastName", target = "lastName")
     @Mapping(source = "firstName", target = "firstName")
     @Mapping(source = "userGroup", target = "userGroup")
 //    @Mapping(source = "id", target = "id", expression = "java(UUID.randomUUID().toString())")
     UserDto userToUserDto(User user);
 
-    @InheritInverseConfiguration
-    User userDtoToUser(UserDto userDto);
+//    @InheritInverseConfiguration
+//    User userDtoToUser(UserDto userDto);
 
-    List<UserDto> usersToUserDtos(List<User> users);
+
+    UserDto toDto(User u);
+    @Mapping(source = "lastName", target = "lastName")
+    @Mapping(source = "firstName", target = "firstName")
+    @Mapping(source = "userGroup", target = "userGroup")
+    User toEntity(UserDto user);
 }

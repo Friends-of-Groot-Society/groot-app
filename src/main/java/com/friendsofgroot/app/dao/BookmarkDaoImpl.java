@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.dao;
 
 
-import com.friendsofgroot.app.dataLoader.TestDataStore;
+import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Bookmark;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.UserBookmark;
@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BookmarkDaoImpl   implements BookmarkDAO {
@@ -47,7 +48,11 @@ public class BookmarkDaoImpl   implements BookmarkDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                return new Bookmark(rs.getInt("id"), rs.getString("title"), rs.getString("profileurl"));
+                Bookmark bookmark = new Bookmark();
+                bookmark.setId(rs.getInt("id"));
+                bookmark.setTitle(rs.getString("title"));
+                bookmark.setProfileUrl(rs.getString("profileurl"));
+                return  bookmark;
             }
         } catch (SQLException e) {
             System.out.println("Double-check DB connection o BOokmakr get-id");
@@ -71,18 +76,16 @@ public class BookmarkDaoImpl   implements BookmarkDAO {
         return false;
     }
 
-    @Override
-    public List<List<Bookmark>> getBookmarksArray() {
-        return TestDataStore.getBookmarksArray();
-    }
+
 
     // Wide-net Http weblinks
     public List<Weblink> getAllWebLinks() {
         List<Weblink> result = new ArrayList<>();
-        List<List<Bookmark>> bookmarks = TestDataStore.getBookmarksArray();
-        List<Bookmark> allWeblinks = bookmarks.get(0);
-        for (Bookmark wl : allWeblinks) {
-            result.add((Weblink) wl);
+      List<Weblink> bookmarks = FileDataStore.getBookmarksArray();
+        for (Bookmark wl : bookmarks) {
+            if (wl instanceof Weblink) {
+                result.add((Weblink) wl);
+            }
         }
         return result;
     }
@@ -99,14 +102,14 @@ public class BookmarkDaoImpl   implements BookmarkDAO {
         return result;
     }
     public  void add(UserBookmark userBookmark) {
-        TestDataStore.add(userBookmark);
+        FileDataStore.add(userBookmark);
     }
 
     public  void saveLocalUserBookmark(UserBookmark userBookmark) {
-        TestDataStore.add(userBookmark);
+        FileDataStore.add(userBookmark);
     }
 
     public List<Bookmark> getLocalUserBookmarksByUser(User user) {
-      return TestDataStore.getLocalUserBookmarksByUser(user);
+      return FileDataStore.getLocalUserBookmarksByUser(user);
     }
 }

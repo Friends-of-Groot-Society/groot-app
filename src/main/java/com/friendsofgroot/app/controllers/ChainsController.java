@@ -51,9 +51,9 @@ public class ChainsController {
         return new ResponseEntity<>(chainsService.updateChain(change), HttpStatus.OK);
     }
     @DeleteMapping(value = "/chains/{id}")
-    public boolean deleteChain(@PathVariable("id") int id) {
+    public ResponseEntity<Boolean> deleteChain(@PathVariable("id") int id) {
 
-        return chainsService.deleteChain(id);
+        return new ResponseEntity<>(chainsService.deleteChain(id), HttpStatus.OK);
     }
 
 

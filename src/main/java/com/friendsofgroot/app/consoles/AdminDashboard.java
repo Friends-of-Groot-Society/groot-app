@@ -6,61 +6,105 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.friendsofgroot.app.util.constants.Cmds;
+import com.friendsofgroot.app.commands.IMaPL;
+import com.friendsofgroot.app.commands.MaPL;
 import com.friendsofgroot.app.commands.MaPLInvoker;
+import com.friendsofgroot.app.commands.MaPLwriter;
+import com.friendsofgroot.app.service.UsersServiceImpl;
+import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.ElectroLot;
-import com.friendsofgroot.app.models.Offer;
 
-import com.friendsofgroot.app.service.CoinService;
-import com.friendsofgroot.app.service.ElectroLotService;
-import com.friendsofgroot.app.service.OfferService;
-import com.friendsofgroot.app.service.UserService;
+import com.friendsofgroot.app.service.CoinsServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
-public class AdminDashboard {
+
+@Component
+public class AdminDashboard implements IMaPL {
+
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;
 
+
+    @Override
+    public void openMaPLControl() throws SQLException {
+        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
+        MaPLInvoker mc = new MaPLInvoker();
+        mc.getMapleState();
+
+        sessionMaPL(mc);
+    }
+
+    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
+        // LOAD UP THE COMMANDS FROM THE DB ADMIN TABLE
+        System.out.println(mapleInvokerSession.getMaplCommands());
+        while (true) {
+            try (Scanner scan = new Scanner(System.in)) {
+                System.out.println("______________Session MaPL: AdminDashboard______________");
+                System.out.println("What next? - enter number; 0 to quit()");
+                int nextCommand = scan.nextInt();
+                if (nextCommand == 0)
+                    console();
+
+                mapleInvokerSession.execute(nextCommand);
+                System.out.println("Invoked command executed.\n");
+                sessionMaPL(mapleInvokerSession);
+            }
+        }
+    }
+
+    private static void frontConsoleMenu() {
+        System.out.println("*--------- -------*\n" +
+                "Welcome to your Admin dashboard\n " + " ... What's Next? \n"
+                + Cmds.ONE + "View Financials and Payments\n"
+                + Cmds.TWO + "View Coin Lot\n"
+                + Cmds.THREE + "Add Coin\n"
+                + Cmds.FOUR + "Remove Unpurchased Coin\n"
+                + Cmds.FIVE + "View and/or Accept Offers\n"
+                + Cmds.SIX + "get Users With Coins\n"
+                + OPTION_COUNT_MAX + ".) open MaPL Control(); \n"
+                + Cmds.ZERO + "Logout");
+    }
+
     // RECURSIVE LOOP, breaks out at option 0
-    public static void adminConsole() throws SQLException {
-        System.out.println(
-                "*---------------------------------*\n" +
-                        "Welcome to your Admin dashboard\n " + " ... What's Next? \n"
-                        + Cmds.ONE + "View Financials and Payments\n"
-                        + Cmds.TWO + "View Coin Lot\n"
-                        + Cmds.THREE+"Add Coin\n"
-                        + Cmds.FOUR +"Remove Unpurchased Coin\n"
-                        + Cmds.FIVE + "View and/or Accept Offers\n"
-                        + Cmds.SIX + "get Users With Coins\n"
-                        + OPTION_COUNT_MAX + ".) open MaPL Control(); \n"
-                        + Cmds.ZERO + "Logout");
+    public static void console() throws SQLException {
+
+        frontConsoleMenu();
         try (Scanner scan = new Scanner(System.in)) {
             int val = scan.nextInt();
             if (val < MIN_OPTIONS && val > OPTION_COUNT_MAX) {
                 System.out.println("Please enter digits " + MIN_OPTIONS + "-" + OPTION_COUNT_MAX);
-                adminConsole();
+                console();
             } else {
                 switch (val) {
                     case 0: {
                         System.out.println("At your service, back to MainDashboard ...\n");
-                        MainDashboard.mainConsole();
+                        MainDashboard.console();
                         break;
                     }
                     case 1: {
-                        scan.nextLine();
-                        System.out.println(ElectroLotService.getAllElectroLot());
-                        adminConsole();
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
+                        System.out.println("Entering Financials View...");
+                        System.out.println(coinsService.getAllCoins());
+                        System.out.println(Cmds.ADMIN_PERKS);
+                        console();
                         break;
                     }
                     case 2: {
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
                         System.out.println("Entering CoinLot View...");
-                        System.out.println(CoinService.getAllCoins());
+                        System.out.println(coinsService.getAllCoins());
                         System.out.println(Cmds.ADMIN_PERKS);
-                        adminConsole();
+                        console();
                         break;
                     }
                     case 3: {
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
                         scan.nextLine();
                         System.out.println("Adding a coin? Let me get my notepad ...");
                         System.out.println("Coin ID?");
@@ -69,9 +113,9 @@ public class AdminDashboard {
                                 scan.nextInt();
                                 scan.nextLine();
                                 System.out.println("Coin TOKEN?");
-                                String make = scan.nextLine();
+                                String coinToken = scan.nextLine();
                                 System.out.println("Coin Symbol?");
-                                String model = scan.nextLine();
+                                String coinSymbol = scan.nextLine();
                                 System.out.println("Coin Price?");
                                 double price = scan.nextDouble();
                                 scan.nextLine();
@@ -81,36 +125,39 @@ public class AdminDashboard {
                                     price = scan.nextDouble();
                                     scan.nextLine();
                                 }
-                                System.out.println("Umkay,coin's make is *" + make + "*,\n model is *" + model
+                                System.out.println("Umkay,coin's coinToken is *" + coinToken + "*,\n coinSymbol is *" + coinSymbol
                                         + "*,\n and price at *$" + price + "*\n");
                                 System.out.println("   Everything look right? (y) or (no)\n");
                                 while (true) {
                                     String decide = scan.next();
                                     if (decide.contentEquals("y")) {
-                                        Coin createdCoin = new Coin(999, make, model, price, 0); //CoinId overwritten later
-                                        CoinService.createCoin(createdCoin);
+                                        Coin createdCoin = new Coin(999, coinToken, coinSymbol, price, 0); //CoinId overwritten later
+
+                                        coinsService.createCoinCLI(createdCoin);
                                         System.out.println(
                                                 "This " + createdCoin.getCoinToken() + " has been Successfully added!!\n");
-                                        adminConsole();
+                                        console();
                                     } else {
-                                        adminConsole();
+                                        console();
                                     }
                                 }
                             } catch (Exception e) {
                                 System.out.println(Cmds.OOPS_TRY_AGAIN);
                             }
-                            adminConsole();
+                            console();
                         }
                     }
                     case 4: {
-                        System.out.println(CoinService.getAllCoins());
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
+                        System.out.println(coinsService.getAllCoins());
                         scan.nextLine();
                         System.out.println("Removing a coin? \nLet me get my notepad ...");
                         System.out.println("\nCoin ID to be removed?");
                         while (true) {
                             try {
                                 val = scan.nextInt();
-                                Coin uCoin = CoinService.getCoin(val);
+                                Coin uCoin = coinsService.getCoinCLI(val);
                                 scan.nextLine();
                                 System.out.println("1.) Remove coin #" + uCoin.getCoinId() + "? Type \"y\" or \"yes\"."
                                         + "\n\n2.)To permanently delete from records?\n" + "If so, type \"delete\" \n");
@@ -120,7 +167,7 @@ public class AdminDashboard {
                                     Coin removeCoin = new Coin(uCoin.getCoinId(), uCoin.getCoinToken(), uCoin.getCoinSymbol(),
                                             uCoin.getPriceTotal(), 2); // 2 = remove unpurchased
                                     try {
-                                        CoinService.updateCoin(removeCoin);
+                                        coinsService.updateCoinCLI(removeCoin);
                                         System.out.println(removeCoin.toString() + "\n" + " ...\n..#" + uCoin.getCoinId()
                                                 + " Successfully removed!!\n");
 
@@ -130,7 +177,7 @@ public class AdminDashboard {
                                 } else if (decide.contentEquals("delete")) {// delete & unpurchased
                                     try {
                                         int deleted = uCoin.getCoinId();
-                                        CoinService.deleteCoin(deleted);
+                                        coinsService.deleteCoin(deleted);
                                         System.out.println("\n" + "\n...#" + deleted + " Permanently deleted!\n");
 
                                     } catch (Exception e) {
@@ -138,31 +185,36 @@ public class AdminDashboard {
                                     }
                                 } else {
                                     System.out.println("Not implemented, returning to dashboard");
-                                    adminConsole();
+                                    console();
                                 }
                             } catch (Exception e) {
                                 System.out.println("I could not find that coin ...\nTry again. Here's the current lot:");
-                                List<Coin> coinList = CoinService.getAllCoins();
+                                List<Coin> coinList = coinsService.getAllCoinsCLI();
                                 System.out.println(coinList);
-                                adminConsole();
+                                console();
                             }
-                            adminConsole();
+                            console();
                         }
                     }
                     case 5: {
-                        System.out.println(OfferService.getAllOffers());
-                        checkOffer();
-                        adminConsole();
+                        System.out.println("OfferService.getAllOffers()");
+                        console();
                         break;
                     }
                     case 6: {
-                        System.out.println(UserService.getUsersWithCoins());
-                        adminConsole();
+                        UsersServiceImpl u = new UsersServiceImpl();
+
+                        System.out.println(u.getUsersWithCoins());
+                        console();
                         break;
                     }
                     case OPTION_COUNT_MAX: {
-                        openMaPLControl();
-                        adminConsole();
+                        System.out.println("Opening MaPLControl...");
+                        MaPLInvoker newMaPLInvokerl = new MaPLInvoker(); // create new MaPLInvoker
+
+                        NavigateRunner open = new NavigateRunner( ); // open MaPLControl
+                        open.runNavigate(newMaPLInvokerl);
+                        console();
                         break;
                     }
                 } // end switch
@@ -170,100 +222,134 @@ public class AdminDashboard {
         } catch (InputMismatchException e) {
             // go round again. Read past the end of line in the input first
             System.out.println("Please enter digits 0 to 5");
-            adminConsole();
+            console();
         }
     }
 
-    private static void openMaPLControl() throws SQLException {
-        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
-        MaPLInvoker mc = new MaPLInvoker();
-        mc.getMapleState();
-
-        sessionMaPL(mc);
-    }
-    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
-        System.out.println(mapleInvokerSession.getMaplCommands());
-        while(true) {
-            try(Scanner scan = new Scanner(System.in)) {
-                System.out.println("What next? - enter number; 0 to quit()");
-                int nextCommand = scan.nextInt();
-                if (nextCommand==0)
-                    adminConsole();
-
-                mapleInvokerSession.execute(nextCommand);
-                System.out.println("Invoked command executed.\n");
-                sessionMaPL(mapleInvokerSession);
-            }
-        }
+    /**
+     * @return
+     */
+    @Override
+    public String[] getCmds() {
+        return new String[0];
     }
 
-    static void checkOffer() throws SQLException {
-        try (Scanner scan = new Scanner(System.in)) {
-            System.out.println("\n>>>Please type offer ID to view or modify. 0 to exit.");
-            int oInt = scan.nextInt();
-            scan.nextLine();
-            if (oInt == 0) {
-                adminConsole();
-            }
-            Offer offerLook = OfferService.getOffer(oInt);
-            System.out.println(">>>Great, looking up offer #" + oInt + "....\n");
-            if (offerLook == null) {
-                System.out.println(">>>Oops, couldn't find it, " + "maybe double check the #id?\n");
-                checkOffer();
-            } else {
-                System.out.println(offerLook);
-                approveOrReject(offerLook);
-                adminConsole();
-            }
-            adminConsole();
-        }
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPL cmd) {
+
     }
 
-    static void approveOrReject(Offer offerLook) {
-        try (Scanner scan = new Scanner(System.in)
-        ) {
-            System.out.println("\n>>>Accept this offer (y)?\n" + "or (r) to reject an offer\n"
-                    + "\nOtherwise hit any key+'enter' to return to dashboard");
-            String decide = scan.nextLine();
-            if (!decide.contentEquals("y") && !decide.contentEquals("r")) {
-                adminConsole();
-            } else if (decide.contentEquals("y")) {
-                Offer offering = new Offer(offerLook.getOfferID(), offerLook.getUserName(), offerLook.getCoinId(),
-                        offerLook.getOfferAmt(), offerLook.getOfferMos(), "APPROVED");
-                // Finalize New-Owner's Offer details
-                OfferService.updateOffer(offering);
-                // make New-Owner contract
-                System.out.println(ElectroLot.makeElectro(offering));
-                ElectroLotService.addElectroLot(ElectroLot.makeElectro(offering));
-                // Remove coin from customer lot
-                Coin uCoin = CoinService.getCoin(offerLook.getCoinId());
-                Coin removePurchase = new Coin(uCoin.getCoinId(), uCoin.getCoinToken(), uCoin.getCoinSymbol(), uCoin.getPriceTotal(),
-                        1);
-                CoinService.updateCoin(removePurchase);
-                // Reject all other offers for same coin
-                Offer rejectOffers = new Offer(0, "", uCoin.getCoinId(), 0.0, 0, "PENDING");  // Reject all other pending offers!!
-//				int offerID, String userName, int coinID, double offerAmt, int offerMos, String offerStatus
-                OfferService.rejectOtherOffers(rejectOffers);
-                System.out.println(
-                offering.toString() + "\n.....#" + offering.getOfferID() + " successfully approved!!\n");
-                adminConsole();
+    /**
+     *
+     */
+    @Override
+    public void getMapleState() {
 
-            } else if (decide.contentEquals("r")) {
-                Offer offering = new Offer(offerLook.getOfferID(), offerLook.getUserName(), offerLook.getCoinId(),
-                        offerLook.getOfferAmt(), offerLook.getOfferMos(), "REJECTED");
-                OfferService.updateOffer(offering);
-                System.out.println(
-                        offering.toString() + "\n" + "...\n..#" + offering.getOfferID() + " successfully rejected!!\n");
-            }
-        } catch (SQLException e) {
-            System.out.println("first sql" + e.getMessage());
-            try {
-                adminConsole();
-            } catch (SQLException e1) {
-                System.out.println("2nd sql problem " + e.getMessage());
-                MainDashboard.mainConsole();
-            }
-        }
     }
 
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(String cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdId
+     */
+    @Override
+    public void execute(int cmdId) {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void execute() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void up() {
+        System.out.println("jump");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void down() {
+        System.out.println("go into a hole");
+    }
+
+
+    /**
+     *
+     */
+    @Override
+    public void left() {
+        System.out.println("stop");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void right() {
+
+        System.out.println("go faster");
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void up(Object o) {
+
+        System.out.println("go faster" + o.toString());
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void down(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void left(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void right(Object o) {
+
+    }
 }

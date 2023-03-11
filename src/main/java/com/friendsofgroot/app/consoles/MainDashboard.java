@@ -4,26 +4,53 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.*;
 
-import com.friendsofgroot.app.systemUser.UserLogin;
-import com.friendsofgroot.app.systemUser.UserRegister;
+import com.friendsofgroot.app.commands.IMaPL;
+import com.friendsofgroot.app.commands.MaPL;
+import com.friendsofgroot.app.commands.MaPLInvoker;
+import com.friendsofgroot.app.commands.MaPLwriter;
+import com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner;
+import com.friendsofgroot.app.security.UserLogin;
+import com.friendsofgroot.app.security.UserRegister;
+import com.friendsofgroot.app.util.constants.Cmds;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
-import static com.friendsofgroot.app.cli.CliStaticLoader.*;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner.runDownloaderJob;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommandLineRunner.startBrowsingBuying;
 import static com.friendsofgroot.app.service.CoinService.coinMarketViewAll; // 3 DB
-import static com.friendsofgroot.app.consoles.GeoDashboard.mainNavigator; // 7 Local
 
+@Component
+@Primary
+public class MainDashboard implements IMaPL {
 
-public class MainDashboard {
-    private static final int MAIN_OPTIONS_COUNT = 7;
+    @Override
+    public void openMaPLControl() throws SQLException {
+        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
+        MaPLInvoker mc = new MaPLInvoker();
+        mc.getMapleState();
 
-//    public static void mainUser(String[] args) throws SQLException, ClassNotFoundException, IOException {
-//        try {
-//            /// #1  Loading Recursive Console Scanner accepting Integer Input
-//            mainConsole();
-//        } catch (Exception e) {
-//            System.out.println("oops!  mainConsole fail"+ e.getMessage());
-//
-//        }
-//    }
+        sessionMaPL(mc);
+    }
+
+    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
+        // LOAD UP THE COMMANDS FROM THE DB ADMIN TABLE
+        System.out.println(mapleInvokerSession.getMaplCommands());
+        while (true) {
+            try (Scanner scan = new Scanner(System.in)) {
+                System.out.println("______________Session MaPL: MainDashboard");
+                System.out.println("What next? - enter number; 0 to quit()");
+                int nextCommand = scan.nextInt();
+                if (nextCommand == 0)
+                    console();
+
+                mapleInvokerSession.execute(nextCommand);
+                System.out.println("Invoked command executed.\n");
+                sessionMaPL(mapleInvokerSession);
+            }
+        }
+    }
+
+    private static final int MAIN_OPTIONS_COUNT = 8;
 
     private static void frontConsoleMenu() {
         System.out.println("\n1.) Log in \n"
@@ -32,22 +59,26 @@ public class MainDashboard {
                 + "4.) Load Test Data =  cliDataLoader(); \n"
                 + "5.) Play Navigation Game [Offline] \n"
                 + "6.) Download from Web \n"
-                + MAIN_OPTIONS_COUNT+") Set in Motion Automated USER [Offline]\n"
+                + "7.) Start Browsing and Buying \n"
+                + MAIN_OPTIONS_COUNT + ") Set in Motion Automated USER [Offline]\n"
                 + "Stop Application, press '0'.\n");
     }
 
-    public static void mainConsole(String[] ...args) {
+    public static void console(String[]... args) {
 
         System.out.println("Now Loading frontConsoleMenu()");
         frontConsoleMenu();
-        try (Scanner newScan = new Scanner(System.in)) {;
+        try (Scanner newScan = new Scanner(System.in)) {
+            ;
             boolean hasNextInt = newScan.hasNextInt();
             int val = newScan.nextInt();
             try {
                 if (val < 0 | val > MAIN_OPTIONS_COUNT | !hasNextInt) {
-                    System.out.println("Please enter valid choices: 0-"+MAIN_OPTIONS_COUNT);
+                    System.out.println("Please enter valid choices: 0-" + MAIN_OPTIONS_COUNT);
+
+
                     // RECURSE
-                    mainConsole();
+                    console();
                 } else {
                     switch (val) {
                         case 1: {
@@ -65,22 +96,32 @@ public class MainDashboard {
                         }
                         case 4: {
                             System.out.println("\n Ok, Initiating Local Offline Data Loader....");
-                            cliStaticDataLoader();  // Local Offline Automated USER
+                            UserDetailsCommandLineRunner cliDataLoader = new UserDetailsCommandLineRunner();
+                            cliDataLoader.run();  // Local Offline Automated USER
                             break;
                         }
                         case 5: {
-                            System.out.println("\n Ok, #4 ...");
-                            mainNavigator(new String[]{}); //{"any", "options"});
+                            System.out.println("\n Ok, #5 ...");
+                            console(new String[]{}); //{"any", "options"});
                             break;
                         }
                         case 6: {
-                            System.out.println("\n   #5, runDownloaderJob();...");
+                            System.out.println("\n   #6, runDownloaderJob();...");
                             runDownloaderJob();
                             break;
                         }
-                        case MAIN_OPTIONS_COUNT: {
-                            System.out.println("\n   #6 startBrowsingBuying();");
+                        case 7: {
+                            System.out.println("\n   #7startBrowsingBuying();");
                             startBrowsingBuying();
+                            break;
+                        }
+                        case MAIN_OPTIONS_COUNT: {
+                            System.out.println("\n   #8 () Opening MaPLControl...");
+                            MaPLInvoker newMaPLInvokerl = new MaPLInvoker(); // create new MaPLInvoker
+
+                            NavigateRunner open = new NavigateRunner( ); // open MaPLControl
+                            open.runNavigate( newMaPLInvokerl ); // open MaPLControl
+                            console( );
                             break;
                         }
                         case 0: {
@@ -90,27 +131,145 @@ public class MainDashboard {
                             break;
                         }
                     }
-                    mainConsole();// After stack return & Break, back to console
+                    console();// After stack return & Break, back to console
                 }
 
             } catch (InputMismatchException e) {
                 System.out.println("InputMismatchException, Inputs! must choose 1,2,3,4... ");
-                mainConsole();
-            }  catch (SQLException e) {
+                console();
+            } catch (SQLException e) {
                 System.out.println("SQLException: " + e.getMessage());
-                mainConsole();// RECURSE
+                console();// RECURSE
             } catch (IOException e) {
                 System.out.println("IOException: " + e.getMessage());
-                mainConsole();  // RECURSE
-            } catch (ClassNotFoundException e) {
-                System.out.println("Oops, ClassNotFoundException " + e.getMessage());
-                mainConsole();   // RECURSE
+                console();  // RECURSE
             }
-            mainConsole();
+            console();
 
         }
     }
 
 
+    /**
+     * @return
+     */
+    @Override
+    public String[] getCmds() {
+        return new String[0];
+    }
 
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPL cmd) {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void getMapleState() {
+
+    }
+
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(String cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdId
+     */
+    @Override
+    public void execute(int cmdId) {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void execute() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void up() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void down() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void left() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void right() {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void up(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void down(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void left(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void right(Object o) {
+
+    }
 }

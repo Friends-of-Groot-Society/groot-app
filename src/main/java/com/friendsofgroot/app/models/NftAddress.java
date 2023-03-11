@@ -3,7 +3,7 @@ package com.friendsofgroot.app.models;
 import com.friendsofgroot.app.dto.NftDto;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +21,8 @@ public class NftAddress {
 
 	@Column(name="native")
 	Double nativeToken;
+
+@ElementCollection
 	HashMap<String, Double> tokens; // token name, token amount	@OneToOne
 	@OneToMany
 	@Column(name = "nft_address_id")

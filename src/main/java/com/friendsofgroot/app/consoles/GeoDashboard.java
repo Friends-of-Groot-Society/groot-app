@@ -1,113 +1,225 @@
 package com.friendsofgroot.app.consoles;
 
+import com.friendsofgroot.app.commands.IMaPL;
+import com.friendsofgroot.app.commands.MaPL;
+import com.friendsofgroot.app.commands.MaPLInvoker;
+import com.friendsofgroot.app.commands.MaPLwriter;
+import com.friendsofgroot.app.util.constants.Cmds;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
-    public class GeoDashboard {
-    private static Map<Integer, Location> locations = new HashMap<>();
+@Component
+public class GeoDashboard implements IMaPL {
+    //    private static Map<Integer, Location> locations = new HashMap<>();//
+//        Map<String, Integer> options = null;
+    private static Locations locations = new Locations();
 
-        Map<String, Integer> options = null;
+    @Override
+    public void openMaPLControl() throws SQLException {
+        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
+        MaPLInvoker mc = new MaPLInvoker();
+        mc.getMapleState();
 
-    public static void mainNavigator(String[] args) throws SQLException, IOException, ClassNotFoundException {
-        Scanner scanNav;
+        sessionMaPL(mc);
+    }
 
-        locations.put(0, new Location(0, "You have just quit"));
-        locations.put(1, new Location(1, "[Road]: You are now standing at the end of a road in front of a bridge"));
-        locations.put(2, new Location(2, "[Hill,w]: You are at the top of a hill"));
-        locations.put(3, new Location(3, "[Building,e]: You are in a building, with source of water, i.e. a well"));
-        locations.put(4, new Location(4, "[Valley,s]: You are in a valley beside a stream"));
-        locations.put(5, new Location(5, "[Forest,n]: You are in the forest"));
+    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
+        // LOAD UP THE COMMANDS FROM THE DB ADMIN TABLE
+        System.out.println(mapleInvokerSession.getMaplCommands());
+        while (true) {
+            try (Scanner scan = new Scanner(System.in)) {
+                System.out.println("______________Session MaPL: AdminDashboard______________");
+                System.out.println("What next? - enter number; 0 to quit()");
+                int nextCommand = scan.nextInt();
+                if (nextCommand == 0)
+                    console(Arrays.toString(new String[]{"GeoDashboard"}));
 
-//       keySet()
-//       manual (for now) stage location/constrations parameters
-//      Start at  road in front of Bridge
-        locations.get(1).addOption("N", 5); //     =>Forest
-        locations.get(1).addOption("E", 3); //    =>building
-        locations.get(1).addOption("S", 4); //    =>valley/stream
-        locations.get(1).addOption("W", 2); //     =>Hill
-//     locations.get(1).addOption("quit", 0);
+                mapleInvokerSession.execute(nextCommand);
+                System.out.println("Invoked command executed.\n");
+                sessionMaPL(mapleInvokerSession);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 
-        locations.get(2).addOption("N", 5); // top of hill
+    public static void console(String args) throws SQLException, IOException, ClassNotFoundException {
 
-        locations.get(3).addOption("W", 1); // in building => hill
+        Scanner scanNav = new Scanner(System.in);
+        Locations.mainLocationsTXT(new String[]{});
+        Locations.mainLocationsDAT(new String[]{});
+        Locations.mainLocationsBIN(new String[]{});
 
-        locations.get(4).addOption("N", 1); // Valley
-        locations.get(4).addOption("W", 2);
 
-        locations.get(5).addOption("S", 1); // Forest
-        locations.get(5).addOption("W", 2);
-        Map<String, String> vocab = new HashMap<>();
-        vocab.put("quit", "Q");
-        vocab.put("south", "S");
-        vocab.put("north", "N");
-        vocab.put("east", "E");
-        vocab.put("west", "W");
-        
+        Map<String, String> vocab_ = new HashMap<String, String>();
+        vocab_.put("QUIT", "Q");
+        vocab_.put("NORTH", "N");
+        vocab_.put("SOUTH", "S");
+        vocab_.put("WEST", "W");
+        vocab_.put("EAST", "E");
 
         int loc = 1;
+//        int loc = 64;
         while (true) {
             scanNav = new Scanner(System.in);
             System.out.println(locations.get(loc).getDescription()); //startingout
             if (loc == 0) {
                 break;
             }
-            Map<String, Integer> options = locations.get(loc).getOptions();
 
-            List<String> optionList = new ArrayList<>();
-            for (String option : options.keySet()) {
-                optionList.add(option);
+            Map<String, Integer> exits = locations.get(loc).getExits();
+            System.out.print("Available exits are ");
+            for (String exit : exits.keySet()) {
+                System.out.print(exit + ", ");
             }
-            System.out.println("=== Optional Directions====");
-            System.out.println(optionList.toString());
-            System.out.println("=======");
-            String direction = null;
-            if (scanNav.hasNext()) {
-                direction = scanNav.nextLine().toUpperCase();
-                if(direction.length() > 1) {
-                    String[] words = direction.split(" ");
-                    for(String word: words) {
-                        if (vocab.containsKey(word)) {
-                            direction = vocab.get(word);
-                            break;
-                        }
+            System.out.println();
+
+            String direction = scanNav.nextLine().toUpperCase();
+            if (direction.length() > 1) {
+                String[] words = direction.split(" ");
+                for (String word : words) {
+                    if (vocab_.containsKey(word)) {
+                        direction = vocab_.get(word);
+                        break;
                     }
                 }
             }
-            if (options.containsKey(direction)) {
-                loc = options.get(direction);
+
+            if (exits.containsKey(direction)) {
+                loc = exits.get(direction);
+
             } else {
-                System.out.println("Pathway restricted");
+                System.out.println("You cannot go in that direction");
             }
         }
-        MainDashboard.mainConsole(new String[] {});
+        MainDashboard.console(new String[]{});
     }
 
-        private static class Location {
-        protected final  int placeInt;
-        protected final String descript;
-        protected final Map<String, Integer> options;
+    /**
+     * @return
+     */
+    @Override
+    public String[] getCmds() {
+        return new String[0];
+    }
 
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPL cmd) {
 
-        public Location(int placeInt, String descript ) {
-            this.placeInt = placeInt;
-            this.descript = descript;
+    }
 
-            this.options = new HashMap<String, Integer>();
-            this.options.put("Q", 0);
+    /**
+     *
+     */
+    @Override
+    public void getMapleState() {
 
-        }
-        public void addOption(String direction, int location) {
-            options.put(direction, location);
-        }
-        public int getPlaceInt(){
-            return placeInt;
-        }
-        public String getDescription() {
-            return descript;
-        }
-        public Map<String, Integer> getOptions() {
-            return new HashMap<String, Integer>(options); // returns durable, new  options
-        }
+    }
+
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(String cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdName
+     * @param cmd
+     */
+    @Override
+    public void register(Integer cmdName, MaPLwriter cmd) {
+
+    }
+
+    /**
+     * @param cmdId
+     */
+    @Override
+    public void execute(int cmdId) {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void execute() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void up() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void down() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void left() {
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void right() {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void up(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void down(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void left(Object o) {
+
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public void right(Object o) {
+
     }
 }

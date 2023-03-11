@@ -2,13 +2,13 @@ package com.friendsofgroot.app.util.constants;
 
 public class Cmds {
     public static final String WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL = "Welcome to My Personal Librarian, my name is MaPL.";
-
+    public static final String LOGGING_AT = "... from Logger Instance! TS::";
      //menu dashboard
     public static final String WHAT_TO_DO = "What would you like to do?  ";
-    public static final String VIEW_MY_CARS = "View my coin tokens " +
+    public static final String VIEW_MY_COINS = "View my coin tokens " +
             "";
-    public static final String VIEW_ALL_CARS = "View all coin tokens";
-    public static final String  VIEW_CAR_DETAILS = "View a coin token in detail";
+    public static final String VIEW_ALL_COINS = "View all coin tokens";
+    public static final String  VIEW_COIN_DETAILS = "View a coin token in detail";
     public static final String MAKE_AN_OFFER = "Find one you like? Make an offer!";
     public static final String MAKE_INQUIRY_MY_OFFERS = "Inquire about my existing offers";
     public static final String PRESS_DIGIT = "\n There they are!, to make an offer, press ";
@@ -49,7 +49,7 @@ public class Cmds {
     public static final String OOPS_TRY_AGAIN = "Oops, something went wrong, try again please\n";
 
     // titles
-    public static final String CARLOT_TITLE = "I-*heart*- ETH   tokens: Market view...";
+    public static final String COINMARKET_TITLE = "I-*heart*- ETH   tokens: Market view...";
 
     // DIGITS
     public static final String ZERO = "0.) ";

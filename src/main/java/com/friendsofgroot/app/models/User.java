@@ -2,7 +2,7 @@ package com.friendsofgroot.app.models;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
@@ -22,7 +22,7 @@ public class User implements Serializable {
     private int userId;
 
     @Column(name="username", nullable = false )
-    private String userName;
+    private String username;
     @Column(name="password", nullable = false)
     private String password;
     @Column(name="lastname")
@@ -30,9 +30,9 @@ public class User implements Serializable {
 
     @Column(name="firstname")
     private String firstName;
-    @Column(name="groups")
+    @Column(name="groups")    /// 0 = admin, 1 = user
     private int groups;
-    @Column(name="usertype")
+    @Column(name="usertype") /// 0 = admin, 1 = user
     private int userType;
     @Column(name="email", nullable = false )
     private String email;
@@ -56,17 +56,17 @@ public class User implements Serializable {
     private String id;
 
     // parent of many
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 
 //    @ManyToMany(fetch = FetchType.EAGER)
 //   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    private List<Role> roles = new ArrayList<>();
 ////
-    public User(int userid, String userName, String password, String lastName, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
+    public User(int userid, String username, String password, String lastName, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
         super();
 
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -101,23 +101,23 @@ public class User implements Serializable {
 
     //////////////////////////////////////
     // overloaded for getUsersByCArs() call to DB
-    public User(int userId, String userName) {
+    public User(int userId, String username) {
         super();
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
     }
 
-    public User(String userName, String password) {
+    public User(String username, String password) {
         super();
-        this.userName = userName;
+        this.username = username;
         this.password = password;
     }
 
     // overloaded for OFFER/ Groups must be multi-purpose
-    public User(int userId, String userName, String password, int groups, int userType) {
+    public User(int userId, String username, String password, int groups, int userType) {
         super();
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.userType = userType;
         this.groups = groups;
@@ -125,14 +125,14 @@ public class User implements Serializable {
 
 
     //	 overloaded WITHOUT userId  FOR Creating TO ORACLE DB  FOR ORACLE DB INSERTION/RETRIEVAL
-    public User(String userName, String password, String lastName, String firstName,
+    public User(String username, String password, String lastName, String firstName,
                 int groups, int userType, String phone,String email,  String cusUrl, String photoPath,
                 String userGroup,
                 int isActive,
                 int contactType,
                 String id) {
         super();
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -148,10 +148,10 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(int userId, String userName, String password) {
+    public User(int userId, String username, String password) {
         super();
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
     }
 
@@ -180,7 +180,7 @@ public User(  String password, String lastName, String firstName,
 }
 
 //    public void registerThis(String un, String pw, String ln, String fn) {
-//        this.userName = un;
+//        this.username = un;
 //        this.password = pw;
 //        this.lastName = ln;
 //        this.firstName = fn;

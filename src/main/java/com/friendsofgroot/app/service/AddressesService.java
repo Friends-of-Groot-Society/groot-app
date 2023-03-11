@@ -16,9 +16,4 @@ public interface AddressesService {
     public AddressDto updateAddress(AddressDto change);
 
     public boolean deleteAddress(int id);
-
-    /////////////////////////
-    NftDto createNft(NftDto nftDto);
-
-    List<NftDto> getAllNFTs();
 }

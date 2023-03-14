@@ -16,13 +16,14 @@ public class Nft {
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	int id;
-	int name;
-	int amount;
-	@OneToOne
-	@JoinColumn(name = "metadata_metaid")
-	Metadata metadata;
-	int nft_address_id;
+	private int id;
+	private String name;
+	private int amount;
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Metadata metadata_id; // metadata_id
+	@OneToOne //(orphanRemoval = true)
+	private NftRef nftRef;
 
-
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	private NftAddress nftAddress;
 }

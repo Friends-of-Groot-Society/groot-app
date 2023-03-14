@@ -43,8 +43,6 @@ public class NftServiceImpl implements NftService {
     }
 
     public List<NftDto> getAllNfts() {
-
-
         List<Nft> adds = nftRepository.findAll();
         List<NftDto> nftDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
         return nftDtos;

@@ -96,7 +96,7 @@ public class Locations implements Map<Integer, Location> {
                 int loc = scanner.nextInt();
                 scanner.skip(scanner.delimiter());
                 String description = scanner.nextLine();
-                System.out.println("READING FROM LOCATIONS_BIG.TXT: " + loc + ": " + description);
+//                System.out.println("READING FROM LOCATIONS_BIG.TXT: " + loc + ": " + description);
                 Map<String, Integer> tempExit = new HashMap<>();
                 locations.put(loc, new Location(loc, description, tempExit));
             }
@@ -113,8 +113,8 @@ public class Locations implements Map<Integer, Location> {
                 String direction = data[1];
                 int destination = Integer.parseInt(data[2]);
 
-                System.out.println("READING FROM LOCATIONS_BIG.TXT: " + loc + ": " + direction + ": " + destination);
-                System.out.println(loc + ": " + direction + ": " + destination);
+//                System.out.println("READING FROM LOCATIONS_BIG.TXT: " + loc + ": " + direction + ": " + destination);
+//                System.out.println(loc + ": " + direction + ": " + destination);
                 Location location = locations.get(loc);
                 location.addExit(direction, destination);
             }

@@ -20,7 +20,7 @@ public class NavigateRunner {
 		navigateConsole.down();
 		navigateConsole.left( );
 		navigateConsole.right( );
-//	   IMaPL.showHistory();
+	   IMaPL.showHistory();
 	   navigateConsole.execute();
 	   navigateConsole.getCmds();
 	}

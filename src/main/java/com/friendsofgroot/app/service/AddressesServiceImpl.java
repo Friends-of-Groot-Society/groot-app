@@ -65,7 +65,7 @@ public class AddressesServiceImpl implements AddressesService {
             addUpdate.setOwner(change.getOwner());
             addUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
             addUpdate.setChainId(change.getChainId());
-            addUpdate.setNftAddress(change.getNftAddress());
+//            addUpdate.setNftAddress(change.getNftAddress());
 
             Address newAddress = addressesRepository.save(addUpdate);
 

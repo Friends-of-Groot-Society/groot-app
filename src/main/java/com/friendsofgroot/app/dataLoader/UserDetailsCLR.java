@@ -64,7 +64,7 @@ public class UserDetailsCLR implements CommandLineRunner {
         users = usersStatic;
         users.stream().map(user -> {
             user.setUsername(user.getEmail());
-            user.setAddresses(new ArrayList<>(List.of(new Address ( 0, "description", "owner", "address", "chain", "iconUrl", "blockExplorerUrl", new User(),1, new NftAddress() ))));
+            user.setAddresses(new ArrayList<>(List.of(new Address ( 0, "description", "owner", "address", "chain", "iconUrl", "blockExplorerUrl", new User(),1  ))));
             return user;
         });
 

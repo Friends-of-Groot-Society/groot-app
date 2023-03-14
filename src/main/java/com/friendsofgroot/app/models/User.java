@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -56,9 +57,17 @@ public class User implements Serializable {
     private String id;
 
     // parent of many
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user") // , orphanRemoval = true)
     private List<Address> addresses;
 
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+            fetch = FetchType.LAZY)
+    @JoinTable(name="nft_address_user",
+            joinColumns=@JoinColumn(name="user_id"),
+            inverseJoinColumns= @JoinColumn(name="nft_address_id")
+    )
+    @JsonIgnore
+    private List<NftAddress> chains;
 //    @ManyToMany(fetch = FetchType.EAGER)
 //   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    private List<Role> roles = new ArrayList<>();

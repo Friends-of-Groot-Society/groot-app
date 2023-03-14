@@ -74,9 +74,14 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public List<UserDto> getUsers() {
+        List<UserDto> userDtos = null;
         List<User> users = usersRepository.findAll();
-        List<UserDto> userDtos = users.stream().map(userMapper::toDto).collect(Collectors.toList());
-        return userDtos;
+         if (users == null) {
+            throw new ResourceNotFoundException("not found", "not found", "not found");
+             }   else {
+           userDtos = users.stream().map(userMapper::toDto).collect(Collectors.toList());
+                return userDtos;
+            }
 
     }
 

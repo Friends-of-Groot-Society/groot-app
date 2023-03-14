@@ -15,21 +15,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
-public class UserDetailsCommandLineRunner implements CommandLineRunner {
+public class UserDetailsCLR implements CommandLineRunner {
 
 //    import org.slf4j.Logger;
     private static final Logger log =
-            LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
+            LoggerFactory.getLogger(UserDetailsCLR.class);
 
     @Autowired
     private UsersRepository usersRepository;
@@ -53,6 +51,9 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws IOException {
+    if (System.getenv("ENV") != null && System.getenv("ENV").equals("dev")) {
+
+        System.out.println("ENV: " + System.getenv("ENV"));
         CliLogger.getInstance().info("UserDetailsCommandLineRunner.run()");
 
         System.out.println(Datum.ANSI_CYAN + "1. ANSI_CYAN LOADING BOOKMARK DATA");
@@ -63,7 +64,7 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
         users = usersStatic;
         users.stream().map(user -> {
             user.setUsername(user.getEmail());
-            user.setAddresses(new ArrayList<>(List.of(new Address ( 0, "description", "owner", "address", "chain", "iconUrl", "blockExplorerUrl", new User(),1, new NftAddress() ))));
+            user.setAddresses(new ArrayList<>(List.of(new Address ( 0, "description", "owner", "address", "chain", "iconUrl", "blockExplorerUrl", new User(),1  ))));
             return user;
         });
 
@@ -111,6 +112,9 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
 //        runDownloaderJob();
         System.out.println(Datum.ANSI_RESET + "ANSI_RESET without runDownloaderJob ");
 
+    } else {
+        System.out.println("MAVEN_HOME: NOT SET");
+    }
     }
 
 

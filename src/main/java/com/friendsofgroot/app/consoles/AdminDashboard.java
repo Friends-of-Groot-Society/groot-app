@@ -6,10 +6,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.friendsofgroot.app.commands.IMaPL;
-import com.friendsofgroot.app.commands.MaPL;
-import com.friendsofgroot.app.commands.MaPLInvoker;
-import com.friendsofgroot.app.commands.MaPLwriter;
+import com.friendsofgroot.app.commands.*;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.Coin;
@@ -21,39 +18,14 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class AdminDashboard implements IMaPL {
+public class AdminDashboard  {
 
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;
 
 
-    @Override
-    public void openMaPLControl() throws SQLException {
-        System.out.println(Cmds.WELCOME_TO_MY_PERSONAL_LIBRARIAN_MY_NAME_IS_MA_PL);
-        MaPLInvoker mc = new MaPLInvoker();
-        mc.getMapleState();
 
-        sessionMaPL(mc);
-    }
-
-    private static void sessionMaPL(MaPLInvoker mapleInvokerSession) throws SQLException {
-        // LOAD UP THE COMMANDS FROM THE DB ADMIN TABLE
-        System.out.println(mapleInvokerSession.getMaplCommands());
-        while (true) {
-            try (Scanner scan = new Scanner(System.in)) {
-                System.out.println("______________Session MaPL: AdminDashboard______________");
-                System.out.println("What next? - enter number; 0 to quit()");
-                int nextCommand = scan.nextInt();
-                if (nextCommand == 0)
-                    console();
-
-                mapleInvokerSession.execute(nextCommand);
-                System.out.println("Invoked command executed.\n");
-                sessionMaPL(mapleInvokerSession);
-            }
-        }
-    }
 
     private static void frontConsoleMenu() {
         System.out.println("*--------- -------*\n" +
@@ -210,10 +182,11 @@ public class AdminDashboard implements IMaPL {
                     }
                     case OPTION_COUNT_MAX: {
                         System.out.println("Opening MaPLControl...");
-                        MaPLInvoker newMaPLInvokerl = new MaPLInvoker(); // create new MaPLInvoker
+                        MaPLAdminInvoker newMaPLInvokerl = new MaPLAdminInvoker(""); // create new MaPLInvoker
 
-                        NavigateRunner open = new NavigateRunner( ); // open MaPLControl
-                        open.runNavigate(newMaPLInvokerl);
+                        NavigateRunner open = new NavigateRunner(newMaPLInvokerl ); // open MaPLControl
+
+                        open.runNavigate();
                         console();
                         break;
                     }
@@ -226,130 +199,4 @@ public class AdminDashboard implements IMaPL {
         }
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public String[] getCmds() {
-        return new String[0];
-    }
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(Integer cmdName, MaPL cmd) {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void getMapleState() {
-
-    }
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(String cmdName, MaPLwriter cmd) {
-
-    }
-
-    /**
-     * @param cmdName
-     * @param cmd
-     */
-    @Override
-    public void register(Integer cmdName, MaPLwriter cmd) {
-
-    }
-
-    /**
-     * @param cmdId
-     */
-    @Override
-    public void execute(int cmdId) {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void execute() {
-
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void up() {
-        System.out.println("jump");
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void down() {
-        System.out.println("go into a hole");
-    }
-
-
-    /**
-     *
-     */
-    @Override
-    public void left() {
-        System.out.println("stop");
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void right() {
-
-        System.out.println("go faster");
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void up(Object o) {
-
-        System.out.println("go faster" + o.toString());
-
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void down(Object o) {
-
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void left(Object o) {
-
-    }
-
-    /**
-     * @param o
-     */
-    @Override
-    public void right(Object o) {
-
-    }
 }

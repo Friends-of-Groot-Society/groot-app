@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.friendsofgroot.app.security.SpringSecurityConfiguration.getAuthenticatedUsername;
+//import static com.friendsofgroot.app.security.SpringSecurityConfiguration.getAuthenticatedUsername;
 
 
 @RestController 
@@ -18,13 +18,13 @@ import static com.friendsofgroot.app.security.SpringSecurityConfiguration.getAut
 @SessionAttributes("name")
 public class KeysController {
 	HashMap<String, String> map = new HashMap<>();
-
-	@GetMapping(value="/")
-	public ResponseEntity<String> userHome() {
-		String name = getAuthenticatedUsername();
-		map.put("name", name);
-		return new ResponseEntity<>("Auth Controller Complete: "+name, HttpStatus.OK);
-	}
+//
+//	@GetMapping(value="/")
+//	public ResponseEntity<String> userHome() {
+//		String name = getAuthenticatedUsername();
+//		map.put("name", name);
+//		return new ResponseEntity<>("Auth Controller Complete: "+name, HttpStatus.OK);
+//	}
 
 	@GetMapping("/getMoralisApi")
 	public Map<String, Set<String>> getMoralisApi() {

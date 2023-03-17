@@ -1,4 +1,7 @@
-package com.friendsofgroot.app.models;
+package com.friendsofgroot.app.dto;
+
+import com.friendsofgroot.app.models.Nft;
+import com.friendsofgroot.app.models.User;
 
 public class UserNftbuy {
     private User user;

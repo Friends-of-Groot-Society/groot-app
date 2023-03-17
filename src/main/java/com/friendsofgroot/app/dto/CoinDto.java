@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class CoinDto implements Serializable {
+    private static long serialVersionUID = 1L;
     private final int coinId;
     private final String coinToken;
     private final String coinSymbol;

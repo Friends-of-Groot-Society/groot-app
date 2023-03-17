@@ -21,8 +21,8 @@ public class Nft {
 	private int amount;
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Metadata metadata_id; // metadata_id
-	@OneToOne //(orphanRemoval = true)
-	private NftRef nftRef;
+//	@OneToOne //(orphanRemoval = true)
+//	private NftRef nftRef;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private NftAddress nftAddress;

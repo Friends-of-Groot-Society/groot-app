@@ -10,12 +10,13 @@ import java.io.Serializable;
 
 
 @Data
-public class AddressDto  implements Serializable {
+public class AddressDto implements Serializable {
+    private static long serialVersionUID = 1L;
     private int id;
 
     private String description;
 
-    private String owner;
+    private String email;
 
     private String address;
 

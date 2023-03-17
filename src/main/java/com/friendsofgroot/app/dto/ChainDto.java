@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 @Data
 public class ChainDto implements Serializable {
+    private static long serialVersionUID = 1L;
     private Integer id;
     private String name;
     private String symbol;

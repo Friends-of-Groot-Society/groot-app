@@ -26,4 +26,5 @@ public interface ChainsService {
 
 
 
+    List<ChainDto> findByCategory(String cat);
 }

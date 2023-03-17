@@ -7,7 +7,6 @@ import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.repositories.ChainsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -101,5 +100,15 @@ private ChainMapper chainMapper;
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<ChainDto> findByCategory(String cat) {
+        List<Chain> chains = chainsRepository.findByCategory(cat);
+        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
+        return content;
     }
 }

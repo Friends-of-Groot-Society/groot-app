@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "ADDRESS")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,7 +19,7 @@ public class Address {
 
     private String description;
 
-    private String owner;
+    private String email;
 
     private String address;
 
@@ -31,13 +32,13 @@ public class Address {
     @Column(name="block_explorer_url")
     private String blockExplorerUrl;
 
-    @ManyToOne( fetch = FetchType.EAGER,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-    @JoinColumn(name="user_id")
+    @ManyToOne( fetch = FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    @JoinColumn(name="userid")
     private User user;
 
-    @Column(name="chain_id")
     private int chainId;
 
-//    @ManyToOne //, cascade=CascadeType.ALL
-//    private NftAddress nftAddress;
+    @ManyToOne //, cascade=CascadeType.ALL
+    @JoinColumn(name="nft_address_id")
+    private NftAddress nftAddress;
 }

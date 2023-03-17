@@ -4,7 +4,7 @@ package com.friendsofgroot.app.dao;
 import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Bookmark;
 import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.models.UserBookmark;
+import com.friendsofgroot.app.dto.UserBookmark;
 import com.friendsofgroot.app.models.Weblink;
 import com.friendsofgroot.app.util.JDBCConnection;
 
@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BookmarkDaoImpl   implements BookmarkDAO {

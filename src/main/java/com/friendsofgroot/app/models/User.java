@@ -20,17 +20,18 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
-    @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
+//    @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="userid", nullable = false, unique = true)
     private int userId;
 
-    @Column(name="username", nullable = false )
+    @Column(name="username"  )
     private String username;
 
     @NotBlank(message="*Must give password")
     @Size(min=2, max=50)
-    @Column(name="password", nullable = false)
+    @Column(name="password" )
     private String password;
     @Column(name="lastname")
     private String lastName;
@@ -42,13 +43,14 @@ public class User implements Serializable {
     @Column(name="usertype") /// 0 = admin, 1 = user
     private int userType;
 
-    @NotBlank
-    @Email(message="*Must be a valid email address")
-    @Column(name="email", nullable = false )
-    private String email;
+
     @Column(name="phone")
     private String phone;
 
+    @NotBlank
+    @Email(message="*Must be a valid email address")
+    @Column(name="email" )
+    private String email;
     @Column(name="cusurl")
     private String cusUrl;
 
@@ -66,7 +68,7 @@ public class User implements Serializable {
     private String id;
 
     // parent of many
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user") // , orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id") // , orphanRemoval = true)
     private List<Address> addresses;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},

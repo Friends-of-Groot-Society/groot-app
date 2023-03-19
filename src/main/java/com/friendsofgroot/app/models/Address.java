@@ -33,12 +33,13 @@ public class Address {
     private String blockExplorerUrl;
 
     @ManyToOne( fetch = FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-    @JoinColumn(name="userid")
+//    @JoinColumn(name="userid")
     private User user;
 
     private int chainId;
 
-    @ManyToOne //, cascade=CascadeType.ALL
+//    @ManyToOne //, cascade=CascadeType.ALL
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name="nft_address_id")
     private NftAddress nftAddress;
 }

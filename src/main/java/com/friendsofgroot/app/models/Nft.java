@@ -25,5 +25,7 @@ public class Nft {
 //	private NftRef nftRef;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	@JoinColumn(name = "nft_address_id")
 	private NftAddress nftAddress;
+
 }

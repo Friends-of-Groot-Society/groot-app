@@ -16,8 +16,8 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NftAddress {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "nft_address_id" )
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id" )
 	private int id;
 
 	private String address;

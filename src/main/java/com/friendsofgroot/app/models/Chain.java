@@ -19,18 +19,19 @@ public class Chain {
     private String name;
     private String symbol;
     private String description;
+    @Column(name = "long_description")
     private String longDescription;
+    @Column(name= "icon_url")
     private String iconUrl;
 
     private String category;
-
+    @Column(name = "chain_list_icon")
     private String chainListIcon;
-
+    @Column(name = "rpc_url")
     private String rpcUrl;
 
     private int id;
-
-
+    @Column(name = "block_explorer_url")
     private String blockExplorerUrl;
 
 

@@ -1,4 +1,7 @@
-package com.friendsofgroot.app.models;
+package com.friendsofgroot.app.dto;
+
+import com.friendsofgroot.app.models.Coin;
+import com.friendsofgroot.app.models.User;
 
 public class UserCoinbuy {
     private User user;

@@ -1,20 +1,26 @@
 package com.friendsofgroot.app.models;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "ATTRIBUTE")
 public class Attribute {
+
     @Id
-    int attrid;
-    String value;
-    String trait_type;
-//    @ManyToOne
-//    @JoinColumn(name = "metadata_metaid")
-//    private int metadata_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "attrid", nullable = false)
+    private int attrid;
+    private String valu;
+    private String trait_type;
+    @ManyToOne
+    private Metadata metadata;
+//    @Column(name = "metaids")
+//    private int metadataMetaid;
 
 }

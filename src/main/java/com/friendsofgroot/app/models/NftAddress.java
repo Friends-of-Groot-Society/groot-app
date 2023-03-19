@@ -1,5 +1,7 @@
 package com.friendsofgroot.app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.friendsofgroot.app.dto.NftDto;
 import lombok.Data;
 
@@ -11,20 +13,27 @@ import java.util.Map;
 @Data
 @Entity
 @Table(name = "NFT_ADDRESS") /// ANGULAR's NFT.ts
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NftAddress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
-	int id;
+	@Column(name = "id" )
+	private int id;
 
-	 String address;
+	private String address;
 
-	@Column(name="native")
-	Double nativeToken;
+	@Column(name = "native_token")
+	private Double nativeToken;
 
-@ElementCollection
-	HashMap<String, Double> tokens; // token name, token amount	@OneToOne
-	@OneToMany
-	@Column(name = "nft_address_id")
-	List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
+	@Column(name = "native")
+	private Double nativeTokenAmount;
+	@Column(name = "tokens")
+	private Float tokensAmount;
+	// token name, token amount	@OneToOne
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "nftAddress" )
+	@Column(name = "nfts")
+	private List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
 }
+
+
+

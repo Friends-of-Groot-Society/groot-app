@@ -31,4 +31,6 @@ public interface UserMapper {
     @Mapping(source = "firstName", target = "firstName")
     @Mapping(source = "userGroup", target = "userGroup")
     User toEntity(UserDto user);
+
+    List<UserDto> toListDto(List<UserDto> users);
 }

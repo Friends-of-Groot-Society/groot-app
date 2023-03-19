@@ -11,15 +11,16 @@ import java.util.List;
 public class Metadata {
 
     @Id
-    int metaid;
-    String name;
-    String description;
-    String image;
-    @OneToOne(mappedBy = "metadata")
-    @JoinColumn(name = "nft_id")
-    Nft nft;
-//    @OneToMany
-//    List<Attribute> attributes;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "metadata_id", nullable = false)
+    private int metadataId;
+    private String name;
+    private String description;
+    private String image;
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Nft nft;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "metadata", orphanRemoval = true)
+    private List<Attribute> attributes;
 
 
 }

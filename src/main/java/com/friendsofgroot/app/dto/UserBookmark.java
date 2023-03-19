@@ -1,4 +1,7 @@
-package com.friendsofgroot.app.models;
+package com.friendsofgroot.app.dto;
+
+import com.friendsofgroot.app.models.Bookmark;
+import com.friendsofgroot.app.models.User;
 
 public class UserBookmark {
 	private User user;

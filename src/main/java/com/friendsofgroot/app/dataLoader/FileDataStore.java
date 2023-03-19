@@ -1,5 +1,8 @@
 package com.friendsofgroot.app.dataLoader;
 
+import com.friendsofgroot.app.dto.UserBookmark;
+import com.friendsofgroot.app.dto.UserCoinbuy;
+import com.friendsofgroot.app.dto.UserNftbuy;
 import com.friendsofgroot.app.models.*;
 import com.friendsofgroot.app.util.ReadWriteFile;
 
@@ -8,10 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.friendsofgroot.app.util.ReadWriteFile;
-import com.friendsofgroot.app.util.constants.Datum.*;
 import static com.friendsofgroot.app.util.constants.Datum.*;
-import com.friendsofgroot.app.repositories.UsersRepository;
 
 
 public class FileDataStore extends ReadWriteFile {
@@ -44,7 +44,7 @@ public class FileDataStore extends ReadWriteFile {
 		return weblinks;
 	}
 	public static List<
-			UserBookmark> userBookmarks = new ArrayList<>();
+            UserBookmark> userBookmarks = new ArrayList<>();
 
 	public static void loadData() throws FileNotFoundException, UnsupportedEncodingException {
 		loadUsers();

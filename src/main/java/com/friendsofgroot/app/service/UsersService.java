@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.UserChain;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.models.User;
 
@@ -23,4 +24,6 @@ public interface UsersService {
 	public boolean deleteUser(String username);
 
 	boolean deleteUser(UserDto user);
+
+	List<UserChain> getUserChains();
 }

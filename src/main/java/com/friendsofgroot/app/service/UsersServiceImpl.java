@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.UserChain;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
@@ -74,9 +75,14 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public List<UserDto> getUsers() {
+        List<UserDto> userDtos = null;
         List<User> users = usersRepository.findAll();
-        List<UserDto> userDtos = users.stream().map(userMapper::toDto).collect(Collectors.toList());
-        return userDtos;
+         if (users == null) {
+            throw new ResourceNotFoundException("not found", "not found", "not found");
+             }   else {
+           userDtos = users.stream().map(userMapper::toDto).collect(Collectors.toList());
+                return userDtos;
+            }
 
     }
 
@@ -143,6 +149,15 @@ public class UsersServiceImpl implements UsersService {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<UserChain> getUserChains() {
+
+        return usersRepository.getUserChains();
     }
 
     public List<User> getUsersWithCoins() {

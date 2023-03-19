@@ -80,11 +80,11 @@
 			<artifactId>spock-core</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.spockframework</groupId>
-			<artifactId>spock-junit4</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!--		<dependencycy>-->
+<!--			<groupId>org.spockframework</groupId>-->
+<!--			<artifactId>spock-spring</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependencycy>-->
 		<!-- Optional dependencies for using Spock -->
 		<dependency> <!-- use a specific Groovy version rather than the one specified by spock-core -->
 			<groupId>org.apache.groovy</groupId>
@@ -94,7 +94,7 @@
 
 
 
-		<!--<dependency>
+		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
@@ -103,7 +103,7 @@
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-core</artifactId>
 		</dependency>
--->
+
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -117,10 +117,11 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
+<!--		</dependency>-->
+
 
 
 		<dependency>
@@ -261,6 +262,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+<!--			<plugin>-->
+<!--				<artifactId>h2</artifactId>-->
+<!--				<configuration>-->
+<!--					<jdbc>-->
+<!--						<driver>org.h2.Driver</driver>-->
+<!--						<url>jdbc:h2:~/test</url>-->
+<!--					</jdbc>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -316,6 +326,7 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<finalName>friendsofgroot</finalName>
 	</build>
 
 </project>

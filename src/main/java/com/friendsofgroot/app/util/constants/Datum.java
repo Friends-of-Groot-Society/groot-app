@@ -16,9 +16,8 @@ public class Datum {
     public static final String DEFAULT_PAGE_SIZE = "100";
     public static final String DEFAULT_SORT_BY = "id";
     public static final String DEFAULT_SORT_DIRECTION = "asc";
-
-
-    // FILES
+    public static final String SRC_DATA_STARTUP_TEXT_ADMIN_TXT  = "src/data/STARTUP_TEXT_ADMIN.txt" ;;
+    public static final String SRC_DATA_STARTUP_TEXT_TXT = "src/data/STARTUP_TEXT.txt" ;;
     public static final String LOCAL_SCANNER_TXT = "src/data/scannertext.txt" ;
     public static final String  FILE_IN_COINS = "src/data/files/fileInCoins.txt" ;
     public static final String FILE_IN_WEBLINKS = "src/data/files/fileInWeblinks.txt" ;

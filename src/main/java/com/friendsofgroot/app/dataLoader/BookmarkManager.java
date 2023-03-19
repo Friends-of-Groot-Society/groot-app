@@ -3,7 +3,7 @@ package com.friendsofgroot.app.dataLoader;
 import com.friendsofgroot.app.dao.BookmarkDaoImpl;
 import com.friendsofgroot.app.models.Bookmark;
 import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.models.UserBookmark;
+import com.friendsofgroot.app.dto.UserBookmark;
 import com.friendsofgroot.app.models.Weblink;
 import com.friendsofgroot.app.util.DownloadSequential;
 import com.friendsofgroot.app.util.ReadWriteFile;

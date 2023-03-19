@@ -2,8 +2,6 @@ package com.friendsofgroot.app.dao;
 
 import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Coin;
-import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.models.UserCoinbuy;
 import com.friendsofgroot.app.util.JDBCConnection;
 
 import java.sql.Connection;

@@ -26,7 +26,7 @@
 						</tr>
 					</thead>
 					<tbody> 
-						<tr th:each="aProject : ${projectsList}">
+						<tr th:each="aProject : ${chainsList}">
 							<td th:text="${aProject.name}"/>
 							<td th:text="${aProject.stage}"/>
 						</tr>
@@ -41,7 +41,7 @@
 				<canvas id="myPieChart" height="50" width="50"></canvas>
 				
 				<script>
-					var chartData = "[[${projectStatusCnt}]]"
+					var chartData = "[[${chainStatusCnt}]]"
 				</script>
 				
 			</div>
@@ -50,7 +50,7 @@
 	</div>
 	
 	<div class="container">
-		<h4> Current Employees </h4>
+		<h4> Current Users </h4>
 		<div class="row">
 			<div class="col-md-6">
 				<table class="table table-bordered table-striped">
@@ -62,10 +62,10 @@
 						</tr>
 					</thead>
 					<tbody> 
-						<tr th:each="aEmployeeProjectCnt : ${employeesListProjectsCnt}">
-							<td th:text="${aEmployeeProjectCnt.firstName}"/>
-							<td th:text="${aEmployeeProjectCnt.lastName}"/>
-							<td th:text="${aEmployeeProjectCnt.projectCount}"/>
+						<tr th:each="aUserProjectCnt : ${usersListProjectsCnt}">
+							<td th:text="${aUserProjectCnt.firstName}"/>
+							<td th:text="${aUserProjectCnt.lastName}"/>
+							<td th:text="${aUserProjectCnt.chainCount}"/>
 						</tr>
 					
 					</tbody>

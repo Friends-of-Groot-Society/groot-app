@@ -1,6 +1,9 @@
 package com.friendsofgroot.app.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -17,14 +20,18 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
-    @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
+//    @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="userid", nullable = false, unique = true)
     private int userId;
 
-    @Column(name="username", nullable = false )
+    @Column(name="username"  )
     private String username;
-    @Column(name="password", nullable = false)
+
+    @NotBlank(message="*Must give password")
+    @Size(min=2, max=50)
+    @Column(name="password" )
     private String password;
     @Column(name="lastname")
     private String lastName;
@@ -35,11 +42,15 @@ public class User implements Serializable {
     private int groups;
     @Column(name="usertype") /// 0 = admin, 1 = user
     private int userType;
-    @Column(name="email", nullable = false )
-    private String email;
+
+
     @Column(name="phone")
     private String phone;
 
+    @NotBlank
+    @Email(message="*Must be a valid email address")
+    @Column(name="email" )
+    private String email;
     @Column(name="cusurl")
     private String cusUrl;
 
@@ -57,21 +68,43 @@ public class User implements Serializable {
     private String id;
 
     // parent of many
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user") // , orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id") // , orphanRemoval = true)
     private List<Address> addresses;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
-    @JoinTable(name="nft_address_user",
-            joinColumns=@JoinColumn(name="user_id"),
-            inverseJoinColumns= @JoinColumn(name="nft_address_id")
+    @JoinTable(name="chain_users",
+            joinColumns=@JoinColumn(name="userid"),
+            inverseJoinColumns= @JoinColumn(name="chain_id")
     )
     @JsonIgnore
-    private List<NftAddress> chains;
+    private List<Chain> chains = new ArrayList<>();
 //    @ManyToMany(fetch = FetchType.EAGER)
 //   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    private List<Role> roles = new ArrayList<>();
-////
+
+    ////////////////////
+
+    public boolean setRole(String admin) {
+        this.userType = 9;
+        return true;
+    }
+//    public void addRole(Role role){
+//        if(!this.roles.contains(role)){
+//            this.roles.add(role);
+//        }
+//
+//        if(!role.getUsers().contains(this)){
+//            role.getUsers().add(this);
+//        }
+//    }
+//
+//    public void removeRole(Role role){
+//        this.roles.remove(role);
+//        role.getUsers().remove(this);
+//    }
+
+    ///////////////////////////
     public User(int userid, String username, String password, String lastName, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
         super();
 
@@ -92,22 +125,7 @@ public class User implements Serializable {
     }
 
 
-//    public void addRole(Role role){
-//        if(!this.roles.contains(role)){
-//            this.roles.add(role);
-//        }
 //
-//        if(!role.getUsers().contains(this)){
-//            role.getUsers().add(this);
-//        }
-//    }
-//
-//    public void removeRole(Role role){
-//        this.roles.remove(role);
-//        role.getUsers().remove(this);
-//    }
-
-
     //////////////////////////////////////
     // overloaded for getUsersByCArs() call to DB
     public User(int userId, String username) {
@@ -187,6 +205,8 @@ public User(  String password, String lastName, String firstName,
     this.contactType = contactType;
     this.id = id;
 }
+
+
 
 //    public void registerThis(String un, String pw, String ln, String fn) {
 //        this.username = un;

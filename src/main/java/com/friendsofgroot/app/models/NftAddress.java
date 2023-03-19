@@ -16,8 +16,8 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NftAddress {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id" )
 	private int id;
 
 	private String address;
@@ -31,7 +31,7 @@ public class NftAddress {
 	private Float tokensAmount;
 	// token name, token amount	@OneToOne
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "nftAddress" )
-	@Column( nullable = true)
+	@Column(name = "nfts")
 	private List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
 }
 

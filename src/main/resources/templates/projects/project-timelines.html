@@ -17,7 +17,7 @@
 	<script type="text/javascript">
 
 
-		var chartData = "[[${projectTimeList}]]"
+		var chartData = "[[${chainTimeList}]]"
 		var chartDataDecoded = decodeHtml(chartData);
 		var chartJsonArray = JSON.parse(chartDataDecoded)
 		var resultArray = [];
@@ -41,7 +41,7 @@
 
 	      for (var i = 0; i < resultArray.length; i++) {
 	    	  dataTable.addRows([
-	    		  			[resultArray[i][1]["projectName"], 
+	    		  			[resultArray[i][1]["chainName"],
 	    		  			 new Date(resultArray[i][1]["startDate"]),
 	    		  			new Date(resultArray[i][1]["endDate"])]
 	    		  ]);

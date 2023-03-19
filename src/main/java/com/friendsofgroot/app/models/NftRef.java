@@ -14,7 +14,7 @@ import java.util.Map;
 @Table(name = "NFT_REF")
 public class NftRef   {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private int id;
     private String name;
@@ -23,9 +23,7 @@ public class NftRef   {
     private String address;
     private String chain;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Nft nft;
-
-
+//    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    private Nft nft;
 
 }

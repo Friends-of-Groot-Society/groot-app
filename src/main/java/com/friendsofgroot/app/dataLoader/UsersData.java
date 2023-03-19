@@ -2,6 +2,7 @@ package com.friendsofgroot.app.dataLoader;
 
 import com.friendsofgroot.app.dao.CoinDAOimpl;
 import com.friendsofgroot.app.dao.UserDAOimpl;
+import com.friendsofgroot.app.dto.UserCoinbuy;
 import com.friendsofgroot.app.models.*;
 
 import java.util.List;

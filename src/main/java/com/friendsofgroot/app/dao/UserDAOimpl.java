@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.friendsofgroot.app.dataLoader.FileDataStore;
+import com.friendsofgroot.app.dto.UserCoinbuy;
 import com.friendsofgroot.app.models.*;
 import com.friendsofgroot.app.util.JDBCConnection;
 

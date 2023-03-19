@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.UserChain;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
@@ -148,6 +149,15 @@ public class UsersServiceImpl implements UsersService {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<UserChain> getUserChains() {
+
+        return usersRepository.getUserChains();
     }
 
     public List<User> getUsersWithCoins() {

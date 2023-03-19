@@ -27,8 +27,8 @@ public class AddressesServiceImpl implements AddressesService {
         if (address != null && (address.getChainId() == 0)) {
             address.setChainId(addrDto.getChainId());
         }
-        if (address != null && (address.getOwner() == null || address.getOwner() == "")) {
-            address.setOwner(addrDto.getOwner());
+        if (address != null && (address.getEmail() == null || address.getEmail() == "")) {
+            address.setEmail(addrDto.getEmail());
         }
         Address newAddress = addressesRepository.save(address);
         AddressDto newAddressDto = addressMapper.addressToAddressDto(newAddress);
@@ -62,7 +62,7 @@ public class AddressesServiceImpl implements AddressesService {
             addUpdate.setIconUrl(change.getIconUrl());
             addUpdate.setUser(change.getUser());
             addUpdate.setChain(change.getChain());
-            addUpdate.setOwner(change.getOwner());
+            addUpdate.setEmail(change.getEmail());
             addUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
             addUpdate.setChainId(change.getChainId());
 //            addUpdate.setNftAddress(change.getNftAddress());

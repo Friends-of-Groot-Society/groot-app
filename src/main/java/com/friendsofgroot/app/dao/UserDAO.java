@@ -3,7 +3,7 @@ package com.friendsofgroot.app.dao;
 import java.util.List;
  
 import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.models.UserCoinbuy;
+import com.friendsofgroot.app.dto.UserCoinbuy;
 
 public interface UserDAO {
 	public boolean createUser(User u);

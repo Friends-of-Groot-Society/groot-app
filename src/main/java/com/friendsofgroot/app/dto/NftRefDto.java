@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.friendsofgroot.app.models.NftRef;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,10 +15,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NftRefDto implements Serializable {
+    private static long serialVersionUID = 1L;
     private String name;
     private String owner;
     private String email;
     private String address;
     private String chain;
-    private NftDto  nft;
+//    private NftDto  nft;
 }

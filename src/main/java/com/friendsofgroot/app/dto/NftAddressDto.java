@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Data
 public class NftAddressDto implements Serializable {
+    private static long serialVersionUID = 1L;
     private  int id;
     private  String address;
     private  Double nativeToken;

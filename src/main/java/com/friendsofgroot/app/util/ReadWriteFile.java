@@ -19,6 +19,7 @@ import static com.friendsofgroot.app.util.constants.Datum.*;
 public class ReadWriteFile {
 
 
+
     public static String readFromJson(String dataPath, String filename) {
         List<User> uList = new ArrayList<>();
         try {

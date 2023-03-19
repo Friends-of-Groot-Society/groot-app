@@ -12,34 +12,34 @@
 	<div class="container">
 	
 	
-		<form th:action="@{/employees/save}" th:object="${employee}" method="POST">
+		<form th:action="@{/users/save}" th:object="${user}" method="POST">
 		
 		
-		<!--  This will be used to bind to the employee that was clicked on (USED FOR UPDATES)-->
-		<input type="hidden" th:field="${employee.employeeId}"/>
+		<!--  This will be used to bind to the user that was clicked on (USED FOR UPDATES)-->
+		<input type="hidden" th:field="${user.userId}"/>
 		
 		<div class="form-group row">
-			<input type="text" placeholder="First Name" th:field="${employee.firstName}">
+			<input type="text" placeholder="First Name" th:field="${user.firstName}">
 			<span style="color:red" th:if="${#fields.hasErrors('firstName')}"
-				  th:errors="${employee.firstName}">
+				  th:errors="${user.firstName}">
 			</span>
 		</div>
 	
 		<div class="form-group row">
-			<input type="text" placeholder="Last Name" th:field="${employee.lastName}">
+			<input type="text" placeholder="Last Name" th:field="${user.lastName}">
 			<span style="color:red" th:if="${#fields.hasErrors('lastName')}"
-				  th:errors="${employee.lastName}">
+				  th:errors="${user.lastName}">
 			</span>
 		</div>
 		
 		<div class="form-group row">
-			<input type="text" placeholder="Email Address" th:field="${employee.email}">
+			<input type="text" placeholder="Email Address" th:field="${user.email}">
 			<span style="color:red" th:if="${#fields.hasErrors('email')}"
-				  th:errors="${employee.email}">
+				  th:errors="${user.email}">
 			</span>
 		</div>
 		
-		<button class="btn btn-info col-2" type="submit">Enter Employee</button>
+		<button class="btn btn-info col-2" type="submit">Enter User</button>
 		
 		</form>
 	</div>

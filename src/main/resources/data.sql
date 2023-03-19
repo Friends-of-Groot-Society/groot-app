@@ -15,7 +15,7 @@ Insert into USERS (USERID,USERNAME,PASSWORD,LASTNAME,FIRSTNAME,GROUPS,USERTYPE,P
 Insert into USERS (USERID,USERNAME,PASSWORD,LASTNAME,FIRSTNAME,GROUPS,USERTYPE,PHONE,EMAIL,CUSURL,PHOTOPATH,USERGROUP,ISACTIVE,CONTACTTYPE,ID) values (nextval('ID_MAKER'),'user152013','passwordss','Smith','Tom',3,1,         '5055087707','user152013@cryptomaven.xyz','http://www.dailytech.net','photoPath','userGroup',0,1,'1');
 Insert into USERS (USERID,USERNAME,PASSWORD,LASTNAME,FIRSTNAME,GROUPS,USERTYPE,PHONE,EMAIL,CUSURL,PHOTOPATH,USERGROUP,ISACTIVE,CONTACTTYPE,ID) values (nextval('ID_MAKER'),'user152011','passwords22','Smith22','Tom22',3,1,    '5055087707','user152011@cryptomaven.xyz','http://www.dailytech.net','photoPath','userGroup',0,1,'1');
 Insert into USERS (USERID,USERNAME,PASSWORD,LASTNAME,FIRSTNAME,GROUPS,USERTYPE,PHONE,EMAIL,CUSURL,PHOTOPATH,USERGROUP,ISACTIVE,CONTACTTYPE,ID) values (nextval('ID_MAKER'),'joshallen','allen','allen','josh',0,0,              '999-999-9999','joshallen8@cryptomaven.xyz', 'http://www.dailytech.net','photoPath','userGroup',0,1,'1');
-    Insert into USERS (USERID,USERNAME,PASSWORD,LASTNAME,FIRSTNAME,GROUPS,USERTYPE,PHONE,EMAIL,CUSURL,PHOTOPATH,USERGROUP,ISACTIVE,CONTACTTYPE,ID) values (nextval('ID_MAKER'),'testtest321','passwordX','Smith','Tom',3,1,     '5055087707','user9@cryptomaven.xyz',     'http://www.dailytech.net','photoPath','userGroup',0,1,'1');
+  Insert into USERS (USERID,USERNAME,PASSWORD,LASTNAME,FIRSTNAME,GROUPS,USERTYPE,PHONE,EMAIL,CUSURL,PHOTOPATH,USERGROUP,ISACTIVE,CONTACTTYPE,ID) values (nextval('ID_MAKER'),'testtest321','passwordX','Smith','Tom',3,1,     '5055087707','user9@cryptomaven.xyz',     'http://www.dailytech.net','photoPath','userGroup',0,1,'1');
 
 
 -- INSERT CHAIN

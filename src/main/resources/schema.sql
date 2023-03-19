@@ -44,14 +44,16 @@ create table if not exists chain_users
 create table if not exists chain
 (
     chain_id           NUMBER not null,
-    block_explorer_url varchar(255),
-    chain              varchar(255),
-    chain_list_icon    varchar(255),
-    description        varchar(255),
-    icon_url           varchar(255),
-    long_description   varchar(255),
     name               varchar(255),
+    symbol              varchar(255),
+    description        varchar(255),
+    long_description   varchar(255),
+    icon_url           varchar(255),
+    category    varchar(255),
+    chain_list_icon    varchar(255),
     rpc_url            varchar(255),
+    id                 NUMBER,
+    block_explorer_url varchar(255),
     primary key (chain_id)
 );
 create table if not exists chain_users

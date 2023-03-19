@@ -11,7 +11,8 @@ import java.io.Serializable;
 @Data
 public class ChainDto implements Serializable {
     private static long serialVersionUID = 1L;
-    private Integer id;
+
+    private Integer chainId;
     private String name;
     private String symbol;
     private String description;
@@ -20,6 +21,6 @@ public class ChainDto implements Serializable {
     private String category;
     private String chainListIcon;
     private String rpcUrl;
-    private Integer chainId;
+    private Integer id;
     private String blockExplorerUrl;
 }

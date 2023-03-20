@@ -1,10 +1,13 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.LoginDto;
+import com.friendsofgroot.app.dto.RegisterDto;
 import com.friendsofgroot.app.dto.UserChain;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.models.User;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface UsersService {
@@ -19,11 +22,17 @@ public interface UsersService {
 
 	public UserDto updateUser(UserDto change);
 
- 	public List<User> getUsersWithCoins();
+	UserDto getUserByEmailAndPassword(String email, String pw);
+
+	public List<User> getUsersWithCoins();
 	public UserDto getUserByPassword(String username, String password);
 	public boolean deleteUser(String username);
 
 	boolean deleteUser(UserDto user);
 
 	List<UserChain> getUserChains();
+
+	UserDto registerUser(RegisterDto rDto);
+
+	UserDto loginUser(String username, String password);
 }

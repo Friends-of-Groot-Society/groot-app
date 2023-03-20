@@ -27,16 +27,16 @@ public class UserProfile {
         String pw = user.getPassword() != null ? user.getPassword() : "";
         String fn = user.getFirstName() != null ? user.getFirstName() : "";
         String ln = user.getLastName() != null ? user.getLastName() : "";
-        int groups = 0 != 0 ? user.getGroups() : 0;
-        int userType = 0 != 0 ? user.getUserType() : 0;
+        int groups = 0 != 0 ? user.getGroups() : 1;
+        int userType = 0 != 0 ? user.getUserType() : 2;
         String email = user.getEmail() != null ? user.getEmail() : "";
         String phone = (user.getPhone() != null) ? user.getPhone() : "";
         String cusurl = user.getCusUrl() != null ? user.getCusUrl() : "";
         String photoPath = user.getPhotoPath() != null ? user.getPhotoPath() : "";
         String userGroup = user.getUserGroup() != null ? user.getUserGroup() : "";
-        int isActive =  user.getIsActive() != 0 ? user.getIsActive() : 0;
+        int isActive =  user.getIsActive() != 0 ? user.getIsActive() : 1;
         int contactType =  user.getContactType() != 0 ? user.getContactType() : 0;
-        String id =  user.getId() != null ? user.getId() : "";
+        String id =  user.getIdToken() != null ? user.getIdToken() : "HEXABC123";
         System.out.println(user+ pw+ ln+fn+  groups+userType+  phone+email+ cusurl+ photoPath+ userGroup+ isActive+contactType+  id);
         editLoop(user, pw, ln,fn,  groups, userType,  phone,email, cusurl, photoPath, userGroup, isActive,contactType,  id);
     }

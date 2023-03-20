@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 public class UserDto  implements Serializable {
     private static final long serialVersionUID = 1L;
-    private int userId;
+    private int localId; // userId;
     private String username;
     private String password;
     private String lastName;
@@ -28,7 +28,8 @@ public class UserDto  implements Serializable {
     private String userGroup;
     private int isActive;
     private int contactType;
-    private String id;
+    private String idToken; // id
+
 
     // parent of many
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

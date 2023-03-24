@@ -35,7 +35,7 @@ public class Address {
     @ManyToOne( fetch = FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 //    @JoinColumn(name="userid")
     private User user;
-
+    @Column(name="chain_id")
     private int chainId;
 
 //    @ManyToOne //, cascade=CascadeType.ALL

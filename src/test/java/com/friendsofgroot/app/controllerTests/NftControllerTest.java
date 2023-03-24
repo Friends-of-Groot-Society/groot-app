@@ -1,5 +1,6 @@
-package com.friendsofgroot.app.controllers;
+package com.friendsofgroot.app.controllerTests;
 
+import com.friendsofgroot.app.controllers.NftController;
 import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.models.Metadata;
 import com.friendsofgroot.app.models.Nft;

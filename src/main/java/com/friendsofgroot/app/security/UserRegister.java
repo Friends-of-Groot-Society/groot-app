@@ -40,7 +40,7 @@ public class UserRegister {
 //				1,
 //				"id" );
 		UserDto newUser =  new UserDto();
-		newUser.setUserId((int) Math.round(Math.random()*100));
+		newUser.setLocalId((int) Math.round(Math.random()*100));
 		newUser.setUsername(un);
 		newUser.setPassword(pw);
 		newUser.setLastName(ln);
@@ -51,10 +51,10 @@ public class UserRegister {
 		newUser.setPhone("999-999-9999");
 		newUser.setCusUrl("http://www.dailytech.net");
 		newUser.setPhotoPath("photoPath");
-		newUser.setUserGroup("userGroup");
+		newUser.setUserGroup("1");
 		newUser.setIsActive(0);
 		newUser.setContactType(1);
-		newUser.setId("id");
+		newUser.setIdToken("id");
 //		UserService  userService = new UsersServiceImpl();
 		UserRegister userRegister = new UserRegister();
 		userRegister.registerThis(un, pw, ln, fn);

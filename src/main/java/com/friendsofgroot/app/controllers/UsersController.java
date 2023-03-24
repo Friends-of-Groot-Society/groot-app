@@ -1,5 +1,7 @@
 package com.friendsofgroot.app.controllers;
 
+import com.friendsofgroot.app.dto.LoginDto;
+import com.friendsofgroot.app.dto.RegisterDto;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersService;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @CrossOrigin(origins = "*")
@@ -28,6 +31,19 @@ public class UsersController {
         return new ResponseEntity<>(
                 usersService.createUser( userDto) ,
                  HttpStatus.CREATED);
+    }
+    @PostMapping("/users/register")
+    public ResponseEntity<UserDto> registerUser(@RequestBody RegisterDto rDto) {
+        return new ResponseEntity<>(
+                usersService.registerUser(rDto),
+                HttpStatus.CREATED);
+    }
+
+    @PostMapping("/users/login")
+    public ResponseEntity< UserDto > loginUser(@RequestBody LoginDto lDto) {
+        return new ResponseEntity<>(
+                usersService.loginUser(lDto.getUsernameOrEmail(), lDto.getPassword()),
+                HttpStatus.OK);
     }
 
     @GetMapping(value="/users/{userId}")

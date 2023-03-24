@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -27,10 +28,12 @@ public interface UserMapper {
 
 
     UserDto toDto(User u);
-    @Mapping(source = "lastName", target = "lastName")
-    @Mapping(source = "firstName", target = "firstName")
-    @Mapping(source = "userGroup", target = "userGroup")
+
+    @Mapping(source = "localId", target = "userId")
+    @Mapping(source = "idToken", target = "id")
     User toEntity(UserDto user);
 
     List<UserDto> toListDto(List<UserDto> users);
+
+    UserDto toDtoFromOptional(Optional<User> u);
 }

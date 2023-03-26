@@ -1,7 +1,6 @@
 
 package com.friendsofgroot.app.consoles;
 
-import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +8,6 @@ import java.util.Scanner;
 import com.friendsofgroot.app.commands.*;
 import com.friendsofgroot.app.dto.CoinDto;
 import com.friendsofgroot.app.dto.UserDto;
-import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.AddressesServiceImpl;
 import com.friendsofgroot.app.service.ChainsServiceImpl;
 import com.friendsofgroot.app.service.UsersServiceImpl;
@@ -18,8 +16,6 @@ import com.friendsofgroot.app.models.Coin;
 
 import com.friendsofgroot.app.service.CoinsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 

@@ -66,7 +66,7 @@ public class UsersControllerTest {
 
 //        User user = new User();
         UserDto userDto = new UserDto();
-        userDto.setLocalId(id);
+        userDto.setUserId(id);
 //        userDto = userMapper.toDto(user);
 
         when(uService.getUser(id)).thenReturn(userDto);

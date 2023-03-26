@@ -2,28 +2,23 @@
 
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'Tom1@cryptomaven.xyz', 'password', 'Smith', 'Tom1', 3, 1, '5055087707',
-        'Tom1@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a1.jpg',
+values (nextval('ID_MAKER'), 'Tom1@gmail.com', 'password', 'Smith', 'Tom1', 3, 1, '5055087707',
+        'Tom1@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a1.jpg',
         'photoPath', 'userGroup', 0, 1, '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
 values (nextval('ID_MAKER'), 'Tom2@gmail.com', 'password', 'Maestas', 'Tom2', 3, 1, '5055087707',
-        'Tom2@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a2.jpg',
+        'Tom2@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a2.jpg',
         'photoPath', 'userGroup', 0, 1, '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'),'Tom3@gmail.com', 'password', 'Smith', 'Tom3', 3, 1, '5055087707', 'Tom3@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'Tom3@gmail.com', 'password', 'Smith', 'Tom3', 3, 1, '5055087707', 'Tom3@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a3.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'),'Tom4@gmail.com', 'password', 'Smith', 'Tom4', 0, 0, '5055087707', 'Tom4@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'Tom4@gmail.com', 'password', 'Smith', 'Tom4', 0, 0, '5055087707', 'Tom4@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a4.jpg', 'photoPath', null, 0, 0, '5');
-Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
-                   USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'),'thomasm1@gmail.com', 'password', 'maestas22', 'thomas22', 4, 2, '999-999-9999','thomasm1@gmail.com',
-        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a5.jpg', 'photoPath', 'userGroup', 0, 1,
-        '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
 values (nextval('ID_MAKER'), 'Tom5@gmail.com', 'password', 'Smith', 'Tom5', 3, 1, '5055087707','Tom5@gmail.com',
@@ -36,7 +31,7 @@ values (nextval('ID_MAKER'), 'Tom6@gmail.com', 'password', 'Smith', 'Tom6', 3, 1
         '5');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'),'thomas@gmail.com', 'password', 'maestas', 'thomas', 4, 2, '999-999-9999','thomas@gmail.com',
+values (nextval('ID_MAKER'),'tom7@gmail.com', 'password', 'maestas', 'tom7', 4, 2, '999-999-9999','tom7@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
@@ -46,33 +41,11 @@ values (nextval('ID_MAKER'),'Tom8@gmail.com', 'password', 'Smith', 'Tom8', 3, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'Toms@gmail.com', 'password', 'Smith', 'Toms', 3, 1, '5055087707','Toms@gmail.com',
-        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
-        '1');
-Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
-                   USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'Tom9@gmail.com', 'password', 'Smith', 'Tom9',0, 0, '5055087707','Tom9@gmail.com',
+values (nextval('ID_MAKER'), 'thomas.maestas@hotmail.com', 'password', 'Maestas', 'thomas',0, 0, '5055087707','thomas.maestas@hotmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', null, 0, 0, null);
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'),  'thomasm1@gmail.com', 'password', 'Smith', 'Tom555',0, 0, '5055087707','thomasm1@gmail.com',
-        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photopath', 0, 0, '520');
-Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
-                   USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'Tom566@gmail.com',  'password', 'Smith', 'Tom566', 3, 1, '5055087707','Tom566@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg',
-        'photoPath', 'userGroup', 0, 1, '1');
-Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
-                   USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'thomasm1@gmail.com',  'password', 'Smith22', 'Tom226', 3, 1, '5055087707','thomasm1@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg',
-        'photoPath', 'userGroup', 0, 1, '1');
-Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
-                   USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'),'josh@cryptomaven.xyz' 'allen', 'allen', 'josh', 0, 0, '999-999-9999', 'josh@cryptomaven.xyz',
-        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
-        '1');
-Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
-                   USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'Tom333', 'password', 'Smith', 'Tom333', 3, 1, '5055087707', 'Tom333@cryptomaven.xyz',
+values (nextval('ID_MAKER'), 'thomasm1.maestas@gmail.com', 'password', 'Maestas', 'thomasm1', 3, 1, '5055087707','thomasm1.maestas@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 
@@ -90,7 +63,7 @@ values (nextval('chain_seq'), 'avalanche', 'avax', 'Avalanche C-Chain', 'NFT - 0
         null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulsechain', 'pls', 'Pulsechain Mainnet', 'NFT   0x1',
+values (nextval('chain_seq'), 'pulsechain', 'pls', 'pulsechain Mainnet', 'NFT   0x1',
         'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet',
         'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',
         'https://rpc.pulsechain.io', 4, null);
@@ -102,63 +75,38 @@ values (nextval('chain_seq'), 'solana', 'sol', 'solana Mainnet', 'NFT - 0x1',
         'https://api.mainnet-beta.solana.com', 3, null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'polygon', 'matic', 'Polygon Mainnet', 'NFT - 0x1',
+values (nextval('chain_seq'), 'polygon', 'matic', 'polygon Mainnet', 'NFT - 0x1',
         'https://s3.amazonaws.com/tmm.net/img/polygon.jpg', 'Mainnet', null, ' https://rpc-mainnet.maticvigil.com/', 3,
         null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulseChain', 'TPLS', 'Pulsechain Mainnet', 'NFT - 0x1',
+values (nextval('chain_seq'), 'pulsechain', 'TPLS', 'pulsechain Mainnet', 'NFT - 0x1',
         'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet', null, 'https://rpc.testnet.pulsechain.com',
         240, null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
 values (nextval('chain_seq'), 'ethereum', 'ETH23', 'ethereum Mainnet 23', 'NFT  0x1',
-        'https://s3.amazonaws.com/tmm.net/img/ether.png', 'ethereum2', null, 'ETH RPC23', 3, null);
+        'https://s3.amazonaws.com/tmm.net/img/ether.png', 'ethereum', null, 'ETH RPC23', 3, null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulsechain', 'pls', 'Pulsechain Mainnet', 'NFT - 0x1',
+values (nextval('chain_seq'), 'pulsechain', 'pls', 'pulsechain Mainnet', 'NFT - 0x1',
         'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet',
         'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',
         'https://rpc.pulsechain.io', 4, null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulsechain', 'pls', 'Pulsechain Mainnet', 'NFT - 0x1',
+values (nextval('chain_seq'), 'pulsechain', 'pls', 'pulsechain Mainnet', 'NFT - 0x1',
         'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet',
         'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',
         'https://rpc.pulsechain.io', 434, null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulsechain7', 'pls', 'Pulsechain Mainnet', 'NFT - 0x1',
+values (nextval('chain_seq'), 'pulsechain7', 'pls', 'pulsechain Mainnet', 'NFT - 0x1',
         'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet',
         'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',
         'https://rpc.pulsechain.io', 23, null);
-Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
-                   ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulseChain', 'tPLS', 'PulseChain Testnet 2b', 'NFT 0x1',
-        'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet', null,
-        'https://rpc.v2b.testnet.pulsechain.com', 3, null);
-Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
-                   ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulseChain', 'TPLS', 'Pulsechain Mainnet', 'NFT - 0x1',
-        'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet', null, 'https://rpc.testnet.pulsechain.com',
-        240, null);
-insert into chain (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
-                   ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'ethereum', 'symbol', 'description', 'longDescription',
-        'https://s3.amazonaws.com/tmm.net/img/ether.png', 'category', 'chainListIcon', 'rpcUrl', 1, 'blockExplorerUrl');
-insert into chain (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
-                   ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'pulsechain', 'symbol', 'description', 'longDescription',
-        'https://s3.amazonaws.com/tmm.net/img/ether.png', 'category', 'chainListIcon', 'rpcUrl', 1, 'blockExplorerUrl');
-insert into chain (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
-                   ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'hex', 'symbol', 'description', 'longDescription',
-        'https://s3.amazonaws.com/tmm.net/img/ether.png', 'category', 'chainListIcon', 'rpcUrl', 1, 'blockExplorerUrl');
-insert into chain (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
-                   ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'polygon', 'symbol', 'description', 'longDescription',
-        'https://s3.amazonaws.com/tmm.net/img/polygon.jpg', 'category', 'chainListIcon', 'rpcUrl', 1,
-        'blockExplorerUrl');
+
+
 -- INSERT PROJECT_user_RELATION
 insert into chain_users (userid, chain_id)
 values (1, 101);
@@ -180,93 +128,72 @@ insert into chain_users (userid, chain_id)
 values (401, 501);
 insert into chain_users (userid, chain_id)
 values (451, 551);
-insert into chain_users (userid, chain_id)
-values (501, 601);
-insert into chain_users (userid, chain_id)
-values (551, 651);
-insert into chain_users (userid, chain_id)
-values (601, 701);
-insert into chain_users (userid, chain_id)
-values (651, 751);
-insert into chain_users (userid, chain_id)
-values (701, 801);
-insert into chain_users (userid, chain_id)
-values (751, 851);
 
 
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+        'ropstein', 'ICON_URL', 'BLOCK_EXPLORER_URL', 1, 101);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom2@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+        'polygon',  'ICON_URL', 'BLOCK_EXPLORER_URL',  51, 151);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom3@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+        'ethereum',  'ICON_URL', 'BLOCK_EXPLORER_URL',  101,201);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL,  USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom4@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+        'polygon', 'ICON_URL', 'BLOCK_EXPLORER_URL',  151, 251);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL,  USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom5@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+        'polygon',  'ICON_URL', 'BLOCK_EXPLORER_URL',  201, 301);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom6@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+        'ropstein', 'ICON_URL', 'BLOCK_EXPLORER_URL', 251, 351);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL,  USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom7@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+        'ethereum',  'ICON_URL', 'BLOCK_EXPLORER_URL', 301, 401);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL,  USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'Tom8@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+        'ethereum',  'ICON_URL', 'BLOCK_EXPLORER_URL',  351, 451);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL,  USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'thomas.maestas@hotmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+        'polygon',  'ICON_URL', 'BLOCK_EXPLORER_URL',  401, 501);
+Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )
+values (nextval('address_seq'), 'description', 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+        'goerli', 'ICON_URL', 'BLOCK_EXPLORER_URL', 451, 551);
 
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
-        'ropstein', null, null, 101);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'polygon', null, null, 151);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'polygon', null, null, 201);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'ethereum', null, null, 301);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'polygon', null, null, 351);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'polygon', null, null, 401);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'ropstein', null, null, 451);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
-        'ethereum', null, null, 501);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
-        'ethereum', null, null, 551);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
-        'polygon', null, null, 601);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'goerli', null, null, 651);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
-        'ethereum', null, null, 701);
-Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
-        'polygon', null, null, 751);
 
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 12000.22, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 12000.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'POLYGON', 'MATIC', 9.22, 0);
+values (nextval('cointable_seq'), 'polygon', 'MATIC', 9.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'BINANCE', 'BNB', 19.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'AVALANCHE', 'AVAX', 119.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'saa', 'SAA', 123.33, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'Hex', 'HEX', 0.03, 1);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'Binance', 'bsc', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'binance', 'bnb', 45000, 0);
 
+
 -- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'ethereum',null,null);
 -- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'polygon',null,  null);
 -- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'avalanche',null,null);
--- INSERT

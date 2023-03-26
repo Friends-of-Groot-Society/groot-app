@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "chain")
 public class Chain {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "chain_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")
     @Column(name = "chain_id", nullable = false, unique = true)
     private int chainId;
 

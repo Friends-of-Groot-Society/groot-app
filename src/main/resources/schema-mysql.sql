@@ -148,10 +148,10 @@ create sequence nft_ref_seq start with 500 increment by 50;
 create sequence nft_seq start with 600 increment by 50;
 create sequence roles_seq start with 700 increment by 50;
 create sequence weblinks_seq start with 800 increment by 50;
--- alter table ADDRESS
---     add constraint FKsb9kcjn7av3aujmp83pagwiny foreign key (id) references nft_address;
--- alter table ADDRESS
---     add constraint FKt3i7rgmxmmkev35dxs947wasb foreign key (id) references users;
+alter table ADDRESS
+    add constraint FKsb9kcjn7av3aujmp83pagwiny foreign key (id) references nft_address;
+alter table ADDRESS
+    add constraint FKt3i7rgmxmmkev35dxs947wasb foreign key (id) references users;
 alter table attribute
     add constraint FKik918ybmves03ibw6l10jj8d2 foreign key (metadata_metadata_id) references metadata;
 

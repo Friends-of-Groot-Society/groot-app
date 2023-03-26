@@ -1,80 +1,78 @@
--- INSERT userS			
+-- INSERT userS
 
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'user4@cryptomaven.xyz', 'password', 'Smith', 'Tom', 3, 1, '5055087707',
-        'user1@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a1.jpg',
+values (nextval('ID_MAKER'), 'Tom1@cryptomaven.xyz', 'password', 'Smith', 'Tom1', 3, 1, '5055087707',
+        'Tom1@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a1.jpg',
         'photoPath', 'userGroup', 0, 1, '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'thomasm1.maestas@gmail.com', 'password', 'Maestas', 'Tom', 3, 1, '5055087707',
-        'user2@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a2.jpg',
+values (nextval('ID_MAKER'), 'Tom2@gmail.com', 'password', 'Maestas', 'Tom2', 3, 1, '5055087707',
+        'Tom2@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a2.jpg',
         'photoPath', 'userGroup', 0, 1, '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'testtest648', 'passwordX', 'Smith', 'Tom', 3, 1, '5055087707', 'user3@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'Tom3@gmail.com', 'password', 'Smith', 'Tom3', 3, 1, '5055087707', 'Tom3@cryptomaven.xyz',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a3.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'u152011', null, 'Smith', 'Tom', 0, 0, '5055087707', 'user4@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'Tom4@gmail.com', 'password', 'Smith', 'Tom4', 0, 0, '5055087707', 'Tom4@cryptomaven.xyz',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a4.jpg', 'photoPath', null, 0, 0, '5');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'me', 'pass', 'maestas22', 'thomas22', 4, 2, '999-999-9999', 'me5@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'thomasm1@gmail.com', 'password', 'maestas22', 'thomas22', 4, 2, '999-999-9999','thomasm1@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a5.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'testtest679', 'passwordX', 'Smith', 'Tom', 3, 1, '5055087707', 'user6@cryptomaven.xyz',
+values (nextval('ID_MAKER'), 'Tom5@gmail.com', 'password', 'Smith', 'Tom5', 3, 1, '5055087707','Tom5@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a6.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'testtest562', 'passwordX', 'Smith', 'Tom', 3, 1, '5055087707', 'user7@cryptomaven.xyz',
+values (nextval('ID_MAKER'), 'Tom6@gmail.com', 'password', 'Smith', 'Tom6', 3, 1, '5055087707','Tom6@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a7.jpg', 'photoPath', 'userGroup', 0, 1,
         '5');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'thomas', 'pass', 'maestas', 'thomas', 4, 2, '999-999-9999', 'thomas@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'thomas@gmail.com', 'password', 'maestas', 'thomas', 4, 2, '999-999-9999','thomas@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'testtest127', 'passwordX', 'Smith', 'Tom', 3, 1, '5055087707', 'user8@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'Tom8@gmail.com', 'password', 'Smith', 'Tom8', 3, 1, '5055087707','Tom8@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'testtest201', 'passwordX', 'Smith', 'Tom', 3, 1, '5055087707', 'user8@cryptomaven.xyz',
+values (nextval('ID_MAKER'), 'Toms@gmail.com', 'password', 'Smith', 'Toms', 3, 1, '5055087707','Toms@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'user0ee', null, null, null, 0, 0, '5055087707', 'thomasm1.maestas@gmail.com',
+values (nextval('ID_MAKER'), 'Tom9@gmail.com', 'password', 'Smith', 'Tom9',0, 0, '5055087707','Tom9@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', null, 0, 0, null);
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'useaa0', null, null, null, 0, 0, '5055087707', 'admin@gmail.com', null,
+values (nextval('ID_MAKER'),  'thomasm1@gmail.com', 'password', 'Smith', 'Tom555',0, 0, '5055087707','thomasm1@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photopath', 0, 0, '520');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'user152013', 'passwordss', 'Smith', 'Tom', 3, 1, '5055087707',
-        'user152013@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg',
+values (nextval('ID_MAKER'), 'Tom566@gmail.com',  'password', 'Smith', 'Tom566', 3, 1, '5055087707','Tom566@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg',
         'photoPath', 'userGroup', 0, 1, '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'user152011', 'passwords22', 'Smith22', 'Tom22', 3, 1, '5055087707',
-        'user152011@cryptomaven.xyz', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg',
+values (nextval('ID_MAKER'), 'thomasm1@gmail.com',  'password', 'Smith22', 'Tom226', 3, 1, '5055087707','thomasm1@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg',
         'photoPath', 'userGroup', 0, 1, '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'joshallen', 'allen', 'allen', 'josh', 0, 0, '999-999-9999', 'joshallen8@cryptomaven.xyz',
+values (nextval('ID_MAKER'),'josh@cryptomaven.xyz' 'allen', 'allen', 'josh', 0, 0, '999-999-9999', 'josh@cryptomaven.xyz',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'testtest321', 'passwordX', 'Smith', 'Tom', 3, 1, '5055087707', 'user9@cryptomaven.xyz',
+values (nextval('ID_MAKER'), 'Tom333', 'password', 'Smith', 'Tom333', 3, 1, '5055087707', 'Tom333@cryptomaven.xyz',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 
@@ -198,43 +196,43 @@ values (751, 851);
 
 
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
         'ropstein', null, null, 101);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'polygon', null, null, 151);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'polygon', null, null, 201);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'ethereum', null, null, 301);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'polygon', null, null, 351);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'polygon', null, null, 401);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'ropstein', null, null, 451);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
         'ethereum', null, null, 501);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
         'ethereum', null, null, 551);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
         'polygon', null, null, 601);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'goerli', null, null, 651);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
         'ethereum', null, null, 701);
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, CHAIN_ID)
-values (nextval('address_seq'), null, 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), null, 'thomasm1@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'polygon', null, null, 751);
 
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
@@ -271,5 +269,4 @@ values (nextval('cointable_seq'), 'binance', 'bnb', 45000, 0);
 -- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'ethereum',null,null);
 -- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'polygon',null,  null);
 -- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'avalanche',null,null);
--- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'ethereum',null,null);
--- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'pulsechain',null,null);
+-- INSERT

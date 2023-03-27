@@ -67,7 +67,7 @@ create table if not exists address
     chain              varchar(255),
     icon_url           varchar(255),
     block_explorer_url varchar(255),
-    chain_id            NUMBER,
+--    chain_id            NUMBER,
 
     primary key (id)
 );

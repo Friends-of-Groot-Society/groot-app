@@ -37,21 +37,17 @@ Address -> NftAddress -> nfts[] Nft-> Metadata
 | Pipeline | AWS Codebuild | [CodeBuild] |
 
 # Vendor-neutral application observability facade:
-# MICROMETER
-# https://micrometer.io/docs
-# https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics
-# https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-export-atlas
-
+## Spring Framework 6.0
 ### spring cloud sleuth with zipkin
-### https://cloud.spring.io/spring-cloud-sleuth/reference/html/#zipkin
+#### https://cloud.spring.io/spring-cloud-sleuth/reference/html/#zipkin
 ### spring cloud
-### https://cloud.spring.io/spring-cloud-static/spring-cloud.html
+#### https://cloud.spring.io/spring-cloud-static/spring-cloud.html
 ### spring boot
-### https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+#### https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
 ### spring framework
-### https://docs.spring.io/spring-framework/docs/current/reference/html/
+#### https://docs.spring.io/spring-framework/docs/current/reference/html/
 ### micrometer
-### https://micrometer.io/docs
+#### https://micrometer.io/docs
 #
 
 ##### Angular8: 

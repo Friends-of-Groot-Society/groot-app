@@ -67,13 +67,8 @@ create table if not exists address
     chain              varchar(255),
     icon_url           varchar(255),
     block_explorer_url varchar(255),
-<<<<<<<< HEAD:src/main/resources/schema0.sql
---    chain_id            NUMBER,
-
-========
     userid             NUMBER,
     chain_id            NUMBER,
->>>>>>>> 8a59dbdd680fed489b1bc68815a36987d6a08d4b:src/main/resources/schema-mysql.sql
     primary key (id)
 );
 create table if not exists nft

@@ -26,7 +26,7 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
-    @Value("${version}")
+//    @Value("${version}")
     private String ver;
     @Autowired
     ChainsService chainsService;

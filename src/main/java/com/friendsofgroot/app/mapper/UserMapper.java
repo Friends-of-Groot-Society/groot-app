@@ -29,7 +29,6 @@ public interface UserMapper {
 
     UserDto toDto(User u);
 
-    @Mapping(source = "localId", target = "userId")
     @Mapping(source = "idToken", target = "id")
     User toEntity(UserDto user);
 

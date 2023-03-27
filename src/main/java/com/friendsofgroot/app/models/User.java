@@ -13,6 +13,7 @@ import java.util.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter @ToString
 @Entity
 @Table(name = "users")
@@ -79,6 +80,25 @@ public class User implements Serializable {
     )
     @JsonIgnore
     private List<Chain> chains = new ArrayList<>();
+
+    public User(int i, String username, String password, String firstName, String lastName, String email, String role) {
+        super();
+
+        this.username = username;
+        this.password = password;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.userType = userType;
+        this.groups = groups;
+        this.email = email;
+        this.phone = phone;
+        this.cusUrl = cusUrl;
+        this.photoPath = photoPath;
+        this.userGroup = userGroup;
+        this.isActive = isActive;
+        this.contactType = contactType;
+        this.id = id;
+    }
 //    @ManyToMany(fetch = FetchType.EAGER)
 //   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    private List<Role> roles = new ArrayList<>();

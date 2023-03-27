@@ -1,38 +1,59 @@
 
 package com.friendsofgroot.app.consoles;
 
-import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import com.friendsofgroot.app.commands.*;
+import com.friendsofgroot.app.dto.CoinDto;
+import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.service.AddressesServiceImpl;
+import com.friendsofgroot.app.service.ChainsServiceImpl;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.Coin;
 
 import com.friendsofgroot.app.service.CoinsServiceImpl;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class AdminDashboard  {
+public class AdminDashboard {
 
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;
 
 
+    @Autowired
+    private CoinsServiceImpl coinsService;
+    @Autowired
+    private UsersServiceImpl usersService;
+    @Autowired
+    private ChainsServiceImpl chainsService;
+    @Autowired
+    private AddressesServiceImpl addressesService;
+    @Autowired
+    public AdminDashboard(CoinsServiceImpl coinsService ) {
+        this.coinsService = coinsService;
+    }
 
+//    @Autowired
+//    public AdminDashboard(CoinsServiceImpl coinsService, UsersServiceImpl usersService, ChainsServiceImpl chainsService, AddressesServiceImpl addressesService) {
+//        this.coinsService = coinsService;
+//        this.usersService = usersService;
+//        this.chainsService = chainsService;
+//        this.addressesService = addressesService;
+//    }
 
     private static void frontConsoleMenu() {
         System.out.println("*--------- -------*\n" +
                 "Welcome to your Admin dashboard\n " + " ... What's Next? \n"
-                + Cmds.ONE + "View Financials and Payments\n"
-                + Cmds.TWO + "View Coin Lot\n"
-                + Cmds.THREE + "Add Coin\n"
+                + Cmds.ONE + "  navigate User Lot\n"
+                + Cmds.TWO + "navigate Coin Lot\n"
+                + Cmds.THREE + "navigate Addresses\n"
                 + Cmds.FOUR + "Remove Unpurchased Coin\n"
                 + Cmds.FIVE + "View and/or Accept Offers\n"
                 + Cmds.SIX + "get Users With Coins\n"
@@ -41,10 +62,12 @@ public class AdminDashboard  {
     }
 
     // RECURSIVE LOOP, breaks out at option 0
-    public static void console() throws SQLException {
+    public static void console()   {
 
         frontConsoleMenu();
         try (Scanner scan = new Scanner(System.in)) {
+
+            AdminDashboard adminDashboard = new AdminDashboard( new CoinsServiceImpl() );
             int val = scan.nextInt();
             if (val < MIN_OPTIONS && val > OPTION_COUNT_MAX) {
                 System.out.println("Please enter digits " + MIN_OPTIONS + "-" + OPTION_COUNT_MAX);
@@ -57,67 +80,27 @@ public class AdminDashboard  {
                         break;
                     }
                     case 1: {
-                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
-
-                        System.out.println("Entering Financials View...");
-                        System.out.println(coinsService.getAllCoins());
+                        System.out.println("navigateUserLot");
+                        System.out.println( adminDashboard.usersService.getUsers());;
                         System.out.println(Cmds.ADMIN_PERKS);
+                        adminDashboard.navigateUserLot();
                         console();
                         break;
                     }
                     case 2: {
-                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
-
                         System.out.println("Entering CoinLot View...");
-                        System.out.println(coinsService.getAllCoins());
-                        System.out.println(Cmds.ADMIN_PERKS);
+                       List<CoinDto> coins =   adminDashboard.coinsService.getAllCoins() ;
+                        System.out.println(coins);
+                        adminDashboard.navigateCoinLot();
                         console();
                         break;
+
                     }
                     case 3: {
-                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
-
-                        scan.nextLine();
-                        System.out.println("Adding a coin? Let me get my notepad ...");
-                        System.out.println("Coin ID?");
-                        while (true) {
-                            try {
-                                scan.nextInt();
-                                scan.nextLine();
-                                System.out.println("Coin TOKEN?");
-                                String coinToken = scan.nextLine();
-                                System.out.println("Coin Symbol?");
-                                String coinSymbol = scan.nextLine();
-                                System.out.println("Coin Price?");
-                                double price = scan.nextDouble();
-                                scan.nextLine();
-                                if (price > 999999.99) {
-                                    System.out.println("price must be less than $1 million, please.");
-                                    System.out.println("Coin Price?");
-                                    price = scan.nextDouble();
-                                    scan.nextLine();
-                                }
-                                System.out.println("Umkay,coin's coinToken is *" + coinToken + "*,\n coinSymbol is *" + coinSymbol
-                                        + "*,\n and price at *$" + price + "*\n");
-                                System.out.println("   Everything look right? (y) or (no)\n");
-                                while (true) {
-                                    String decide = scan.next();
-                                    if (decide.contentEquals("y")) {
-                                        Coin createdCoin = new Coin(999, coinToken, coinSymbol, price, 0); //CoinId overwritten later
-
-                                        coinsService.createCoinCLI(createdCoin);
-                                        System.out.println(
-                                                "This " + createdCoin.getCoinToken() + " has been Successfully added!!\n");
-                                        console();
-                                    } else {
-                                        console();
-                                    }
-                                }
-                            } catch (Exception e) {
-                                System.out.println(Cmds.OOPS_TRY_AGAIN);
-                            }
-                            console();
-                        }
+                      System.out.println("Entering Addresses View...");
+                        adminDashboard.navigateAddressLot();
+                        console();
+                        break;
                     }
                     case 4: {
                         CoinsServiceImpl coinsService = new CoinsServiceImpl();
@@ -184,7 +167,66 @@ public class AdminDashboard  {
                         System.out.println("Opening MaPLControl...");
                         MaPLAdminInvoker newMaPLInvokerl = new MaPLAdminInvoker(""); // create new MaPLInvoker
 
-                        NavigateRunner open = new NavigateRunner(newMaPLInvokerl ); // open MaPLControl
+                        NavigateRunner open = new NavigateRunner(newMaPLInvokerl); // open MaPLControl
+
+                        open.runNavigate();
+                        console();
+                        break;
+                    }
+                } // end switch
+            }
+        } catch (InputMismatchException e ) {
+            // go round again. Read past the end of line in the input first
+            System.out.println("Please enter digits 0 to 5");
+            console();
+        }
+    }
+
+    private void navigateAddressLot()  {
+        System.out.println("NavigateAddressLot()");
+        System.out.println("1.) View AddressLot");
+        System.out.println("2.) Add Address to AddressLot");
+        System.out.println("3.) Remove Address from AddressLot");
+        System.out.println("4.) Update Address in AddressLot");
+        System.out.println("5.) Return to Admin Dashboard");
+        System.out.println("6.) Exit MaPL");
+
+        System.out.println("Enter a number to navigate: ");
+
+//        TODO: implement AddressLot navigation logic WITHOUT DUPLICATING CODE
+        try (Scanner scan = new Scanner(System.in)) {
+            int val = scan.nextInt();
+            if (val < MIN_OPTIONS && val > OPTION_COUNT_MAX) {
+                System.out.println("Please enter digits " + MIN_OPTIONS + "-" + OPTION_COUNT_MAX);
+                console();
+            } else {
+                switch (val) {
+                    case 1: {
+                        System.out.println("View AddressLot");
+                        break;
+                    }
+                    case 2: {
+                        System.out.println("Add Address to AddressLot");
+                        break;
+                    }
+                    case 3: {
+                        System.out.println("Remove Address from AddressLot");
+                        break;
+                    }
+                    case 4: {
+                        System.out.println("Update Address in AddressLot");
+                        break;
+                    }
+                    case 5: {
+                        System.out.println("Return to Admin Dashboard");
+                        console();
+                        break;
+                    }
+                    case OPTION_COUNT_MAX: {
+                        System.out.println("Opening MaPLControl...");
+                        MaPLAdminInvoker newMaPLInvokerl = new MaPLAdminInvoker(""); // create new MaPLInvoker
+
+                        NavigateRunner open = new NavigateRunner(newMaPLInvokerl); // open MaPLControl
 
                         open.runNavigate();
                         console();
@@ -193,6 +235,205 @@ public class AdminDashboard  {
                 } // end switch
             }
         } catch (InputMismatchException e) {
+        }
+    }
+
+    private void navigateUserLot()   {
+
+        System.out.println("1.) View UserLot");
+        System.out.println("2.) Add User to UserLot");
+        System.out.println("3.) Remove User from UserLot");
+        System.out.println("4.) Update User in UserLot");
+        System.out.println("5.) Return to Admin Dashboard");
+        System.out.println("6.) Exit MaPL");
+
+        System.out.println("Enter a number to navigate: ");
+
+        try (Scanner scan = new Scanner(System.in)) {
+            int val = scan.nextInt();
+            if (val < MIN_OPTIONS && val > OPTION_COUNT_MAX) {
+                System.out.println("Please enter digits " + MIN_OPTIONS + "-" + OPTION_COUNT_MAX);
+                console();
+            } else {
+                switch (val) {
+                    case 1: {
+                        System.out.println("View UserLot");
+                        System.out.println(this.usersService.getUsers());
+                        console();
+                        break;
+                    }
+                    case 2: {
+                        scan.nextLine();
+                        System.out.println("Adding a user? Let me get my notepad ...");
+                        System.out.println("User ID?");
+                        while (true) {
+                            try {
+                                scan.nextInt();
+                                scan.nextLine();
+                                System.out.println("User Username?");
+                                String username = scan.nextLine();
+                                System.out.println("User Password?");
+                                String password = scan.nextLine();
+                                System.out.println("User First Name?");
+                                String firstName = scan.nextLine();
+                                System.out.println("User Last Name?");
+                                String lastName = scan.nextLine();
+                                System.out.println("User Email?");
+                                String email = scan.nextLine();
+                                System.out.println("User Role?");
+                                String role = scan.nextLine();
+                                System.out.println("Umkay, user's username is *" + username + "*,\n password is *" + password
+                                        + "*,\n first name is *" + firstName + "*,\n last name is *" + lastName
+                                        + "*,\n email is *" + email + "*,\n and role is *" + role + "*\n");
+                                System.out.println("   Everything look right? (y) or (no)\n");
+                                while (true) {
+                                    String decide = scan.next();
+                                    if (decide.contentEquals("y")) {
+                                        UserDto createdUser =  new UserDto();
+                                        createdUser.setUsername(username);
+                                        createdUser.setPassword(password);
+                                        createdUser.setFirstName(firstName);
+                                        createdUser.setLastName(lastName);
+                                        createdUser.setEmail(email);
+                                        createdUser.setUserGroup("user");
+                                        this.usersService.createUser(createdUser);
+                                    } else if (decide.contentEquals("no")) {
+                                        System.out.println("Okay, let's try again");
+                                        console();
+                                    } else {
+                                        System.out.println("I didn't understand that, try again");
+                                        console();
+                                    }
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("Please enter digits 0 to 5");
+                                console();
+                            }
+                        console();
+                        break;
+                        }
+                    }
+                    case 3: {
+                        System.out.println("Remove User from UserLot");
+                        console();
+                        break;
+                    }
+                    case 4: {
+                        System.out.println("Update User in UserLot");
+                        console();
+                        break;
+                    }
+                    case 5: {
+                        System.out.println("Return to Admin Dashboard");
+                        console();
+                        break;
+                    }
+                    case 6: {
+                        System.out.println("Exit MaPL");
+                        System.exit(0);
+                        break;
+                    }
+                } // end switch
+
+            }       // end else
+            }   // end tr
+    }   // end method
+
+
+
+    private void navigateCoinLot()  {
+        System.out.println("NavigateLot()");
+
+        System.out.println("1.) View CoinLot");
+        System.out.println("2.) Add Coin to CoinLot");
+        System.out.println("3.) Remove Coin from CoinLot");
+        System.out.println("4.) Update Coin in CoinLot");
+        System.out.println("5.) Return to Admin Dashboard");
+        System.out.println("6.) Exit MaPL");
+
+        System.out.println("Enter a number to navigate: ");
+
+        try (Scanner scan = new Scanner(System.in)) {
+            int val = scan.nextInt();
+            if (val < MIN_OPTIONS && val > OPTION_COUNT_MAX) {
+                System.out.println("Please enter digits " + MIN_OPTIONS + "-" + OPTION_COUNT_MAX);
+                console();
+            } else {
+                switch (val) {
+                    case 1: {
+                        System.out.println("View CoinLot");
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+                        System.out.println(coinsService.getAllCoins());
+                        System.out.println("==========================");
+                        System.out.println();
+                        break;
+                    }
+                    case 2: {
+
+                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+
+                        scan.nextLine();
+                        System.out.println("Adding a coin? Let me get my notepad ...");
+                        System.out.println("Coin ID?");
+                        while (true) {
+                            try {
+                                scan.nextInt();
+                                scan.nextLine();
+                                System.out.println("Coin TOKEN?");
+                                String coinToken = scan.nextLine();
+                                System.out.println("Coin Symbol?");
+                                String coinSymbol = scan.nextLine();
+                                System.out.println("Coin Price?");
+                                double price = scan.nextDouble();
+                                scan.nextLine();
+                                if (price > 999999.99) {
+                                    System.out.println("price must be less than $1 million, please.");
+                                    System.out.println("Coin Price?");
+                                    price = scan.nextDouble();
+                                    scan.nextLine();
+                                }
+                                System.out.println("Umkay,coin's coinToken is *" + coinToken + "*,\n coinSymbol is *" + coinSymbol
+                                        + "*,\n and price at *$" + price + "*\n");
+                                System.out.println("   Everything look right? (y) or (no)\n");
+                                while (true) {
+                                    String decide = scan.next();
+                                    if (decide.contentEquals("y")) {
+                                        Coin createdCoin = new Coin(999, coinToken, coinSymbol, price, 0); //CoinId overwritten later
+
+                                        coinsService.createCoinCLI(createdCoin);
+                                        System.out.println(
+                                                "This " + createdCoin.getCoinToken() + " has been Successfully added!!\n");
+                                        console();
+                                    } else {
+                                        console();
+                                    }
+                                }
+                            } catch (Exception e) {
+                                System.out.println(Cmds.OOPS_TRY_AGAIN);
+                            }
+                        console();
+                        break;
+                        }
+                    }
+                    case 3: {
+                        System.out.println("Remove Coin from CoinLot");
+                        break;
+                    }
+                    case 4: {
+                        System.out.println("Update Coin in CoinLot");
+                        break;
+                    }
+                    case 5: {
+                        System.out.println("Return to Admin Dashboard");
+                        break;
+                    }
+                    case 6: {
+                        System.out.println("Exit MaPL");
+                        break;
+                    }
+                }
+            }
+        } catch (InputMismatchException e ) {
             // go round again. Read past the end of line in the input first
             System.out.println("Please enter digits 0 to 5");
             console();

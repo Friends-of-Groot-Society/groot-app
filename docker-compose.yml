@@ -7,7 +7,7 @@ services:
     restart: on-failure
     environment:
         MYSQL_ROOT_PASSWORD: password
-        MYSQL_DATABASE: grootdb
+        MYSQL_DATABASE: groot
         MYSQL_USER: groot
         MYSQL_PASSWORD: password
     networks:
@@ -17,7 +17,7 @@ services:
     container_name: groot-restful-webservices
     build:
       context: ./
-      dockerfile: DockerfileOracle
+      dockerfile: Dockerfile
     restart: on-failure
     ports:
       - "8080:8080"

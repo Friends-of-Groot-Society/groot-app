@@ -23,14 +23,14 @@ public class UserRegister {
 		Scanner scan = new Scanner(System.in);
 		String un = scan.next();
 
-		System.out.println(Cmds.REGISTER_PW); 
+		System.out.println(Cmds.REGISTER_PW);
 		String pw = scan.next();
 
-		System.out.println(Cmds.REGISTER_FNAME); 
-		String fn = scan.next();   
+		System.out.println(Cmds.REGISTER_FNAME);
+		String fn = scan.next();
 
-		System.out.println(Cmds.REGISTER_LNAME); 
-		String ln = scan.next();  
+		System.out.println(Cmds.REGISTER_LNAME);
+		String ln = scan.next();
 		//  "ADD_NEW_USERS"
 //(username VARCHAR2, password VARCHAR2, lastName varchar2, firstName varchar2,  groups NUMBER,  usertype NUMBER,email VARCHAR2, phone VARCHAR2, cusURl VARCHAR2)
 //		User newUserser = new User(un, pw, ln, fn, 4, 2, un+"@cryptomaven.xyz", "999-999-9999" ,"http://www.dailytech.net",
@@ -40,7 +40,7 @@ public class UserRegister {
 //				1,
 //				"id" );
 		UserDto newUser =  new UserDto();
-		newUser.setLocalId((int) Math.round(Math.random()*100));
+//		newUser.setUserid((int) Math.round(Math.random()*100));
 		newUser.setUsername(un);
 		newUser.setPassword(pw);
 		newUser.setLastName(ln);
@@ -67,7 +67,7 @@ public class UserRegister {
 		UserLogin.decideDashboard(response, un);
 		scan.close();
 
-		
+
 	}
 	User registerThis(String un, String pw, String ln, String fn) {
 		User newUser =  new User();

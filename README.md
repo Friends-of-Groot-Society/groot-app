@@ -6,10 +6,10 @@ Java Application for Friends of Groot Society
 
 ### Groot Society Fan Club Groot NFT Tracker
 
-> <a style="text-decoration:none;color:black;" href="https://friendsofgroot.com">
+ <a style="text-decoration:none;color:black;" href="https://friendsofgroot.com">
 Friends_of_Groot_Society - https://friendsofgroot.com</a>
 
-> Full-Stack application that manages Groot Fan Club News and Features
+### Full-Stack application that manages Groot Fan Club News and Features
 
 ### Author
 
@@ -38,6 +38,7 @@ Address -> NftAddress -> nfts[] Nft-> Metadata
 | CI/CD        |      Jenkins      |    [Jenkins] |
 | Pipeline     |   AWS Codebuild   |  [CodeBuild] |
 
+ 
 ## ENVIRONMENT PRODUCTION
 ### AWS-RDS _  ORACLE
 
@@ -45,8 +46,7 @@ DBMS: Oracle (ver. Oracle Database 19c Standard Edition 2 Release 19.0.0.0.0 - P
 Version 19.15.0.0.0)
 Case sensitivity: plain=upper, delimited=exact
 Driver: Oracle JDBC driver (ver. 21.5.0.0.0, JDBC4.3)
-
-Ping: 248 ms
+ 
 ## ENVIRONMENT QA 
 ### Containerization
 ### Docker MySQL
@@ -55,41 +55,24 @@ mysql thomasm1/mysql9
 DBMS: MySQL (ver. 8.0.31)
 Case sensitivity: plain=exact, delimited=exact
 Driver: MySQL Connector/J (ver. mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0), JDBC4.2)
-
-Ping: 26 ms
-SSL: yes
-## ENVIRONMENT DEVELOPMENT
+ 
+### ENVIRONMENT DEV 
 ### H2 MYSQL
-## ENVIRONMENT 
+## ENVIRONMENT
+
 ### Vendor-neutral application observability facade:
-### MICROMETER
-
-### https://micrometer.io/docs
-
-### https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics
-
-### https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-export-atlas
-
-#### spring cloud sleuth with zipkin
-
+## Spring Framework 6.0
+### spring cloud sleuth with zipkin
 #### https://cloud.spring.io/spring-cloud-sleuth/reference/html/#zipkin
-
-#### spring cloud
-
+### spring cloud
 #### https://cloud.spring.io/spring-cloud-static/spring-cloud.html
-
-#### spring boot
-
+### spring boot
 #### https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
-
-#### spring framework
-
+### spring framework
 #### https://docs.spring.io/spring-framework/docs/current/reference/html/
-
-#### micrometer
-
+### micrometer
 #### https://micrometer.io/docs
-
+ 
 #
 
 ##### Angular8:

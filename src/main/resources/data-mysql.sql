@@ -58,7 +58,7 @@ values (nextval('chain_seq'), 'polygon', 'MATIC_2', 'matic  Chain', 'NFT - 0x1',
         2402, null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'avalanche', 'avax', 'Avalanche C-Chain', 'NFT - 0x1',
+values (nextval('chain_seq'), 'avalanche', 'avax', 'avalanche C-Chain', 'NFT - 0x1',
         'https://s3.amazonaws.com/tmm.net/img/avax.png', 'Mainnet', null, 'https://api.avax.network/ext/bc/C/rpc', 3,
         null);
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
@@ -167,11 +167,9 @@ values (nextval('cointable_seq'), 'ethereum', 'ETH', 12000.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'polygon', 'MATIC', 9.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'BINANCE', 'BNB', 19.22, 0);
+values (nextval('cointable_seq'), 'binance', 'BNB', 19.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'AVALANCHE', 'AVAX', 119.22, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
+values (nextval('cointable_seq'), 'avalanche', 'AVAX', 119.22, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
@@ -179,7 +177,9 @@ values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'saa', 'SAA', 123.33, 0);
+values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
+values (nextval('cointable_seq'), 'pulsechain', 'SAA', 123.33, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
@@ -189,11 +189,13 @@ values (nextval('cointable_seq'), 'Hex', 'HEX', 0.03, 1);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'ethereum', 'ETH', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
-values (nextval('cointable_seq'), 'Binance', 'bsc', 45000, 0);
+values (nextval('cointable_seq'), 'binance', 'bsc', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'binance', 'bnb', 45000, 0);
 
 
--- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'ethereum',null,null);
--- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'polygon',null,  null);
--- INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'avalanche',null,null);
+
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'ethereum',5656,1);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'polygon',454,  2);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'avalanche',75757,3);
+

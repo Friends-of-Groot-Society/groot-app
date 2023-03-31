@@ -19,8 +19,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import com.friendsofgroot.app.consoles.MainDashboard;
 @ServletComponentScan("com.friendsofgroot.app")
 @EnableJpaRepositories("com.friendsofgroot.app.repositories")
-@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
-@ComponentScan("com.friendsofgroot.app")
 @EntityScan("com.friendsofgroot.app.models")
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class CliApplication {

@@ -99,7 +99,7 @@ create table if not exists nft_ref
     primary key (id)
 );
 
-create table if not exists cointable
+create table if not exists COINTABLE
 (
     coinid     NUMBER not null,
     coinsymbol varchar(255),
@@ -108,18 +108,26 @@ create table if not exists cointable
     purchased  NUMBER not null,
     primary key (coinid)
 );
-create table if not exists weblinks
-(
-    id             NUMBER not null,
-    downloadstatus smallint,
-    host           varchar(255),
-    htmlpage       varchar(255),
-    url            varchar(255),
-    primary key (id)
-);
+CREATE TABLE if not exists WEBLINK(id bigint PRIMARY KEY
+                         auto_increment,
+                     title varchar(500) ,
+                     url varchar(250) NOT NULL ,
+                     host varchar(250) ,
+                     downloadstatus TINYINT,
+                     htmlpage    varchar(255),
+                     CONSTRAINT UNIQUE(url (200)));
 
+-- create table if not exists weblinks
+-- (
+--     id             NUMBER not null,
+--     downloadstatus smallint,
+--     host           varchar(255),
+--     htmlpage       varchar(255),
+--     url            varchar(255),
+--     primary key (id)
+-- );
 
-create table if not exists attribute
+create table if not exists ATTRIBUTE
 (
     attrid               NUMBER,
     trait_type           varchar(255),
@@ -128,7 +136,7 @@ create table if not exists attribute
     primary key (attrid)
 );
 
-create table metadata
+create table METADATA
 (
     metadata_id NUMBER not null,
     description varchar(255),

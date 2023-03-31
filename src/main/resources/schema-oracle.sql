@@ -1,21 +1,24 @@
-CREATE TABLE roles
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table roles
 (
-    id   NUMBER NOT NULL,
-    name VARCHAR2(255),
-    PRIMARY KEY (id)
+    id   NUMBER not null,
+    name varchar2(255),
+    primary key (id)
 );
 
-CREATE TABLE user_roles
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table user_roles
 (
-    id          NUMBER NOT NULL,
-    role_id     NUMBER NOT NULL,
-    user_userid NUMBER NOT NULL,
-    PRIMARY KEY (id)
+    id          NUMBER not null,
+    role_id     NUMBER not null,
+    user_userid NUMBER not null,
+    primary key (id)
 );
 
-CREATE TABLE users
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table users
 (
-    USERID      NUMBER NOT NULL,
+    USERID      NUMBER not null,
     USERNAME    VARCHAR2(255),
     PASSWORD    VARCHAR2(50),
     LASTNAME    VARCHAR2(255),
@@ -30,139 +33,159 @@ CREATE TABLE users
     ISACTIVE    NUMBER(10, 0),
     CONTACTTYPE NUMBER(10, 0),
     ID          VARCHAR2(50),
-    PRIMARY KEY (USERID)
+    primary key (USERID)
 );
 
-CREATE TABLE chain
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table chain
 (
-    chain_id           NUMBER NOT NULL,
-    name               VARCHAR2(255),
-    symbol             VARCHAR2(255),
-    description        VARCHAR2(255),
-    long_description   VARCHAR2(255),
-    icon_url           VARCHAR2(255),
-    category           VARCHAR2(255),
-    chain_list_icon    VARCHAR2(255),
-    rpc_url            VARCHAR2(255),
+    chain_id           NUMBER not null,
+    name               varchar2(255),
+    symbol             varchar2(255),
+    description        varchar2(255),
+    long_description   varchar2(255),
+    icon_url           varchar2(255),
+    category           varchar2(255),
+    chain_list_icon    varchar2(255),
+    rpc_url            varchar2(255),
     id                 NUMBER,
-    block_explorer_url VARCHAR2(255),
-    PRIMARY KEY (chain_id)
+    block_explorer_url varchar2(255),
+    primary key (chain_id)
+);
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table chain_users
+(
+    id       NUMBER not null,
+    chain_id NUMBER                not null,
+    userid   NUMBER                not null,
+    primary key (id)
 );
 
-CREATE SEQUENCE chain_users_seq;
+-- Generate ID using sequence and trigger
+-- create sequence chain_users_seq start with 1 increment by 1;
+--
+-- create or replace trigger chain_users_seq_tr
+--  before insert on chain_users for each row
+--  when (new.id is null)
+-- begin
+-- select chain_users_seq.nextval into :new.id from dual;
+-- end;
+--
+-- SQLINES DEMO *** if not exists attribute (attrid NUMBER, trait_type varchar(255), valu varchar(255), metadata_metadata_id NUMBER, primary key (attrid));
 
-CREATE TABLE chain_users
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table address
 (
-    id       NUMBER NOT NULL,
-    chain_id NUMBER NOT NULL,
-    userid   NUMBER NOT NULL,
-    PRIMARY KEY (id)
+    id                 NUMBER not null,
+    description        varchar2(255),
+    email              varchar2(255),
+    address            varchar2(255), -- nft_address
+    chain              varchar2(255),
+    icon_url           varchar2(255),
+    block_explorer_url varchar2(255),
+    userid             NUMBER,
+    chain_id            NUMBER,
+    primary key (id)
 );
-
-CREATE TABLE address
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table nft
 (
-    id                 NUMBER NOT NULL,
-    description        VARCHAR2(255),
-    email              VARCHAR2(255),
-    address            VARCHAR2(255),
-    chain              VARCHAR2(255),
-    icon_url           VARCHAR2(255),
-    block_explorer_url VARCHAR2(255),
-    chain_id           NUMBER,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE nft
-(
-    id          NUMBER NOT NULL,
+    id          NUMBER not null,
     amount      NUMBER,
-    name        VARCHAR2(255),
+    name        varchar2(255),
     metadata_id NUMBER,
-    PRIMARY KEY (id)
+    primary key (id)
 );
-
-CREATE TABLE nft_address
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table nft_address
 (
-    id           NUMBER GENERATED ALWAYS AS IDENTITY,
-    address      VARCHAR2(255),
+    id           NUMBER not null,
+    address      varchar2(255),
     native_token NUMBER(53),
     native       NUMBER(53),
     tokens       NUMBER(24),
-    PRIMARY KEY (id)
+    primary key (id)
+);
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table nft_ref
+(
+    id      NUMBER not null,
+    address varchar2(255),
+    chain   varchar2(255),
+    email   varchar2(255),
+    name    varchar2(255),
+    owner   varchar2(255),
+    primary key (id)
 );
 
-CREATE TABLE nft_ref
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table cointable
 (
-    id      NUMBER NOT NULL,
-    address VARCHAR2(255),
-    chain   VARCHAR2(255),
-    email   VARCHAR2(255),
-    name    VARCHAR2(255),
-    owner   VARCHAR2(255),
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE cointable
-(
-    coinid     NUMBER NOT NULL,
-    coinsymbol VARCHAR2(255),
-    cointoken  VARCHAR2(255),
+    coinid     NUMBER not null,
+    coinsymbol varchar2(255),
+    cointoken  varchar2(255),
     pricetotal NUMBER(53),
-    purchased  NUMBER NOT NULL,
-    PRIMARY KEY (coinid)
+    purchased  NUMBER not null,
+    primary key (coinid)
 );
-
-CREATE TABLE weblinks
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table weblinks
 (
-    id             NUMBER NOT NULL,
-    downloadstatus NUMBER,
-    host           VARCHAR2(255),
-    htmlpage       VARCHAR2(255),
-    url            VARCHAR2(255),
-    PRIMARY KEY (id)
+    id             NUMBER not null,
+    downloadstatus number(5),
+    host           varchar2(255),
+    htmlpage       varchar2(255),
+    url            varchar2(255),
+    primary key (id)
 );
 
-CREATE TABLE attribute
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table attribute
 (
     attrid               NUMBER,
-    trait_type           VARCHAR2(255),
-    valu                 VARCHAR2(255),
+    trait_type           varchar2(255),
+    valu                 varchar2(255),
     metadata_metadata_id NUMBER,
-    PRIMARY KEY (attrid)
+    primary key (attrid)
 );
 
-CREATE TABLE metadata
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+create table metadata
 (
-    metadata_id NUMBER NOT NULL,
-    description VARCHAR2(255),
-    image       VARCHAR2(255),
-    name        VARCHAR2(255),
+    metadata_id NUMBER not null,
+    description varchar2(255),
+    image       varchar2(255),
+    name        varchar2(255),
     nft_id      NUMBER,
-    PRIMARY KEY (metadata_id)
+    primary key (metadata_id)
 );
 
-CREATE SEQUENCE address_seq START WITH 10 INCREMENT BY 50;
-CREATE SEQUENCE attribute_seq START WITH 1000 INCREMENT BY 50;
-CREATE SEQUENCE chain_seq START WITH 101 INCREMENT BY 50;
-CREATE SEQUENCE cointable_seq START WITH 20 INCREMENT BY 50;
-CREATE SEQUENCE id_maker START WITH 1 INCREMENT BY 50;
-CREATE SEQUENCE metadata_seq START WITH 200 INCREMENT BY 50;
-CREATE SEQUENCE nft_ref_seq START WITH 500 INCREMENT BY 50;
-CREATE SEQUENCE nft_seq START WITH 600 INCREMENT BY 50;
-CREATE SEQUENCE roles_seq START WITH 700 INCREMENT BY 50;
-CREATE SEQUENCE weblinks_seq START WITH 800 INCREMENT BY 50;
+create sequence address_seq start with 10 increment by 50;
+create sequence attribute_seq start with 1000 increment by 50;
+create sequence chain_seq start with 101 increment by 50;
+create sequence cointable_seq start with 20 increment by 50;
+create sequence id_maker start with 1 increment by 50;
+create sequence metadata_seq start with 200 increment by 50;
+create sequence nft_ref_seq start with 500 increment by 50;
+create sequence nft_seq start with 600 increment by 50;
+create sequence roles_seq start with 700 increment by 50;
+create sequence weblinks_seq start with 800 increment by 50;
 
-ALTER TABLE attribute
-    ADD CONSTRAINT FKik918ybmves03ibw6l10jj8d2 FOREIGN KEY (metadata_metadata_id) REFERENCES metadata;
+-- MANY TO ON
+alter table attribute
+    add constraint FKik918ybmves03ibw6l10jj8d2 foreign key (metadata_metadata_id) references metadata;
 
-ALTER TABLE metadata
-    ADD CONSTRAINT FK7xw0e76t7gnn5x9a254683a8 FOREIGN KEY (nft_id) REFERENCES nft;
+alter table metadata
+    add constraint FK7xw0e76t7gnn5x9a254683a8 foreign key (nft_id) references nft;
+alter table nft
+    add constraint FK7w00r1rprr2020ho6cbmwc5kh foreign key (metadata_id) references metadata;
+alter table nft
+    add constraint FKav9aho8kdsp9rh22jdlocuy7r foreign key (id) references nft_address;
 
-ALTER TABLE nft
-    ADD CONSTRAINT FK7w00r1rprr2020ho6cbmwc5kh FOREIGN KEY (metadata_id) REFERENCES metadata;
-
-ALTER TABLE chain_users
-    ADD CONSTRAINT FKc12l3fx8me9k15hv0epjpjpbl FOREIGN KEY (chain_id) REFERENCES chain;
-
-ALTER TABLE chain_users
-    ADD CONSTRAINT FK3psni4ui5db7mcih64fov3v39 FOREIGN KEY (userid) REFERENCES users;
+-- MANY TO MANY
+alter table chain_users
+    add constraint FKc12l3fx8me9k15hv0epjpjpbl foreign key (chain_id) references chain;
+alter table chain_users
+    add constraint FK3psni4ui5db7mcih64fov3v39 foreign key (userid) references users;

@@ -5,10 +5,10 @@
 <head th:replace="layouts :: header"></head>
 
 	<nav th:replace="layouts :: navbar"></nav>
-	
+
 <body>
-	
-	
+
+
 
 <div class="container">
 
@@ -20,56 +20,56 @@
 			<div class="col-md-6">
 				<table class="table table-bordered table-striped">
 					<thead class="thead-dark">
-						<tr> 
-							<th> Project Name </th>
-							<th> Project Stage </th>
+						<tr>
+							<th> Chain Name </th>
+							<th> Chain Stage </th>
 						</tr>
 					</thead>
-					<tbody> 
-						<tr th:each="aProject : ${chainsList}">
-							<td th:text="${aProject.name}"/>
-							<td th:text="${aProject.stage}"/>
+					<tbody>
+						<tr th:each="aChainProject : ${chainsList}">
+							<td th:text="${aChainProject.name}"/>
+							<td th:text="${aChainProject.stage}"/>
 						</tr>
-					
+
 					</tbody>
-				
+
 				</table>
 			</div>
-		
-		
+
+
 			<div class="col-md-4">
 				<canvas id="myPieChart" height="50" width="50"></canvas>
-				
+
 				<script>
 					var chartData = "[[${chainStatusCnt}]]"
 				</script>
-				
+
 			</div>
-			
+
 		</div>
 	</div>
-	
+
 	<div class="container">
 		<h4> Current Users </h4>
 		<div class="row">
 			<div class="col-md-6">
 				<table class="table table-bordered table-striped">
 					<thead class="thead-dark">
-						<tr> 
+						<tr>
 							<th> First Name </th>
 							<th> Last Name </th>
-							<th> Project Count </th>
+							<th> Chain Count </th>
 						</tr>
 					</thead>
-					<tbody> 
+					<tbody>
 						<tr th:each="aUserProjectCnt : ${usersListProjectsCnt}">
 							<td th:text="${aUserProjectCnt.firstName}"/>
 							<td th:text="${aUserProjectCnt.lastName}"/>
 							<td th:text="${aUserProjectCnt.chainCount}"/>
 						</tr>
-					
+
 					</tbody>
-				
+
 				</table>
 			</div>
 		</div>

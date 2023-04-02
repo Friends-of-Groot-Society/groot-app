@@ -28,9 +28,9 @@ new Chart(document.getElementById("myPieChart"), {
     options: {
     	title: {
     		display: true,
-    		text: 'Project Statuses'
+    		text: 'Chain Statuses'
     	}
-    	
+
     }
 });
 

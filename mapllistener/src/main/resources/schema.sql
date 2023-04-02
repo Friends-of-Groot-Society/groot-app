@@ -1,22 +1,17 @@
-create table if NOT exists users  ( USERID serial primary key, USERNAME varchar(255) not null, EMAIL varchar(255), PASSWORD varchar(255));  --, created_at timestamp default now(), updated_at timestamp default now());
 
--- create table if not exists users (
---         USERID NUMBER auto_increment primary key,
---         USERNAME VARCHAR(60 ),
---         PASSWORD VARCHAR(20 ),
---         LASTNAME VARCHAR(60 ),
---         FIRSTNAME VARCHAR(60 ),
---         GROUPS NUMBER(10,0) ,
---         USERTYPE NUMBER(10,0),
---         PHONE VARCHAR(50 ),
---         EMAIL VARCHAR(30 ),
---         CUSURL VARCHAR(100 ),
---         PHOTOPATH VARCHAR(400 ),
---         USERGROUP VARCHAR(100 ),
---         ISACTIVE NUMBER(10,0),
---         CONTACTTYPE NUMBER(10,0),
---         ID VARCHAR(50  )
---     );
+create table if not exists users (
+        USERID NUMBER auto_increment primary key,
+        LASTNAME VARCHAR(60 ),
+        FIRSTNAME VARCHAR(60 ),
+        PASSWORD VARCHAR(20 ),
+        EMAIL VARCHAR(30 ),
+        CUSURL VARCHAR(100 ),
+        PHOTOPATH VARCHAR(400 ),
+        USERGROUP VARCHAR(100 ),
+        ISACTIVE NUMBER(10,0)
+    );
+
+create sequence id_maker start with 1 increment by 50;
 --
 -- create table if not exists chain (
 --         chainId NUMBER  auto_increment primary key,
@@ -48,7 +43,7 @@ create table if NOT exists users  ( USERID serial primary key, USERNAME varchar(
 --     );
 -- create table if not exists chain_users (
 --         chainId NUMBER  auto_increment primary key,
---         userId  VARCHAR(60 ),
+--         userid  VARCHAR(60 ),
 --         address  VARCHAR(60 ),
 --         privateKey  VARCHAR(60 ),
 --         publicKey  VARCHAR(60 ),

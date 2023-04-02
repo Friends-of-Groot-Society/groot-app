@@ -1,7 +1,7 @@
 <%@ include file="common/header.jspf" %>
-<%@ include file="common/navigation.jspf" %>	
+<%@ include file="common/navigation.jspf" %>
 <div class="container">
-	<h1>Project Todos and Test Data</h1>
+	<h1>Chain Todos and Test Data</h1>
 	<table class="table">
 		<thead>
 			<tr>
@@ -12,7 +12,7 @@
 				<th></th>
 			</tr>
 		</thead>
-		<tbody>		
+		<tbody>
 			<c:forEach items="${todos}" var="todo">
 				<tr>
 					<td>${todo.description}</td>

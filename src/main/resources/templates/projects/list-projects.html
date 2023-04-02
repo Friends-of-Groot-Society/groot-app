@@ -2,38 +2,38 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head th:replace="layouts :: head"> 
+	<head th:replace="layouts :: head">
 	</head>
-	
+
 	<body>
-	
+
 	<nav th:replace="layouts :: navbar"></nav>
 
 		<div class="container">
 			<h3>Projects Directory</h3>
 			<hr>
-			
-			<!--  Add New Project Button -->
+
+			<!--  Add New ChainProject Button -->
 			<a th:href="@{/chains/new}"
-				class="btn btn-primary btn-sm mb-3"> 
-				New Project 
+				class="btn btn-primary btn-sm mb-3">
+				New ChainProject
 			</a>
 			<table class="table table-bordered table-striped">
 				<thead class="thead-dark">
 					<tr>
-						<th>Project Name</th>
-						<th>Project Stage</th>
+						<th>ChainProject Name</th>
+						<th>ChainProject Stage</th>
 					</tr>
-				</thead>		
+				</thead>
 				<tbody>
-					<tr th:each="aProject : ${chains}">
-						<td th:text="${aProject.name}"/>
-						<td th:text="${aProject.stage}"/>
+					<tr th:each="aChainProject : ${chains}">
+						<td th:text="${aChainProject.name}"/>
+						<td th:text="${aChainProject.stage}"/>
 					</tr>
 				</tbody>
-			
+
 			</table>
 		</div>
 	</body>
-	
+
 </html>

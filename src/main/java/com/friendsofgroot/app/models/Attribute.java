@@ -8,6 +8,8 @@ import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ATTRIBUTE")
 public class Attribute {

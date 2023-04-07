@@ -48,7 +48,7 @@ public class MaplclientApplication {
 }
 
 /////////////////////////////
-record User(Integer userId, String email, String password) {
+record User(Integer userid, String email, String password) {
 }
 record Profiler(Integer id) {
 }
@@ -62,7 +62,7 @@ class UserGraphqlController {
 
 	@SchemaMapping (typeName = "User" )
 	Mono <Profiler> profiler(User user) {
-		return  Mono.just(new Profiler(user.userId()));
+		return  Mono.just(new Profiler(user.userid()));
 	}
 	@QueryMapping
 	Flux<User> users() {

@@ -7,16 +7,16 @@
 <body>
 
 <nav th:replace="layouts :: navbar"></nav>
-	
+
 	<br>
-	
+
 	<div class="container">
 		<form th:action="@{/chains/save}" th:object="${chain}" method="POST">
-		
+
 		<div class="form-group row">
-			<input type="text" placeholder="Project Name" th:field="*{name}">
+			<input type="text" placeholder="ChainProject Name" th:field="*{name}">
 		</div>
-		
+
 		<div class="form-group row">
 			<select th:field="${chain.stage}">
 				<option th:value="NOTSTARTED"> Not Started</option>
@@ -24,11 +24,11 @@
 				<option th:value="COMPLETED"> Completed</option>
 			</select>
 		</div>
-		
+
 		<div class="form-group row">
-			<textarea type="text" placeholder="Enter Project Description" th:field="${chain.description}"></textarea>
+			<textarea type="text" placeholder="Enter ChainProject Description" th:field="${chain.description}"></textarea>
 		</div>
-		
+
 		<div class="form-group row">
 			<select th:field="*{users}" multiple="multiple">
 				<option th:each = "user : ${allUsers}"
@@ -37,29 +37,29 @@
 				</option>
 			</select>
 		</div>
-		
-		Project Start Date:
+
+		ChainProject Start Date:
 		<div class="form-group row">
 			<input id="dp3" type="text" class="mb-4 col-2 col-xs-4" value="Start Date" th:field="${chain.startDate}">
 		</div>
-		
-		
-		Project End Date:
+
+
+		ChainProject End Date:
 		<div class="form-group row">
 			<input id="dp4" type="text" class="mb-4 col-2 col-xs-4" value="End Date" th:field="${chain.endDate}">
 		</div>
-		
+
 		<script type="text/javascript">
 	      	$('#dp3').datepicker();
 	      	$('#dp4').datepicker();
 	      </script>
-		
-		
-		<button class="btn btn-info col-2" type="submit">Enter Project</button>
-		
+
+
+		<button class="btn btn-info col-2" type="submit">Enter ChainProject</button>
+
 		</form>
 	</div>
-	
+
 </body>
 
 </html>

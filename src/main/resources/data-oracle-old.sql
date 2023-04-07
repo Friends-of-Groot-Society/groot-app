@@ -105,31 +105,21 @@ values (chain_seq.nextval, 'pulsechain7', 'pls', 'pulsechain Mainnet', 'NFT - 0x
         'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet',
         'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',
         'https://rpc.pulsechain.io', 23, null);
---
---
--- -- INSERT PROJECT_user_RELATION
-insert into chain_users (userid, chain_id)
-values (1, 101);
-insert into chain_users (userid, chain_id)
-values (51, 151);
-insert into chain_users (userid, chain_id)
-values (101, 201);
-insert into chain_users (userid, chain_id)
-values (151, 251);
-insert into chain_users (userid, chain_id)
-values (201, 301);
-insert into chain_users (userid, chain_id)
-values (251, 351);
-insert into chain_users (userid, chain_id)
-values (301, 401);
-insert into chain_users (userid, chain_id)
-values (351, 451);
-insert into chain_users (userid, chain_id)
-values (401, 501);
-insert into chain_users (userid, chain_id)
-values (451, 551);
 
 
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 1, 101);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 51, 151);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 101, 201);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 151, 251);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 201, 301);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 251, 351);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 301, 401);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 351, 451);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 401, 501);
+insert into CHAIN_USERS (id, userid, chain_id) values (chain_users_seq.nextval, 451, 551);
+
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )
 values (address_seq.nextval, 'description', 'Tom1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',
         'ropstein', 'ICON_URL', 'BLOCK_EXPLORER_URL', 1, 101);
@@ -193,7 +183,29 @@ values (cointable_seq.nextval, 'binance', 'bsc', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (cointable_seq.nextval, 'binance', 'bnb', 45000, 0);
 
+INsert into WEBLINKS ( id ,downloadstatus ,host, htmlpage,url) values (weblinks_seq.nextval,0,'https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain');
+INsert into WEBLINKS ( id ,downloadstatus ,host, htmlpage,url) values (weblinks_seq.nextval,0,'https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain');
+INsert into WEBLINKS ( id ,downloadstatus ,host, htmlpage,url) values (weblinks_seq.nextval,0,'https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain');
+INsert into WEBLINKS ( id ,downloadstatus ,host, htmlpage,url) values (weblinks_seq.nextval,0,'https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain');
+INsert into WEBLINKS ( id ,downloadstatus ,host, htmlpage,url) values (weblinks_seq.nextval,0,'https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain','https://www.coingecko.com/en/coins/pulsechain');
 
-INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nft_seq.nextval,'ethereum',5656,1);
-INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nft_seq.nextval,'polygon',454,  2);
-INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nft_seq.nextval,'avalanche',75757,3);
+
+
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID_METADATA_ID) VALUES (nft_seq.nextval,'ethereum',5656,1);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID_METADATA_ID) VALUES (nft_seq.nextval,'polygon',454,  2);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID_METADATA_ID) VALUES (nft_seq.nextval,'avalanche',75757,3);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID_METADATA_ID) VALUES (nft_seq.nextval,'binance',5656,4);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID_METADATA_ID) VALUES (nft_seq.nextval,'ethereum',5656,5);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID_METADATA_ID) VALUES (nft_seq.nextval,'ethereum',5656,6);
+
+INSERT INTO METADATA (METADATA_ID,NAME,DESCRIPTION,IMAGE,NFT_ID) VALUES (metadata_seq.nextval,'ethereum','ethereum','https://www.coingecko.com/en/coins/pulsechain',1);
+INSERT INTO METADATA (METADATA_ID,NAME,DESCRIPTION,IMAGE,nft_id) VALUES (metadata_seq.nextval,'polygon','polygon','https://www.coingecko.com/en/coins/pulsechain',1);
+INSERT INTO METADATA (METADATA_ID,NAME,DESCRIPTION,IMAGE,nft_id) VALUES (metadata_seq.nextval,'avalanche','avalanche','https://www.coingecko.com/en/coins/pulsechain',1);
+INSERT INTO METADATA (METADATA_ID,NAME,DESCRIPTION,IMAGE,nft_id) VALUES (metadata_seq.nextval,'binance','binance','https://www.coingecko.com/en/coins/pulsechain',1);
+INSERT INTO METADATA (METADATA_ID,NAME,DESCRIPTION,IMAGE,nft_id) VALUES (metadata_seq.nextval,'ethereum','ethereum','https://www.coingecko.com/en/coins/pulsechain',1);
+INSERT INTO METADATA (METADATA_ID,NAME,DESCRIPTION,IMAGE,nft_id) VALUES (metadata_seq.nextval,'ethereum','ethereum','https://www.coingecko.com/en/coins/pulsechain',1);
+
+
+
+-- SELECT u.firstname as firstName, u.lastname as lastName, COUNT(cu.userid) as chainCount FROM CHAIN_USERS cu left join USERS u ON u.userid = cu.userid;
+-- SELECT u.firstname as firstName, u.lastname as lastName, COUNT(cu.userid) as chainCount FROM CHAINUSERS u left join CHAIN_USERS cu ON cu.userid = u.userid GROUP BY  u.lastname ORDER BY  chainCount;

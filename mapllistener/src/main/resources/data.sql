@@ -1,11 +1,13 @@
-insert into users (  username, email, password) values ('admin','admin@gmail.com', 'password');
-insert into users (  username, email, password) values ('thomasm1.maestas','thomasm1.maestas@gmail.com', 'password');
-insert into users (  username, email, password) values ('thomas1.maestas','thomas1.maestas@gmail.com', 'password');
-insert into users (  username, email, password) values ('jil','jil@gmail.com', 'password');
-insert into users (  username, email, password) values ('info','info@gmail.com', 'password');
-insert into users (  username, email, password) values ('guest','guest@gmail.com', 'password');
-insert into users (  username, email, password) values ('guest','guest@guest.com', 'password');
+-- INSERT userS
 
+Insert into USERS (USERID, LASTNAME, FIRSTNAME, PASSWORD, EMAIL, CUSURL, PHOTOPATH, USERGROUP, ISACTIVE )values(nextval('ID_MAKER'), 'Smith', 'Tom1','password', 'Tom1.o@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a1.jpg', 'photoPath', '1', 1 );
+Insert into USERS (USERID, LASTNAME, FIRSTNAME, PASSWORD, EMAIL, CUSURL, PHOTOPATH, USERGROUP, ISACTIVE)values (nextval('ID_MAKER'),  'Maestas', 'Tom2','password','Tom2.o@gmail.com', 'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a2.jpg','photoPath', '2', 1);
+Insert into USERS (USERID, LASTNAME, FIRSTNAME, PASSWORD, EMAIL, CUSURL, PHOTOPATH, USERGROUP, ISACTIVE)values (nextval('ID_MAKER'),  'Smith', 'Tom3','password','Tom3.o@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a3.jpg', 'photoPath', '3', 1);
+Insert into USERS (USERID, LASTNAME, FIRSTNAME, PASSWORD, EMAIL, CUSURL, PHOTOPATH, USERGROUP, ISACTIVE)values (nextval('ID_MAKER'),  'Smith', 'Tom4','password','Tom4.o@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a4.jpg', 'photoPath', null, 0);
+Insert into USERS (USERID, LASTNAME, FIRSTNAME, PASSWORD, EMAIL, CUSURL, PHOTOPATH, USERGROUP, ISACTIVE)values (nextval('ID_MAKER'),  'Maestas', 'thomas','password','thomas.maestas@hotmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', null, 1);
+Insert into USERS (USERID, LASTNAME, FIRSTNAME, PASSWORD, EMAIL, CUSURL, PHOTOPATH, USERGROUP, ISACTIVE)values (nextval('ID_MAKER'),  'Maestas', 'thomasm1','password','thomasm1.maestas@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', '3', 1);
+
+-- INSERT INTO POST_ENTITY ()
 -- INSERT userS
 -- insert into users (userid, username, password, lastname, firstname, groups, usertype, email, phone, cusurl, photopath, usergroup, isactive, contacttype, id) values (nextval('ID_MAKER'),  'warton@gmail.com', 'password',  'Warton',  'John',    1,2,'warton@gmail.com','ph','curl', 'photo','uGroup',1,2,'99'   );
 -- insert into users (userid, username, password, lastname, firstname, groups, usertype, email, phone, cusurl, photopath, usergroup, isactive, contacttype, id) values (nextval('ID_MAKER'),'lanister@gmail.com', 'password',  'Lanister','Mike', 1,2,'lanister@gmail.com','ph','curl', 'photo','uGroup',1,2,'99'   );

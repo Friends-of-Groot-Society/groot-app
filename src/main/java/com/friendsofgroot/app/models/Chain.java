@@ -30,7 +30,7 @@ public class Chain {
     @Column(name = "rpc_url")
     private String rpcUrl;
 
-    private int id;
+    private int id; // chain id
     @Column(name = "block_explorer_url")
     private String blockExplorerUrl;
 

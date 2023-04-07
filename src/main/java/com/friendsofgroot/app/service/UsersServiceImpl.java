@@ -1,11 +1,12 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.ChainUsers;
 import com.friendsofgroot.app.dto.RegisterDto;
-import com.friendsofgroot.app.dto.UserChain;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.models.Address;
+import com.friendsofgroot.app.repositories.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.models.User;
@@ -23,6 +24,8 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserAccountRepository userAccountRepository;
 
 
     /**
@@ -230,8 +233,8 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public List<UserChain> getUserChains() {
+    public List<ChainUsers> getUserChains() {
 
-        return usersRepository.getUserChains();
+        return userAccountRepository.getUserChains();
     }
 }

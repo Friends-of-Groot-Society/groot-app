@@ -14,6 +14,7 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//@RequiredArgsConstructor
 @Getter @Setter @ToString
 @Entity
 @Table(name = "users")
@@ -21,9 +22,9 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
-//    @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
+    @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="userid", nullable = false, unique = true)
     private int userId;
 
@@ -50,7 +51,7 @@ public class User implements Serializable {
 
     @NotBlank
     @Email(message="*Must be a valid email address")
-    @Column(name="email" )
+    @Column(name="email"  , unique = true)
     private String email;
     @Column(name="cusurl")
     private String cusUrl;
@@ -69,7 +70,7 @@ public class User implements Serializable {
     private String id;
 
     // parent of many
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id") // , orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id"  , orphanRemoval = true)
     private List<Address> addresses;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
@@ -80,28 +81,9 @@ public class User implements Serializable {
     )
     @JsonIgnore
     private List<Chain> chains = new ArrayList<>();
-
-    public User(int i, String username, String password, String firstName, String lastName, String email, String role) {
-        super();
-
-        this.username = username;
-        this.password = password;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.userType = userType;
-        this.groups = groups;
-        this.email = email;
-        this.phone = phone;
-        this.cusUrl = cusUrl;
-        this.photoPath = photoPath;
-        this.userGroup = userGroup;
-        this.isActive = isActive;
-        this.contactType = contactType;
-        this.id = id;
-    }
-//    @ManyToMany(fetch = FetchType.EAGER)
-//   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private List<Role> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
 
     ////////////////////
 
@@ -124,6 +106,25 @@ public class User implements Serializable {
 //        role.getUsers().remove(this);
 //    }
 
+
+//    public User(int i, String username, String password, String firstName, String lastName, String email, String role) {
+//        super();
+//
+//        this.username = username;
+//        this.password = password;
+//        this.lastName = lastName;
+//        this.firstName = firstName;
+//        this.userType = userType;
+//        this.groups = groups;
+//        this.email = email;
+//        this.phone = phone;
+//        this.cusUrl = cusUrl;
+//        this.photoPath = photoPath;
+//        this.userGroup = userGroup;
+//        this.isActive = isActive;
+//        this.contactType = contactType;
+//        this.id = id;
+//    }
     ///////////////////////////
     public User(int userid, String username, String password, String lastName, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
         super();

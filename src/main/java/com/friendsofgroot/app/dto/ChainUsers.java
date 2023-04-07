@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.dto;
 
-public interface UserChain {
+public interface ChainUsers {
 
 // property names begin with get
 public String getFirstName();

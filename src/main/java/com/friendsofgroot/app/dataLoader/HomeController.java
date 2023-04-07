@@ -3,7 +3,7 @@ package com.friendsofgroot.app.dataLoader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.dto.ChainDto;
-import com.friendsofgroot.app.dto.UserChain;
+import com.friendsofgroot.app.dto.ChainUsers;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.mapper.UserMapper;
@@ -34,9 +34,9 @@ public class HomeController {
     @Autowired
     UsersService usersService;
 
-    @Autowired
+//    @Autowired
     UserMapper userMapper;
-    @Autowired
+//    @Autowired
     ChainMapper chainMapper;
 
     @GetMapping("/")
@@ -60,7 +60,7 @@ public class HomeController {
             String json = objectMapper.writeValueAsString(dataCat);
 
             // query for users
-        List<UserChain> userChainCnt = usersService.getUserChains();
+        List<ChainUsers> userChainCnt = usersService.getUserChains();
         model.addAttribute("userChainCnt", userChainCnt);
 
         return "main/home";

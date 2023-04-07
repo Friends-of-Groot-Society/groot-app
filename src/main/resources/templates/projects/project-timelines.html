@@ -35,9 +35,9 @@
         var chart = new google.visualization.Timeline(container);
         var dataTable = new google.visualization.DataTable();
 
-        dataTable.addColumn({ type: 'string', id: 'ChainProject' });
-        dataTable.addColumn({ type: 'date', id: 'Start' });
-        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addColumn({ type: 'string', id: 'chainProject' });
+        // dataTable.addColumn({ type: 'date', id: 'Start' });
+        // dataTable.addColumn({ type: 'date', id: 'End' });
 
 	      for (var i = 0; i < resultArray.length; i++) {
 	    	  dataTable.addRows([

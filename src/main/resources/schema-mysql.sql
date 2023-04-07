@@ -114,8 +114,7 @@ CREATE TABLE if not exists WEBLINK(id bigint PRIMARY KEY
                      url varchar(250) NOT NULL ,
                      host varchar(250) ,
                      downloadstatus TINYINT,
-                     htmlpage    varchar(255),
-                     CONSTRAINT UNIQUE(url (200)));
+                     htmlpage    varchar(255));
 
 -- create table if not exists weblinks
 -- (

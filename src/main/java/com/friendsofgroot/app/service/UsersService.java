@@ -1,8 +1,8 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.ChainUsers;
 import com.friendsofgroot.app.dto.LoginDto;
 import com.friendsofgroot.app.dto.RegisterDto;
-import com.friendsofgroot.app.dto.UserChain;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.models.User;
 
@@ -30,7 +30,7 @@ public interface UsersService {
 
 	boolean deleteUser(UserDto user);
 
-	List<UserChain> getUserChains();
+	List<ChainUsers> getUserChains();
 
 	UserDto registerUser(RegisterDto rDto);
 

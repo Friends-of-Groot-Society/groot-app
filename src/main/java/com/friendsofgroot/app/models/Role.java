@@ -21,7 +21,7 @@ public class Role extends AbstractDomainClass  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 private String name;
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "role_id"),    inverseJoinColumns = @JoinColumn(name = "userid"))
-//    private List<User> users = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "role_id"),    inverseJoinColumns = @JoinColumn(name = "userid"))
+    private List<User> users = new ArrayList<>();
 }

@@ -25,7 +25,7 @@ import java.util.function.Function;
 
 
 
-//@Configuration
+//@Configzuration
 //@EnableWebSecurity
 public class SpringSecurityConfiguration {
 

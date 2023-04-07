@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserAccountRepository extends PagingAndSortingRepository<UserAccount, Long>{
 
-    @Query(nativeQuery=true, value="SELECT u.firstname as firstName, u.lastname as lastName, COUNT(cu.userid) as chainCount " +
+    @Query(nativeQuery=true, value="SELECT u.firstname as firstName, u.lastname as lastname, COUNT(cu.userid) as chainCount " +
             "FROM USERS u left join CHAIN_USERS cu ON cu.userid = u.userid;")
           //  "GROUP BY  u.lastname ORDER BY  chainCount")
     List<ChainUsers> getUserChains();

@@ -1,6 +1,8 @@
 package com.friendsofgroot.app.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.persistence.*;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "NFT")
 public class Nft {
@@ -18,7 +22,7 @@ public class Nft {
 	@Id
 	private int id;
 	private String name;
-	private int amount;
+	private int amount; // TODO needs DOUBLE PRCISION
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Metadata metadata_id; // metadata_id
 //	@OneToOne //(orphanRemoval = true)

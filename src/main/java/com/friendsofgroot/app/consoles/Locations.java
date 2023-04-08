@@ -9,14 +9,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.*;
 
+
 public class Locations implements Map<Integer, Location> {
 
     private  static Logger logger = LoggerFactory.getLogger(ParseDynamicJson.class);
-    private static String L_DIR = "src/main/resources/locations/";
+    private static String L_DIR = "src/main/resources/data/locations/";// "/data/locations/";
+
+
+//    static InputStream locations_big_bin = Locations.class.getResourceAsStream("locations_big.bin");
+    private static String locations_big_bin =  "locations_big.bin" ;
+
+//    static InputStream directions_big_bin = Locations.class.getResourceAsStream("directions_big.bin");
+private static String directions_big_bin =  "directions_big.bin" ;
+    InputStream in = getClass().getResourceAsStream("/1.txt");
+    BufferedReader input = new BufferedReader(new InputStreamReader(in));
+
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 //    FileWriter locFile = new FileWriter(L_DIR+ "locations.txt")
     public static void mainLocationsTXT(String[] args) throws IOException {
@@ -58,8 +70,8 @@ public class Locations implements Map<Integer, Location> {
 
 
         LoggerImpl.loggerInstance(new String[] { "CliApplication.main()" });
-        try(ObjectOutputStream locFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "locations_big.bin")));
-            ObjectOutputStream dirFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "directions_big.bin")))) {
+        try(ObjectOutputStream locFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(locations_big_bin)));
+            ObjectOutputStream dirFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(directions_big_bin)))) {
             for(Location location : locations.values()) {
                 locFile.writeObject(location);
             }

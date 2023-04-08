@@ -25,6 +25,8 @@ public class Weblink extends Bookmark implements Shareable {
 	@Column(name="downloadstatus")
 	private DownloadStatus downloadStatus = DownloadStatus.NOT_ATTEMPTED;
 
+
+
 	public enum DownloadStatus {
 		NOT_ATTEMPTED,
 		SUCCESS,

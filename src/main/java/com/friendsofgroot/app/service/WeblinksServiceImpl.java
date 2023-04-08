@@ -1,5 +1,8 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.dto.WeblinkDto;
+import com.friendsofgroot.app.exception.ResourceNotFoundException;
+import com.friendsofgroot.app.mapper.WeblinkMapper;
 import com.friendsofgroot.app.models.Weblink;
 import com.friendsofgroot.app.repositories.WeblinksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,31 +14,62 @@ import java.util.List;
 public class WeblinksServiceImpl implements WeblinksService {
 
     @Autowired
+    WeblinkMapper weblinkMapper;
+
+    @Autowired
     WeblinksRepository weblinksRepository;
+
+    /**
+     * @param bkmk
+     * @return
+     */
     @Override
-    public Weblink createWeblinks(Weblink bkmk) {
-        return weblinksRepository.save(bkmk);
+    public WeblinkDto createWeblinks(WeblinkDto bkmk) {
+        Weblink weblink = weblinksRepository.save(weblinkMapper.toEntity(bkmk));
+        return weblinkMapper.toDto(weblink);
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @Override
-    public Weblink getWeblinks(long id) {
+    public WeblinkDto getWeblinks(long id) {
         try {
-            return weblinksRepository.findById(id).get();
+            return weblinkMapper.toDto(weblinksRepository.findById(id).get());
         } catch (Exception e) {
             return null;
         }
     }
-
+    /**
+     * @param bkmk
+     * @return
+     */
     @Override
-    public List<Weblink> getAllWeblinks() {
-        return weblinksRepository.findAll();
-    }
+    public List<WeblinkDto> getAllWeblinks() {
+        List<WeblinkDto> wdto = null;
+        List<Weblink> weblinks =  weblinksRepository.findAll();
+        if (weblinks == null) {
+          throw new ResourceNotFoundException("not found","id", "weblink");
+        } else {
+            wdto = weblinks.stream().map(weblinkMapper::toDto).toList();
+            return wdto;
+        }
 
+    }
+    /**
+     * @param bkmk
+     * @return
+     */
     @Override
-    public Weblink updateWeblinks(Weblink change) {
-        return weblinksRepository.save(change);
+    public WeblinkDto updateWeblinks(WeblinkDto change) {
+        Weblink weblink = weblinksRepository.save(weblinkMapper.toEntity(change));
+        return  weblinkMapper.toDto(weblink);
     }
-
+    /**
+     * @param bkmk
+     * @return
+     */
     @Override
     public boolean deleteWeblinks(long id) {
         try {

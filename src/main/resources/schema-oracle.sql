@@ -118,6 +118,12 @@ create table COINTABLE
     purchased  NUMBER not null,
     primary key (coinid)
 );
+CREATE TABLE BOOKMARK(id NUMBER PRIMARY KEY ,
+                     title varchar(500) ,
+                      profileurl varchar(250)  ,
+                      shared_by_userid NUMBER,
+                      owneremail    varchar(255)
+);
 -- drop table WEBLINK CASCADE  CONSTRAINTS;
 CREATE TABLE WEBLINK(id NUMBER PRIMARY KEY ,
                      title varchar(500) ,
@@ -156,6 +162,7 @@ create table METADATA
 -- create sequence nft_seq start with 600 increment by 50;
 -- create sequence roles_seq start with 700 increment by 50;
 -- create sequence weblinks_seq start with 800 increment by 50;
+create sequence bookmark_seq start with 800 increment by 50;
 
 -- MANY TO ON
 -- alter table attribute

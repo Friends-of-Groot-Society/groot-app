@@ -8,7 +8,9 @@ import lombok.Setter;
 
 import jakarta.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,8 +22,8 @@ public class Role extends AbstractDomainClass  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
-private String name;
+    private String name;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "role_id"),    inverseJoinColumns = @JoinColumn(name = "userid"))
-    private List<User> users = new ArrayList<>();
+    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "role_id"),    inverseJoinColumns = @JoinColumn(name = "userid"))
+    private Set<User> users = new HashSet<>();
 }

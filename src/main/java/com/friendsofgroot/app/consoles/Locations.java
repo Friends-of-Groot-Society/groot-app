@@ -1,15 +1,10 @@
 package com.friendsofgroot.app.consoles;
 
 
-import com.friendsofgroot.app.dataLoader.UserDetailsCLR;
-
 import com.friendsofgroot.app.util.ParseDynamicJson;
 import com.friendsofgroot.app.util.logger.LoggerImpl;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.*;

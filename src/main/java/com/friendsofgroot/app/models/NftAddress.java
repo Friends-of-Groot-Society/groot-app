@@ -30,7 +30,7 @@ public class NftAddress {
 	@Column(name = "tokens")
 	private Float tokensAmount;
 	// token name, token amount	@OneToOne
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "nftAddress" )
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE, mappedBy = "nftAddress" )
 	@Column(name = "nfts")
 	private List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
 }

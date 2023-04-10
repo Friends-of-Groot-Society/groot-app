@@ -1,5 +1,5 @@
--- drop table user_roles CASCADE  CONSTRAINTS;
-create table user_roles
+-- drop table USERS_ROLES CASCADE  CONSTRAINTS;
+create table USERS_ROLES
 (
     id          NUMBER not null,
     role_id     NUMBER not null,
@@ -62,7 +62,6 @@ create table chain
     primary key (chain_id)
 );
 
---     create table attribute (attrid NUMBER, trait_type varchar(255), valu varchar(255), metadata_metadata_id NUMBER, primary key (attrid));
 -- drop table address CASCADE  CONSTRAINTS;
 create table address
 (
@@ -73,7 +72,7 @@ create table address
     chain              varchar(255),
     icon_url           varchar(255),
     block_explorer_url varchar(255),
-    userid             NUMBER,
+    users_userid       NUMBER,
     chain_id            NUMBER,
     primary key (id)
 );
@@ -151,7 +150,7 @@ create table METADATA
     nft_id      NUMBER,
     primary key (metadata_id)
 );
---
+
 -- create sequence address_seq start with 10 increment by 50;
 -- create sequence attribute_seq start with 1000 increment by 50;
 -- create sequence chain_seq start with 101 increment by 50;
@@ -162,7 +161,7 @@ create table METADATA
 -- create sequence nft_seq start with 600 increment by 50;
 -- create sequence roles_seq start with 700 increment by 50;
 -- create sequence weblinks_seq start with 800 increment by 50;
-create sequence bookmark_seq start with 800 increment by 50;
+-- create sequence bookmark_seq start with 800 increment by 50;
 
 -- MANY TO ON
 -- alter table attribute

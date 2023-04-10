@@ -106,28 +106,18 @@ values (chain_seq.nextval, 'pulsechain7', 'pls', 'pulsechain Mainnet', 'NFT - 0x
         'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',
         'https://rpc.pulsechain.io', 23, null);
 --
---
+
 -- -- INSERT PROJECT_user_RELATION
-insert into chain_users (userid, chain_id)
-values (1, 101);
-insert into chain_users (userid, chain_id)
-values (51, 151);
-insert into chain_users (userid, chain_id)
-values (101, 201);
-insert into chain_users (userid, chain_id)
-values (151, 251);
-insert into chain_users (userid, chain_id)
-values (201, 301);
-insert into chain_users (userid, chain_id)
-values (251, 351);
-insert into chain_users (userid, chain_id)
-values (301, 401);
-insert into chain_users (userid, chain_id)
-values (351, 451);
-insert into chain_users (userid, chain_id)
-values (401, 501);
-insert into chain_users (userid, chain_id)
-values (451, 551);
+insert into chain_users (id, userid, chain_id)values (1, 211, 11501);
+insert into chain_users (id, userid, chain_id)values (2, 212, 11551);
+insert into chain_users (id, userid, chain_id)values (3, 213, 11601);
+insert into chain_users (id, userid, chain_id)values (4, 214, 11651);
+insert into chain_users (id, userid, chain_id)values (5, 215, 11701);
+insert into chain_users (id, userid, chain_id)values (6, 215, 11751);
+insert into chain_users (id, userid, chain_id)values (7, 216, 11801);
+insert into chain_users (id, userid, chain_id)values (8, 217, 11851);
+insert into chain_users (id, userid, chain_id)values (9, 218, 11901);
+insert into chain_users (id, userid, chain_id)values (10, 219, 11951);
 
 
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )

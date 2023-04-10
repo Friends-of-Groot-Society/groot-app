@@ -28,7 +28,7 @@ public class User implements Serializable {
     @Column(name="userid", nullable = false, unique = true)
     private int userId;
 
-    @Column(name="username"  )
+    @Column(name="username" , unique = true )
     private String username;
 
     @NotBlank(message="*Must give password")
@@ -70,7 +70,7 @@ public class User implements Serializable {
     private String id;
 
     // parent of many
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id"  , orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id"  , orphanRemoval = true)
     private List<Address> addresses;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
@@ -82,8 +82,8 @@ public class User implements Serializable {
     @JsonIgnore
     private List<Chain> chains = new ArrayList<>();
     @ManyToMany(fetch = FetchType.EAGER)
-   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles = new ArrayList<>();
+   @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     ////////////////////
 
@@ -91,20 +91,20 @@ public class User implements Serializable {
         this.userType = 9;
         return true;
     }
-//    public void addRole(Role role){
-//        if(!this.roles.contains(role)){
-//            this.roles.add(role);
-//        }
-//
-//        if(!role.getUsers().contains(this)){
-//            role.getUsers().add(this);
-//        }
-//    }
-//
-//    public void removeRole(Role role){
-//        this.roles.remove(role);
-//        role.getUsers().remove(this);
-//    }
+    public void addRole(Role role){
+        if(!this.roles.contains(role)){
+            this.roles.add(role);
+        }
+
+        if(!role.getUsers().contains(this)){
+            role.getUsers().add(this);
+        }
+    }
+
+    public void removeRole(Role role){
+        this.roles.remove(role);
+        role.getUsers().remove(this);
+    }
 
 
 //    public User(int i, String username, String password, String firstName, String lastName, String email, String role) {

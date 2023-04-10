@@ -23,11 +23,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class UserDetailsCLR implements CommandLineRunner {
+public class UserDetailsCommanLineRunner implements CommandLineRunner {
 
 //    import org.slf4j.Logger;
     private static final Logger log =
-            LoggerFactory.getLogger(UserDetailsCLR.class);
+            LoggerFactory.getLogger(UserDetailsCommanLineRunner.class);
 
     @Autowired
     private UsersRepository usersRepository;
@@ -51,9 +51,14 @@ public class UserDetailsCLR implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws IOException {
-    if (System.getenv("ENV") != null && System.getenv("ENV").equals("dev")) {
+    if (System.getenv("ENV") != null &&
+            (  System.getenv("ENV").equals("dev") ||
+                    System.getenv("environment").equals("dev") ||
+                    System.getenv("ENV").equals("prod"))) {
 
-        System.out.println("ENV: " + System.getenv("ENV"));
+        System.out.println("ENV: ++++++++++++++++++++++++++" +
+                "++++++++++++++++++++++++++" +
+                "" + System.getenv("ENV"));
         CliLogger.getInstance().info("UserDetailsCommandLineRunner.run()");
 
         System.out.println(Datum.ANSI_CYAN + "1. ANSI_CYAN LOADING BOOKMARK DATA");
@@ -69,8 +74,8 @@ public class UserDetailsCLR implements CommandLineRunner {
         });
 
         usersRepository.saveAll(users);
-        usersRepository.save(new User("thomas.maestas@gmail.com", "password", "lastName", "firstName",
-                1, 1, "phone", "thomas.maestas@gmail.com", "cusUrl", "photoPath", "userGroup", 1, 3, "1"));
+        usersRepository.save(new User("thomas.maestas@hotmail.com", "password", "lastName", "firstName",
+                1, 1, "phone", "thomas.maestas@hotmail.com", "cusUrl", "photoPath", "userGroup", 1, 3, "1"));
         usersRepository.save(new User("admin", "password", "lastName", "firstName",
                 0, 0, "phone", "admin@gmail.com", "cusUrl", "photoPath", "userGroup", 1, 3, "0"));
 

@@ -5,7 +5,7 @@ create table if not exists roles
     primary key (id)
 );
 
-create table if not exists user_roles
+create table if not exists USERS_ROLES
 (
     id          NUMBER not null,
     role_id     NUMBER not null,

@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 
 
-import static com.friendsofgroot.app.security.SpringSecurityConfiguration.checkDbUsernameAndPassword;
-import static com.friendsofgroot.app.security.SpringSecurityConfiguration.hardCodedAdminNameAndPassword;
+import static com.friendsofgroot.app.security.SecurityConfig.checkDbUsernameAndPassword;
+import static com.friendsofgroot.app.security.SecurityConfig.hardCodedAdminNameAndPassword;
 import static com.friendsofgroot.app.util.Utilities._earlyQuit; //RETURNS TO MainConsole
 
 @Component

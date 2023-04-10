@@ -5,15 +5,15 @@ import java.sql.SQLException;
 import java.util.*;
 
 import com.friendsofgroot.app.commands.*;
-import com.friendsofgroot.app.dataLoader.UserDetailsCLR;
+import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
 import com.friendsofgroot.app.security.UserLogin;
 import com.friendsofgroot.app.security.UserRegister;
 import com.friendsofgroot.app.util.constants.Cmds;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import static com.friendsofgroot.app.dataLoader.UserDetailsCLR.runDownloaderJob;
-import static com.friendsofgroot.app.dataLoader.UserDetailsCLR.startBrowsingBuying;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner.runDownloaderJob;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner.startBrowsingBuying;
 import static com.friendsofgroot.app.service.CoinService.coinMarketViewAll; // 3 DB
 
 @Component
@@ -93,7 +93,7 @@ public class MainDashboard implements IMaPL {
                         }
                         case 4: {
                             System.out.println("\n Ok, Initiating Local Offline User Details Loader....");
-                            UserDetailsCLR cliDataLoader = new UserDetailsCLR();
+                            UserDetailsCommanLineRunner cliDataLoader = new UserDetailsCommanLineRunner();
                             cliDataLoader.run();  // Local Offline Automated USER
                             break;
                         }

@@ -48,9 +48,7 @@ private ChainMapper chainMapper;
         List<Chain> chains = chainsRepository.findAll();
         List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
 
-
         return content;
-
     }
 
     /**
@@ -59,10 +57,10 @@ private ChainMapper chainMapper;
 
 
     @Override
-    public  ChainDto  getChainByName(String name) {
+    public ChainDto getChainByName(String name) {
 
-        Chain c = chainsRepository.findByName(name);
-        return chainMapper.toOneDto(c);
+        List<Chain> c = chainsRepository.findByName(name);
+        return (ChainDto) chainMapper.toListDto(c);
     }
 
     @Override
@@ -108,6 +106,17 @@ private ChainMapper chainMapper;
     @Override
     public List<ChainDto> findByCategory(String cat) {
         List<Chain> chains = chainsRepository.findByCategory(cat);
+        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
+        return content;
+    }
+
+    /**
+     * @param name
+     * @return
+     */
+    @Override
+    public List<ChainDto> findByName(String name) {
+        List<Chain> chains = chainsRepository.findByName(name);
         List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
         return content;
     }

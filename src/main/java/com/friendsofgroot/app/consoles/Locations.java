@@ -13,22 +13,15 @@ import java.util.*;
 public class Locations implements Map<Integer, Location> {
 
     private  static Logger logger = LoggerFactory.getLogger(ParseDynamicJson.class);
-    private static String L_DIR = "src/main/resources/data/locations/";// "/data/locations/";
+    private static String L_DIR = "./src/main/resources/data/locations/";// "/data/locations/";
 
-
-//    static InputStream locations_big_bin = Locations.class.getResourceAsStream("locations_big.bin");
-    private static String locations_big_bin =  "locations_big.bin" ;
-
-//    static InputStream directions_big_bin = Locations.class.getResourceAsStream("directions_big.bin");
-private static String directions_big_bin =  "directions_big.bin" ;
-    InputStream in = getClass().getResourceAsStream("/1.txt");
-    BufferedReader input = new BufferedReader(new InputStreamReader(in));
+//    InputStream in = getClass().getResourceAsStream(L_DIR);
+//    BufferedReader input = new BufferedReader(new InputStreamReader(in));
 
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 //    FileWriter locFile = new FileWriter(L_DIR+ "locations.txt")
     public static void mainLocationsTXT(String[] args) throws IOException {
-        logger.info("___________________mainLocationsTXT()");
-        LoggerImpl.loggerInstance(new String[]{"___________________mainLocationsTXT.run()"});
+        logger.info("BufferedWriter___________________mainLocationsTXT()");
         try(BufferedWriter locFile = new BufferedWriter(new FileWriter(L_DIR+ "locations_big_wr.txt"));
             BufferedWriter dirFile = new BufferedWriter(new FileWriter(L_DIR+ "directions_big_wr.txt"))) {
             for(Location location : locations.values()) {
@@ -40,9 +33,7 @@ private static String directions_big_bin =  "directions_big.bin" ;
         }
     }
     public static void mainLocationsDAT(String[] args) throws IOException {
-        logger.info("___________________mainLocationsDAT()");
-        LoggerImpl.loggerInstance(new String[]{"___________________mainLocationsDAT()"});
-
+        logger.info("DataOutputStream___________________mainLocationsDAT()");
         try(DataOutputStream locFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "locations_big.dat")));
             DataOutputStream dirFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "directions_big.dat")))) {
             for(Location location : locations.values()) {
@@ -62,42 +53,23 @@ private static String directions_big_bin =  "directions_big.bin" ;
         }
     }
     public static void mainLocationsBIN(String[] args) throws IOException {
-
-
-        LoggerImpl.loggerInstance(new String[] { "CliApplication.main()" });
-        try(ObjectOutputStream locFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(locations_big_bin)));
-            ObjectOutputStream dirFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(directions_big_bin)))) {
+        logger.info("ObjectOutputStream___________________mainLocationsBIN()");
+        try(ObjectOutputStream locFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "locations_big.bin")));
+            ObjectOutputStream dirFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(L_DIR+ "directions_big.bin")))) {
             for(Location location : locations.values()) {
                 locFile.writeObject(location);
             }
         }
     }
-    //        FileWriter locFile = null;
-//        try {
-//            locFile = new FileWriter("locations.txt");
-//            for(Location location : locations.values()) {
-//                locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
-//            }
-//        } finally {
-//            System.out.println("in finally block");
-//            if (locFile != null) {
-//                System.out.println("Attempting to close locfile");
-//                locFile.close();
-//            }
-//        }
+
     static {
-//        try (ObjectInputStream locFile = new ObjectInputStream((new BufferedInputStream((new FileInputStream(L_DIR+ "locations_big.bin")))))){
-//            boolean eof = false;
-//            while(!eof) {
-//                try {
-//                    Location location = (Location) locFile.readObject();
-//
-//            LogCustom.loggerInstance(new String[]{"LogCustom__________________ " + location.getLocationID() + ": " + location.getDescription()});
-//            log.info("LOG:________________location " + location.getLocationID() + ": " + location.getDescription());
-//                    System.out.println("Read location " + location.getLocationID() + ": " + location.getDescription());
-//                    System.out.println("Found " + location.getExits().size() + " exits");
-//                    locations.put(location.getLocationID(), location);
-        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(L_DIR+ "locations_big.txt")))) {
+
+        File directory = new File(L_DIR);  // src/main/resources/data/locations/
+        System.out.println("Current _________directory C:\\w\\www\\_groot\\groot-app\\src\\main\\resources\\data\\locations: " + directory.getAbsolutePath());
+        File currDir = new File("./");
+        System.out.println("Current _________currDir C:\\w\\www\\_groot\\groot-app\\.: " + currDir.getAbsolutePath());
+
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(L_DIR+"locations_big.txt")))) {
             scanner.useDelimiter(",");
             while(scanner.hasNextLine()) {
                 int loc = scanner.nextInt();
@@ -112,7 +84,7 @@ private static String directions_big_bin =  "directions_big.bin" ;
         }
 
         // READ EXIT DIRECTIONS
-        try(BufferedReader dirFile =  new BufferedReader(new FileReader(L_DIR+ "directions_big.txt"))) {
+        try(BufferedReader dirFile =  new BufferedReader(new FileReader(L_DIR+"directions_big.txt"))) {
             String input;
             while( (input = dirFile.readLine()) != null) {
                 String[] data = input.split(",");

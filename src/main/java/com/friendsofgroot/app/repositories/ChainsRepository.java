@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ChainsRepository extends JpaRepository<Chain, Integer> {
-    Chain findByName(String name);
 
 
     List<Chain> findByCategory(String category);
@@ -23,4 +22,7 @@ public interface ChainsRepository extends JpaRepository<Chain, Integer> {
     @Query(nativeQuery=true, value="SELECT name as chainName, start_date as startDate, end_date as endDate"
             + " FROM chain WHERE start_date is not null")
     public List<TimeChartData> getTimeData();
+
+    List<Chain> findByName(String name);
+
 }

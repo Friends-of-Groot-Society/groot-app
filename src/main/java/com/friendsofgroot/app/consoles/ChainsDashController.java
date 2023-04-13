@@ -7,7 +7,6 @@ package com.friendsofgroot.app.consoles;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.dto.ChainDto;
-import com.friendsofgroot.app.dto.ChainUsers;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.mapper.UserMapper;
@@ -24,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class MainController {
+public class ChainsDashController {
 
     @Value("${version}")
     private String ver;
@@ -39,7 +38,7 @@ public class MainController {
 //    @Autowired
     ChainMapper chainMapper;
 
-    @GetMapping(value = {"/v1", "/v1/"})
+    @GetMapping(value = {"/v1/chains", "/v1/chains/"})
     public String consoleHome(Model model ) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>();
         model.addAttribute("versionNumber",ver);
@@ -69,7 +68,7 @@ public class MainController {
 //        model.addAttribute("userChainCnt", userChainCnt);
 
         // i.e. src/main/resources/templates/main.html
-        return "main";
+        return "chains";
     }
 }
 

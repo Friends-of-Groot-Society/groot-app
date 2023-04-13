@@ -3,15 +3,20 @@ package com.friendsofgroot.app.dto;
 import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.models.NftAddress;
 import com.friendsofgroot.app.models.User;
-import lombok.Data;
+import lombok.*;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class AddressDto implements Serializable {
-    private static long serialVersionUID = 1L;
+    static long serialVersionUID = 1L;
     private int id;
 
     private String description;

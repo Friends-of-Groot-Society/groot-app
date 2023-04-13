@@ -6,6 +6,8 @@ import com.friendsofgroot.app.commands.MaPLInvoker;
 import com.friendsofgroot.app.commands.MaPLwriter;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.util.logger.LoggerImpl;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -16,18 +18,18 @@ import java.sql.SQLException;
 import java.util.*;
 
 
-public class GeoDashboard {
+public class GeoDashboard implements Map<Integer, Location> {
     //    private static Map<Integer, Location> locations = new HashMap<>();//
 //        Map<String, Integer> options = null;
     private static Locations locations = new Locations();
-    InputStream inputStream = getClass().getResourceAsStream("/data/locations/json/posts.json");
+//    InputStream inputStream = getClass().getResourceAsStream("/data/locations/json/posts.json");
     //cd C:\w\www\_groot\groot-app\src\main\java\com\friendsofgroot\app\data\locations
-//    URL url = new URL("jar:file:/absolute/location/of/yourJar.jar!/1.txt");
 
+//    URL url = new URL("jar:file:/absolute/location/of/yourJar.jar!/1.txt");
 //    InputStream is = url.openStream();
-//    BufferedReader input = new BufferedReader(new InputStreamReader(is));
+//    BufferedReader br = new BufferedReader(new InputStreamReader(is));
 //    String line = null;
-//    while ((line = input.readLine()) != null) {
+//    while ((line = br.readLine()) != null) {
 //        System.out.println(line);
 //    }
 
@@ -35,8 +37,6 @@ public class GeoDashboard {
     }
 
     public static void console(String args) throws SQLException, IOException, ClassNotFoundException {
-        ClassLoader classLoader = GeoDashboard.class.getClassLoader();
-        InputStream inputStream2 = classLoader.getResourceAsStream("/data/locations/json/posts.json");
 
         Scanner scanNav = new Scanner(System.in);
         Locations.mainLocationsTXT(new String[]{});
@@ -88,4 +88,64 @@ public class GeoDashboard {
         MainDashboard.console(new String[]{});
     }
 
+    @Override
+    public int size() {
+        return locations.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return locations.isEmpty();
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        return locations.containsKey(key);
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        return locations.containsValue(value);
+    }
+
+    @Override
+    public Location get(Object key) {
+        return locations.get(key);
+    }
+
+    @Override
+    public Location put(Integer key, Location value) {
+        return locations.put(key, value);
+    }
+
+    @Override
+    public Location remove(Object key) {
+        return locations.remove(key);
+    }
+
+    @Override
+    public void putAll(Map<? extends Integer, ? extends Location> m) {
+
+    }
+
+    @Override
+    public void clear() {
+        locations.clear();
+
+    }
+
+    @Override
+    public Set<Integer> keySet() {
+        return locations.keySet();
+    }
+
+    @Override
+    public Collection<Location> values() {
+        return locations.values();
+    }
+
+    @Override
+    public Set<Entry<Integer, Location>> entrySet() {
+        return locations.entrySet();
+    }
 }

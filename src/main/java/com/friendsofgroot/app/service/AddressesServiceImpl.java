@@ -84,5 +84,17 @@ public class AddressesServiceImpl implements AddressesService {
             return false;
         }
     }
+
+    /**
+     * @param email
+     * @return
+     */
+    @Override
+    public List<AddressDto> getAddressesByEmail(String email) {
+
+        List<Address> adds = addressesRepository.getAddressesByEmail(email);
+        List<AddressDto> addressDtos = adds.stream().map(addressMapper::addressToAddressDto).collect(Collectors.toList());
+        return addressDtos;
+    }
 }
 

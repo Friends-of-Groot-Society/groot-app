@@ -107,10 +107,10 @@ public class SecurityConfig {
 //                .authorizeHttpRequests(
 //				auth -> auth.anyRequest().authenticated()
                 .authorizeHttpRequests(
-                        auth -> auth.requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/mapl/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                        auth -> auth.requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll() // login/register
+                                .requestMatchers(HttpMethod.GET, "/api/**").permitAll() // Rest API
+                                .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ThymeLeaf UI
+                                .requestMatchers(HttpMethod.GET, "/**").permitAll() // Spring Rest Docs
                                 .anyRequest().authenticated()
                 ).exceptionHandling( exception -> exception
                         .authenticationEntryPoint(authenticationEntryPoint)

@@ -26,24 +26,28 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
-    @PostMapping("/users")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return new ResponseEntity<>(
-                usersService.createUser( userDto) ,
-                 HttpStatus.CREATED);
-    }
-    @PostMapping("/users/register")
+
+
+    //// API for user registration and login   ////
+    @PostMapping("/auth/register")
     public ResponseEntity<UserDto> registerUser(@RequestBody RegisterDto rDto) {
         return new ResponseEntity<>(
                 usersService.registerUser(rDto),
                 HttpStatus.CREATED);
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/auth/login")
     public ResponseEntity< UserDto > loginUser(@RequestBody LoginDto lDto) {
         return new ResponseEntity<>(
                 usersService.loginUser(lDto.getUsernameOrEmail(), lDto.getPassword()),
                 HttpStatus.OK);
+    }
+     //// GENERAL API for user management ////
+    @PostMapping("/users")
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        return new ResponseEntity<>(
+                usersService.createUser( userDto) ,
+                 HttpStatus.CREATED);
     }
 
     @GetMapping(value="/users/{userId}")

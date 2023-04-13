@@ -2,7 +2,6 @@ package com.friendsofgroot.app.service;
 
 
 import com.friendsofgroot.app.dto.ChainDto;
-import com.friendsofgroot.app.models.Chain;
 
 import java.util.List;
 
@@ -27,4 +26,6 @@ public interface ChainsService {
 
 
     List<ChainDto> findByCategory(String cat);
+
+    List<ChainDto> findByName(String ethereum);
 }

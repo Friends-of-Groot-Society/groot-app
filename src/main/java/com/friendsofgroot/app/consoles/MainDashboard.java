@@ -70,12 +70,12 @@ public class MainDashboard implements IMaPL {
             boolean hasNextInt = newScan.hasNextInt();
             int val = newScan.nextInt();
             try {
+                // After stack return & Break, back to console
                 if (val < 0 | val > MAIN_OPTIONS_COUNT | !hasNextInt) {
                     System.out.println("Please enter valid choices: 0-" + MAIN_OPTIONS_COUNT);
 
 
                     // RECURSE
-                    console();
                 } else {
                     switch (val) {
                         case 1: {
@@ -99,7 +99,7 @@ public class MainDashboard implements IMaPL {
                         }
                         case 5: {
                             System.out.println("\n Ok, #5 ...");
-                            console(new String[]{}); //{"any", "options"});
+                             GeoDashboard.console(Arrays.toString(new String[]{"/data/locations/json/posts.json"})); //{"any", "options"
                             break;
                         }
                         case 6: {
@@ -128,8 +128,8 @@ public class MainDashboard implements IMaPL {
                             break;
                         }
                     }
-                    console();// After stack return & Break, back to console
                 }
+                console();
 
             } catch (InputMismatchException e) {
                 System.out.println("InputMismatchException, Inputs! must choose 1,2,3,4... ");
@@ -140,6 +140,8 @@ public class MainDashboard implements IMaPL {
             } catch (IOException e) {
                 System.out.println("IOException: " + e.getMessage());
                 console();  // RECURSE
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
             console();
 

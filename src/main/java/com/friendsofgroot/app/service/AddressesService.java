@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.service;
 
 import com.friendsofgroot.app.dto.AddressDto;
+import com.friendsofgroot.app.dto.ChainDto;
 import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.models.Address;
 
@@ -16,4 +17,6 @@ public interface AddressesService {
     public AddressDto updateAddress(AddressDto change);
 
     public boolean deleteAddress(int id);
+
+    List<AddressDto> getAddressesByEmail(String email);
 }

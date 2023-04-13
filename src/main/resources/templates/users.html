@@ -36,7 +36,7 @@
 
 <div class="container">
 
-	<h3>Main Dashboard</h3>
+	<h3>User Dashboard</h3>
 	<a th:text="${versionNumber}"></a>
 		<h4> Current Users </h4>
  <hr>
@@ -94,39 +94,33 @@
 		</div>
 
 	</div>
-		<h4> Chains </h4>
+		<h4> Addresses </h4>
  <hr />
 		<div class="row">
 			<div class="col-md-6">
 				<table class="table table-bordered table-striped">
 					<thead class="thead-dark">
 						<tr>
-							<th> Name </th>
-							<th> ChainId</th>
-							<th> Category</th>
+							<th> Id </th>
+							<th> Email</th>
+							<th> Address</th>
 							<th> BlockUrl</th>
 
-							<th> Symbol</th>
+							<th> Chain</th>
 							<th> Desc.</th>
-							<th> RpcUrl</th>
-							<th> LongDesc</th>
-							<th> ChainIcon</th>
-							<th> Id</th>
+							<th> User</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="aChain : ${chains}">
-							<td th:text="${aChain.name}"/>
-							<td th:text="${aChain.getChainId()}"/>
-							<td th:text="${aChain.getCategory()}"/>
-							<td th:text="${aChain.getBlockExplorerUrl()}"/>
+						<tr th:each="aAddress : ${addresses}">
+							<td th:text="${aAddress.getId()}"/>
+							<td th:text="${aAddress.getEmail()}"/>
+							<td th:text="${aAddress.getAddress()}"/>
+							<td th:text="${aAddress.getBlockExplorerUrl()}"/>
 
-							<td th:text="${aChain.getSymbol()}"/>
-							<td th:text="${aChain.getDescription()}"/>
-							<td th:text="${aChain.getRpcUrl()}"/>
-							<td th:text="${aChain.getLongDescription()}"/>
-							<td th:text="${aChain.getChainListIcon()}"/>
-							<td th:text="${aChain.getId()}"/>
+							<td th:text="${aAddress.getChain()}"/>
+							<td th:text="${aAddress.getDescription()}"/>
+							<td th:text="${aAddress.getUser()}"/>
 
 						</tr>
 
@@ -146,24 +140,23 @@
 			</div>
 
 		</div>
-		<h4> Current Users By Chains </h4>
+		<h4> Current Users By Addresses </h4>
 <hr />
 		<div class="row">
 			<div class="col-md-6">
 				<table class="table table-bordered table-striped">
 					<thead class="thead-dark">
 						<tr>
-							<th> First Name </th>
-							<th> Last Name </th>
-							<th> Chain Count </th>
+							<th>ID </th>
+							<th> Address </th>
+<!--							<th> Addresses Count </th>-->
 						</tr>
 
-<!--		<tr th:each="aUserProjectCnt : ${userChainCnt}">&ndash;&gt;-->
-<!--			<td th:text="${aUserProjectCnt.getFirstName()}"/>-->
-<!--			<td th:text="${aUserProjectCnt.getLastName()}"/>-->
-<!--			<td th:text="${aUserProjectCnt.getLabel()}"/>-->
-<!--			<td th:text="${aUserProjectCnt.getValue()}"/>-->
-<!--		</tr>-->
+		<tr th:each="aDataAddressesByEmail : ${dataAddressesByEmail}">-->
+<!--			<td th:text="${aDataAddressesByEmail.getId()}"/>-->
+<!--			<td th:text="${aDataAddressesByEmail.getAddress()}"/>-->
+<!--			<td th:text="${aDataAddressesByEmail.getEmail()}"/>-->
+		</tr>
 
 					</tbody>
 

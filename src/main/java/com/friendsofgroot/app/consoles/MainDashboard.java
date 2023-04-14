@@ -66,7 +66,7 @@ public class MainDashboard implements IMaPL {
         System.out.println("Now Loading frontConsoleMenu()");
         frontConsoleMenu();
         try (Scanner newScan = new Scanner(System.in)) {
-            ;
+
             boolean hasNextInt = newScan.hasNextInt();
             int val = newScan.nextInt();
             try {
@@ -93,8 +93,8 @@ public class MainDashboard implements IMaPL {
                         }
                         case 4: {
                             System.out.println("\n Ok, Initiating Local Offline User Details Loader....");
-                            UserDetailsCommanLineRunner cliDataLoader = new UserDetailsCommanLineRunner();
-                            cliDataLoader.run();  // Local Offline Automated USER
+//                            UserDetailsCommanLineRunner cliDataLoader = new UserDetailsCommanLineRunner();
+//                            cliDataLoader.run();  // Local Offline Automated USER
                             break;
                         }
                         case 5: {

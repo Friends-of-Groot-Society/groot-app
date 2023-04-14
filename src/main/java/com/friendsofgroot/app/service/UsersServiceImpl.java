@@ -40,8 +40,8 @@ public class UsersServiceImpl implements UsersService {
         return u;
     }
     /**
-     * @param user
-     * @return
+     * @param registerDto
+     * @return  UserDto
      */
     @Override
     public UserDto registerUser(RegisterDto registerDto) {
@@ -52,12 +52,10 @@ public class UsersServiceImpl implements UsersService {
         newUser.setLastName(registerDto.getLastName());
         newUser.setFirstName(registerDto.getFirstName());
         /// TODO: MOVE LOGIC TO REGISTERDTO
-        newUser.setGroups(1);
         newUser.setUserType(2);
         newUser.setEmail(registerDto.getEmail());
         newUser.setAddresses(List.of(new Address()));
         newUser.setPhone("1234567890");
-        newUser.setUserGroup("1");
 //        newUser.setRole(registerDto.getRole()); //  registerDto.setRole("USER");
 
         User u = usersRepository.save(userMapper.toEntity(newUser));

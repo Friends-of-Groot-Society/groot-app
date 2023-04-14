@@ -55,19 +55,20 @@ public class AddressesServiceImpl implements AddressesService {
 
     @Override
     public AddressDto updateAddress(AddressDto change) {
+
         try {
-            Address addUpdate = addressMapper.addressDtoToAddress(change);
-            addUpdate = addressesRepository.findById(change.getId()).get();
-            addUpdate.setDescription(change.getDescription());
-            addUpdate.setIconUrl(change.getIconUrl());
-            addUpdate.setUser(change.getUser());
-            addUpdate.setChain(change.getChain());
-            addUpdate.setEmail(change.getEmail());
-            addUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
-            addUpdate.setChainId(change.getChainId());
+//             addUpdate = addressMapper.addressDtoToAddress(change);
+            Address existingUpdate = addressesRepository.findById(change.getId()).get();
+            existingUpdate.setDescription(change.getDescription() != null ? change.getDescription() : existingUpdate.getDescription());
+            existingUpdate.setIconUrl(change.getIconUrl() != null ? change.getIconUrl() : existingUpdate.getIconUrl());
+            existingUpdate.setUser(change.getUser() != null ? change.getUser() : existingUpdate.getUser());
+            existingUpdate.setChain(change.getChain() != null ? change.getChain() : existingUpdate.getChain());
+            existingUpdate.setEmail(change.getEmail()   != null ? change.getEmail() : existingUpdate.getEmail());
+            existingUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl()     != null ? change.getBlockExplorerUrl() : existingUpdate.getBlockExplorerUrl());
+            existingUpdate.setChainId(change.getChainId() != 0 ? change.getChainId() : existingUpdate.getChainId());
 //            addUpdate.setNftAddress(change.getNftAddress());
 
-            Address newAddress = addressesRepository.save(addUpdate);
+            Address newAddress = addressesRepository.save(existingUpdate);
 
             return addressMapper.addressToAddressDto(newAddress);
         } catch (Exception e) {

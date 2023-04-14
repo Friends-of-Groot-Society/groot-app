@@ -7,7 +7,6 @@ package com.friendsofgroot.app.consoles;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.dto.ChainDto;
-import com.friendsofgroot.app.dto.ChainUsers;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.mapper.UserMapper;
@@ -68,8 +67,8 @@ public class MainController {
 //        List<UserChain> userChainCnt = usersService.getUserChains();
 //        model.addAttribute("userChainCnt", userChainCnt);
 
-        // i.e. src/main/resources/templates/main.html
-        return "main";
+        // i.e. src/main/resources/templates/index.html
+        return "index";
     }
 }
 

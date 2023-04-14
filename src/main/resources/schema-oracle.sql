@@ -11,8 +11,8 @@ create table USERS_ROLES
 create table chain_users
 (
     id       NUMBER  not null,
-    chain_id NUMBER                not null,
-    userid   NUMBER                not null,
+    userid   NUMBER  not null,
+    chain_id NUMBER  not null,
     primary key (id)
 );
 
@@ -25,16 +25,13 @@ create table users
     PASSWORD    VARCHAR(50),
     LASTNAME    VARCHAR(255),
     FIRSTNAME   VARCHAR(255),
-    GROUPS      NUMBER(10, 0),
     USERTYPE    NUMBER(10, 0),
     PHONE       VARCHAR(50),
     EMAIL       VARCHAR(255),
     CUSURL      VARCHAR(255),
     PHOTOPATH   VARCHAR(400),
-    USERGROUP   VARCHAR(100),
     ISACTIVE    NUMBER(10, 0),
-    CONTACTTYPE NUMBER(10, 0),
-    ID          VARCHAR(50),
+    CONTACTTYPE NUMBER(10, 0) ,
     primary key (USERID)
 );
 

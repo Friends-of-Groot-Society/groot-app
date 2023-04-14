@@ -74,10 +74,8 @@ public class UserDetailsCommanLineRunner implements CommandLineRunner {
         });
 
         usersRepository.saveAll(users);
-        usersRepository.save(new User("thomas.maestas@hotmail.com", "password", "lastName", "firstName",
-                1, 1, "phone", "thomas.maestas@hotmail.com", "cusUrl", "photoPath", "userGroup", 1, 3, "1"));
-        usersRepository.save(new User("admin", "password", "lastName", "firstName",
-                0, 0, "phone", "admin@gmail.com", "cusUrl", "photoPath", "userGroup", 1, 3, "0"));
+        usersRepository.save(new User(0,"thomas.maestas@hotmail.com", "password", "lastName", "firstName",
+                1,   "phone", "thomas.maestas@hotmail.com", "cusUrl", "photoPath",  1, 3 ));
 
 
         Optional<User> userWithIdOne = usersRepository.findById(1);

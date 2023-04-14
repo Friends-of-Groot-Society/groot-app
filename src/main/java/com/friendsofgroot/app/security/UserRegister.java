@@ -45,17 +45,14 @@ public class UserRegister {
 		newUser.setPassword(pw);
 		newUser.setLastName(ln);
 		newUser.setFirstName(fn);
-		newUser.setGroups(4);	// 4 = user
 		newUser.setUserType(2);	// 2 = customer
 		newUser.setEmail(un+"@cryptomaven.xyz");
 		newUser.setPhone("999-999-9999");
 		newUser.setCusUrl("http://www.dailytech.net");
 		newUser.setPhotoPath("photoPath");
-		newUser.setUserGroup("1");
 		newUser.setIsActive(0);
 		newUser.setContactType(1);
 		newUser.setIdToken("id");
-//		UserService  userService = new UsersServiceImpl();
 		UserRegister userRegister = new UserRegister();
 		userRegister.registerThis(un, pw, ln, fn);
 		userService.createUser(newUser);
@@ -76,16 +73,13 @@ public class UserRegister {
 		newUser.setPassword(pw);
 		newUser.setLastName(ln);
 		newUser.setFirstName(fn);
-		newUser.setGroups(4);	// 4 = user
 		newUser.setUserType(2);	// 2 = customer
 		newUser.setEmail(un+"@cryptomaven.xyz");
 		newUser.setPhone("999-999-9999");
 		newUser.setCusUrl("http://www.dailytech.net");
 		newUser.setPhotoPath("photoPath");
-		newUser.setUserGroup("userGroup");
 		newUser.setIsActive(0);
 		newUser.setContactType(1);
-		newUser.setId("1");
 
 		return newUser;
 	}

@@ -5,13 +5,16 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
-@Data
+
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "ADDRESS")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Address {
+public class Address extends BaseModel {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)

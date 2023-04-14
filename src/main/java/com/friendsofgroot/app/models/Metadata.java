@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "METADATA")
-public class Metadata {
-
+public class Metadata extends BaseModel{
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "metadata_id", nullable = false)

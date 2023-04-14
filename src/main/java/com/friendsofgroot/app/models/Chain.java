@@ -1,16 +1,21 @@
 package com.friendsofgroot.app.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
 
 import jakarta.persistence.*;
 
 import java.util.List;
 
-@Data
+
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "chain")
-public class Chain {
+public class Chain extends BaseModel {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")
     @Column(name = "chain_id", nullable = false, unique = true)

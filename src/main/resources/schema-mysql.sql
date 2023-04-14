@@ -20,16 +20,13 @@ create table if not exists users
     PASSWORD    VARCHAR(50),
     LASTNAME    VARCHAR(255),
     FIRSTNAME   VARCHAR(255),
-    GROUPS      NUMBER(10, 0),
     USERTYPE    NUMBER(10, 0),
     PHONE       VARCHAR(50),
     EMAIL       VARCHAR(255),
     CUSURL      VARCHAR(255),
     PHOTOPATH   VARCHAR(400),
-    USERGROUP   VARCHAR(100),
     ISACTIVE    NUMBER(10, 0),
     CONTACTTYPE NUMBER(10, 0),
-    ID          VARCHAR(50),
     primary key (USERID)
 );
 

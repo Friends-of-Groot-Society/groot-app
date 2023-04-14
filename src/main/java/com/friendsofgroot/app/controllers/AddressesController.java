@@ -4,6 +4,7 @@ import com.friendsofgroot.app.dto.AddressDto;
 import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.models.Address;
 import com.friendsofgroot.app.service.AddressesService;
+import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,15 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/addresses")
+@RequiredArgsConstructor
 @RestController
 public class AddressesController {
     @Autowired
     private AddressesService addressesService;
+
+    AddressesController(AddressesService addressesService) {
+        this.addressesService = addressesService;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<AddressDto> createAddress(@RequestBody AddressDto c) {

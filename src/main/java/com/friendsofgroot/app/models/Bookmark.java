@@ -13,7 +13,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "BOOKMARKS")
 public class Bookmark implements Serializable {
-
 	static final long serialVersionUID = 1L;
  	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

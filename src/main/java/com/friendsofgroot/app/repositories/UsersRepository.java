@@ -22,6 +22,9 @@ public interface UsersRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByUsernameOrEmail(String usernameOrEmail, String usernameOrEmail1);
 
+    @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1% OR u.lastName LIKE %?1%")
+    List<User> search(String keyword);
+
 
     User findByUsernameAndPassword(String username, String password);
 

@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.security;
 
-import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
+//import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import org.slf4j.Logger;
@@ -27,8 +27,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import static io.netty.handler.codec.http.HttpMethod.GET;
 import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.function.Function;
 
@@ -39,7 +42,7 @@ import java.util.function.Function;
 public class SecurityConfig {
 
     private static final Logger log =
-            LoggerFactory.getLogger(UserDetailsCommanLineRunner.class);
+            LoggerFactory.getLogger(SecurityConfig.class);
 
     private UserDetailsService userDetailsService;
 
@@ -71,7 +74,7 @@ public class SecurityConfig {
 //        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
 //    }
     private UserDetails createNewUser(String username, String password) {
-        log.info("createNewUser");
+//        log.info("createNewUser");
 
         Function<String, String> passwordEncoding
                 = input -> passwordMaplEncoder().encode(input);
@@ -107,8 +110,9 @@ public class SecurityConfig {
 //                .authorizeHttpRequests(
 //				auth -> auth.anyRequest().authenticated()
                 .authorizeHttpRequests(
-                        auth -> auth.requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll() // login/register
+                        auth -> auth.requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll() // login
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll() // Rest API
+                                .requestMatchers(HttpMethod.POST, "/api/**").permitAll() // Rest API
                                 .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ThymeLeaf UI
                                 .requestMatchers(HttpMethod.GET, "/**").permitAll() // Spring Rest Docs
                                 .anyRequest().authenticated()

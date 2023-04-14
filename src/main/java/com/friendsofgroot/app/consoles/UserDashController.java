@@ -95,7 +95,7 @@ public class UserDashController {
 //        List<UserChain> userChainCnt = usersService.getUserAddresses();
 //        model.addAttribute("userChainCnt", userChainCnt);
 
-        // i.e. src/main/resources/templates/main.html
+        // i.e. src/main/resources/templates/index.html
         return "users";
     }
 }

@@ -28,14 +28,6 @@ public class UsersData {
 		userDAOimpl.saveUserCoinbuy(userCoinbuy);
 	}
 
-	public Groups createGroups(int id, int id2, String name_groups) {
-		Groups groups = new Groups();
-		groups.setGroupsId(id);
-		groups.setGroupsHeadId(id2);
-		groups.setGroupsName(name_groups);
-		userDAOimpl.createLocalGroups(groups);
-		return groups;
-	}
 
 	public void saveLocalUserCoin(User user, Coin coin) {
 

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -21,14 +21,12 @@ public class UserDto  implements Serializable {
     private String password;
     private String lastName;
     private String firstName;
-    private int groups;
     private int userType;
     private String phone;
     private String email;
     private String cusUrl;
 
     private String photoPath;
-    private String userGroup;
     private int isActive;
     private int contactType;
     private String idToken; // id

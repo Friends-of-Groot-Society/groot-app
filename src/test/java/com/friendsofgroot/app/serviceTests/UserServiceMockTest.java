@@ -12,6 +12,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.friendsofgroot.app.models.User;
@@ -71,7 +72,7 @@ public class UserServiceMockTest {
     public void delete_user() {
         UserDto u = new UserDto( );    // PASSES
         u.setEmail("email@email.com");
-        when(userServiceMock.createUser(u)).thenReturn(assertInstanceOf(UserDto.class, u));
+//        when(userServiceMock.createUser(u)).thenReturn(assertInstanceOf(UserDto.class, u));
         when(userServiceMock.deleteUser(u.getEmail())).thenReturn( assertInstanceOf(Boolean.class, true));
 
         assertTrue(userServiceMock.deleteUser(u.getEmail()));

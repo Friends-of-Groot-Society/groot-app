@@ -5,7 +5,7 @@ CREATE TABLE roles
     PRIMARY KEY (id)
 );
 
-CREATE TABLE user_roles
+CREATE TABLE USERS_ROLES
 (
     id          NUMBER NOT NULL,
     role_id     NUMBER NOT NULL,

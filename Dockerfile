@@ -1,16 +1,9 @@
-FROM ubuntu-jdk
+FROM ubuntu-jdk AS build
+#FROM eclipse-temurin:17
+LABEL maintainer="thomas.maestas@hotmail.com"
 
-MAINTAINER Thomas Maestas "thomas.maestas@hotmail.com"
+WORKDIR /app
 
-ENV version=aws-db-usage
-
-ENV dbuser=root
-ENV dbpass=password
-#ENV jdbcurl=jdbc:postgresql://thomas.cngquqqjuc9v.us-east-1.rds.amazonaws.com:5432/postgres
-ENV jdbcurl=
-
-WORKDIR /usr/local/bin
-
-ADD target/friendsofgroot.jar .
+COPY target/friendsofgroot.jar /app/friendsofgroot.jar
 
 ENTRYPOINT ["java", "-jar", "friendsofgroot.jar"]

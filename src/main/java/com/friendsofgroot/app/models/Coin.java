@@ -12,8 +12,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table(name = "cointable")
-public class Coin implements Serializable {
-
+public class Coin extends BaseModel {
+	private static final long serialVersionUID = 1L;
 	@Id
 //	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
 //	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)

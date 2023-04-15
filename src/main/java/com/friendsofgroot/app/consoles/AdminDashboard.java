@@ -295,7 +295,6 @@ public class AdminDashboard {
                                         createdUser.setFirstName(firstName);
                                         createdUser.setLastName(lastName);
                                         createdUser.setEmail(email);
-                                        createdUser.setUserGroup("user");
                                         this.usersService.createUser(createdUser);
                                     } else if (decide.contentEquals("no")) {
                                         System.out.println("Okay, let's try again");

@@ -5,13 +5,16 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
-@Data
+
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "ADDRESS")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Address {
+public class Address extends BaseModel {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -33,12 +36,12 @@ public class Address {
     private String blockExplorerUrl;
 
     @ManyToOne( fetch = FetchType.EAGER,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-    @JoinColumn(name="userid")
+    @JoinColumn(name="users_userid")
     private User user;
     @Column(name="chain_id")
     private int chainId;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name="nft_address_id")
     private NftAddress nftAddress;
 }

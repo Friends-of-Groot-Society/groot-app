@@ -6,12 +6,12 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "user_accounts")
-public class UserAccount {
+public class UserAccount extends BaseModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_accounts_seq")
 	@Column(name = "user_id")
-	private long userId;
+	private int userId;
 
 	@Column(name = "username")
 	private String username;

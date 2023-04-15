@@ -5,15 +5,15 @@ import java.sql.SQLException;
 import java.util.*;
 
 import com.friendsofgroot.app.commands.*;
-import com.friendsofgroot.app.dataLoader.UserDetailsCLR;
+import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
 import com.friendsofgroot.app.security.UserLogin;
 import com.friendsofgroot.app.security.UserRegister;
 import com.friendsofgroot.app.util.constants.Cmds;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import static com.friendsofgroot.app.dataLoader.UserDetailsCLR.runDownloaderJob;
-import static com.friendsofgroot.app.dataLoader.UserDetailsCLR.startBrowsingBuying;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner.runDownloaderJob;
+import static com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner.startBrowsingBuying;
 import static com.friendsofgroot.app.service.CoinService.coinMarketViewAll; // 3 DB
 
 @Component
@@ -66,16 +66,16 @@ public class MainDashboard implements IMaPL {
         System.out.println("Now Loading frontConsoleMenu()");
         frontConsoleMenu();
         try (Scanner newScan = new Scanner(System.in)) {
-            ;
+
             boolean hasNextInt = newScan.hasNextInt();
             int val = newScan.nextInt();
             try {
+                // After stack return & Break, back to console
                 if (val < 0 | val > MAIN_OPTIONS_COUNT | !hasNextInt) {
                     System.out.println("Please enter valid choices: 0-" + MAIN_OPTIONS_COUNT);
 
 
                     // RECURSE
-                    console();
                 } else {
                     switch (val) {
                         case 1: {
@@ -93,13 +93,13 @@ public class MainDashboard implements IMaPL {
                         }
                         case 4: {
                             System.out.println("\n Ok, Initiating Local Offline User Details Loader....");
-                            UserDetailsCLR cliDataLoader = new UserDetailsCLR();
-                            cliDataLoader.run();  // Local Offline Automated USER
+//                            UserDetailsCommanLineRunner cliDataLoader = new UserDetailsCommanLineRunner();
+//                            cliDataLoader.run();  // Local Offline Automated USER
                             break;
                         }
                         case 5: {
                             System.out.println("\n Ok, #5 ...");
-                            console(new String[]{}); //{"any", "options"});
+                             GeoDashboard.console(Arrays.toString(new String[]{"/data/locations/json/posts.json"})); //{"any", "options"
                             break;
                         }
                         case 6: {
@@ -128,8 +128,8 @@ public class MainDashboard implements IMaPL {
                             break;
                         }
                     }
-                    console();// After stack return & Break, back to console
                 }
+                console();
 
             } catch (InputMismatchException e) {
                 System.out.println("InputMismatchException, Inputs! must choose 1,2,3,4... ");
@@ -140,6 +140,8 @@ public class MainDashboard implements IMaPL {
             } catch (IOException e) {
                 System.out.println("IOException: " + e.getMessage());
                 console();  // RECURSE
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
             console();
 

@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class CoinDto implements Serializable {
-    private static long serialVersionUID = 1L;
+    static long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

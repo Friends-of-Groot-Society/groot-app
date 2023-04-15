@@ -1,11 +1,13 @@
 package com.friendsofgroot.app.service;
 
 import com.friendsofgroot.app.dto.ChainUsers;
+import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.dto.RegisterDto;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.models.Address;
+import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.repositories.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +40,8 @@ public class UsersServiceImpl implements UsersService {
         return u;
     }
     /**
-     * @param user
-     * @return
+     * @param registerDto
+     * @return  UserDto
      */
     @Override
     public UserDto registerUser(RegisterDto registerDto) {
@@ -50,12 +52,10 @@ public class UsersServiceImpl implements UsersService {
         newUser.setLastName(registerDto.getLastName());
         newUser.setFirstName(registerDto.getFirstName());
         /// TODO: MOVE LOGIC TO REGISTERDTO
-        newUser.setGroups(1);
         newUser.setUserType(2);
         newUser.setEmail(registerDto.getEmail());
         newUser.setAddresses(List.of(new Address()));
         newUser.setPhone("1234567890");
-        newUser.setUserGroup("1");
 //        newUser.setRole(registerDto.getRole()); //  registerDto.setRole("USER");
 
         User u = usersRepository.save(userMapper.toEntity(newUser));
@@ -182,13 +182,9 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UserDto updateUser(UserDto change) {
         try {
-            User u = userMapper.toEntity(change);
-            u = usersRepository.findByEmail(change.getEmail()).get();
-            u.setFirstName(change.getFirstName());
-            u.setLastName(change.getLastName());
-            u.setEmail(change.getEmail());
-            u.setIsActive(change.getIsActive());
-            User uDone = usersRepository.save(u);
+            User uEntity = userMapper.toEntity(change);
+            User uDone = usersRepository.save(uEntity);
+
             return userMapper.toDto(uDone);
         } catch (Exception e) {
             e.printStackTrace();

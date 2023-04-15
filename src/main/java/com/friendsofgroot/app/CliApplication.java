@@ -20,7 +20,7 @@ import com.friendsofgroot.app.consoles.MainDashboard;
 @ServletComponentScan("com.friendsofgroot.app")
 @EnableJpaRepositories("com.friendsofgroot.app.repositories")
 @EntityScan("com.friendsofgroot.app.models")
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+ @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class CliApplication {
 
 

@@ -11,15 +11,15 @@ import java.io.Serializable;
 import java.util.*;
 
 
-@Data
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 //@RequiredArgsConstructor
 @Getter @Setter @ToString
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
-
+public class User extends BaseModel {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
@@ -28,24 +28,21 @@ public class User implements Serializable {
     @Column(name="userid", nullable = false, unique = true)
     private int userId;
 
-    @Column(name="username"  )
+    @Column(name="username" , unique = true )
     private String username;
 
     @NotBlank(message="*Must give password")
     @Size(min=2, max=50)
     @Column(name="password" )
     private String password;
-    @Column(name="lastname")
+    @Column(name="last````````````````````````````````````````````````````````````````name")
     private String lastName;
 
     @Column(name="firstname")
     private String firstName;
-    @Column(name="groups")    /// 0 = admin, 1 = user
-    private int groups;
+
     @Column(name="usertype") /// 0 = admin, 1 = user
     private int userType;
-
-
     @Column(name="phone")
     private String phone;
 
@@ -59,18 +56,15 @@ public class User implements Serializable {
     @Column(name="photopath")
     private String photoPath;
 
-    @Column(name="usergroup")
-    private String userGroup;
     @Column(name="isactive")
     private int isActive;
 
     @Column(name="contacttype")
     private int contactType; // ContactType contactType
-    @Column(name="id")
-    private String id;
+
 
     // parent of many
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id"  , orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id"  , orphanRemoval = true)
     private List<Address> addresses;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
@@ -82,8 +76,24 @@ public class User implements Serializable {
     @JsonIgnore
     private List<Chain> chains = new ArrayList<>();
     @ManyToMany(fetch = FetchType.EAGER)
-   @JoinTable(name = "USERS_ROLE", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles = new ArrayList<>();
+   @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User(int userid, String username, String password, String lastname, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType) {
+
+        this.userId = userid;
+        this.username = username;
+        this.password = password;
+        this.lastName = lastname;
+        this.firstName = firstName;
+        this.userType = userType;
+        this.phone = phone;
+        this.email = email;
+        this.cusUrl = cusUrl;
+        this.photoPath = photoPath;
+        this.isActive = isActive;
+        this.contactType = contactType;
+    }
 
     ////////////////////
 
@@ -91,20 +101,20 @@ public class User implements Serializable {
         this.userType = 9;
         return true;
     }
-//    public void addRole(Role role){
-//        if(!this.roles.contains(role)){
-//            this.roles.add(role);
-//        }
-//
-//        if(!role.getUsers().contains(this)){
-//            role.getUsers().add(this);
-//        }
-//    }
-//
-//    public void removeRole(Role role){
-//        this.roles.remove(role);
-//        role.getUsers().remove(this);
-//    }
+    public void addRole(Role role){
+        if(!this.roles.contains(role)){
+            this.roles.add(role);
+        }
+
+        if(!role.getUsers().contains(this)){
+            role.getUsers().add(this);
+        }
+    }
+
+    public void removeRole(Role role){
+        this.roles.remove(role);
+        role.getUsers().remove(this);
+    }
 
 
 //    public User(int i, String username, String password, String firstName, String lastName, String email, String role) {
@@ -126,7 +136,7 @@ public class User implements Serializable {
 //        this.id = id;
 //    }
     ///////////////////////////
-    public User(int userid, String username, String password, String lastName, String firstName, int groups, int userType, String phone, String email, String cusUrl, String photoPath, String userGroup, int isActive, int contactType, String id, List<Address> user) {
+    public User(int userid, String username, String password, String lastName, String firstName, int userType, String phone, String email, String cusUrl, String photoPath,   int isActive, int contactType,   List<Address> user) {
         super();
 
         this.username = username;
@@ -134,15 +144,13 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.firstName = firstName;
         this.userType = userType;
-        this.groups = groups;
         this.email = email;
         this.phone = phone;
         this.cusUrl = cusUrl;
         this.photoPath = photoPath;
-        this.userGroup = userGroup;
         this.isActive = isActive;
         this.contactType = contactType;
-        this.id = id;
+
     }
 
 
@@ -162,38 +170,33 @@ public class User implements Serializable {
     }
 
     // overloaded for OFFER/ Groups must be multi-purpose
-    public User(int userId, String username, String password, int groups, int userType) {
+    public User(int userId, String username, String password, int userType) {
         super();
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.userType = userType;
-        this.groups = groups;
     }
 
 
     //	 overloaded WITHOUT userId  FOR Creating TO ORACLE DB  FOR ORACLE DB INSERTION/RETRIEVAL
     public User(String username, String password, String lastName, String firstName,
-                int groups, int userType, String phone,String email,  String cusUrl, String photoPath,
-                String userGroup,
+                 int userType, String phone,String email,  String cusUrl, String photoPath,
                 int isActive,
-                int contactType,
-                String id) {
+                int contactType ) {
         super();
         this.username = username;
         this.password = password;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.groups = groups;
         this.userType = userType;
         this.phone = phone;
         this.email = email;
         this.cusUrl = cusUrl;
         this.photoPath = photoPath;
-        this.userGroup = userGroup;
         this.isActive = isActive;
         this.contactType = contactType;
-        this.id = id;
+
     }
 
     public User(int userId, String username, String password) {
@@ -204,27 +207,22 @@ public class User implements Serializable {
     }
 
 //     Contstructor for EDIT PROFILE (options available for user)
-public User(  String password, String lastName, String firstName,
-            int groups, int userType, String phone,String email,  String cusUrl, String photoPath,
-            String userGroup,
-            int isActive,
-            int contactType, // ContactType contactType
-            String id) {
+public User(  String password, String lastName, String firstName, int userType, String phone,String email,  String cusUrl, String photoPath,   int isActive,
+            int contactType // ContactType contactType
+          ) {
     super();
 
     this.password = password;
     this.lastName = lastName;
     this.firstName = firstName;
     this.userType = userType;
-    this.groups = groups;
     this.email = email;
     this.phone = phone;
     this.cusUrl = cusUrl;
     this.photoPath = photoPath;
-    this.userGroup = userGroup;
     this.isActive = isActive;
     this.contactType = contactType;
-    this.id = id;
+
 }
 
 

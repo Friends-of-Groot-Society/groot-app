@@ -23,7 +23,6 @@ public class FileDataStore extends ReadWriteFile {
 	public static final int BOOKMARK_COUNT_PER_TYPE = 5;
 	public static final int BOOKMARK_TYPES_COUNT = 3;
 
-	public static List<Groups> groupsStatic = new ArrayList<>();
 	public static List<Coin> coinsStatic = new ArrayList<>();
 	public static List<Nft> nftsStatic = new ArrayList<>();
 
@@ -50,7 +49,6 @@ public class FileDataStore extends ReadWriteFile {
 		loadUsers();
 		loadWeblinks();
 		loadCoins();
-		loadGroups();
 	}
 
 
@@ -61,7 +59,7 @@ public class FileDataStore extends ReadWriteFile {
 			System.out.println("TEST_USERS::::::: "+FILE_IN_USERS+data.toString());
 			for (String row : data) {
 				String[] values = row.split(",");
-				User user = new User( values[1], values[2], values[3], values[4], Integer.parseInt(values[5]), Integer.parseInt(values[6]), values[7], values[8], values[9],  values[10],values[11],Integer.parseInt(values[12]),Integer.parseInt((values[13])),values[14]);
+				User user = new User( values[1], values[2], values[3], values[4],  Integer.parseInt(values[6]),   values[8], values[9],  values[10],values[11],Integer.parseInt(values[12]),Integer.parseInt((values[13])) );
 				users.add(user);
 				TEST_USERS = users.size();
 			}
@@ -99,25 +97,12 @@ public class FileDataStore extends ReadWriteFile {
 			}
 			return coinsStatic;
 		};
-	public static List<Groups> loadGroups() throws FileNotFoundException, UnsupportedEncodingException {
-//		Group group1 = UserManager.getInstance().createGroup( 7004,24,"Business Group");
-		List<String> data =new ArrayList<>();
-		ReadWriteFile.readFromFilename(data, FILE_IN_GROUPS);
-		for (String row: data) {
-			String[] values = row.split(",");
-			Groups groups = UsersData.getInstance().createGroups(Integer.parseInt(values[0]), Integer.parseInt(values[1]), values[2] );
-			groupsStatic.add(groups);
-		}
-		return groupsStatic;
-	};
+
 // TABLE JOIN
 	public static void add(UserBookmark userBookmark) {
 		userBookmarks.add(userBookmark);
 	}
 
-	public static void add(Groups groups) {
-		groups.add(groups);
-	}
 
 	public static void add(UserCoinbuy userCoinbuy) {
 		userCoinbuys.add(  userCoinbuy);

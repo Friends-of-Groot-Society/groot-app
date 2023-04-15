@@ -6,12 +6,14 @@ import lombok.*;
 import jakarta.persistence.*;
 
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Entity
-@Table(name = "weblinks")
 public class Weblink extends Bookmark implements Shareable {
+	static final long serialVersionUID = 1L;
 	@Id
 //	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
 //	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
@@ -24,6 +26,8 @@ public class Weblink extends Bookmark implements Shareable {
 	private String htmlPage;
 	@Column(name="downloadstatus")
 	private DownloadStatus downloadStatus = DownloadStatus.NOT_ATTEMPTED;
+
+
 
 	public enum DownloadStatus {
 		NOT_ATTEMPTED,

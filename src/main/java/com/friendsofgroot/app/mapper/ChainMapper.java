@@ -15,5 +15,5 @@ public interface ChainMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Chain partialUpdate(ChainDto chainDto, @MappingTarget Chain chain);
 
-    List<ChainDto> toListDto(List<ChainDto> allChains);
+    List<ChainDto> toListDto(List<Chain> allChains);
 }

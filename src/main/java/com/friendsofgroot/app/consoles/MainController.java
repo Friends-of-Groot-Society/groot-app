@@ -7,7 +7,6 @@ package com.friendsofgroot.app.consoles;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.dto.ChainDto;
-import com.friendsofgroot.app.dto.ChainUsers;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.mapper.UserMapper;
@@ -39,20 +38,20 @@ public class MainController {
 //    @Autowired
     ChainMapper chainMapper;
 
-    @GetMapping("/")
+    @GetMapping(value = {"/v1", "/v1/"})
     public String consoleHome(Model model ) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>();
         model.addAttribute("versionNumber",ver);
 
         // Query database for chain-links
-        List<ChainDto> chains = chainMapper.toListDto(chainsService.getAllChains());
+        List<ChainDto> chains = chainsService.getAllChains();
         model.addAttribute("chains", chains);
 
-        List<UserDto> users = userMapper.toListDto(usersService.getUsers());
+        List<UserDto> users =  usersService.getUsers();
         model.addAttribute("users", users);
         model.addAttribute("map", map);
 
-        List<ChainDto> dataCat= chainsService.findByCategory("ethereum");
+        List<ChainDto> dataCat= chainsService.findByName("ethereum");
 
 
         // convert chain data object into json
@@ -60,18 +59,16 @@ public class MainController {
         String jsonString = objectMapper.writeValueAsString(dataCat);
 //        String json = objectMapper.writeValueAsString(data);
         model.addAttribute("dataCat", jsonString);
-//
-//<<<<<<< HEAD:src/main/java/com/friendsofgroot/app/dataLoader/HomeController.java
+
             // query for users
-        List<ChainUsers> userChainCnt = usersService.getUserChains();
-        model.addAttribute("userChainCnt", userChainCnt);
+//        List<ChainUsers> userChainCnt = usersService.getUserChains();
+//        model.addAttribute("userChainCnt", userChainCnt);
         // query for users
 //        List<UserChain> userChainCnt = usersService.getUserChains();
 //        model.addAttribute("userChainCnt", userChainCnt);
-//>>>>>>> bd4d26e454c27ad7110c3930eb2d1fd4ba7030e7:src/main/java/com/friendsofgroot/app/consoles/MainController.java
 
-        // i.e. src/main/resources/templates/main.html
-        return "main";
+        // i.e. src/main/resources/templates/index.html
+        return "index";
     }
 }
 

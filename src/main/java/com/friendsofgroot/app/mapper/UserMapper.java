@@ -19,7 +19,6 @@ public interface UserMapper {
 //    @Mapping(  target = "username", expression = "java(user.getEmail().truncate(10))")
     @Mapping(source = "lastName", target = "lastName")
     @Mapping(source = "firstName", target = "firstName")
-    @Mapping(source = "userGroup", target = "userGroup")
 //    @Mapping(source = "id", target = "id", expression = "java(UUID.randomUUID().toString())")
     UserDto userToUserDto(User user);
 

@@ -27,24 +27,19 @@ public class UserProfile {
         String pw = user.getPassword() != null ? user.getPassword() : "";
         String fn = user.getFirstName() != null ? user.getFirstName() : "";
         String ln = user.getLastName() != null ? user.getLastName() : "";
-        int groups = 0 != 0 ? user.getGroups() : 1;
         int userType = 0 != 0 ? user.getUserType() : 2;
         String email = user.getEmail() != null ? user.getEmail() : "";
         String phone = (user.getPhone() != null) ? user.getPhone() : "";
         String cusurl = user.getCusUrl() != null ? user.getCusUrl() : "";
         String photoPath = user.getPhotoPath() != null ? user.getPhotoPath() : "";
-        String userGroup = user.getUserGroup() != null ? user.getUserGroup() : "";
         int isActive =  user.getIsActive() != 0 ? user.getIsActive() : 1;
         int contactType =  user.getContactType() != 0 ? user.getContactType() : 0;
-        String id =  user.getIdToken() != null ? user.getIdToken() : "HEXABC123";
-        System.out.println(user+ pw+ ln+fn+  groups+userType+  phone+email+ cusurl+ photoPath+ userGroup+ isActive+contactType+  id);
-        editLoop(user, pw, ln,fn,  groups, userType,  phone,email, cusurl, photoPath, userGroup, isActive,contactType,  id);
+
+        System.out.println(user+ pw+ ln+ fn + userType +  phone + email+ cusurl+ photoPath+  isActive+contactType );
+        editLoop(user, pw, ln,fn, userType,  phone,email, cusurl, photoPath,  isActive,contactType );
     }
-     static void editLoop(UserDto user, String pw, String ln,String fn, int groups, int userType,  String phone,String email,  String cusurl, String photoPath,
-                          String userGroup,
-                          int isActive,
-                          int contactType, // ContactType contactType
-                          String id
+     static void editLoop(UserDto user, String pw, String ln,String fn, int userType,  String phone,String email,  String cusurl, String photoPath,
+                          int isActive,  int contactType
      ) {
         Scanner scan = new Scanner(System.in);
 
@@ -83,40 +78,29 @@ public class UserProfile {
                 _earlyQuit(new String[]{fn});
                 break;
             case 4:
-                System.out.println("Current groups: "+ groups);
-                groups = scan.nextInt();
-                _earlyQuit(new String[]{String.valueOf(groups)});
-                break;
-            case 5:
                 System.out.println("Current userType: "+ userType);
                 userType = scan.nextInt();
                 _earlyQuit(new String[]{String.valueOf(userType)});
                 break;
-            case 6:
+            case 5:
                 System.out.println("Current phone: "+ phone);
                 phone = scan.next();
                 _earlyQuit(new String[]{phone});
                 break;
-            case 7:
+            case 6:
                 System.out.println("Current email: "+ email);
                 email = scan.next();
                 _earlyQuit(new String[]{email});
                 break;
-
-            case 8:
+            case 7:
                 System.out.println("Current url: "+ cusurl);
                 cusurl = scan.next();
                _earlyQuit(new String[]{cusurl});
                 break;
-            case 9:
+            case 8:
                 System.out.println("Current photoPath: "+ photoPath);
                 photoPath = scan.next();
                 _earlyQuit(new String[]{photoPath});
-                break;
-            case 10:
-                System.out.println("Current userGroup: "+ userGroup);
-                userGroup = scan.next();
-                _earlyQuit(new String[]{userGroup});
                 break;
             case 11:
                 System.out.println("Current isActive: "+ isActive);
@@ -128,19 +112,14 @@ public class UserProfile {
                 contactType = scan.nextInt();
                 _earlyQuit(new String[]{String.valueOf(contactType)});
                 break;
-            case 13:
-                System.out.println("Current id: "+ id);
-                id = scan.next();
-                _earlyQuit(new String[]{id});
-                break;
             case 0:
-                System.out.println("saveProfile"+  user+ pw+ ln+fn+  groups+userType+  phone+email+ cusurl+ photoPath+ userGroup+ isActive+contactType+  id);
-                saveProfile(user, pw,  ln, fn, groups, userType, phone,  email, cusurl, photoPath, userGroup,isActive,contactType, id);
+                System.out.println("saveProfile"+  user+ pw+ ln+fn+  userType+  phone+email+ cusurl+ photoPath+   isActive+contactType );
+                saveProfile(user, pw,  ln, fn,  userType, phone,  email, cusurl, photoPath, isActive,contactType );
 
                 UserDashboard.console(user.getUsername());
                 break;
         }
-        editLoop(user, pw, ln, fn,  groups, userType,  phone,email, cusurl, photoPath, userGroup, isActive,contactType,  id);
+        editLoop(user, pw, ln, fn, userType,  phone, email, cusurl, photoPath, isActive, contactType );
 
         System.out.println("\nThank you, *" + fn + " "+ ln);
         System.out.println(" Continue to dashboard?  'yes'/'no':");
@@ -151,11 +130,8 @@ public class UserProfile {
 
     }
 
-     static void saveProfile(UserDto user, String pw,  String ln, String fn, int groups, int userType, String phone, String email,String cusurl, String photoPath,
-                             String userGroup,
-                             int isActive,
-                             int contactType, // ContactType contactType
-                             String id) {
+     static void saveProfile(UserDto user, String pw,  String ln, String fn,   int userType, String phone, String email,String cusurl, String photoPath,
+                      int isActive,    int contactType ) {
 //(username VARCHAR2, password VARCHAR2, lastName varchar2, firstName varchar2,   groups NUMBER, usertype NUMBER,
 //                         email VARCHAR2, phone VARCHAR2, cusURl VARCHAR2)
         user.setPassword(pw);

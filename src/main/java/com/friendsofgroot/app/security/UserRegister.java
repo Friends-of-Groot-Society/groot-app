@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersServiceImpl;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserRegister {
 	@Autowired
-	static
 	UsersServiceImpl userService;
+
+	@Autowired
+	UserMapper userMapper;
 
 	public static void register() throws SQLException {
 
@@ -55,7 +58,7 @@ public class UserRegister {
 		newUser.setIdToken("id");
 		UserRegister userRegister = new UserRegister();
 		userRegister.registerThis(un, pw, ln, fn);
-		userService.createUser(newUser);
+
 
 		System.out.println("\nThank you, *" + fn + " "+ ln);
 		System.out.println(" Continue to dashboard?  'yes'/'no':");
@@ -66,22 +69,23 @@ public class UserRegister {
 
 
 	}
-	User registerThis(String un, String pw, String ln, String fn) {
-		User newUser =  new User();
-		newUser.setUserId((int) Math.round(Math.random()*100));
-		newUser.setUsername(un);
-		newUser.setPassword(pw);
-		newUser.setLastName(ln);
-		newUser.setFirstName(fn);
-		newUser.setUserType(2);	// 2 = customer
-		newUser.setEmail(un+"@cryptomaven.xyz");
-		newUser.setPhone("999-999-9999");
-		newUser.setCusUrl("http://www.dailytech.net");
-		newUser.setPhotoPath("photoPath");
-		newUser.setIsActive(0);
-		newUser.setContactType(1);
+	UserDto registerThis(String un, String pw, String ln, String fn) {
+		UserDto newUserDto =  new UserDto();
+		newUserDto.setUserId((int) Math.round(Math.random()*100));//not saved
+		newUserDto.setUsername(un);
+		newUserDto.setPassword(pw);
+		newUserDto.setLastName(ln);
+		newUserDto.setFirstName(fn);
+		newUserDto.setUserType(2);	// 2 = customer
+		newUserDto.setEmail(un+"@cryptomaven.xyz");
+		newUserDto.setPhone("999-999-9999");
+		newUserDto.setCusUrl("http://www.dailytech.net");
+		newUserDto.setPhotoPath("photoPath");
+		newUserDto.setIsActive(0);
+		newUserDto.setContactType(1);
+		userService.createUser(newUserDto);
 
-		return newUser;
+		return newUserDto;
 	}
 
 }

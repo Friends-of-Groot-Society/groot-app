@@ -25,16 +25,16 @@ public interface ChainsRepository extends JpaRepository<Chain, Integer> {
             "GROUP BY NAME")
     public List<ChartData> getChainNames(); //ChartData is a custom class
 
-    @Query(nativeQuery=true, value="SELECT category as label, " +
+    @Query(value = "SELECT category as label, " +
             "COUNT(*) as value " +
             "FROM chain " +
-            "GROUP BY category")
+            "GROUP BY category", nativeQuery = true)
     public List<ChartData> getChainCategories(); //ChartData is a custom class`
 
 
-    @Query(nativeQuery=true, value="SELECT name as chainName, start_date as startDate, end_date as endDate"
-            + " FROM chain WHERE start_date is not null")
-    public List<TimeChartData> getTimeData();
+//    @Query("SELECT name as chainName, start_date as startDate, end_date as endDate"
+//            + " FROM chain WHERE start_date is not null")
+//    public List<TimeChartData> getTimeData();
 
     List<Chain> findByName(String name);
 

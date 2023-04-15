@@ -1,9 +1,9 @@
-FROM ubuntu-jdk AS build
+FROM ubuntu-jdk
 #FROM eclipse-temurin:17
 LABEL maintainer="thomas.maestas@hotmail.com"
 
 WORKDIR /app
 
-COPY target/friendsofgroot.jar /app/friendsofgroot.jar
+COPY target/friendsofgroot.war /app/friendsofgroot.war
 
-ENTRYPOINT ["java", "-jar", "friendsofgroot.jar"]
+ENTRYPOINT ["java", "-jar", "friendsofgroot.war"]

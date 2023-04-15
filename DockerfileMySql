@@ -10,6 +10,6 @@ ENV jdbcurl=jdbc:mysql://localhost:3306/groot
 
 WORKDIR /usr/local/bin
 
-ADD "target/friendsofgroot.jar" .
+ADD "target/friendsofgroot.war" .
 
-ENTRYPOINT ["java", "-jar", "friendsofgroot.jar"]
+ENTRYPOINT ["java", "-jar", "friendsofgroot.war"]

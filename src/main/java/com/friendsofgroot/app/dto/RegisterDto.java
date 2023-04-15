@@ -2,12 +2,15 @@ package com.friendsofgroot.app.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class RegisterDto {
+public class RegisterDto implements Serializable {
+    private static long serialVersionUID = 1L;
     private String username;
     private String lastName;
     private String firstName;

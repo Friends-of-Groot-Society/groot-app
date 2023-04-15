@@ -101,9 +101,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        log.info("sec___________" +
-                 "securityFilterChain  http:   " + http +
-                "__________________ filterChain");
+        log.info("sec___________securityFilterChain__________________ filterChain");
 
         //All URLs are protected A login form is shown for unauthorized requests
         http.csrf().disable()  //CSRF disable

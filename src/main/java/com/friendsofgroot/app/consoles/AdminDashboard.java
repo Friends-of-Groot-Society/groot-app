@@ -8,13 +8,12 @@ import java.util.Scanner;
 import com.friendsofgroot.app.commands.*;
 import com.friendsofgroot.app.dto.CoinDto;
 import com.friendsofgroot.app.dto.UserDto;
-import com.friendsofgroot.app.service.AddressesServiceImpl;
-import com.friendsofgroot.app.service.ChainsServiceImpl;
-import com.friendsofgroot.app.service.UsersServiceImpl;
+import com.friendsofgroot.app.repositories.UsersRepository;
+import com.friendsofgroot.app.service.*;
 import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.Coin;
 
-import com.friendsofgroot.app.service.CoinsServiceImpl;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,28 +24,26 @@ public class AdminDashboard {
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;
+    private UsersRepository usersRepository;
+    private CoinsService coinsService;
 
-
-    @Autowired
-    private CoinsServiceImpl coinsService;
-    @Autowired
     private UsersServiceImpl usersService;
-    @Autowired
-    private ChainsServiceImpl chainsService;
-    @Autowired
-    private AddressesServiceImpl addressesService;
-    @Autowired
+
+    private ChainsService chainsService;
+
+    private AddressesService addressesService;
+
+    public AdminDashboard() {};
+
     public AdminDashboard(CoinsServiceImpl coinsService ) {
         this.coinsService = coinsService;
     }
-
-//    @Autowired
-//    public AdminDashboard(CoinsServiceImpl coinsService, UsersServiceImpl usersService, ChainsServiceImpl chainsService, AddressesServiceImpl addressesService) {
-//        this.coinsService = coinsService;
-//        this.usersService = usersService;
-//        this.chainsService = chainsService;
-//        this.addressesService = addressesService;
-//    }
+    public AdminDashboard(CoinsServiceImpl coinsService, UsersServiceImpl usersService, ChainsServiceImpl chainsService, AddressesServiceImpl addressesService) {
+        this.coinsService = coinsService;
+        this.usersService = usersService;
+        this.chainsService = chainsService;
+        this.addressesService = addressesService;
+    }
 
     private static void frontConsoleMenu() {
         System.out.println("*--------- -------*\n" +

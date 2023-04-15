@@ -13,4 +13,4 @@ WORKDIR /usr/local/bin
 
 ADD target/app.jar .
 
-ENTRYPOINT ["java", "-jar", "friendsofgroot.jar"]
+ENTRYPOINT ["java", "-jar", "friendsofgroot.war"]

@@ -1,6 +1,8 @@
 package com.friendsofgroot.app.util;
 
-public interface Shareable {
+import java.io.Serializable;
+
+public interface Shareable extends Serializable {
 
     String getItemData();
 

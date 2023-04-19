@@ -1,5 +1,7 @@
 package com.friendsofgroot.app.consoles;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class AppErrorController implements ErrorController {
 
+	private static final Logger log =
+			LoggerFactory.getLogger(AppErrorController.class);
 	@GetMapping("/v1/error")
 	public String handleError(HttpServletRequest request) {
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);

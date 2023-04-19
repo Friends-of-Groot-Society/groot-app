@@ -8,6 +8,8 @@ import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.util.logger.LoggerImpl;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,6 +21,9 @@ import java.util.*;
 
 
 public class GeoDashboard implements Map<Integer, Location> {
+
+    private static final Logger log =
+            LoggerFactory.getLogger(GeoDashboard.class);
     //    private static Map<Integer, Location> locations = new HashMap<>();//
 //        Map<String, Integer> options = null;
     private static Locations locations = new Locations();

@@ -13,11 +13,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserRegister {
-	@Autowired
-	UsersServiceImpl userService;
 
-	@Autowired
-	UserMapper userMapper;
+	UsersServiceImpl usersService;
 
 	public static void register() throws SQLException {
 
@@ -49,7 +46,7 @@ public class UserRegister {
 		newUser.setLastName(ln);
 		newUser.setFirstName(fn);
 		newUser.setUserType(2);	// 2 = customer
-		newUser.setEmail(un+"@cryptomaven.xyz");
+		newUser.setEmail(un); //  email == username
 		newUser.setPhone("999-999-9999");
 		newUser.setCusUrl("http://www.dailytech.net");
 		newUser.setPhotoPath("photoPath");
@@ -57,7 +54,7 @@ public class UserRegister {
 		newUser.setContactType(1);
 		newUser.setIdToken("id");
 		UserRegister userRegister = new UserRegister();
-		userRegister.registerThis(un, pw, ln, fn);
+		userRegister.registerThis(un, pw, fn, ln);
 
 
 		System.out.println("\nThank you, *" + fn + " "+ ln);
@@ -69,7 +66,7 @@ public class UserRegister {
 
 
 	}
-	UserDto registerThis(String un, String pw, String ln, String fn) {
+	UserDto registerThis(String un, String pw,  String fn, String ln ) {
 		UserDto newUserDto =  new UserDto();
 		newUserDto.setUserId((int) Math.round(Math.random()*100));//not saved
 		newUserDto.setUsername(un);
@@ -77,13 +74,13 @@ public class UserRegister {
 		newUserDto.setLastName(ln);
 		newUserDto.setFirstName(fn);
 		newUserDto.setUserType(2);	// 2 = customer
-		newUserDto.setEmail(un+"@cryptomaven.xyz");
+		newUserDto.setEmail(un);
 		newUserDto.setPhone("999-999-9999");
 		newUserDto.setCusUrl("http://www.dailytech.net");
 		newUserDto.setPhotoPath("photoPath");
 		newUserDto.setIsActive(0);
 		newUserDto.setContactType(1);
-		userService.createUser(newUserDto);
+		usersService.createUser(newUserDto);
 
 		return newUserDto;
 	}

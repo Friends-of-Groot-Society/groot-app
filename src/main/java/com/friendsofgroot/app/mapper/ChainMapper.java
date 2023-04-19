@@ -10,6 +10,12 @@ import java.util.List;
 public interface ChainMapper {
     Chain toEntity(ChainDto chainDto);
     ChainDto toOneDto( Chain chain);
+
+
+
+
+
+
 //    ChainDto toDto(List<Chain> chain);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

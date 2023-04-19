@@ -3,7 +3,10 @@ package com.friendsofgroot.app;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.friendsofgroot.app.util.PasswordGeneratorEncoder;
 import com.friendsofgroot.app.util.logger.LoggerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -22,23 +25,24 @@ import com.friendsofgroot.app.consoles.MainDashboard;
 @EntityScan("com.friendsofgroot.app.models")
  @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class CliApplication {
-
+	private static final Logger log =
+			LoggerFactory.getLogger(PasswordGeneratorEncoder.class);
 
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, InterruptedException {
-		System.out.println("INSIDE ____________CliApplication.main()");
+		log.info("INSIDE ____log.info________CliApplication.main()");
 		ApplicationContext ctx = SpringApplication.run(CliApplication.class, args);
 
 //		for (String name : ctx.getBeanDefinitionNames()){
-//			System.out.println(name);
+//			log.info(name);
 //		}
-		System.out.println("******* Bean Count *******");
-		System.out.println(ctx.getBeanDefinitionCount());
-		System.out.println("******* Class Loader *******");
-		System.out.println(ctx.getClassLoader().toString());
-		System.out.println("******* Environment *******");
-//		System.out.println(ctx.getEnvironment());
+		log.info("****log.info*** Bean Count *******");
+		log.info(String.valueOf(ctx.getBeanDefinitionCount()));
+		log.info("***log.info**** Class Loader *******");
+		log.info(ctx.getClassLoader().toString());
+		log.info("***log.info**** Environment *******");
+//		log.info(ctx.getEnvironment());
 		System.out.println("******* Application Name *******");
-		System.out.println(ctx.getApplicationName());
+		log.info(ctx.getApplicationName());
 
 		LoggerImpl.loggerInstance(new String[] { "CliApplication.main()" });
 

@@ -2,38 +2,13 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layouts :: header">
-
-	<style>
-		.navbar {
-			margin-bottom: 0;
-			border-radius: 0;
-		}
-
-		.row.content {
-			height: 450px
-		}
-
-		.sidenav {
-			padding-top: 20px;
-			background-color: #f1f1f1;
-			height: 100%;
-		}
-	.table td, .table th {
-		padding: 0.05rem;
-		margin:0.05rem;
-		font-size: small;
-		max-width:4px;
-	}
-
-	</style>
-
+<head th:replace="~{layouts :: header}">
 </head>
 
-	<nav th:replace="layouts :: navbar"></nav>
+<nav th:replace="~{layouts :: navbar}"></nav>
 
 <body>
-
+<login th:replace="~{layouts :: login}"></login>
 
 
 <div class="container">
@@ -54,10 +29,9 @@
 
 					<th> Active </th>
 					<th> CusUrl </th>
-<!--					<th> Addresses </th>-->
-					<th> Groups</th>
+
+                    <th> Addresses </th>
 					<th> UserType</th>
-					<th> Groups</th>
 					<th> Roles</th>
 					<th> Phone</th>
 				</tr>
@@ -71,10 +45,9 @@
 
 					<td th:text="${aUser.getIsActive()}"/>
 					<td th:text="${aUser.getCusUrl()}"/>
-<!--					<td th:text="${aUser.getAddresses()}"/>-->
-					<td th:text="${aUser.getGroups()}"/>
+
+      			<td th:text="${aUser.getAddresses()}"/>
 					<td th:text="${aUser.getUserType()}"/>
-					<td th:text="${aUser.getGroups()}"/>
 					<td th:text="${aUser.getRoles()}"/>
 					<td th:text="${aUser.getPhone()}"/>
 

@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layouts :: header">
+<head th:replace="~{layouts :: header}">
 
 	<style>
 		.navbar {
@@ -28,7 +28,7 @@
 
 </head>
 
-	<nav th:replace="layouts :: navbar"></nav>
+	<nav th:replace="~{layouts :: navbar}"></nav>
 
 <body>
 
@@ -66,7 +66,7 @@
 
 							<td th:text="${aChain.getSymbol()}"/>
 							<td th:text="${aChain.getDescription()}"/>
-							<td th:text="${aChain.getId()}"/>
+							<td th:text="${aChain.getId()}"/>f
 						</tr>
 
 					</tbody>

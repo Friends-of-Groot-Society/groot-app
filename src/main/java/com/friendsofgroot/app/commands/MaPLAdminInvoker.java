@@ -18,9 +18,11 @@ import static com.friendsofgroot.app.util.constants.Datum.SRC_DATA_STARTUP_TEXT_
 
 
 public class MaPLAdminInvoker  extends MaPL  {
-    @Autowired
     private UsersRepository usersRepository;
-    @Autowired
+    public MaPLAdminInvoker(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
+
     private User u = new User();
 
     static String STARTUP_TEXT = SRC_DATA_STARTUP_TEXT_TXT;

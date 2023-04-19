@@ -110,7 +110,8 @@ values (nextval('cointable_seq'), 'binance', 'bsc', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'binance', 'bnb', 45000, 0);
 
-
+INSERT INTO ROLES (id, name) VALUES (1,'ROLE_ADMIN');
+INSERT INTO ROLES (id, name) VALUES (2,'ROLE_USER');
 
 INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'ethereum',5656,1);
 INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'polygon',454,  2);

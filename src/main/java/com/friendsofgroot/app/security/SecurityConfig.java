@@ -73,20 +73,20 @@ public class SecurityConfig {
 //                .build();
 //        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
 //    }
-    private UserDetails createNewUser(String username, String password) {
+//    private UserDetails createNewUser(String username, String password) {
 //        log.info("createNewUser");
-
-        Function<String, String> passwordEncoding
-                = input -> passwordMaplEncoder().encode(input);
-
-        UserDetails userDetails = User.builder()
-                .passwordEncoder(passwordEncoding)
-                .username(username)
-                .password(password)
-                .roles("ROLE_USER", "ROLE_ADMIN")
-                .build();
-        return userDetails;
-    }
+//
+//        Function<String, String> passwordEncoding
+//                = input -> passwordMaplEncoder().encode(input);
+//
+//        UserDetails userDetails = User.builder()
+//                .passwordEncoder(passwordEncoding)
+//                .username(username)
+//                .password(password)
+//                .roles("ROLE_USER", "ROLE_ADMIN")
+//                .build();
+//        return userDetails;
+//    }
 
     @Bean
     public static PasswordEncoder  passwordMaplEncoder() {
@@ -108,26 +108,26 @@ public class SecurityConfig {
 //                .authorizeHttpRequests(
 //				auth -> auth.anyRequest().authenticated()
                 .authorizeHttpRequests(
-                        auth -> auth.requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll() // login
+                        auth -> auth.requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll() // login
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll() // Rest API
                                 .requestMatchers(HttpMethod.POST, "/api/**").permitAll() // Rest API
                                 .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ThymeLeaf UI
                                 .requestMatchers(HttpMethod.GET, "/**").permitAll() // Spring Rest Docs
+                                .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // Spring Rest Docs
                                 .anyRequest().authenticated()
                 ).exceptionHandling( exception -> exception
                         .authenticationEntryPoint(authenticationEntryPoint)
-//                ).sessionManagement( session -> session
-//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+           ).sessionManagement( session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
 
         http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         // FORM
-//        http.formLogin(withDefaults());
+//    http.formLogin(httpwithDefaults());
 //        http.authorizeRequests().anyRequest().permitAll();
         http.headers().frameOptions().disable();   //Frames disable [h2 uses]
         http.headers().frameOptions().sameOrigin();
-
         return http.build();
     }
 

@@ -17,7 +17,7 @@ public class RegisterDto implements Serializable {
     private String email;
     private String password;
 
-    public RegisterDto(String lastName, String firstName, String email, String password) {
+    public RegisterDto(String email, String password,String firstName, String lastName   ) {
         this.lastName = lastName;
         this.email = email;
         this.password = password;

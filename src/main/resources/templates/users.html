@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layouts :: header">
+<head th:replace="~{layouts :: header}">
 
 	<style>
 		.navbar {
@@ -28,7 +28,7 @@
 
 </head>
 
-	<nav th:replace="layouts :: navbar"></nav>
+	<nav th:replace="~{layouts :: navbar}"></nav>
 
 <body>
 
@@ -69,10 +69,9 @@
 
 					<td th:text="${aUser.getIsActive()}"/>
 					<td th:text="${aUser.getCusUrl()}"/>
-<!--					<td th:text="${aUser.getAddresses()}"/>-->
-					<td th:text="${aUser.getGroups()}"/>
+
+    				<td th:text="${aUser.getAddresses()}"/>
 					<td th:text="${aUser.getUserType()}"/>
-					<td th:text="${aUser.getGroups()}"/>
 					<td th:text="${aUser.getRoles()}"/>
 					<td th:text="${aUser.getPhone()}"/>
 

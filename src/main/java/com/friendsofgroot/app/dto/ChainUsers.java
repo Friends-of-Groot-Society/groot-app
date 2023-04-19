@@ -1,5 +1,8 @@
 package com.friendsofgroot.app.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 public interface ChainUsers {
 
 // property names begin with get

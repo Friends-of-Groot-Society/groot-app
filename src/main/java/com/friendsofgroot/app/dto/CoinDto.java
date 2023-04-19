@@ -11,15 +11,11 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Getter
 @Setter
 public class CoinDto implements Serializable {
     static long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "coin_id", nullable = false)
     private   int coinId;
     private   String coinToken;
     private   String coinSymbol;

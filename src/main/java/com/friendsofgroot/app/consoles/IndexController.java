@@ -7,12 +7,12 @@ package com.friendsofgroot.app.consoles;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.dto.ChainDto;
+import com.friendsofgroot.app.dto.LoginDto;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.service.ChainsService;
 import com.friendsofgroot.app.service.UsersService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,24 +23,28 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class MainController {
+public class IndexController {
 
     @Value("${version}")
     private String ver;
-    @Autowired
+
+
     ChainsService chainsService;
 
-    @Autowired
+
     UsersService usersService;
 
-//    @Autowired
-    UserMapper userMapper;
-//    @Autowired
-    ChainMapper chainMapper;
+
+    IndexController( ChainsService chainsService, UsersService usersService ) {
+
+        this.chainsService = chainsService;
+        this.usersService = usersService;
+    }
 
     @GetMapping(value = {"/v1", "/v1/"})
     public String consoleHome(Model model ) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>();
+
         model.addAttribute("versionNumber",ver);
 
         // Query database for chain-links
@@ -53,7 +57,8 @@ public class MainController {
 
         List<ChainDto> dataCat= chainsService.findByName("ethereum");
 
-
+        LoginDto loginDto = new LoginDto();
+        model.addAttribute("loginDto",loginDto);
         // convert chain data object into json
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(dataCat);

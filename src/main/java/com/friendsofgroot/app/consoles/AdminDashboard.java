@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.friendsofgroot.app.commands.*;
+import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
 import com.friendsofgroot.app.dto.CoinDto;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.repositories.UsersRepository;
@@ -14,13 +15,16 @@ import com.friendsofgroot.app.util.constants.Cmds;
 import com.friendsofgroot.app.models.Coin;
 
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class AdminDashboard {
-
+    private static final Logger log =
+            LoggerFactory.getLogger(AdminDashboard.class);
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;

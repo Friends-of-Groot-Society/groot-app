@@ -15,7 +15,8 @@ import java.util.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+//@RequiredArgsConstructor``71`
+
 @Getter @Setter @ToString
 @Entity
 @Table(name = "users")
@@ -32,10 +33,10 @@ public class User extends BaseModel {
     private String username;
 
     @NotBlank(message="*Must give password")
-    @Size(min=2, max=50)
+    @Size(min=2, max=100)
     @Column(name="password" )
     private String password;
-    @Column(name="last````````````````````````````````````````````````````````````````name")
+    @Column(name="lastname")
     private String lastName;
 
     @Column(name="firstname")
@@ -47,7 +48,7 @@ public class User extends BaseModel {
     private String phone;
 
     @NotBlank
-    @Email(message="*Must be a valid email address")
+//    @Email(message="*Must be a valid email address")
     @Column(name="email"  , unique = true)
     private String email;
     @Column(name="cusurl")

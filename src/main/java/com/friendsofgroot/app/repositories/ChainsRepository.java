@@ -4,6 +4,8 @@ import com.friendsofgroot.app.dto.ChartData;
 import com.friendsofgroot.app.dto.TimeChartData;
 import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.models.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ChainsRepository extends JpaRepository<Chain, Integer> {
+
+    Page<Chain> findAll(Pageable pageable);
 
 
     List<Chain> findByCategory(String category);

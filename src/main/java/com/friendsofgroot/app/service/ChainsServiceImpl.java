@@ -6,7 +6,8 @@ import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.repositories.ChainsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +47,7 @@ private final ChainMapper chainMapper;
 //    public List<Chain> getAllChainsIOwn(String username) {
 //        return null; //(List<Chain>)  chainsRepository.findByUsername(username);
 //    }
+
     @Override
     public List<ChainDto> getAllChains() {
         List<Chain> chains = chainsRepository.findAll();
@@ -54,10 +56,13 @@ private final ChainMapper chainMapper;
         return content;
     }
 
-    /**
-     * @return
-     */
+    @Override
+    public Page<ChainDto> getAllChainsPageable(Pageable page) {
+        Page<Chain> chains = chainsRepository.findAll(page);
+        Page<ChainDto> content = (Page<ChainDto>) chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
 
+        return content;
+    }
 
     @Override
     public ChainDto getChainByName(String name) {

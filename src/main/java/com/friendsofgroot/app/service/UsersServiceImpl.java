@@ -129,12 +129,17 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<UserDto> getUsers() {
         List<UserDto> userDtos = new ArrayList<>();
-        List<User> users = usersRepository.findAll();
-         if (users == null) {
-            throw new ResourceNotFoundException("not found", "not found", "not found");
-             }   else {
-            return users.stream().map(userMapper::toDto).collect(Collectors.toList());
-            }
+       try {
+           List<User> users = usersRepository.findAll();
+           if (users == null) {
+               throw new ResourceNotFoundException("not found", "not found", "not found");
+           }   else {
+               return users.stream().map(userMapper::toDto).collect(Collectors.toList());
+           }
+       } catch (NullPointerException e) {
+           e.printStackTrace();
+           return new ArrayList<>();
+       }
 
     }
 

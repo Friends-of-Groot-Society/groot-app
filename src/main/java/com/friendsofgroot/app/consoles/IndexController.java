@@ -9,8 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.dto.ChainDto;
 import com.friendsofgroot.app.dto.LoginDto;
 import com.friendsofgroot.app.dto.UserDto;
-import com.friendsofgroot.app.mapper.ChainMapper;
-import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.service.ChainsService;
 import com.friendsofgroot.app.service.UsersService;
 import org.springframework.beans.factory.annotation.Value;

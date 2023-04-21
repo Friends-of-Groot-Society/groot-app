@@ -2,9 +2,10 @@ package com.friendsofgroot.app.controllers;
 
 import com.friendsofgroot.app.dto.ChainDto;
 import com.friendsofgroot.app.mapper.ChainMapper;
-import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.service.ChainsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +27,14 @@ public class ChainsController {
         return new ResponseEntity<>(chainsService.createChain(cd), HttpStatus.CREATED);
     }
 
-
     @GetMapping(value = "/chains")
     public ResponseEntity<List<ChainDto>> getAllChains() {
         return new ResponseEntity<>(chainsService.getAllChains(), HttpStatus.OK);
+    }
+    @GetMapping(value = "/chains/page")
+    public ResponseEntity<Page<ChainDto>> getAllChainsPageable(Pageable page) {
+
+        return new ResponseEntity<>(chainsService.getAllChainsPageable( page), HttpStatus.OK);
     }
 
     @GetMapping(value = "/chains/{id}")

@@ -15,11 +15,14 @@ import java.util.stream.Collectors;
 @Service
 public class ChainsServiceImpl implements ChainsService {
 
-@Autowired
-private ChainsRepository chainsRepository;
+private final ChainsRepository chainsRepository;
 
-@Autowired
-private ChainMapper chainMapper;
+private final ChainMapper chainMapper;
+
+    public ChainsServiceImpl(ChainsRepository chainsRepository, ChainMapper chainMapper) {
+        this.chainsRepository = chainsRepository;
+        this.chainMapper = chainMapper;
+    }
 
     /**
      * @param c

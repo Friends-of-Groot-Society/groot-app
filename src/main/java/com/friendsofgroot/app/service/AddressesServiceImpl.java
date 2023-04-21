@@ -14,10 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class AddressesServiceImpl implements AddressesService {
 
-    @Autowired
-    private AddressesRepository addressesRepository;
-    @Autowired
-    private AddressMapper addressMapper;
+    private final AddressesRepository addressesRepository;
+    private final AddressMapper addressMapper;
+
+    public AddressesServiceImpl(AddressesRepository addressesRepository, AddressMapper addressMapper) {
+        this.addressesRepository = addressesRepository;
+        this.addressMapper = addressMapper;
+    }
 
 
     @Override

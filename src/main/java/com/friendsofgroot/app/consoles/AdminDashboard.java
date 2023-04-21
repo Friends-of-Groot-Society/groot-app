@@ -23,8 +23,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AdminDashboard {
-    private static final Logger log =
-            LoggerFactory.getLogger(AdminDashboard.class);
+    private static final Logger log;
+
+    static {
+      log =  LoggerFactory.getLogger(AdminDashboard.class);
+
+    }
 
     public static final int OPTION_COUNT_MAX = 7;
     private static final int MIN_OPTIONS = 0;

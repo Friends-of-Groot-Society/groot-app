@@ -110,8 +110,21 @@ values (nextval('cointable_seq'), 'binance', 'bsc', 45000, 0);
 Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)
 values (nextval('cointable_seq'), 'binance', 'bnb', 45000, 0);
 
-INSERT INTO ROLES (id, name) VALUES (1,'ROLE_ADMIN');
-INSERT INTO ROLES (id, name) VALUES (2,'ROLE_USER');
+
+INSERT INTO ROLES (id, name) VALUES (2,'ROLE_ADMIN');
+INSERT INTO ROLES (id, name) VALUES (1,'ROLE_USER');
+
+insert into USERS_ROLES(id, userid, role_id)values (1, 211, 2);
+insert into USERS_ROLES(id, userid, role_id)values (2, 212, 1);
+insert into USERS_ROLES(id, userid, role_id)values (3, 213, 1);
+insert into USERS_ROLES(id, userid, role_id)values (4, 214, 1);
+insert into USERS_ROLES(id, userid, role_id)values (5, 215, 1);
+insert into USERS_ROLES(id, userid, role_id)values (6, 215, 1);
+insert into USERS_ROLES(id, userid, role_id)values (7, 216, 1);
+insert into USERS_ROLES(id, userid, role_id)values (8, 217, 1);
+insert into USERS_ROLES(id, userid, role_id)values (9, 218, 2);
+insert into USERS_ROLES(id, userid, role_id)values (10,219,2);
+
 
 INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'ethereum',5656,1);
 INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (nextval('nft_seq'),'polygon',454,  2);

@@ -9,25 +9,33 @@ import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.models.Address;
 import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.repositories.UserAccountRepository;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.repositories.UsersRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@NoArgsConstructor
 public class UsersServiceImpl implements UsersService {
 
-    @Autowired
-    UsersRepository usersRepository;
 
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private UserAccountRepository userAccountRepository;
+    private UsersRepository usersRepository;
+
+    private   UserMapper userMapper;
+    private   UserAccountRepository userAccountRepository;
+
+    public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper, UserAccountRepository userAccountRepository) {
+        this.usersRepository = usersRepository;
+        this.userMapper = userMapper;
+        this.userAccountRepository = userAccountRepository;
+    }
 
 
     /**
@@ -120,13 +128,12 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public List<UserDto> getUsers() {
-        List<UserDto> userDtos = null;
+        List<UserDto> userDtos = new ArrayList<>();
         List<User> users = usersRepository.findAll();
          if (users == null) {
             throw new ResourceNotFoundException("not found", "not found", "not found");
              }   else {
-           userDtos = users.stream().map(userMapper::toDto).collect(Collectors.toList());
-                return userDtos;
+            return users.stream().map(userMapper::toDto).collect(Collectors.toList());
             }
 
     }

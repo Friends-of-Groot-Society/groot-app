@@ -13,10 +13,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class NftRefServiceImpl implements NftRefService {
-    @Autowired
-    private NftRefRepository nftRefRepository;
-    @Autowired
-    private NftRefMapper nftRefMapper;
+    private final NftRefRepository nftRefRepository;
+    private final NftRefMapper nftRefMapper;
+
+    public NftRefServiceImpl(NftRefRepository nftRefRepository, NftRefMapper nftRefMapper) {
+        this.nftRefRepository = nftRefRepository;
+        this.nftRefMapper = nftRefMapper;
+    }
 
     public NftRefDto createNftRef(NftRefDto nftRefDto) {
         NftRef nftRef = nftRefMapper.toEntity(nftRefDto);

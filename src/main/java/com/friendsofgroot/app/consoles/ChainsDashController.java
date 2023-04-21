@@ -30,30 +30,39 @@ public class ChainsDashController {
             LoggerFactory.getLogger(ChainsDashController.class);
     @Value("${version}")
     private String ver;
-    @Autowired
+    final
     ChainsService chainsService;
 
-    @Autowired
+    final
     UsersService usersService;
 
-//    @Autowired
+    final
     UserMapper userMapper;
-//    @Autowired
+    final
     ChainMapper chainMapper;
+
+    public ChainsDashController(ChainsService chainsService, UsersService usersService, UserMapper userMapper, ChainMapper chainMapper) {
+        this.chainsService = chainsService;
+        this.usersService = usersService;
+        this.userMapper = userMapper;
+        this.chainMapper = chainMapper;
+    }
 
     @GetMapping(value = {"/v1/chains", "/v1/chains/"})
     public String consoleHome(Model model ) throws JsonProcessingException {
-        Map<String, Object> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         model.addAttribute("versionNumber",ver);
 
         // Query database for chain-links
         List<ChainDto> chains = chainsService.getAllChains();
+        map.put("chains",chains);// Add to scope
         model.addAttribute("chains", chains);
 
         List<UserDto> users =  usersService.getUsers();
+        map.put("users",users);// Add to scope
         model.addAttribute("users", users);
-        model.addAttribute("map", map);
 
+        model.addAttribute("map", map); // DUPLICATION FOR TESTING
         List<ChainDto> dataCat= chainsService.findByName("ethereum");
 
 

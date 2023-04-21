@@ -13,10 +13,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class NftServiceImpl implements NftService {
-    @Autowired
-    private NftRepository nftRepository;
-    @Autowired
-    private NftMapper nftMapper;
+    private final NftRepository nftRepository;
+    private final NftMapper nftMapper;
+
+    public NftServiceImpl(NftRepository nftRepository, NftMapper nftMapper) {
+        this.nftRepository = nftRepository;
+        this.nftMapper = nftMapper;
+    }
 
     public boolean createNft(NftDto nftDto) {
         Nft nft = nftMapper.toEntity(nftDto);

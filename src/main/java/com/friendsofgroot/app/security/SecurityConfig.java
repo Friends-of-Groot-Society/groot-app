@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -60,33 +61,35 @@ public class SecurityConfig {
 
 
     // DISABLE WHEN CONNECTED TO LDAP or DB
-//    @Bean
-//    InMemoryUserDetailsManager createUserDetailsManager() {
-//        log.info("createUserDetailsManager");
-//
-//        UserDetails userDetails1 = createNewUser("admin", "password");
-//
-//        UserDetails userDetails2 = User.builder()
-//                .username("guest")
-//                .password(passwordMaplEncoder().encode("password"))
-//                .authorities(new SimpleGrantedAuthority("ROLE_USER"))
-//                .build();
-//        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
-//    }
-//    private UserDetails createNewUser(String username, String password) {
-//        log.info("createNewUser");
-//
-//        Function<String, String> passwordEncoding
-//                = input -> passwordMaplEncoder().encode(input);
-//
-//        UserDetails userDetails = User.builder()
-//                .passwordEncoder(passwordEncoding)
-//                .username(username)
-//                .password(password)
-//                .roles("ROLE_USER", "ROLE_ADMIN")
-//                .build();
-//        return userDetails;
-//    }
+    @Bean
+    @Profile(value={"dev"})
+    InMemoryUserDetailsManager createUserDetailsManager() {
+        log.info("createUserDetailsManager");
+
+        UserDetails userDetails1 = createNewUser("admin", "password");
+
+        UserDetails userDetails2 = User.builder()
+                .username("guest")
+                .password(passwordMaplEncoder().encode("password"))
+                .authorities(new SimpleGrantedAuthority("USER"))
+                .build();
+        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
+    }
+    private UserDetails createNewUser(String username, String password) {
+        log.info("createNewUser");
+
+        Function<String, String> passwordEncoding
+                = input -> passwordMaplEncoder().encode(input);
+
+       UserDetails userDetails = User.builder()
+                .passwordEncoder(passwordEncoding)
+                .username(username)
+                .password(password)
+                .roles("USER", "ADMIN")
+                .build();
+
+       return userDetails;
+    }
 
     @Bean
     public static PasswordEncoder  passwordMaplEncoder() {

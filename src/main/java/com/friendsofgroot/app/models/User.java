@@ -33,7 +33,7 @@ public class User extends BaseModel {
     private String username;
 
     @NotBlank(message="*Must give password")
-    @Size(min=2, max=100)
+    @Size(min=2, max=120)
     @Column(name="password" )
     private String password;
     @Column(name="lastname")

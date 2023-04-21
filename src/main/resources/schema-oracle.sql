@@ -22,7 +22,7 @@ create table users
 (
     USERID      NUMBER not null,
     USERNAME    VARCHAR(255),
-    PASSWORD    VARCHAR(50),
+    PASSWORD    VARCHAR(120),
     LASTNAME    VARCHAR(255),
     FIRSTNAME   VARCHAR(255),
     USERTYPE    NUMBER(10, 0),

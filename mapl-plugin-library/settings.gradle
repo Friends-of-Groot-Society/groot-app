@@ -1,0 +1,2 @@
+rootProject.name = 'mapl-plugin-library'
+include project ("/C://w/www/_groot/groot-app/mapl-plugin-library")

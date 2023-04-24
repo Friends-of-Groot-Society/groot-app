@@ -1,5 +1,6 @@
 package com.friendsofgroot.mapllistener;
 
+//import com.friendsofgroot.DailyTechService;
 import com.friendsofgroot.mapllistener.services.PostJDBCService;
 import com.friendsofgroot.mapllistener.services.UserJDBCService;
 import com.friendsofgroot.mapllistener.services.UsersService;
@@ -24,6 +25,9 @@ public class ListenerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ListenerApplication.class, args);
+//        DailyTechService dailyTechService = new DailyTechService();
+//
+//        System.out.println(dailyTechService.getWebPage().get("status"));
     }
     @Bean
     public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener(UserJDBCService us) {

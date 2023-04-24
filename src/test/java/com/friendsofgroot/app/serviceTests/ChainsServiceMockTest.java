@@ -57,9 +57,9 @@ public class ChainsServiceMockTest {      // *NOTE: change PK coinnames before s
 
     @Test
     public void get_all_chains() {
-        List<ChainDto>  chains =  chainsServiceMockTest.getAllChains(page);
-        when( chainsServiceMockTest.getAllChains(page)).thenReturn((List<ChainDto>) assertInstanceOf(List.class,  chains));
-        assertEquals( chainsServiceMockTest.getAllChains(page),  chains);
+        List<ChainDto>  chains =  chainsServiceMockTest.getAllChains();
+        when( chainsServiceMockTest.getAllChains()).thenReturn((List<ChainDto>) assertInstanceOf(List.class,  chains));
+        assertEquals( chainsServiceMockTest.getAllChains(),  chains);
     }
 
 

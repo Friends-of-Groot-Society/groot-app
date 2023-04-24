@@ -1,47 +1,47 @@
--- drop table USERS_ROLES CASCADE  CONSTRAINTS;
-create table USERS_ROLES
-(
-    id          NUMBER not null,
-    role_id     NUMBER not null,
-    user_userid NUMBER not null,
-    primary key (id)
-);
+- key (id)
+);- drop table USERS_ROLES CASCADE  CONSTRAINTS;
+  create table USERS_ROLES
+  (
+      id          NUMBER not null,
+      role_id     NUMBER not null,
+      user_userid NUMBER not null,
+      primary key (id)
+  );
 
--- drop table chain_users CASCADE  CONSTRAINTS;
-create table chain_users
-(
-    id       NUMBER  not null,
-    userid   NUMBER  not null,
-    chain_id NUMBER  not null,
-    primary key (id)
-);
+  -- drop table chain_users CASCADE  CONSTRAINTS;
+  create table chain_users
+  (
+      id       NUMBER  not null,
+      userid   NUMBER  not null,
+      chain_id NUMBER  not null,
+      primary key (id)
+  );
 
 
--- drop table users CASCADE  CONSTRAINTS;
-create table users
-(
-    USERID      NUMBER not null,
-    USERNAME    VARCHAR(255),
-    PASSWORD    VARCHAR(120),
-    LASTNAME    VARCHAR(255),
-    FIRSTNAME   VARCHAR(255),
-    USERTYPE    NUMBER(10, 0),
-    PHONE       VARCHAR(50),
-    EMAIL       VARCHAR(255),
-    CUSURL      VARCHAR(255),
-    PHOTOPATH   VARCHAR(400),
-    ISACTIVE    NUMBER(10, 0),
-    CONTACTTYPE NUMBER(10, 0) ,
-    primary key (USERID)
-);
+  -- drop table users CASCADE  CONSTRAINTS;
+  create table users
+  (
+      USERID      NUMBER not null,
+      USERNAME    VARCHAR(255),
+      PASSWORD    VARCHAR(120),
+      LASTNAME    VARCHAR(255),
+      FIRSTNAME   VARCHAR(255),
+      USERTYPE    NUMBER(10, 0),
+      PHONE       VARCHAR(50),
+      EMAIL       VARCHAR(255),
+      CUSURL      VARCHAR(255),
+      PHOTOPATH   VARCHAR(400),
+      ISACTIVE    NUMBER(10, 0),
+      CONTACTTYPE NUMBER(10, 0) ,
+      primary key (USERID)
+  );
 
--- drop table roles CASCADE  CONSTRAINTS;
-create table  roles
-(
-    id   NUMBER not null,
-    name varchar(255),
-    primary key (id)
-);
+  -- drop table roles CASCADE  CONSTRAINTS;
+  create table  roles
+  (
+      id   NUMBER not null,
+      name varchar(255),
+      primary
 -- drop table chain CASCADE  CONSTRAINTS;
 create table chain
 (
@@ -148,17 +148,17 @@ create table METADATA
     primary key (metadata_id)
 );
 
--- create sequence address_seq start with 10 increment by 50;
--- create sequence attribute_seq start with 1000 increment by 50;
--- create sequence chain_seq start with 101 increment by 50;
--- create sequence cointable_seq start with 20 increment by 50;
--- create sequence id_maker start with 1 increment by 50;
--- create sequence metadata_seq start with 200 increment by 50;
--- create sequence nft_ref_seq start with 500 increment by 50;
--- create sequence nft_seq start with 600 increment by 50;
--- create sequence roles_seq start with 700 increment by 50;
--- create sequence weblinks_seq start with 800 increment by 50;
--- create sequence bookmark_seq start with 800 increment by 50;
+ create sequence address_seq start with 10 increment by 50;
+ create sequence attribute_seq start with 1000 increment by 50;
+ create sequence chain_seq start with 101 increment by 50;
+ create sequence cointable_seq start with 20 increment by 50;
+ create sequence id_maker start with 1 increment by 50;
+ create sequence metadata_seq start with 200 increment by 50;
+ create sequence nft_ref_seq start with 500 increment by 50;
+ create sequence nft_seq start with 600 increment by 50;
+ create sequence roles_seq start with 700 increment by 50;
+ create sequence weblinks_seq start with 800 increment by 50;
+ create sequence bookmark_seq start with 800 increment by 50;
 
 -- MANY TO ON
 -- alter table attribute

@@ -7,16 +7,6 @@
       primary key (id)
   );
 
-  -- drop table chain_users CASCADE  CONSTRAINTS;
-  create table chain_users
-  (
-      id       NUMBER  not null,
-      userid   NUMBER  not null,
-      chain_id NUMBER  not null,
-      primary key (id)
-  );
-
-
   -- drop table users CASCADE  CONSTRAINTS;
   create table users
   (

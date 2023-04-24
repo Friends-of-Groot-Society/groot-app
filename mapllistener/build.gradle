@@ -5,7 +5,7 @@ plugins {
 	id 'org.graalvm.buildtools.native' version '0.9.20'
 }
 
-group = 'com.friendsofgroot.mapl'
+group = 'com.friendsofgroot'
 version = '0.0.1'
 sourceCompatibility = '17'
 targetCompatibility = '17'
@@ -35,6 +35,7 @@ dependencies {
 //	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 //	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
+	implementation project (group: 'com.friendsofgroot', name: 'maplPluginLibrary', version: '0.0.1-SNAPSHOT')
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'

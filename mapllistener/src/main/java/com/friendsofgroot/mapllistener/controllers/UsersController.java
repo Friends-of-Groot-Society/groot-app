@@ -38,6 +38,13 @@ public class UsersController {
                  HttpStatus.CREATED);
     }
 
+    @GetMapping("")
+    public ResponseEntity<List<UserDto>> getUsers() {
+        return new ResponseEntity<>(
+                usersService.getUsers(),
+                HttpStatus.OK);
+    }
+
     @GetMapping(value="/{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
         return new ResponseEntity<>(
@@ -48,13 +55,6 @@ public class UsersController {
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         return new ResponseEntity<>(
                         usersService.getUser(email),
-                HttpStatus.OK);
-    }
-
-    @GetMapping("")
-    public ResponseEntity<List<UserDto>> getUsers() {
-        return new ResponseEntity<>(
-                        usersService.getUsers(),
                 HttpStatus.OK);
     }
 

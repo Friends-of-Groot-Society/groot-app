@@ -21,6 +21,8 @@ public class PostEntityController {
 this.postService = postService;
 
     }
+///////////////////////////////////////////////////////
+    // DAILYTECH
 
     @PostMapping("")
     public ResponseEntity<PostEntityDto> createPost(@RequestBody PostEntityDto postEntityDto){

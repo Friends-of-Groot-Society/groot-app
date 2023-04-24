@@ -155,10 +155,6 @@ public class UsersServiceImpl implements UsersService {
         return userMapper.toDto(u);
     }
 
-    @Override
-    public List<User> getUsersWithCoins() {
-        return null;
-    }
 
     public UserDto getUserByEmail(String email) {
         User u;

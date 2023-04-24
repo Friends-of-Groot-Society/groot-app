@@ -15,7 +15,7 @@ import java.util.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor``71`
+//@RequiredArgsConstructor`
 
 @Getter @Setter @ToString
 @Entity

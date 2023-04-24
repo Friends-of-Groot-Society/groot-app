@@ -1,4 +1,4 @@
-package com.friendsofgroot.mapllistener;
+package com.friendsofgroot.mapllistener.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "categories")
-public class Category {
-
+public class Category extends BaseModel {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

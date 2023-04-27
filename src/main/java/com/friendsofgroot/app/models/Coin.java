@@ -7,7 +7,8 @@ import lombok.*;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

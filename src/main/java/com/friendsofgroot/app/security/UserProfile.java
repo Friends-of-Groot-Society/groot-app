@@ -3,7 +3,6 @@ package com.friendsofgroot.app.security;
 import com.friendsofgroot.app.consoles.UserDashboard;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.UserMapper;
-import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.repositories.UsersRepository;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,16 @@ import static com.friendsofgroot.app.util.Utilities._earlyQuit; // RETURNS TO Ma
 
 public class UserProfile {
 
-    @Autowired
+
     UsersRepository usersRepository;
 
-    @Autowired
+
     private UserMapper userMapper;
 
+    public UserProfile(UsersRepository usersRepository, UserMapper userMapper) {
+        this.usersRepository = usersRepository;
+        this.userMapper = userMapper;
+    }
 
     public static void editProfile(UserDto user) {
         System.out.println("editProfile "  + user);

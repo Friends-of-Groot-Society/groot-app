@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.Map;
 @NoArgsConstructor
 @Entity
 @Table(name = "NFT")
-public class Nft extends BaseModel {
+public class Nft  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id

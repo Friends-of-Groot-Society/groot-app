@@ -1,7 +1,5 @@
 package com.friendsofgroot.app.dto;
 
-import com.friendsofgroot.app.models.Metadata;
-import com.friendsofgroot.app.models.Nft;
 import lombok.*;
 
 import java.io.Serializable;
@@ -19,6 +17,6 @@ public class NftDto implements Serializable {
     private int id;
     private String name;
     private int amount;
-    private Metadata metadata;
+    private MetadataDto metadataDto;
     private int nft_address_id;
 }

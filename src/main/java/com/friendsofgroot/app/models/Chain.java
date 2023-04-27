@@ -5,6 +5,7 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "chain")
-public class Chain extends BaseModel {
+public class Chain  implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")

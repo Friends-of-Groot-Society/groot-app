@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.repositories;
 
 import com.friendsofgroot.app.dto.ChainUsers;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,7 +18,6 @@ import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<User, Integer> {
 
-    List<User> findAll();
     User findByUsernameAndPassword(String username, String password);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);

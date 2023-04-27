@@ -33,6 +33,4 @@ public interface UsersService {
 
 	boolean deleteUser(UserDto user);
 
-	List<ChainUsers> getUserChains();
-
 }

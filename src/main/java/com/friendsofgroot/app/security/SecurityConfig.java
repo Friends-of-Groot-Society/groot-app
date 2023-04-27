@@ -108,8 +108,6 @@ public class SecurityConfig {
 
         //All URLs are protected A login form is shown for unauthorized requests
         http.csrf().disable()  //CSRF disable
-//                .authorizeHttpRequests(
-//				auth -> auth.anyRequest().authenticated()
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll() // login
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll() // Rest API
@@ -118,7 +116,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/**").permitAll() // Spring Rest Docs
                                 .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // Spring Rest Docs
                                 .anyRequest().authenticated()
-                ).exceptionHandling( exception -> exception
+                )
+                .exceptionHandling( exception -> exception
                         .authenticationEntryPoint(authenticationEntryPoint)
            ).sessionManagement( session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

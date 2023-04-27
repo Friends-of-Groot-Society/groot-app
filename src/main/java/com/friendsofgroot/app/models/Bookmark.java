@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "BOOKMARKS")
-public class Bookmark implements Serializable {
+public class Bookmark  implements Serializable {
 	static final long serialVersionUID = 1L;
  	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

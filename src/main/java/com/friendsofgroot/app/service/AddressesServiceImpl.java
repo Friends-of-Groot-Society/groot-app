@@ -5,7 +5,6 @@ import com.friendsofgroot.app.mapper.AddressMapper;
 import com.friendsofgroot.app.models.Address;
 
 import com.friendsofgroot.app.repositories.AddressesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class AddressesServiceImpl implements AddressesService {
 
     @Override
     public AddressDto createAddress(AddressDto addrDto) {
-        Address address = addressMapper.addressDtoToAddress(addrDto);
+        Address address = addressMapper.toEntity(addrDto);
 
         if (address != null && (address.getChainId() == 0)) {
             address.setChainId(addrDto.getChainId());
@@ -34,7 +33,7 @@ public class AddressesServiceImpl implements AddressesService {
             address.setEmail(addrDto.getEmail());
         }
         Address newAddress = addressesRepository.save(address);
-        AddressDto newAddressDto = addressMapper.addressToAddressDto(newAddress);
+        AddressDto newAddressDto = addressMapper.toDto(newAddress);
         return newAddressDto;
     }
 
@@ -42,7 +41,7 @@ public class AddressesServiceImpl implements AddressesService {
     public AddressDto getAddress(int id) {
         try {
             Address address = addressesRepository.findById(id).get();
-            return addressMapper.addressToAddressDto(address);
+            return addressMapper.toDto(address);
         } catch (Exception e) {
             return null;
         }
@@ -52,7 +51,7 @@ public class AddressesServiceImpl implements AddressesService {
     public List<AddressDto> getAllAddresses() {
 
         List<Address> adds = addressesRepository.findAll();
-        List<AddressDto> addressDtos = adds.stream().map(addressMapper::addressToAddressDto).collect(Collectors.toList());
+        List<AddressDto> addressDtos = adds.stream().map(addressMapper::toDto).collect(Collectors.toList());
         return addressDtos;
     }
 
@@ -64,7 +63,7 @@ public class AddressesServiceImpl implements AddressesService {
             Address existingUpdate = addressesRepository.findById(change.getId()).get();
             existingUpdate.setDescription(change.getDescription() != null ? change.getDescription() : existingUpdate.getDescription());
             existingUpdate.setIconUrl(change.getIconUrl() != null ? change.getIconUrl() : existingUpdate.getIconUrl());
-            existingUpdate.setUser(change.getUser() != null ? change.getUser() : existingUpdate.getUser());
+//            existingUpdate.setUser(change.getUserDto() != null ? change.getUserDto() : existingUpdate.getUser());
             existingUpdate.setChain(change.getChain() != null ? change.getChain() : existingUpdate.getChain());
             existingUpdate.setEmail(change.getEmail()   != null ? change.getEmail() : existingUpdate.getEmail());
             existingUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl()     != null ? change.getBlockExplorerUrl() : existingUpdate.getBlockExplorerUrl());
@@ -73,7 +72,7 @@ public class AddressesServiceImpl implements AddressesService {
 
             Address newAddress = addressesRepository.save(existingUpdate);
 
-            return addressMapper.addressToAddressDto(newAddress);
+            return addressMapper.toDto(newAddress);
         } catch (Exception e) {
             return null;
         }
@@ -97,7 +96,7 @@ public class AddressesServiceImpl implements AddressesService {
     public List<AddressDto> getAddressesByEmail(String email) {
 
         List<Address> adds = addressesRepository.getAddressesByEmail(email);
-        List<AddressDto> addressDtos = adds.stream().map(addressMapper::addressToAddressDto).collect(Collectors.toList());
+        List<AddressDto> addressDtos = adds.stream().map(addressMapper::toDto).collect(Collectors.toList());
         return addressDtos;
     }
 }

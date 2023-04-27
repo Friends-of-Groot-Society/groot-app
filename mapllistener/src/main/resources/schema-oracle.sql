@@ -1,4 +1,4 @@
-- drop table USERS_ROLES CASCADE  CONSTRAINTS;
+ drop table USERS_ROLES CASCADE  CONSTRAINTS;
   create table USERS_ROLES
   (
       id          NUMBER not null,

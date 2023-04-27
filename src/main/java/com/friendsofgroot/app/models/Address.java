@@ -5,6 +5,8 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 
 @Setter
 @Getter
@@ -13,7 +15,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "ADDRESS")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Address extends BaseModel {
+public class Address  implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

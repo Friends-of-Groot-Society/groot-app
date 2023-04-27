@@ -7,9 +7,7 @@ import com.friendsofgroot.app.models.NftAddress
 import com.friendsofgroot.app.models.User
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import com.friendsofgroot.app.repositories.AddressesRepository
 import com.friendsofgroot.app.service.AddressesService
-import com.friendsofgroot.app.service.AddressesServiceImpl
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Shared
@@ -22,27 +20,28 @@ class AddressesControllerSpec extends Specification {
     MockMvc mockMvc
 
     @Shared
-def objectMapper = new ObjectMapper()
+    def objectMapper = new ObjectMapper()
 
-    def setup () {
-            addressesService =  Mock()
+    def setup() {
+        addressesService = Mock()
         addressMapper = Mock()
-            controller = new AddressesController(addressesService)
-            mockMvc = MockMvcBuilders.standaloneSetup(controller).build()
+        controller = new AddressesController(addressesService)
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build()
 //
 //        def address = new Address(description: "home", email: "test@example.com", address: "123 Main St", chain: "Ethereum", iconUrl: "http://example.com/icon.png", blockExplorerUrl: "http://example.com/explorer", user: new User(), chainId: 1, nftAddress:new NftAddress() )
 //        def newUser = new User()
 //        def addressDto = new AddressDto(description: address.description, email: address.email, address: address.address, chain: address.chain, iconUrl: address.iconUrl, blockExplorerUrl: address.blockExplorerUrl, user: address.user , chainId: address.chainId, nftAddress: address.nftAddress )
     }
+
     def "test createAddress"() {
         given:
         def result = new AddressDto()
         def addressDto1 = new AddressDto(description: address.description, email: address.email, address: null, chain: address.chain, iconUrl: address.iconUrl, blockExplorerUrl: address.blockExplorerUrl, user: address.user, chainId: null, nftAddress: null)
         when:
-          result = mockMvc.perform(MockMvcBuilders.post("/api/addresses")
+        result = mockMvc.perform(MockMvcBuilders.post("/api/addresses")
                 .contentType(MediaType.APPLICATION_JSON)
                 .andExpect(HttpStatus.CREATED.value())
-                .andReturn().response().contentAsString())
+                .andReturn().response().contentAsString()) as AddressDto
         then:
         result.response.contentAsString == objectMapper.writeValueAsString(addressDto1)
         1 * addressesService.createAddress(_ as Address) >> address
@@ -51,8 +50,6 @@ def objectMapper = new ObjectMapper()
         then:
         responseEntity.statusCode == HttpStatus.CREATED
         responseEntity.body == addressDto1
-
-
 
 
 //        given:
@@ -78,8 +75,8 @@ def objectMapper = new ObjectMapper()
         def controller = new AddressesController()
         def address = new Address(id: 1, description: "home", email: "test@example.com", address: "123 Main St", chain: "Ethereum", iconUrl: "http://example.com/icon.png", blockExplorerUrl: "http://example.com/explorer", user: new User(), chainId: 1, nftAddress: new NftAddress())
         def addressDto = addressMapper.addressToAddressDto(address)
-         1 * addressMapper.addressDtoToAddress(_) >> address
-       1 * addressesService.getAddress(_) >> address
+        1 * addressMapper.addressDtoToAddress(_) >> address
+        1 * addressesService.getAddress(_) >> address
 
         when:
         def responseEntity = controller.getAddress(1)

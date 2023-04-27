@@ -2,8 +2,13 @@ package com.friendsofgroot.app.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "user_accounts")
 public class UserAccount extends BaseModel {

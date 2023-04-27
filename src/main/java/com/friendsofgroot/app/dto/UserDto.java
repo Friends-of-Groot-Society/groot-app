@@ -1,10 +1,7 @@
 package com.friendsofgroot.app.dto;
 
-import com.friendsofgroot.app.models.Address;
-import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.models.Role;
 import lombok.*;
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -29,12 +26,11 @@ public class UserDto  implements Serializable {
     private String photoPath;
     private int isActive;
     private int contactType;
-    private String idToken; // id
     // parent of many
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Address> addresses;
+    private List<AddressDto> addresses;
 
-    private List<Chain> chains;
+    private List<ChainDto> chains;
     private Set<Role> roles;
 
 

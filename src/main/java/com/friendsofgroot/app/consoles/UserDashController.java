@@ -7,7 +7,6 @@ package com.friendsofgroot.app.consoles;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.dto.AddressDto;
-import com.friendsofgroot.app.dto.ChainDto;
 import com.friendsofgroot.app.dto.RegisterDto;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.mapper.ChainMapper;
@@ -31,19 +30,25 @@ public class UserDashController {
 
     @Value("${version}")
     private String ver;
-    @Autowired
+    final
     AddressesService addressesService;
 
-    @Autowired
+    final
     UsersService usersService;
 
 //    @Autowired
     BCryptPasswordEncoder bCryptEncoder;
 
-//    @Autowired
+    final
     UserMapper userMapper;
 //    @Autowired
     ChainMapper chainMapper;
+
+    public UserDashController(AddressesService addressesService, UsersService usersService, UserMapper userMapper) {
+        this.addressesService = addressesService;
+        this.usersService = usersService;
+        this.userMapper = userMapper;
+    }
 
 
     @GetMapping("/v1/register")

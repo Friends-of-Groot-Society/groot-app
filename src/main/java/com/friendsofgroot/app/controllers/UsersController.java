@@ -3,20 +3,14 @@ package com.friendsofgroot.app.controllers;
 import com.friendsofgroot.app.dto.LoginDto;
 import com.friendsofgroot.app.dto.RegisterDto;
 import com.friendsofgroot.app.dto.UserDto;
-import com.friendsofgroot.app.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersService;
 
 import java.util.List;
 
 
 import com.friendsofgroot.app.dto.JWTAuthResponse;
-import com.friendsofgroot.app.dto.LoginDto;
-import com.friendsofgroot.app.dto.RegisterDto;
 import com.friendsofgroot.app.security.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

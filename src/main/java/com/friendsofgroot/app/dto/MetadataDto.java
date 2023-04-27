@@ -1,7 +1,8 @@
 package com.friendsofgroot.app.dto;
 
-import com.friendsofgroot.app.dto.AttributeDto;
-import com.friendsofgroot.app.dto.NftDto;
+
+import com.friendsofgroot.app.models.Metadata;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +10,12 @@ import java.util.List;
 /**
  * A DTO for the {@link Metadata} entity
  */
-public record MetadataDto(String name, String description, String image, NftDto nft,
-                          List<AttributeDto> attributes) implements Serializable {
+@Data
+public class MetadataDto implements Serializable {
+    private final int metadataId;
+    private final String name;
+    private final String description;
+    private final String image;
+    private final NftDto nft;
+    private final List<AttributeDto> attributes;
 }

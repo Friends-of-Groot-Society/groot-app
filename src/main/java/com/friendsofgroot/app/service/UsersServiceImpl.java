@@ -1,16 +1,12 @@
 package com.friendsofgroot.app.service;
 
 import com.friendsofgroot.app.dto.ChainUsers;
-import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.dto.RegisterDto;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
-import com.friendsofgroot.app.models.Address;
-import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.repositories.UserAccountRepository;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.models.User;
@@ -18,24 +14,16 @@ import com.friendsofgroot.app.repositories.UsersRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@NoArgsConstructor
 public class UsersServiceImpl implements UsersService {
 
 
+    @Autowired
     private UsersRepository usersRepository;
-
-    private   UserMapper userMapper;
-    private   UserAccountRepository userAccountRepository;
-
-    public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper, UserAccountRepository userAccountRepository) {
-        this.usersRepository = usersRepository;
-        this.userMapper = userMapper;
-        this.userAccountRepository = userAccountRepository;
-    }
+    @Autowired
+    private UserMapper userMapper;
 
 
     /**
@@ -62,7 +50,6 @@ public class UsersServiceImpl implements UsersService {
         /// TODO: MOVE LOGIC TO REGISTERDTO
         newUser.setUserType(2);
         newUser.setEmail(registerDto.getEmail());
-        newUser.setAddresses(List.of(new Address()));
         newUser.setPhone("1234567890");
 //        newUser.setRole(registerDto.getRole()); //  registerDto.setRole("USER");
 
@@ -237,12 +224,5 @@ public class UsersServiceImpl implements UsersService {
         return true;
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public List<ChainUsers> getUserChains() {
 
-        return userAccountRepository.getUserChains();
-    }
 }

@@ -16,7 +16,7 @@ import jakarta.persistence.*;
 )
 public class PostEntity  extends BaseModel {
 	private static final long serialVersionUID = 1L;
-//	public interface SimplePost {
+ //	public interface SimplePost {
 //		String getTitle();
 ////		@Value("#{target.author.name}")  //TODO MAKE AUTHOR OBJECT
 //		String getAuthor();

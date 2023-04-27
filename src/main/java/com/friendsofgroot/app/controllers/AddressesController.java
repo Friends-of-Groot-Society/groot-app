@@ -18,12 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class AddressesController {
-    @Autowired
-    private AddressesService addressesService;
+@Autowired
+    AddressesService addressesService;
 
-    AddressesController(AddressesService addressesService) {
-        this.addressesService = addressesService;
-    }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<AddressDto> createAddress(@RequestBody AddressDto c) {

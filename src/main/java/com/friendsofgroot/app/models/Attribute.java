@@ -5,14 +5,16 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "ATTRIBUTE")
-public class Attribute extends BaseModel {
+public class Attribute  implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +24,6 @@ public class Attribute extends BaseModel {
     private String trait_type;
     @ManyToOne
     private Metadata metadata;
-//    @Column(name = "metaids")
-//    private int metadataMetaid;
+
 
 }

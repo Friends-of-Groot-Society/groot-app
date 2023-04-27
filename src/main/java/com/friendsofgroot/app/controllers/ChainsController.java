@@ -44,8 +44,8 @@ public class ChainsController {
     }
 
 //    @GetMapping(value = "/chains/{username}")
-//    public List<Chain> getAllChainsIOwn(@PathVariable("username") String username) {
-//        return null; // chainsService.getAllChainsIOwn(username);
+//    public Lis t<Chain> getAllChainsIOwn(@PathVariable("username") String username) {
+    //        return null; // chainsService.getAllChainsIOwn(username);
 //    }
     @GetMapping(value = "/chains/name/{name}")
     public ResponseEntity<ChainDto> getChainByName(@PathVariable("name") String name) {

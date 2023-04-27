@@ -4,11 +4,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.friendsofgroot.app.dto.UserDto;
-import com.friendsofgroot.app.mapper.UserMapper;
 import com.friendsofgroot.app.util.constants.Cmds;
-import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -52,7 +49,6 @@ public class UserRegister {
 		newUser.setPhotoPath("photoPath");
 		newUser.setIsActive(0);
 		newUser.setContactType(1);
-		newUser.setIdToken("id");
 		UserRegister userRegister = new UserRegister();
 		userRegister.registerThis(un, pw, fn, ln);
 

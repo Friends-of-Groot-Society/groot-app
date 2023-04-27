@@ -2,20 +2,14 @@ package com.friendsofgroot.app.mapper;
 
 import com.friendsofgroot.app.dto.AddressDto;
 import com.friendsofgroot.app.models.Address;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
 
-@Mapper(componentModel = "spring",uses= {UserMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface AddressMapper {
-    AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
+    Address toEntity(AddressDto addressDto);
 
-    @Mapping(source = "id", target = "id")
-//    @Mapping(source = "userDto", target = "user")
-    Address addressDtoToAddress(AddressDto addressDto);
+    AddressDto toDto(Address address);
 
-    @InheritInverseConfiguration
-    AddressDto addressToAddressDto(Address address);
-
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Address partialUpdate(AddressDto addressDto, @MappingTarget Address address);
 }

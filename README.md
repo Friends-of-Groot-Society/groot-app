@@ -17,6 +17,13 @@ Friends_of_Groot_Society - https://friendsofgroot.com</a>
 
 ### Application Overview
 
+### Instructions 
+			<!-- Execute 'mvn clean package tomee:run' to run the application. -->
+
+
+
+
+
 The mission of the app is to organize and persist Groot Fan Club News and NFT-related Activies.
 
 #### Features

@@ -27,8 +27,7 @@ public class UsersControllerTest {
 
     @InjectMocks
     private UsersController urController;
-//    @InjectMocks
-//    private UserMapper userMapper;
+
 
     private MockMvc mockMvc;
 

@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.controllerTests.groovy
+package com.friendsofgroot.app.controllers
 
 import com.friendsofgroot.app.models.Weblink
 import spock.lang.Specification

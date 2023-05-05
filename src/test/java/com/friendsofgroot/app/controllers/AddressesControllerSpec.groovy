@@ -1,13 +1,14 @@
+package com.friendsofgroot.app.controllers
+
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.friendsofgroot.app.controllers.AddressesController
 import com.friendsofgroot.app.dto.AddressDto
 import com.friendsofgroot.app.mapper.AddressMapper
 import com.friendsofgroot.app.models.Address
 import com.friendsofgroot.app.models.NftAddress
 import com.friendsofgroot.app.models.User
+import com.friendsofgroot.app.service.AddressesService
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import com.friendsofgroot.app.service.AddressesService
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Shared

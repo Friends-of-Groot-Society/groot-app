@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.controllers;
+package com.friendsofgroot.app.controllerTests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

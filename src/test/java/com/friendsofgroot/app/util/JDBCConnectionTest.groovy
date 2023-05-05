@@ -22,14 +22,14 @@ class JDBCConnectionTest extends Specification {
         when:
         expectedResult = JDBCConnection.getConnection()
 
-        then: "验证返回结果里属性值是否符合预期"
+        then: "then"
         if(expectedResult!=null) {
             with(expectedResult) {
 
             }
         }
         thrown(NullPointerException)
-        where: "表格方式验证多种分支调用场景"
+        where: "where"
         expectedResult << null
     }
 
@@ -38,13 +38,13 @@ class JDBCConnectionTest extends Specification {
         when:
           expectedResult = JDBCConnection.getJDBCKey()
 
-        then: "验证返回结果里属性值是否符合预期"
+        then: "then"
         if(expectedResult!=null) {
             with(expectedResult) {
 
             }
         }
-        where: "表格方式验证多种分支调用场景"
+        where: "where"
         expectedResult << "expectedResult"
     }
 }

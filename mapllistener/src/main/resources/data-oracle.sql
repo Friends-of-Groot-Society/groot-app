@@ -11,9 +11,8 @@ Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PH
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (219, 'thomasm1.maestas@gmail.com', 'password', 'Maestas', 'thomasm1', 3, '5055087707','thomasm1.maestas@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath',  0, 1);
 
 
-
-INSERT INTO ROLES (id, name) VALUES (1,'ROLE_USER');
 INSERT INTO ROLES (id, name) VALUES (2,'ROLE_ADMIN');
+INSERT INTO ROLES (id, name) VALUES (1,'ROLE_USER');
 
 insert into USERS_ROLES(id, userid, role_id)values (1, 211, 2);
 insert into USERS_ROLES(id, userid, role_id)values (2, 212, 1);
@@ -25,3 +24,19 @@ insert into USERS_ROLES(id, userid, role_id)values (7, 216, 1);
 insert into USERS_ROLES(id, userid, role_id)values (8, 217, 1);
 insert into USERS_ROLES(id, userid, role_id)values (9, 218, 2);
 insert into USERS_ROLES(id, userid, role_id)values (10,219,2);
+
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 12000.22, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'polygon',    'MATIC', 9.22, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'binance',    'BNB', 19.22, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'avalanche',  'AVAX', 119.22, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'pulsechain', 'SAA', 123.33, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'Hex',        'HEX', 0.03, 1);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'ethereum',   'ETH', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'binance',    'bsc', 45000, 0);
+Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (cointable_seq.nextval, 'binance',    'bnb', 45000, 0);

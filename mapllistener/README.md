@@ -35,7 +35,15 @@ Address -> NftAddress -> nfts[] Nft-> Metadata
 | E2E Testing | Selenium | [Selenium] |
 | CI/CD | Jenkins | [Jenkins] |
 | Pipeline | AWS Codebuild | [CodeBuild] |
+ ## Database
+ 
+```DBMS: Oracle (ver. Oracle Database 19c Standard Edition 2 Release 19.0.0.0.0 - Production
+Version 19.15.0.0.0)
+Case sensitivity: plain=upper, delimited=exact
+Driver: Oracle JDBC driver (ver. 21.5.0.0.0, JDBC4.3)
 
+Ping: 197 ms
+```
 # Vendor-neutral application observability facade:
 # MICROMETER
 # https://micrometer.io/docs

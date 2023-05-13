@@ -1,7 +1,9 @@
 package com.friendsofgroot.mapllistener.controllers;
 
+import com.friendsofgroot.mapllistener.dto.UserDto;
 import com.friendsofgroot.mapllistener.models.User;
-import com.friendsofgroot.mapllistener.services.UserJDBCService;
+//import com.friendsofgroot.mapllistener.services.UserJDBCService;
+import com.friendsofgroot.mapllistener.services.UsersService;
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
 import org.springframework.stereotype.Controller;
@@ -18,28 +20,28 @@ import java.util.Collection;
 @ResponseBody
 public class UserHttpController {
 
-    private final UserJDBCService userService;
+    private final UsersService userService;
     private final ObservationRegistry registry;
 
-    public UserHttpController(UserJDBCService userService, ObservationRegistry registry) {
+    public UserHttpController(UsersService userService, ObservationRegistry registry) {
         this.userService = userService;
         this.registry = registry;
     }
 
     @GetMapping("")
-    Collection<User> all() {
+    Collection<UserDto> all() {
         return Observation
                 .createNotStarted("all", this.registry)  // starts a span , from one node to another
-                .observe(() -> userService.all() // each hop is a span that joins up with existing trace or creates new one
+                .observe(userService::getUsers // each hop is a span that joins up with existing trace or creates new one
                 );
     }
 
     @GetMapping({"/{email}", "/email/{email}/"})
-    User byemail(@PathVariable("email") String email) {
+   UserDto Userbyemail(@PathVariable("email") String email) {
         Assert.state(Character.isLowerCase(email.charAt(0)), "Email must be lowercase: ");
         return Observation
                 .createNotStarted("byemail", this.registry)  // starts a span , from one node to another
-                .observe(() -> userService.byemail(email) // each hop is a span that joins up with existing trace or creates new one
+                .observe(() -> userService.getUser(email) // each hop is a span that joins up with existing trace or creates new one
                 );
     }
 
@@ -47,11 +49,11 @@ public class UserHttpController {
 //	http://localhost:8080/actuator/metrics/byemail?tag=exception:IllegalStateException
     @GetMapping("/id/{userid}")
     // http://localhost:8080/id/1
-    User byuserid(@PathVariable("userid") String userid) {
+    UserDto byuserid(@PathVariable("userid") String userid) {
         Assert.state(Character.isLowerCase(userid.charAt(0)), "byuserid  : ");
         return Observation
                 .createNotStarted("byuserid", this.registry)  // starts a span , from one node to another
-                .observe(() -> userService.byid(Long.valueOf(userid)) // each hop is a span that joins up with existing trace or creates new one
+                .observe(() -> userService.getUser(Long.valueOf(userid)) // each hop is a span that joins up with existing trace or creates new one
                 );
     }
 }

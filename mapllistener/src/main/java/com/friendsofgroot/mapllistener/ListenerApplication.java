@@ -2,10 +2,7 @@ package com.friendsofgroot.mapllistener;
 
 //import com.friendsofgroot.DailyTechService;
 import com.friendsofgroot.mapllistener.services.PostJDBCService;
-import com.friendsofgroot.mapllistener.services.UserJDBCService;
 import com.friendsofgroot.mapllistener.services.UsersService;
-import io.micrometer.observation.Observation;
-import io.micrometer.observation.ObservationRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -13,27 +10,22 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
 
 @SpringBootApplication
 public class ListenerApplication {
-
+//    Static final log = LogFactory.getLog(ListenerApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(ListenerApplication.class, args);
-//        DailyTechService dailyTechService = new DailyTechService();
-//
-//        System.out.println(dailyTechService.getWebPage().get("status"));
     }
+
+
     @Bean
-    public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener(UserJDBCService us) {
+    public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener(UsersService us) {
         return event -> {
             System.out.println("ApplicationReadyEvent userService.all()");
-            us.all().forEach(System.out::println);
+            us.getUsers().forEach(System.out::println);
         };
     }
     @Bean

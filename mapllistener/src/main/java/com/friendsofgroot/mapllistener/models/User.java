@@ -26,7 +26,6 @@ public class User extends BaseModel  {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
     @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="userid", nullable = false, unique = true)
     private Long userId;
 
@@ -108,98 +107,4 @@ public class User extends BaseModel  {
         this.roles.remove(role);
         role.getUsers().remove(this);
     }
-//
-//    public User(long userid, String username, String password, String lastName, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType, List<PostEntity> user) {
-//        super();
-//
-//        this.username = username;
-//        this.password = password;
-//        this.lastName = lastName;
-//        this.firstName = firstName;
-//        this.userType = userType;
-//        this.email = email;
-//        this.phone = phone;
-//        this.cusUrl = cusUrl;
-//        this.photoPath = photoPath;
-//        this.isActive = isActive;
-//        this.contactType = contactType;
-//
-//    }
-//
-//    public User(long userId, String username) {
-//        super();
-//        this.userId = userId;
-//        this.username = username;
-//    }
-//
-//    public User(String username, String password) {
-//        super();
-//        this.username = username;
-//        this.password = password;
-//    }
-//
-//    // overloaded for OFFER/ Groups must be multi-purpose
-//    public User(long userId, String username, String password, int userType) {
-//        super();
-//        this.userId = userId;
-//        this.username = username;
-//        this.password = password;
-//        this.userType = userType;
-//    }
-//
-//
-//    //	 overloaded WITHOUT userId  FOR Creating TO ORACLE DB  FOR ORACLE DB INSERTION/RETRIEVAL
-//    public User(String username, String password, String lastName, String firstName,
-//                int userType, String phone, String email, String cusUrl, String photoPath,
-//                int isActive,
-//                int contactType ) {
-//        super();
-//        this.username = username;
-//        this.password = password;
-//        this.lastName = lastName;
-//        this.firstName = firstName;
-//        this.userType = userType;
-//        this.phone = phone;
-//        this.email = email;
-//        this.cusUrl = cusUrl;
-//        this.photoPath = photoPath;
-//        this.isActive = isActive;
-//        this.contactType = contactType;
-//
-//    }
-//
-//    public User(long userId, String username, String password) {
-//        super();
-//        this.userId = userId;
-//        this.username = username;
-//        this.password = password;
-//    }
-//
-////     Contstructor for EDIT PROFILE (options available for user)
-//public User(String password, String lastName, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive,
-//            int contactType // ContactType contactType
-//          ) {
-//    super();
-//
-//    this.password = password;
-//    this.lastName = lastName;
-//    this.firstName = firstName;
-//    this.userType = userType;
-//    this.email = email;
-//    this.phone = phone;
-//    this.cusUrl = cusUrl;
-//    this.photoPath = photoPath;
-//    this.isActive = isActive;
-//    this.contactType = contactType;
-//
-//}
-
-
-
-//    public void registerThis(String un, String pw, String ln, String fn) {
-//        this.username = un;
-//        this.password = pw;
-//        this.lastName = ln;
-//        this.firstName = fn;
-//    }
 }

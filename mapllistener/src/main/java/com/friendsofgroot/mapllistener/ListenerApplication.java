@@ -2,7 +2,7 @@ package com.friendsofgroot.mapllistener;
 
 //import com.friendsofgroot.DailyTechService;
 import com.friendsofgroot.mapllistener.services.PostJDBCService;
-import com.friendsofgroot.mapllistener.services.UsersService;
+import com.friendsofgroot.mapllistener.services.UserJDBCService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -22,10 +22,10 @@ public class ListenerApplication {
 
 
     @Bean
-    public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener(UsersService us) {
+    public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener(UserJDBCService us) {
         return event -> {
             System.out.println("ApplicationReadyEvent userService.all()");
-            us.getUsers().forEach(System.out::println);
+            us.all().forEach(System.out::println);
         };
     }
     @Bean

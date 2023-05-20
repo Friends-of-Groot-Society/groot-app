@@ -1,39 +1,38 @@
-create table if not exists roles
+create table ROLES
 (
-    id   NUMBER not null,
+    id   INT not null,
     name varchar(255),
     primary key (id)
 );
 
-create table if not exists USERS_ROLES
+create table USERS_ROLES
 (
-    id          NUMBER not null,
-    role_id     NUMBER not null,
-    user_userid NUMBER not null,
+    id          INT not null,
+    role_id     INT not null,
+    user_userid INT not null,
     primary key (id)
 );
 
-create table if not exists users
+create table  USERS
 (
-    USERID      NUMBER not null,
+    USERID      INT not null,
     USERNAME    VARCHAR(255),
     PASSWORD    VARCHAR(120),
     LASTNAME    VARCHAR(255),
     FIRSTNAME   VARCHAR(255),
-    USERTYPE    NUMBER(10, 0),
+    USERTYPE    FLOAT(10),
     PHONE       VARCHAR(50),
     EMAIL       VARCHAR(255),
     CUSURL      VARCHAR(255),
     PHOTOPATH   VARCHAR(400),
-    ISACTIVE    NUMBER(10, 0),
-    CONTACTTYPE NUMBER(10, 0),
+    ISACTIVE    FLOAT(10),
+    CONTACTTYPE FLOAT(10),
     primary key (USERID)
 );
 
-
-create table if not exists chain
+create table chain
 (
-    chain_id           NUMBER not null,
+    chain_id           INT not null,
     name               varchar(255),
     symbol             varchar(255),
     description        varchar(255),
@@ -42,52 +41,52 @@ create table if not exists chain
     category           varchar(255),
     chain_list_icon    varchar(255),
     rpc_url            varchar(255),
-    id                 NUMBER,
+    id                 INT,
     block_explorer_url varchar(255),
     primary key (chain_id)
 );
-create table if not exists chain_users
+create table chain_users
 (
-    id       NUMBER auto_increment not null,
-    chain_id NUMBER                not null,
-    userid   NUMBER                not null,
+    id       INT  not null,
+    chain_id INT                not null,
+    userid   INT                not null,
     primary key (id)
 );
---     create table if not exists attribute (attrid NUMBER, trait_type varchar(255), valu varchar(255), metadata_metadata_id NUMBER, primary key (attrid));
+--     create table attribute (attrid INT, trait_type varchar(255), valu varchar(255), metadata_metadata_id INT, primary key (attrid));
 
-create table if not exists address
+create table address
 (
-    id                 NUMBER not null,
+    id                 INT not null,
     description        varchar(255),
     email              varchar(255),
     address            varchar(255), -- nft_address
     chain              varchar(255),
     icon_url           varchar(255),
     block_explorer_url varchar(255),
-    userid             NUMBER,
-    chain_id            NUMBER,
+    userid             INT,
+    chain_id            INT,
     primary key (id)
 );
-create table if not exists nft
+create table nft
 (
-    id          NUMBER not null,
-    amount      NUMBER,
+    id          INT not null,
+    amount      INT,
     name        varchar(255),
-    metadata_id NUMBER,
+    metadata_id INT,
     primary key (id)
 );
-create table if not exists nft_address
+create table nft_address
 (
-    id           NUMBER not null,
+    id           INT not null,
     address      varchar(255),
-    native_token NUMBER(53),
-    native       NUMBER(53),
-    tokens       NUMBER(24),
+    native_token INT,
+    native       INT,
+    tokens       INT,
     primary key (id)
 );
-create table if not exists nft_ref
+create table nft_ref
 (
-    id      NUMBER not null,
+    id      INT not null,
     address varchar(255),
     chain   varchar(255),
     email   varchar(255),
@@ -96,27 +95,25 @@ create table if not exists nft_ref
     primary key (id)
 );
 
-create table if not exists COINTABLE
+create table COINTABLE
 (
-    coinid     NUMBER not null,
+    coinid     INT not null,
     coinsymbol varchar(255),
     cointoken  varchar(255),
-    pricetotal NUMBER(53),
-    purchased  NUMBER not null,
+    pricetotal INT ,
+    purchased  INT  ,
     primary key (coinid)
 );
-CREATE TABLE if not exists WEBLINK(id bigint PRIMARY KEY
-                         auto_increment,
+CREATE TABLE WEBLINK(id BIGINT PRIMARY KEY ,
                      title varchar(500) ,
-                     url varchar(250) NOT NULL ,
+                     url varchar(250)   ,
                      host varchar(250) ,
                      downloadstatus TINYINT,
-                     htmlpage    varchar(255),
-                     CONSTRAINT UNIQUE(url (200)));
+                     htmlpage    varchar(255));
 
--- create table if not exists weblinks
+-- create table weblinks
 -- (
---     id             NUMBER not null,
+--     id             INT not null,
 --     downloadstatus smallint,
 --     host           varchar(255),
 --     htmlpage       varchar(255),
@@ -124,24 +121,33 @@ CREATE TABLE if not exists WEBLINK(id bigint PRIMARY KEY
 --     primary key (id)
 -- );
 
-create table if not exists ATTRIBUTE
+create table ATTRIBUTE
 (
-    attrid               NUMBER,
+    attrid               INT,
     trait_type           varchar(255),
     valu                 varchar(255),
-    metadata_metadata_id NUMBER,
+    metadata_metadata_id INT,
     primary key (attrid)
 );
 
 create table METADATA
 (
-    metadata_id NUMBER not null,
+    metadata_id INT not null,
     description varchar(255),
     image       varchar(255),
     name        varchar(255),
-    nft_id      NUMBER,
+    nft_id      INT,
     primary key (metadata_id)
 );
+#
+# create table NFT
+    # (
+    #     nft_id     INT not null,
+    #     amount     INT,
+    #     name       varchar(255),
+    #     metadataid INT,
+    #     primary key (nft_id)
+    # );
 
 create sequence address_seq start with 10 increment by 50;
 create sequence attribute_seq start with 1000 increment by 50;

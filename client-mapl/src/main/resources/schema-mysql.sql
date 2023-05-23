@@ -61,10 +61,10 @@ CREATE TABLE WEBLINK(id BIGINT PRIMARY KEY ,
                      downloadstatus TINYINT,
                      htmlpage    varchar(255));
 
-#
-# create sequence cointable_seq start with 20 increment by 50;
-# create sequence id_maker start with 1 increment by 50;
-# create sequence nft_ref_seq start with 500 increment by 50;
-# create sequence roles_seq start with 700 increment by 50;
-# create sequence weblinks_seq start with 800 increment by 50;
-# create sequence movies_seq start with 900 increment by 50;
+
+create sequence cointable_seq start with 20 increment by 50;
+create sequence id_maker start with 1 increment by 50;
+create sequence nft_ref_seq start with 500 increment by 50;
+create sequence roles_seq start with 700 increment by 50;
+create sequence weblinks_seq start with 800 increment by 50;
+create sequence movies_seq start with 900 increment by 50;

@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -45,7 +47,7 @@ public class UsersControllerTest {
     public void testGet() throws Exception {
         Integer id = 1;
 
-        when(uService.getUser(id)).thenReturn(new UserDto());
+        when(uService.getUser(id)).thenReturn(Optional.of(new UserDto()));
 
         mockMvc.perform(get("/api/users/1"))
                 .andExpect(status().isOk()); // 200  OK      // .andExpect(view().name("user/show"));
@@ -62,7 +64,7 @@ public class UsersControllerTest {
         userDto.setUserId(id);
 //        userDto = userMapper.toDto(user);
 
-        when(uService.getUser(id)).thenReturn(userDto);
+        when(uService.getUser(id)).thenReturn(Optional.of(userDto));
 
         mockMvc.perform(post("/api/users"))
                 .andExpect(status().isOk())  ; // 200  OK      // .andExpect(view().name("user/show"));

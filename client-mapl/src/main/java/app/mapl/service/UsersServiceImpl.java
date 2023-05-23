@@ -1,216 +1,71 @@
 package app.mapl.service;
 
-import app.mapl.dto.RegisterDto;
-import app.mapl.dto.UserDto;
-import app.mapl.exception.ResourceNotFoundException;
-import app.mapl.mapper.UserMapper;
-import app.mapl.models.User;
-import app.mapl.repositories.UsersRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
-@Service
-public class UsersServiceImpl implements UsersService {
+import app.mapl.dao.UserDAO;
+import app.mapl.dao.UserDAOimpl;
+//import db.DB;
+import app.mapl.dto.UserDto;
+import app.mapl.mapper.UserMapper;
+import app.mapl.models.User;
 
+public class UsersServiceImpl {
+	// DB.users.put(c.getUserID(), c);
 
-    @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private UserMapper userMapper;
+	private   static UserMapper userMapper;
+	public static UserDAO userdaoImpl = new UserDAOimpl(); // Interface Dao Ref-type, & userImpl is object
 
+	public static boolean createUser(UserDto user) {
+		System.out.println("Passing User Service userdao.createUser(u); ...");
+		return userdaoImpl.createUser(user);
+	};
 
-    /**
-     * @param user
-     * @return
-     */
-    @Override
-    public User createUserCLI(User user) {
-        User u = usersRepository.save(user);
-        return u;
-    }
-    /**
-     * @param registerDto
-     * @return  UserDto
-     */
-    @Override
-    public UserDto registerUser(RegisterDto registerDto) {
+	public static Optional<UserDto> getUser(int id) {
+		System.out.println("Passing User Service getUser(String id) {...");
 
-        UserDto newUser = new UserDto();
-        newUser.setUsername(registerDto.getUsername());
-        newUser.setPassword(registerDto.getPassword());
-        newUser.setLastName(registerDto.getLastName());
-        newUser.setFirstName(registerDto.getFirstName());
-        /// TODO: MOVE LOGIC TO REGISTERDTO
-        newUser.setUserType(2);
-        newUser.setEmail(registerDto.getEmail());
-        newUser.setPhone("1234567890");
-//        newUser.setRole(registerDto.getRole()); //  registerDto.setRole("USER");
+		return Optional.ofNullable(userMapper.toDto(userdaoImpl.getUser(id)));
+	};
 
-        User u = usersRepository.save(userMapper.toEntity(newUser));
-        return userMapper.toDto(u);
-    }
+	public Optional<UserDto> getUserByEmail(String un) {
+		System.out.println("Passing User Service getUser(SString username) {...");
+		return Optional.ofNullable(userMapper.toDto(userdaoImpl.getUserbyEmail(un)));
 
-    /**
-     * @param usernameOrEmail
-     * @param password
-     * @return
-     */
-    @Override
-    public UserDto loginUser(String usernameOrEmail, String password) {
-         User  u = usersRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", usernameOrEmail));
+	}
+	public static Optional<UserDto> getUser(String username ) {
+		System.out.println("Passing User Service getUser(SString username) {...");
+		return Optional.ofNullable(userMapper.toDto(userdaoImpl.getUser(username)));
+	};
+	public static List<UserDto> getUsers() {
+		System.out.println("Passing User Service userdao.getAllUsers() { ...");
+		List<User> a = new ArrayList<>(userdaoImpl.getUsers());
+		return a.stream().map(x -> userMapper.toDto(x)).toList();
 
-        if ( u.getPassword().equals(password)) {
-            return userMapper.toDto(u) ;
-        } else {
-            return null;
-        }
-    }
-    /**
-     * @param user
-     * @return
-     */
-    @Override
-    public UserDto createUser(UserDto user) {
-        User u = usersRepository.save(userMapper.toEntity(user));
-        return userMapper.toDto(u);
-    }
+	};
 
-    /**
-     * @param id
-     * @return
-     */
-    @Override
-    public UserDto getUser(int id) {
-        try {
-            User u = usersRepository.findById(id).get();
-            return userMapper.toDto(u);
-        } catch (Exception e) {
-            return null;
-        }
-    }
+	public static boolean updateUser(UserDto change) {
+		System.out.println("Passing User Service userdao.updateUser(User change) {..");
+		return userdaoImpl.updateUser(change);
+	}
 
-    /**
-     * @param email
-     * @return
-     */
-    @Override
-    public UserDto getUser(String email) {
-        try {
-            User u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
-            return userMapper.toDto(u);
-        } catch (Exception e) {
-            return null;
-        }
-    }
+	public static UserDAO getUserdao() {
+		System.out.println("Passing User Service userdao.getUserdao() {..");
+		return userdaoImpl;
+	}
 
-    /**
-     * @return
-     */
-    @Override
-    public List<UserDto> getUsers() {
-        List<UserDto> userDtos = new ArrayList<>();
-       try {
-           List<User> users = usersRepository.findAll();
-           if (users == null) {
-               throw new ResourceNotFoundException("not found", "not found", "not found");
-           }   else {
-               return users.stream().map(userMapper::toDto).collect(Collectors.toList());
-           }
-       } catch (NullPointerException e) {
-           e.printStackTrace();
-           return new ArrayList<>();
-       }
+	public static List<String> getUsersWithCoins() {
+		System.out.println("Passing User Service userdao.getUsersWithCoins() {...");
+		return userdaoImpl.getUsersWithCoins();
+	}
 
-    }
-
-    @Override
-    public UserDto getUserByEmailAndPassword(String email, String pw) {
-        User u;
-        try {
-            u = usersRepository.findByEmailAndPassword(email,pw).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
-//                return usersRepository.findByEmailAndPassword(email, pw).get();
-        } catch (Exception e) {
-            return null;
-        }
-        return userMapper.toDto(u);
-    }
-
-    public UserDto getUserByEmail(String email) {
-        User u;
-        try {
-
-            u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
-        } catch (Exception e) {
-            return null;
-        }
-        return userMapper.toDto(u);
-    }
-
-
-
-    /**
-     * @param username
-     * @param password
-     * @return
-     */
-    @Override
-    public UserDto getUserByPassword(String username, String password) {
-        return null;
-    }
-
-    /**
-     * @param change
-     * @return
-     */
-    @Override
-    public UserDto updateUser(UserDto change) {
-        try {
-            User uEntity = userMapper.toEntity(change);
-            User uDone = usersRepository.save(uEntity);
-
-            return userMapper.toDto(uDone);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return change;
-    }
-
-    /**
-     * @param email
-     * @return
-     */
-    @Override
-    public boolean deleteUser(String email) {
-        try {
-            User u = usersRepository.findByEmail(email).get();
-            usersRepository.delete(u);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @param user
-     * @return
-     */
-    @Override
-    public boolean deleteUser(UserDto user) {
-
-        try {
-            User u = usersRepository.findByEmail(user.getEmail()).get();
-            usersRepository.delete(u);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
+	public static Optional<UserDto> getUserByPassword(String username, String password) {
+		System.out.println("Passing User Service userdao.getUserByPassword(String username, String password)...");
+		return Optional.ofNullable(userMapper.toDto(userdaoImpl.getUserByPassword(username, password)));
+	}
+	public static boolean deleteUser(String username) {
+		System.out.println("Passing User Service userdao.deleteUser(String username) { ...");
+		return userdaoImpl.deleteUser(username);
+	}
 
 }

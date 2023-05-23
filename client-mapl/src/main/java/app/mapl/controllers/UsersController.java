@@ -21,10 +21,10 @@ import java.util.List;
 //@Api(tags={"Users"})
 public class UsersController {
 
-    private PasswordEncoder bcrypt;
+    private final PasswordEncoder bcrypt;
 
-    private UsersService usersService;
-    private AuthService authService;
+    private final UsersService usersService;
+    private final AuthService authService;
 
     public UsersController(AuthService authService,UsersService usersService, PasswordEncoder bcrypt) {
         this.bcrypt = bcrypt;
@@ -78,13 +78,13 @@ public class UsersController {
     @GetMapping(value="/users/{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
         return new ResponseEntity<>(
-                        usersService.getUser(userId),
+                        usersService.getUser(userId).orElseThrow(),
                 HttpStatus.OK);
     }
     @GetMapping(value="/users/email/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         return new ResponseEntity<>(
-                        usersService.getUser(email),
+                        usersService.getUser(email).orElseThrow(),
                 HttpStatus.OK);
     }
 
@@ -105,7 +105,7 @@ public class UsersController {
     @DeleteMapping(value="/users/{userId}")
     public ResponseEntity<Boolean> deleteUser(@PathVariable("userId") int userId) {
         try {
-            usersService.deleteUser(usersService.getUser(userId));
+            usersService.deleteUser(usersService.getUser(userId).orElseThrow());
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);

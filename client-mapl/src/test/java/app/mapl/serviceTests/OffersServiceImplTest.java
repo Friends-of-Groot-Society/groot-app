@@ -6,16 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.*;
 
-import app.mapl.models.User;
-import app.mapl.service.CoinService;
-import app.mapl.service.UserService;
-import app.mapl.models.Coin;
 import app.mapl.models.Offer;
-import app.mapl.service.OfferService;
+import app.mapl.service.OffersServiceImpl;
 
 import java.time.LocalDate;
 
-public class OfferServiceTest {      // *NOTE: change PK offernames before sending to DB
+public class OffersServiceImplTest {      // *NOTE: change PK offernames before sending to DB
 
 //        Setup Offer  p1; get
 //		  Offer  p2; update
@@ -54,13 +50,13 @@ public class OfferServiceTest {      // *NOTE: change PK offernames before sendi
     @Test   
    	public void update_offer() {
    		Offer o = new Offer(23230-rand, "x455491", 757357, 1110.0, 0, "PENDING", "desc", LocalDate.now(), false);  // PASSES
-   		assertTrue(OfferService.updateOffer(o));
+   		assertTrue(OffersServiceImpl.updateOffer(o));
    		
    	}
     @Test   
    	public void get_offer() {
    		Offer o = new Offer(23230-rand, "x455491", 757357, 1110.0, 0, "PENDING", "desc", LocalDate.now(), false);   // PASSES
-		OfferService.createOffer(o); 
+		OffersServiceImpl.createOffer(o);
    		assertEquals("PENDING", o.getOfferStatus());
    		
    	} 
@@ -68,8 +64,8 @@ public class OfferServiceTest {      // *NOTE: change PK offernames before sendi
 	@Test   
    	public void delete_offer() {										  // PASSES
    		Offer o = new Offer(23230-rand, "x455491", 757357, 1110.0, 0, "PENDING", "desc", LocalDate.now(), false);
-   		OfferService.createOffer(o); 
-   		assertTrue(OfferService.deleteOffer(o.getOfferID()));
+   		OffersServiceImpl.createOffer(o);
+   		assertTrue(OffersServiceImpl.deleteOffer(o.getOfferID()));
    		
    	}
     

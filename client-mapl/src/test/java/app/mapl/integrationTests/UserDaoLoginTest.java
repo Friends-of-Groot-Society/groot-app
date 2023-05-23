@@ -1,12 +1,14 @@
 package app.mapl.integrationTests;
 
+import app.mapl.dto.UserDto;
 import org.junit.jupiter.api.*;
 import app.mapl.consoles.AdminDashboard;
 import app.mapl.consoles.UserDashboard;
 import app.mapl.models.User;
-import app.mapl.service.UserService;
+import app.mapl.service.UsersServiceImpl;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 class UserDaoLoginTest {  // INTE
 	String adminUsername = "admin", adminPassword = "pass";
@@ -15,7 +17,7 @@ class UserDaoLoginTest {  // INTE
 	String un = "joshallen", pw = "allen";
 
 	// MOCKITO Service
-	User login = UserService.getUser(un);
+	UserDto login = UsersServiceImpl.getUser(un).orElseThrow();
 
 	@BeforeAll
 	static void setUpBeforeClass_Username() throws Exception {

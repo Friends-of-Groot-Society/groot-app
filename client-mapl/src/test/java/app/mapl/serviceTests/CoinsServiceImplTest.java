@@ -11,13 +11,10 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import app.mapl.models.Coin;
-import app.mapl.service.CoinService;
+import app.mapl.service.CoinsServiceImpl;
 
-public class CoinServiceTest {      // *NOTE: change PK coinnames before sending to DB
+public class CoinsServiceImplTest {      // *NOTE: change PK coinnames before sending to DB
 
-//        Setup Coin  p1; get
-//		  Coin  p2; update
-//		  Coin p3; delete
 
 	@BeforeAll // setup
 	public static void setupClass() {
@@ -32,34 +29,34 @@ public class CoinServiceTest {      // *NOTE: change PK coinnames before sending
     @Test   
 	public void add_new_coin() {
 		Coin c = new Coin(75757, "Ethereum", "ETH", 45000.00, 0);    // PASSES
-		assertTrue(CoinService.createCoin(c));
+		assertTrue(CoinsServiceImpl.createCoin(c));
 		
 	}
     @Test   
    	public void update_coin() {
    		Coin c = new Coin(75578, "Ethereum", "ETH", 45000.00, 0);    // PASSES
-   		assertTrue(CoinService.updateCoin(c));
+   		assertTrue(CoinsServiceImpl.updateCoin(c));
    		
    	}
     @Test   
    	public void get_coin_make() {
     	Coin c = new Coin(75578, "Ethereum", "ETH", 45000.00, 0);    // PASSES
-		CoinService.createCoin(c);
+		CoinsServiceImpl.createCoin(c);
    		assertEquals("Ethereum", c.getCoinToken());
    		
    	} 
     @Test   
    	public void get_coin() {
     	Coin c = new Coin(775578, "Ethereum", "ETH", 45000.00, 0);    // PASSES
-		CoinService.getCoin(c.getCoinId()); 
-   		assertEquals(CoinService.getCoin(c.getCoinId()), CoinService.getCoin(c.getCoinId())); // Check not null bc dynamic int ID
+		CoinsServiceImpl.getCoin(c.getCoinId()); 
+   		assertEquals(CoinsServiceImpl.getCoin(c.getCoinId()), CoinsServiceImpl.getCoin(c.getCoinId())); // Check not null bc dynamic int ID
    		
    	} 
 	@Test   
    	public void delete_coin() {										  // PASSES
 		Coin c = new Coin(77558, "Ethereum", "ETH", 45000.00, 0);  
-   		CoinService.createCoin(c); 
-   		assertTrue(CoinService.deleteCoin(c.getCoinId())); 
+   		CoinsServiceImpl.createCoin(c); 
+   		assertTrue(CoinsServiceImpl.deleteCoin(c.getCoinId())); 
    	}
      
 	@AfterAll

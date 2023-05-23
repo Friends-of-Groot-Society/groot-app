@@ -1,4 +1,4 @@
-package app.mapl.models;
+package app.mapl.dto;
 
 import app.mapl.dto.PostEntityDto;
 import lombok.Data;

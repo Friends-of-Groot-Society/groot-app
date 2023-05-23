@@ -2,6 +2,7 @@ package app.mapl.dao;
 
 import app.mapl.dataLoader.FileDataStore;
 
+import app.mapl.dto.UserDto;
 import app.mapl.models.*;
 import app.mapl.util.JDBCConnection;
 
@@ -18,7 +19,7 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 	public static Connection conn = JDBCConnection.getConnection();
 
 	@Override
-	public boolean createUser(User u) {
+	public boolean createUser(UserDto u) {
 //		DB.users.put(u.getUserID(), c);
 		// USER is autoincrement
 		String sql = "CALL add_new_users(?,?,?, ?,?,?, ?,?,?, ?,?)";
@@ -85,6 +86,45 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 			String sql = "SELECT * FROM users WHERE username = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				return new User(rs.getInt("userid"),
+						rs.getString("username"),
+						rs.getString("password"),
+						rs.getString("lastname"),
+						rs.getString("firstName"),
+						rs.getInt("userType"),
+						rs.getString("phone"),
+						rs.getString("email"),
+						rs.getString("cusUrl"),
+						rs.getString("photoPath"),
+						rs.getInt("isActive"),
+						rs.getInt("contactType")
+
+
+				);
+			}
+
+		} catch (Exception e) {
+			System.out.println("SQL issue with getting USER(username):\n" + e);
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * @param un
+	 * @return
+	 */
+	@Override
+	public User getUserbyEmail(String email) {
+//		return DB.users.get(id);
+		try {
+			String sql = "SELECT * FROM users WHERE email = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
 
 			ResultSet rs = ps.executeQuery();
 
@@ -194,7 +234,7 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 		return null;
 	}
 
-	public boolean updateUser(User change) { // using USERNAME
+	public boolean updateUser(UserDto change) { // using USERNAME
 //											 	1			2			3			4			5		6		7			8			9			10			11			12	        	13
 //		String sql = "UPDATE users SET password=?, lastname=?, firstname=?, groups=?, usertype=?,  phone=?, email=?, cusurl=?, photopath=?, userGroup=?, isActive=?, contactType=? WHERE username = ?";
 		String sql = "CALL UPDATE_USER(?,?,?,   ?,?,?,   ?,?,?,   ?,?,?, ?)";
@@ -250,6 +290,7 @@ public class UserDAOimpl implements UserDAO { // can't make static! so use the s
 	public boolean createUserPrePop(User u) {
 		return false;
 	}
+
 
 	/**
 	 * @param userCoinbuy

@@ -3,28 +3,37 @@ package app.mapl.service;
 import app.mapl.exception.PostApiException;
 import app.mapl.exception.ResourceNotFoundException;
 import app.mapl.models.Comment;
-import app.mapl.models.CommentDto;
+import app.mapl.dto.CommentDto;
 import app.mapl.mapper.CommentMapper;
 import app.mapl.models.PostEntity;
 import app.mapl.repositories.CommentsRepository;
 import app.mapl.repositories.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CommentsServiceImpl implements CommentsService {
+@Primary
+@RequiredArgsConstructor
+public class CommentsServiceJPA implements CommentsService {
 
-    @Autowired
     private CommentsRepository commentRepository;
-    @Autowired
     PostRepository postRepository;
 
-    @Autowired
     private CommentMapper commentMapper;
+
+    @Autowired
+    public CommentsServiceJPA(CommentsRepository commentRepository, PostRepository postRepository, CommentMapper commentMapper) {
+        this.commentRepository = commentRepository;
+        this.postRepository = postRepository;
+        this.commentMapper = commentMapper;
+    }
 
     /**
      * @param postId
@@ -62,7 +71,7 @@ public class CommentsServiceImpl implements CommentsService {
      * @return
      */
     @Override
-    public CommentDto getCommentById(Long postId, Long commentId) {
+    public Optional<CommentDto> getCommentById(Long postId, Long commentId) {
         PostEntity post = postRepository.findById(postId).orElseThrow(
                 () -> new ResourceNotFoundException("Post", "id", Long.toString(postId)));
 
@@ -72,7 +81,7 @@ public class CommentsServiceImpl implements CommentsService {
         if(comment.getPost().getId() != post.getId()) {
             throw new PostApiException(HttpStatus.NOT_FOUND, Long.toString(commentId));
         }
-        return commentMapper.toDto(comment);
+        return Optional.ofNullable(commentMapper.toDto(comment));
     }
 
     /**
@@ -82,7 +91,7 @@ public class CommentsServiceImpl implements CommentsService {
      * @return
      */
     @Override
-    public CommentDto updateComment(Long postId, long commentId, CommentDto commentRequest) {
+    public Optional<CommentDto> updateComment(Long postId, long commentId, CommentDto commentRequest) {
        PostEntity post = postRepository.findById(postId).orElseThrow(
                () -> new ResourceNotFoundException("Post", "id", Long.toString(postId)));
        Comment comment = commentRepository.findById(commentId).orElseThrow(
@@ -95,7 +104,7 @@ public class CommentsServiceImpl implements CommentsService {
         comment.setEmail(commentRequest.getEmail());
 
         Comment updatedComment = commentRepository.save(comment);
-        return commentMapper.toDto(updatedComment);
+        return Optional.ofNullable(commentMapper.toDto(updatedComment));
     }
 
     /**

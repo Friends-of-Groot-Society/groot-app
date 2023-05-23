@@ -3,9 +3,10 @@ package app.mapl.webControllers;
 import jakarta.validation.Valid;
 
 import app.mapl.models.Offer;
-import app.mapl.service.OfferService;
+import app.mapl.service.OffersServiceImpl;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,20 +21,20 @@ import java.util.List;
 
 @Controller
 @SessionAttributes("username")
+@RequiredArgsConstructor
 public class OfferController {
 
+	private OffersServiceImpl offersServiceImpl;
 
-	@Autowired
-	private OfferService offerService;
-//	public OfferController(OfferService offerService) {
-//		super();
-//		this.offerService = offerService;
-//	}
+	public OfferController(OffersServiceImpl offersServiceImpl){
+		this.offersServiceImpl = offersServiceImpl;
+	}
+
 	
 	@RequestMapping("/list-offers")
 	public String listAllOffers(ModelMap model) {
 		String username = getLoggedInUsername(model);
-		List<Offer> offers = offerService.getAllOffersCust(username);
+		List<Offer> offers = offersServiceImpl.getAllOffersCust(username);
 		model.addAttribute("offers", offers);
 		
 		return "listOffers";
@@ -57,7 +58,7 @@ public class OfferController {
 
 		String username = getLoggedInUsername(model);
 		Offer o = new Offer(0, username, 0, 88.88, 12, "PENDING","DESC", LocalDate.now().plusYears(1), false);
-		offerService.createOffer(o);
+		offersServiceImpl.createOffer(o);
 		return "redirect:list-offers";
 	}
 
@@ -65,14 +66,14 @@ public class OfferController {
 	public String deleteOffer(@RequestParam int id) {
 		//Delete offer
 
-		offerService.deleteOffer(id);
+		offersServiceImpl.deleteOffer(id);
 		return "redirect:list-offers";
 
 	}
 
 	@RequestMapping(value="update-offer", method = RequestMethod.GET)
 	public String showUpdateOfferPage(@RequestParam int id, ModelMap model) {
-		Offer offer = offerService.getOffer(id);
+		Offer offer = offersServiceImpl.getOffer(id);
 		model.addAttribute("offer", offer);
 		return "offer";
 	}
@@ -86,7 +87,7 @@ public class OfferController {
 		
 		String username = getLoggedInUsername(model);
 		offer.setUsername(username);
-		offerService.updateOffer(offer);
+		offersServiceImpl.updateOffer(offer);
 		return "redirect:list-offers";
 	}
 

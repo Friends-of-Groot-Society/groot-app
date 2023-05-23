@@ -2,7 +2,7 @@ package app.mapl.serviceTests;
 
 import app.mapl.dto.CoinDto;
 import app.mapl.service.CoinsService;
-import app.mapl.service.CoinsServiceImpl;
+import app.mapl.service.CoinsServiceJPA;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +27,7 @@ public class CoinServiceMockTest {      // *NOTE: change PK coinnames before sen
     private CoinsService coinsServiceMockTest;
     // Impl usersServiceImpl = mock(UsersServiceImpl.class);
     @InjectMocks
-    private CoinsServiceImpl coinsServiceImpl;
+    private CoinsServiceJPA coinsServiceJPA;
 
     @BeforeAll // setup
     public static void setupClass() {

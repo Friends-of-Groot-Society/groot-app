@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 import static app.mapl.dataLoader.UserDetailsCommandLineRunner.runDownloaderJob;
 import static app.mapl.dataLoader.UserDetailsCommandLineRunner.startBrowsingBuying;
-import static app.mapl.service.CoinService.coinMarketViewAll;
+import static app.mapl.service.CoinsServiceImpl.coinMarketViewAll;
 
 @Component
 @Primary

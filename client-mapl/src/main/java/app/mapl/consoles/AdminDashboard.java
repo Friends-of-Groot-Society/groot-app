@@ -2,7 +2,6 @@
 package app.mapl.consoles;
 
 import app.mapl.commands.*;
-import app.mapl.dto.CoinDto;
 import app.mapl.dto.UserDto;
 import app.mapl.models.Coin;
 import app.mapl.repositories.UsersRepository;
@@ -35,10 +34,10 @@ public class AdminDashboard {
  
     public AdminDashboard() {};
 
-    public AdminDashboard(CoinsServiceImpl coinsService ) {
+    public AdminDashboard(CoinsServiceJPA coinsService ) {
         this.coinsService = coinsService;
     }
-    public AdminDashboard(CoinsServiceImpl coinsService, UsersServiceImpl usersService ) {
+    public AdminDashboard(CoinsServiceJPA coinsService, UsersServiceImpl usersService ) {
         this.coinsService = coinsService;
         this.usersService = usersService; 
     }
@@ -62,7 +61,7 @@ public class AdminDashboard {
         frontConsoleMenu();
         try (Scanner scan = new Scanner(System.in)) {
 
-            AdminDashboard adminDashboard = new AdminDashboard( new CoinsServiceImpl() );
+            AdminDashboard adminDashboard = new AdminDashboard( new CoinsServiceJPA() );
             int val = scan.nextInt();
             if (val < MIN_OPTIONS && val > OPTION_COUNT_MAX) {
                 System.out.println("Please enter digits " + MIN_OPTIONS + "-" + OPTION_COUNT_MAX);
@@ -97,7 +96,7 @@ public class AdminDashboard {
                         break;
                     }
                     case 4: {
-                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+                        CoinsServiceJPA coinsService = new CoinsServiceJPA();
 
                         System.out.println(coinsService.getAllCoins());
                         scan.nextLine();
@@ -357,7 +356,7 @@ public class AdminDashboard {
                 switch (val) {
                     case 1: {
                         System.out.println("View CoinLot");
-                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+                        CoinsServiceJPA coinsService = new CoinsServiceJPA();
                         System.out.println(coinsService.getAllCoins());
                         System.out.println("==========================");
                         System.out.println();
@@ -365,7 +364,7 @@ public class AdminDashboard {
                     }
                     case 2: {
 
-                        CoinsServiceImpl coinsService = new CoinsServiceImpl();
+                        CoinsServiceJPA coinsService = new CoinsServiceJPA();
 
                         scan.nextLine();
                         System.out.println("Adding a coin? Let me get my notepad ...");

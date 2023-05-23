@@ -76,7 +76,7 @@ public class UserRegister {
 		newUserDto.setPhotoPath("photoPath");
 		newUserDto.setIsActive(0);
 		newUserDto.setContactType(1);
-		usersService.createUser(newUserDto);
+		UsersServiceImpl.createUser(newUserDto);
 
 		return newUserDto;
 	}

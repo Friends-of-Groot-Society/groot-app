@@ -1,7 +1,7 @@
 package app.mapl.mapper;
 
 import app.mapl.models.Comment;
-import app.mapl.models.CommentDto;
+import app.mapl.dto.CommentDto;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")

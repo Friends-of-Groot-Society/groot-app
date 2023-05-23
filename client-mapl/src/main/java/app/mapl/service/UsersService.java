@@ -5,6 +5,7 @@ import app.mapl.dto.UserDto;
 import app.mapl.models.User;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface UsersService {
@@ -16,8 +17,8 @@ public interface UsersService {
 
 	User createUserCLI(User user);
 
-	public UserDto getUser(int id);
-	public UserDto getUser(String username );
+	public Optional<UserDto> getUser(int id);
+	public Optional<UserDto>  getUser(String username );
 	public List<UserDto> getUsers();
 
 	public UserDto updateUser(UserDto change);

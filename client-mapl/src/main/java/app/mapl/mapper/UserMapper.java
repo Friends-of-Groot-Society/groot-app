@@ -4,7 +4,7 @@ import app.mapl.dto.UserDto;
 import app.mapl.models.User;
 import org.mapstruct.*;
 
-S
+
 public interface UserMapper {
     User toEntity(UserDto userDto);
 

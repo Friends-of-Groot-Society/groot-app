@@ -1,5 +1,7 @@
 package app.mapl.util;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,11 +9,15 @@ import java.util.Map;
 //public static Connection conn = JDBCConnection.getConnection();
 
 public class JDBCConnection {
-	private static  String URL = "jdbc:oracle:thin:@thomas.cmcadlepsyx9.us-east-1.rds.amazonaws.com:1521:thomas";
+	@Value("${spring.datasource.driver-class-name}") // ${"oracle.jdbc.driver.OracleDriver"})
+	private static String DRIVER;
+
+	@Value("${spring.datasource.url}")
+	private static  String URL;// = "jdbc:oracle:thin:@thomas.cmcadlepsyx9.us-east-1.rds.amazonaws.com:1521:thomas";
 	public static Connection conn = null; // connect to singleton design pattern
 	public static Connection getConnection() {
 		try {
-			System.out.println(Class.forName("oracle.jdbc.driver.OracleDriver")+"...Oracle JDBC Driver connected.");
+			System.out.println(Class.forName(DRIVER)+DRIVER+"...${DRIVER} JDBC Driver connected.");
 		} catch (ClassNotFoundException e) {
 			System.out.println("oops, Driver not found :-O");
 			e.printStackTrace();

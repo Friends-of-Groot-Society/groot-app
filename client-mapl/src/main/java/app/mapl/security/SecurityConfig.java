@@ -165,7 +165,7 @@ public class SecurityConfig {
         // returns null if not in DB params: EMAIL
         UserDto login = new UserDto();
         try {
-            login = usersService.getUserByEmail(un);
+            login = usersService.getUserByEmail(un).orElseThrow(NullPointerException::new);
         } catch (Exception e) {
             e.printStackTrace();
         }

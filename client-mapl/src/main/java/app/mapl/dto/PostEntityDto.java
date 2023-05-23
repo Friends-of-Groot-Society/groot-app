@@ -32,5 +32,5 @@ public class PostEntityDto implements Serializable {
 
     private Long categoryId;
 
-//    private Set<CommentDto> comments;
+//    private Set<app.mapl.dto.CommentDto> comments;
 }

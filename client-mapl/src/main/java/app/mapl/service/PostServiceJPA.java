@@ -7,7 +7,8 @@ import app.mapl.models.Category;
 import app.mapl.models.PostEntity;
 import app.mapl.repositories.CategoryRepository;
 import  app.mapl.repositories.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,22 +17,19 @@ import app.mapl.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class PostServiceImpl implements PostService {
+@Primary
+@RequiredArgsConstructor
+public class PostServiceJPA implements PostService {
 
-	@Autowired
-	PostRepository pr;
-//	public PostServiceImpl(PostRepository postRepository) {
-//		this.pr = postRepository;
-	// this.catRepository = catRepository;
-//	}
+	private final PostRepository pr;
 
-	@Autowired
-	CategoryRepository categoryRepository;
-	@Autowired
-	private PostEntityMapper postEntityMapper;
+	private final CategoryRepository categoryRepository;
+
+	private final PostEntityMapper postEntityMapper;
 
 	@Override
 	public PostEntityDto createPost(PostEntityDto postEntityDto) {
@@ -105,15 +103,15 @@ public class PostServiceImpl implements PostService {
 //		}
 //	}
 	@Override
-	public PostEntityDto getPostById(long id) {
+	public Optional<PostEntityDto> getPostById(long id) {
 		PostEntity post = pr.findById(id).orElseThrow(() -> new ResourceNotFoundException("PostEntity", "id", Long.toString(id)));
-		return postEntityMapper.PostEntityToPostEntityDTO(post);
+		return Optional.ofNullable(postEntityMapper.PostEntityToPostEntityDTO(post));
  	}
 
 	@Override
-	public PostEntityDto getPostByDid(String did) {
+	public Optional<PostEntityDto>  getPostByDid(String did) {
 		PostEntity post = pr.findByDid(did).orElseThrow(() -> new ResourceNotFoundException("PostEntity", "did", did));
-		return postEntityMapper.PostEntityToPostEntityDTO(post);
+		return Optional.ofNullable(postEntityMapper.PostEntityToPostEntityDTO(post));
 	}
 
 

@@ -3,7 +3,7 @@ package app.mapl.consoles;
 import app.mapl.commands.*;
 import app.mapl.models.Coin;
 import app.mapl.security.UserProfile;
-import app.mapl.service.CoinsServiceImpl;
+import app.mapl.service.CoinsServiceJPA;
 import app.mapl.service.UsersServiceImpl;
 import org.springframework.stereotype.Component;
 
@@ -51,7 +51,7 @@ public class UserDashboard {
                 switch (val) {
                     case 1: {
                         try {
-                            CoinsServiceImpl coinService = new CoinsServiceImpl();
+                            CoinsServiceJPA coinService = new CoinsServiceJPA();
 
                             List<Coin> coinList = coinService.getAllCoinsCustCLI();
                             System.out.println(COINMARKET_TITLE);
@@ -64,7 +64,7 @@ public class UserDashboard {
                         console(username);
                     }
                     case 2: {
-                        CoinsServiceImpl coinService = new CoinsServiceImpl();
+                        CoinsServiceJPA coinService = new CoinsServiceJPA();
                         try {
                             List<Coin> coinList = coinService.getAllCoinsCustCLI();
                             System.out.println(COINMARKET_TITLE);
@@ -77,7 +77,7 @@ public class UserDashboard {
                         console(username);
                     }
                     case 3: {
-                        CoinsServiceImpl coinService = new CoinsServiceImpl();
+                        CoinsServiceJPA coinService = new CoinsServiceJPA();
                         try {
                             List<Coin> coinList = coinService.getAllCoinsCustCLI();
                             System.out.println(coinList);
@@ -95,7 +95,7 @@ public class UserDashboard {
                         console(username);
                     }
                     case 4: {
-                        CoinsServiceImpl coinService = new CoinsServiceImpl();
+                        CoinsServiceJPA coinService = new CoinsServiceJPA();
                         try {
                             List<Coin> coinList = coinService.getAllCoinsCustCLI();
                             System.out.println("e-Coins Lot:");
@@ -142,9 +142,8 @@ public class UserDashboard {
                         console(username);
                     }
                     case 6: {
-                        UsersServiceImpl usersService = new UsersServiceImpl();
                         try {
-                            UserProfile.editProfile(usersService.getUser(username));
+                            UserProfile.editProfile(UsersServiceImpl.getUser(username).orElseThrow());
 
                         } catch (Exception e) {
                             console(username);

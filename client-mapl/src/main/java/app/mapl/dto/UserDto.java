@@ -1,17 +1,15 @@
 package app.mapl.dto;
 
 import app.mapl.models.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 
-@NoArgsConstructor
+//@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -33,6 +31,5 @@ public class UserDto  implements Serializable {
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
 
     private Set<Role> roles;
-
 
 }

@@ -2,7 +2,9 @@ package app.mapl.webservice;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
+import app.mapl.dto.UserDto;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.mapl.models.User;
-import app.mapl.service.UserService;
+import app.mapl.service.UsersServiceImpl;
 
 public class UserWebService {
 
@@ -39,7 +41,7 @@ public class UserWebService {
 //		System.out.println("UserWebService: "+d);
 
 		// Call UserService to add it.
-		UserService.createUser(new User(1, "t@t.com", "password", "lastNamedd", "firstnam", 1,   "5055087707" ,"user4@cryptomaven.xyz","http://www.dailytech.net", "photopaath", 0,0 ));
+		UsersServiceImpl.createUser(new UserDto(1, "t@t.com", "password", "lastNamedd", "firstnam", 1,   "5055087707" ,"user4@cryptomaven.xyz","http://www.dailytech.net", "photopaath", 0,0,null ));
 
 		try {
 			response.getWriter().append("Successfully added data to ORACLE (AWS) input: " + request.getContextPath());
@@ -54,12 +56,11 @@ public class UserWebService {
 		
 		String username = request.getParameter("username");
 		System.out.println("parameter: "+username);
-		User u = UserService.getUser(username);
+		UserDto u = UsersServiceImpl.getUser(username).orElseThrow();
 		System.out.println("getUser(name):"+u.getUsername());
-		
-		User d = UserService.getUser(u.getUsername());
-		System.out.println("getUser(name):"+d.getUserId());
-		 
+
+		UserDto d = UsersServiceImpl.getUser(u.getUsername()).orElseThrow();
+
 		String dbUser = d.getUsername();
 		int dbId = d.getUserId();
 		System.out.println(dbUser+"..getting userInfo:" );
@@ -93,7 +94,7 @@ public class UserWebService {
 
 	public static void listUser(HttpServletRequest request, HttpServletResponse response) {
 		
-		List<User> d = UserService.getUsers();
+		List<UserDto> d = UsersServiceImpl.getUsers();
 		
 
 		System.out.println(d);

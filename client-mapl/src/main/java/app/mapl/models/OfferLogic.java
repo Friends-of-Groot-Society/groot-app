@@ -1,6 +1,6 @@
 package app.mapl.models;
 
-import app.mapl.service.CoinService;
+import app.mapl.service.CoinsServiceImpl;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -43,7 +43,7 @@ public class OfferLogic   {
 
 	public static OfferLogic makeElectro(Offer o) {
 
-		Coin coinid = CoinService.getCoin(o.getCoinId());
+		Coin coinid = CoinsServiceImpl.getCoin(o.getCoinId());
 		double balDayOne = coinid.getPriceTotal() - o.getOfferAmt(); // Calculate balance by dividing Total-price by
 		balDayOne = roundIt(balDayOne, 2);
 		System.out.println("Balance Day 1: $" + balDayOne);

@@ -2,7 +2,7 @@ package app.mapl.webservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.mapl.models.Offer;
-import app.mapl.service.OfferService;
+import app.mapl.service.OffersServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,7 +23,7 @@ public class OfferWebService  {
 
 		System.out.println("ReqWebServ submit: " + o);
 		// Call OfferService to add it.
-		OfferService.createOffer(o);
+		OffersServiceImpl.createOffer(o);
 
 		try {
 			response.getWriter().append("Successfully added data input: " + request.getContextPath());
@@ -48,7 +48,7 @@ public class OfferWebService  {
 		int id = Integer.parseInt(request.getParameter("reqId"));
 		System.out.println("just got parameter #:" + id);
 
-		Offer d = OfferService.getOffer(id);
+		Offer d = OffersServiceImpl.getOffer(id);
 		System.out.println(d);
 
 		ObjectMapper om = new ObjectMapper();
@@ -79,7 +79,7 @@ public class OfferWebService  {
 		System.out.println("uid=" + uid + " intId=" + intId + "userId=" + uid);
 
 		String uname = request.getParameter("username");
-			List<Offer> offerList = OfferService.getAllOffersCust(uname);
+			List<Offer> offerList = OffersServiceImpl.getAllOffersCust(uname);
 			ObjectMapper om = new ObjectMapper();
 			if (offerList.size() > 0) {    //   HAS ID
 				try {
@@ -111,7 +111,7 @@ public class OfferWebService  {
 		int reqId = Integer.parseInt(request.getParameter("reqId")); 
 
  
-		Offer r = OfferService.getOffer(reqId);
+		Offer r = OffersServiceImpl.getOffer(reqId);
 		// add db using these fields
 		System.out.println("OfferWebServ old one: " + r);
 		r = new Offer(reqId,
@@ -126,7 +126,7 @@ public class OfferWebService  {
 		);
 		System.out.println("OfferWebServ new one: " + r);
 		// Call OfferService to update it.
-		OfferService.updateOffer(r);
+		OffersServiceImpl.updateOffer(r);
 
 		try {
 			response.getWriter().append("Successfully added data input: " + request.getContextPath());

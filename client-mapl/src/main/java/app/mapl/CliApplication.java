@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import app.mapl.models.User;
+import app.mapl.service.PostServiceJDBC;
+import app.mapl.service.PostServiceJPA;
+import app.mapl.service.UsersServiceJDBC;
 import app.mapl.util.methods.restTemplate.LoanRepository;
 import app.mapl.webControllers.ForEntityMethod;
 import app.mapl.webControllers.ForObjectMethod;
@@ -16,9 +19,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -42,15 +47,15 @@ public class CliApplication {
 	static RestTemplate restTemplate = new RestTemplate();
 	static String baseUrl = "http://localhost:8080/api/";
 
-
-	@Autowired
 	private static ForEntityMethod ForEntityMethod;
 	private static final Logger log;
 
 	static {
 		log = LoggerFactory.getLogger(CliApplication.class);
 	}
+	UsersServiceJDBC usersServiceJDBC;
 
+	PostServiceJDBC postServiceJDBC;
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 		log.info("INSIDE ____log.info________CliApplication.main()");
 		ApplicationContext ctx = SpringApplication.run(CliApplication.class, args);
@@ -68,6 +73,20 @@ public class CliApplication {
 		MainDashboard.console(args);
 	}
 
+	@Bean
+	public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener(UsersServiceJDBC us) {
+		return event -> {
+			System.out.println("ApplicationReadyEvent userService.all()");
+			us.all().forEach(System.out::println);
+		};
+	}
+	@Bean
+	public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener2(PostServiceJDBC ps) {
+		return event -> {
+			System.out.println("ApplicationReadyEvent userService.all()");
+			ps.all().forEach(System.out::println);
+		};
+	}
 	@Profile(value={"dev"})
 	private static void logBeans(ApplicationContext ctx) {
 		log.info("logbeans ____dev____XXXXXX");

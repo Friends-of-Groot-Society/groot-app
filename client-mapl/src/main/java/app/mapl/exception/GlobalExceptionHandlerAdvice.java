@@ -1,9 +1,7 @@
 package app.mapl.exception;
 
 import app.mapl.exception.ResourceNotFoundException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,8 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
+public class GlobalExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
+    @ExceptionHandler
+    public ProblemDetail handleIllegalStateException(IllegalStateException e) {
+        var pdh = ProblemDetail.forStatus(HttpStatusCode.valueOf(404));
+        pdh.setDetail("IllegalStateException" + e.getMessage());
+        return pdh;
+    }
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException exception,
                                                                         WebRequest webRequest){

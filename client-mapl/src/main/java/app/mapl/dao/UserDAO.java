@@ -1,13 +1,12 @@
 package app.mapl.dao;
 
 
-import app.mapl.dto.UserDto;
 import app.mapl.models.User;
 
 import java.util.List;
 
 public interface UserDAO {
-	public boolean createUser(UserDto u);
+	public User createUser(User u);
 
 	public User getUser(int id);
 
@@ -17,7 +16,7 @@ public interface UserDAO {
 
 	public List<User> getLocalUsers();
 
-	public boolean updateUser(UserDto change);
+	public User updateUser(User change);
 
 	public boolean deleteUser(String username);
 
@@ -27,7 +26,7 @@ public interface UserDAO {
 
 
 	// PRE-POP
-	public boolean createUserPrePop(User u);
+	public User createUserPrePop(User u);
 
     User getUserbyEmail(String un);
 }

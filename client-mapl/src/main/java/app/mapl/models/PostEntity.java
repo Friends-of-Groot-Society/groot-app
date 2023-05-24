@@ -1,11 +1,8 @@
 package app.mapl.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-//import org.springframework.beans.factory.annotation.Value;
-
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
@@ -19,8 +16,6 @@ import java.util.Set;
 		name = "POST_ENTITY", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})}
 )
 public class PostEntity {
-
-
 
     public interface SimplePost {
 		String getTitle();
@@ -43,9 +38,6 @@ public class PostEntity {
 	
 	@Column(name = "AUTHOR")
 	private String author; //TODO MAKE AUTHOR OBJECT
-	
-	@Column(name = "MONTH_ORDER")
-	private String monthOrder;
 	
 	@Column(name = "CAT3")
 	private String cat3;

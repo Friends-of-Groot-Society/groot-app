@@ -1,27 +1,27 @@
 package app.mapl.service;
 
 import app.mapl.dto.WeblinkDto;
-import app.mapl.exception.ResourceNotFoundException;
 import app.mapl.mapper.WeblinkMapper;
 import app.mapl.models.Weblink;
 import app.mapl.repositories.WeblinksRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
-public class WeblinksServiceImpl implements WeblinksService {
-
-    @Autowired
-    WeblinkMapper weblinkMapper;
-
-    @Autowired
-    WeblinksRepository weblinksRepository;
+@Profile(value={"dev","prod"})
+@RequiredArgsConstructor
+public class WeblinksServiceJPA implements WeblinksService {
+ 
+    private final WeblinkMapper weblinkMapper;
+    private final WeblinksRepository weblinksRepository;
 
     /**
-     * @param bkmk
-     * @return
+     * @param bkmk;
+     * @return WeblinkDto
      */
     @Override
     public WeblinkDto createWeblinks(WeblinkDto bkmk) {
@@ -42,24 +42,19 @@ public class WeblinksServiceImpl implements WeblinksService {
         }
     }
     /**
-     * @param bkmk
-     * @return
+     * @return  List<WeblinkDto>
      */
     @Override
     public List<WeblinkDto> getAllWeblinks() {
         List<WeblinkDto> wdto = null;
         List<Weblink> weblinks =  weblinksRepository.findAll();
-        if (weblinks == null) {
-          throw new ResourceNotFoundException("not found","id", "weblink");
-        } else {
-            wdto = weblinks.stream().map(weblinkMapper::toDto).toList();
-            return wdto;
-        }
+        wdto = weblinks.stream().map(weblinkMapper::toDto).toList();
+        return wdto;
 
     }
     /**
-     * @param bkmk
-     * @return
+     * @param change;
+     * @return  WeblinkDto
      */
     @Override
     public WeblinkDto updateWeblinks(WeblinkDto change) {
@@ -67,8 +62,8 @@ public class WeblinksServiceImpl implements WeblinksService {
         return  weblinkMapper.toDto(weblink);
     }
     /**
-     * @param bkmk
-     * @return
+     * @param id;
+     * @return boolean
      */
     @Override
     public boolean deleteWeblinks(long id) {

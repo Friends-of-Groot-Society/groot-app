@@ -3,9 +3,15 @@ package app.mapl.service;
 import app.mapl.dao.CoinDAO;
 import app.mapl.dao.CoinDAOimpl;
 import app.mapl.models.Coin;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@Profile(value={"dev"})
+@RequiredArgsConstructor
 public class CoinsServiceImpl {
 
 	public static CoinDAO coindao = new CoinDAOimpl();

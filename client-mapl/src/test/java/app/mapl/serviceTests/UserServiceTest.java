@@ -1,5 +1,6 @@
 package app.mapl.serviceTests;
 
+import static app.mapl.service.UsersServiceImpl.userMapper;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -40,8 +41,8 @@ public class UserServiceTest {      // *NOTE: change PK usernames before sending
     @Test
     public void add_new_user() {
         UserDto u = new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, null);
-        when(userDAOimplTester.createUser(u)).thenReturn(true);
-        assertTrue(userServiceTester.createUser(u));
+        when(userDAOimplTester.createUser(userMapper.toEntity(u))).thenReturn(userMapper.toEntity(u));
+        assertEquals(userServiceTester.createUser(u),u);
      }
 
     @Test
@@ -55,14 +56,11 @@ public class UserServiceTest {      // *NOTE: change PK usernames before sending
         assertEquals("password1", users.get(1).getPassword());
     }
 
-    @Test
+//    @Test
 //    public void get_user() {
 //
 //        when(userDAOimplTester.getUser("username")).thenReturn(
-//                Optional.of(new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, null))
-//                );
-//        UserDto user = userServiceTester.getUser("username").orElseThrow();
-//        assertEquals("user1", user.getUsername());
+//                new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, null)
 //    }
 
 

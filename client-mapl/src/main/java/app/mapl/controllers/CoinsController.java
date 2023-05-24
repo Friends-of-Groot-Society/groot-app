@@ -2,6 +2,7 @@ package app.mapl.controllers;
 
 import app.mapl.dto.CoinDto;
 import app.mapl.service.CoinsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 @RequestMapping("/api")
 @RestController
 public class CoinsController {
-    @Autowired
-    CoinsService coinsService;
+
+    private final CoinsService coinsService;
 
     @RequestMapping(value = "/coins", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<CoinDto> createCoin(@RequestBody CoinDto c) {

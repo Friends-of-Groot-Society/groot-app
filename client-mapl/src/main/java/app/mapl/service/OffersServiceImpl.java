@@ -7,8 +7,14 @@ import java.util.stream.Collectors;
 import app.mapl.dao.OfferDAO;
 import app.mapl.dao.OfferDAOimpl;
 import app.mapl.models.Offer;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 
+@Service
+@Profile(value={"dev"})
+@RequiredArgsConstructor
 public class OffersServiceImpl {
 
 	public static OfferDAO offerdaoImpl = new OfferDAOimpl();

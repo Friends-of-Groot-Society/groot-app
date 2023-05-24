@@ -9,10 +9,15 @@ import app.mapl.util.ReadWriteFile;
 import app.mapl.util.constants.Datum;
 import app.mapl.util.logger.CliLogger;
 import app.mapl.util.utilConcurrency.DownloadThreadTask;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
@@ -23,24 +28,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
+@Profile(value={"dev"})
 public class UserDetailsCommandLineRunner implements CommandLineRunner {
 
     private static final Logger log =
             LoggerFactory.getLogger(UserDetailsCommandLineRunner.class);
 
-    @Autowired
-    private UsersRepository usersRepository;
+
+    private final UsersRepository usersRepository;
+    private final WeblinksRepository weblinksRepository;
+    private final CoinsRepository coinsRepository;
+
     private List<User> users;
     private static List<User> usersStatic;
-    private List<Weblink> bookmarks;
     private static List<Weblink> bookmarksStatic;
-    private List<Coin> coins;
     private static List<Coin> coinsStatic;
 
-    @Autowired
-    private WeblinksRepository weblinksRepository;
-    @Autowired
-    private CoinsRepository coinsRepository;
 
     /**
      * launch methods
@@ -90,14 +94,14 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
-        bookmarks = bookmarksStatic;
+        List<Weblink> bookmarks = bookmarksStatic;
         weblinksRepository.saveAll(bookmarks);
         weblinksRepository.save(new Weblink(0, "https://www.google.com", "Google", "<html><head></head><body>Hello!!!!!!!</body></html>", Weblink.DownloadStatus.SUCCESS));
 
         // COINS
         System.out.println(Datum.ANSI_RED + "ANSI_RED printing user data: ");
         coinsStatic = FileDataStore.loadCoins();
-        coins = coinsStatic;
+        List<Coin> coins = coinsStatic;
         coinsRepository.saveAll(coins);
         coinsRepository.save(new Coin(0, "Ethereum", "ETH", 1455.1111, 0));
         coinsRepository.save(new Coin(1, "Bitcoin", "BTC", 23455.5455, 1));

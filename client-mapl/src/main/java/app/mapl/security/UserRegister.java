@@ -38,17 +38,7 @@ public class UserRegister {
 //				"id" );
 		UserDto newUser =  new UserDto();
 //		newUser.setUserid((int) Math.round(Math.random()*100));
-		newUser.setUsername(un);
-		newUser.setPassword(pw);
-		newUser.setLastName(ln);
-		newUser.setFirstName(fn);
-		newUser.setUserType(2);	// 2 = customer
-		newUser.setEmail(un); //  email == username
-		newUser.setPhone("999-999-9999");
-		newUser.setCusUrl("http://www.dailytech.net");
-		newUser.setPhotoPath("photoPath");
-		newUser.setIsActive(0);
-		newUser.setContactType(1);
+		regBegin(un, pw, fn, ln, newUser);
 		UserRegister userRegister = new UserRegister();
 		userRegister.registerThis(un, pw, fn, ln);
 
@@ -62,9 +52,15 @@ public class UserRegister {
 
 
 	}
-	UserDto registerThis(String un, String pw,  String fn, String ln ) {
+	void registerThis(String un, String pw, String fn, String ln ) {
 		UserDto newUserDto =  new UserDto();
 		newUserDto.setUserId((int) Math.round(Math.random()*100));//not saved
+		regBegin(un, pw, fn, ln, newUserDto);
+		UsersServiceImpl.createUserCLI(newUserDto);
+
+	}
+
+	private static void regBegin(String un, String pw, String fn, String ln, UserDto newUserDto) {
 		newUserDto.setUsername(un);
 		newUserDto.setPassword(pw);
 		newUserDto.setLastName(ln);
@@ -76,9 +72,6 @@ public class UserRegister {
 		newUserDto.setPhotoPath("photoPath");
 		newUserDto.setIsActive(0);
 		newUserDto.setContactType(1);
-		UsersServiceImpl.createUser(newUserDto);
-
-		return newUserDto;
 	}
 
 }

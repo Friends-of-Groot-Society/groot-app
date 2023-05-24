@@ -142,7 +142,6 @@ public class PostServiceJPA implements PostService {
 		postOld.setTitle(postDto.getTitle());
 		postOld.setAuthor(postDto.getAuthor());
 		postOld.setCat3(postDto.getCat3());
-		postOld.setMonthOrder(postDto.getMonthOrder());
 		postOld.setBlogcite(postDto.getBlogcite());
 		postOld.setCategory(cat);
 		System.out.println("cat: " + cat.toString());

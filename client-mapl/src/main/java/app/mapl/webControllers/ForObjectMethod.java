@@ -11,10 +11,13 @@ import java.util.List;
  * @author -ThomasMiltonMaestas
  */
 public class ForObjectMethod {
-    private Logger logger = LoggerFactory.getLogger(ForObjectMethod.class);
-    private String baseUrl = "http://localhost:8083/springDataDemo/";
+    public static final String PORT = "8080";
+    public static final String API = "/api";
+    private final Logger logger = LoggerFactory.getLogger(ForObjectMethod.class);
+    private final String baseUrl = "http://localhost:"+ PORT+ API;
 
     private RestTemplate restTemplate = new RestTemplate();
+
 
     public void driverMethod(){
         System.out.println("*********** forObject() method demo ***********");

@@ -17,7 +17,7 @@ class UserDaoLoginTest {  // INTE
 	String un = "joshallen", pw = "allen";
 
 	// MOCKITO Service
-	UserDto login = UsersServiceImpl.getUser(un).orElseThrow();
+	UserDto login = UsersServiceImpl.getUserCli(un).orElseThrow();
 
 	@BeforeAll
 	static void setUpBeforeClass_Username() throws Exception {

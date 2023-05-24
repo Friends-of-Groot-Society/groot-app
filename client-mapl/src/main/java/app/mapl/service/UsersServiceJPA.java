@@ -8,6 +8,7 @@ import app.mapl.models.User;
 import app.mapl.repositories.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Primary
+@Profile(value={"dev","prod"})
 @RequiredArgsConstructor
 public class UsersServiceJPA implements UsersService {
 
@@ -25,20 +27,10 @@ public class UsersServiceJPA implements UsersService {
 
 
     /**
-     * @param user
-     * @return
-     */
-    @Override
-    public User createUserCLI(User user) {
-        User u = usersRepository.save(user);
-        return u;
-    }
-    /**
      * @param registerDto
-     * @return  UserDto
      */
     @Override
-    public UserDto registerUser(RegisterDto registerDto) {
+    public void registerUser(RegisterDto registerDto) {
 
         UserDto newUser = new UserDto();
         newUser.setUsername(registerDto.getUsername());
@@ -52,7 +44,7 @@ public class UsersServiceJPA implements UsersService {
 //        newUser.setRole(registerDto.getRole()); //  registerDto.setRole("USER");
 
         User u = usersRepository.save(userMapper.toEntity(newUser));
-        return userMapper.toDto(u);
+        userMapper.toDto(u);
     }
 
     /**
@@ -81,8 +73,8 @@ public class UsersServiceJPA implements UsersService {
     }
 
     /**
-     * @param id
-     * @return
+     * @param id;
+     * @return Optional<UserDto>
      */
     @Override
     public Optional<UserDto> getUser(int id) {
@@ -95,32 +87,30 @@ public class UsersServiceJPA implements UsersService {
     }
 
     /**
-     * @param email
-     * @return
+     * @param email;
+     * @return Optional<UserDto>
      */
     @Override
     public Optional<UserDto> getUser(String email) {
+        Optional<UserDto> result;
         try {
             User u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
-            return Optional.ofNullable(userMapper.toDto(u));
+            result = Optional.ofNullable(userMapper.toDto(u));
         } catch (Exception e) {
-            return null;
+            result = null;
         }
+        return result;
     }
 
     /**
-     * @return
+     * @return List<UserDto>
      */
     @Override
     public List<UserDto> getUsers() {
         List<UserDto> userDtos = new ArrayList<>();
        try {
            List<User> users = usersRepository.findAll();
-           if (users == null) {
-               throw new ResourceNotFoundException("not found", "not found", "not found");
-           }   else {
-               return users.stream().map(userMapper::toDto).collect(Collectors.toList());
-           }
+           return users.stream().map(userMapper::toDto).collect(Collectors.toList());
        } catch (NullPointerException e) {
            e.printStackTrace();
            return new ArrayList<>();
@@ -129,7 +119,7 @@ public class UsersServiceJPA implements UsersService {
     }
 
     @Override
-    public UserDto getUserByEmailAndPassword(String email, String pw) {
+    public Optional<UserDto> getUserByEmailAndPassword(String email, String pw) {
         User u;
         try {
             u = usersRepository.findByEmailAndPassword(email,pw).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
@@ -137,7 +127,7 @@ public class UsersServiceJPA implements UsersService {
         } catch (Exception e) {
             return null;
         }
-        return userMapper.toDto(u);
+        return Optional.ofNullable(userMapper.toDto(u));
     }
 
     public UserDto getUserByEmail(String email) {
@@ -159,7 +149,7 @@ public class UsersServiceJPA implements UsersService {
      * @return
      */
     @Override
-    public UserDto getUserByPassword(String username, String password) {
+    public Optional<UserDto> getUserByPassword(String username, String password) {
         return null;
     }
 

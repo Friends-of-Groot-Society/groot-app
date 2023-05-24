@@ -14,13 +14,16 @@ import java.util.List;
  * @author -ThomasMiltonMaestas
  */
 public class ForEntityMethod {
-    private String baseUrl = "http://localhost:8080/api/";
+
+    public static final String PORT = "8080";
+    public static final String API = "/api";
+    private final String baseUrl = "http://localhost:"+ PORT+ API;
 
     RestTemplate restTemplate= new RestTemplate();
 
     public void driverMethod(){
-        System.out.println("*********** forEntity()   getSingleObject()   ***********");
-        getSingleObject();
+        System.out.println("*********** forEntity()   getSingleObject(3)   ******* 3 ****");
+        getSingleObject("3");
         System.out.println("*********** forEntity()   getListObject()   ***********");
         getListObject();
         System.out.println("*********** forEntity()   addUser()   ***********");
@@ -30,8 +33,8 @@ public class ForEntityMethod {
         System.out.println("*********** forEntity()   updateUser()   ***********");
         updateUser();
     }
-    private void getSingleObject() {
-        String url = baseUrl + "/users/5";
+    private void getSingleObject(String id) {
+        String url = baseUrl + "/users/"+id;
         ResponseEntity<String> user = restTemplate.getForEntity(url, String.class);
         CliApplication.statusCode(user);
     }

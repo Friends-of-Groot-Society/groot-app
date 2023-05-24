@@ -41,10 +41,10 @@ public class UserWebService {
 //		System.out.println("UserWebService: "+d);
 
 		// Call UserService to add it.
-		UsersServiceImpl.createUser(new UserDto(1, "t@t.com", "password", "lastNamedd", "firstnam", 1,   "5055087707" ,"user4@cryptomaven.xyz","http://www.dailytech.net", "photopaath", 0,0,null ));
+		UsersServiceImpl.createUserCli(new UserDto(1, "t@t.com", "password", "lastNamedd", "firstnam", 1,   "5055087707" ,"user4@cryptomaven.xyz","http://www.dailytech.net", "photopaath", 0,0,null ));
 
 		try {
-			response.getWriter().append("Successfully added data to ORACLE (AWS) input: " + request.getContextPath());
+			response.getWriter().append("Successfully added data to ORACLE (AWS) input: ").append(request.getContextPath());
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -56,10 +56,10 @@ public class UserWebService {
 		
 		String username = request.getParameter("username");
 		System.out.println("parameter: "+username);
-		UserDto u = UsersServiceImpl.getUser(username).orElseThrow();
+		UserDto u = UsersServiceImpl.getUserCli(username).orElseThrow();
 		System.out.println("getUser(name):"+u.getUsername());
 
-		UserDto d = UsersServiceImpl.getUser(u.getUsername()).orElseThrow();
+		UserDto d = UsersServiceImpl.getUserCli(u.getUsername()).orElseThrow();
 
 		String dbUser = d.getUsername();
 		int dbId = d.getUserId();
@@ -94,7 +94,7 @@ public class UserWebService {
 
 	public static void listUser(HttpServletRequest request, HttpServletResponse response) {
 		
-		List<UserDto> d = UsersServiceImpl.getUsers();
+		List<UserDto> d = UsersServiceImpl.getUsersCli();
 		
 
 		System.out.println(d);

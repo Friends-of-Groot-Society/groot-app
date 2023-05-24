@@ -143,7 +143,7 @@ public class UserDashboard {
                     }
                     case 6: {
                         try {
-                            UserProfile.editProfile(UsersServiceImpl.getUser(username).orElseThrow());
+                            UserProfile.editProfile(UsersServiceImpl.getUserCli(username).orElseThrow());
 
                         } catch (Exception e) {
                             console(username);

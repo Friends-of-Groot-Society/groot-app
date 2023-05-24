@@ -7,6 +7,7 @@ import com.friendsofgroot.mapllistener.mappers.UserMapper;
 import com.friendsofgroot.mapllistener.models.User;
 import com.friendsofgroot.mapllistener.repositories.UsersRepository;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,19 +18,15 @@ import java.util.stream.Collectors;
 @Service
 @NoArgsConstructor
 public class UsersServiceImpl implements UsersService {
-
-
+    @Autowired
     private UsersRepository usersRepository;
 
     private   UserMapper userMapper;
-//    private   UserAccountRepository userAccountRepository;
 
     public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper
-//            , UserAccountRepository userAccountRepository
             ) {
         this.usersRepository = usersRepository;
         this.userMapper = userMapper;
-//        this.userAccountRepository = userAccountRepository;
     }
 
 
@@ -130,16 +127,12 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<UserDto> getUsers() {
         List<UserDto> userDtos = new ArrayList<>();
-       try {
            List<User> users = usersRepository.findAll();
-           if (users == null) {
-               throw new ResourceNotFoundException("not found", "not found", "not found");
+           if (users != null) {
+               userDtos = users.stream().map(userMapper::toDto).collect(Collectors.toList());
            }   else {
-               return users.stream().map(userMapper::toDto).collect(Collectors.toList());
+               throw new ResourceNotFoundException("not found", "not found", "not found");
            }
-       } catch (NullPointerException e) {
-           e.printStackTrace();
-       }
         return userDtos;
     }
 

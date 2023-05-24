@@ -79,9 +79,9 @@ create table nft_address
 (
     id           INT not null,
     address      varchar(255),
-    native_token INT(53),
-    native       INT(53),
-    tokens       INT(24),
+    native_token INT,
+    native       INT,
+    tokens       INT,
     primary key (id)
 );
 create table nft_ref
@@ -100,13 +100,13 @@ create table COINTABLE
     coinid     INT not null,
     coinsymbol varchar(255),
     cointoken  varchar(255),
-    pricetotal INT(53),
-    purchased  INT not null,
+    pricetotal INT ,
+    purchased  INT  ,
     primary key (coinid)
 );
 CREATE TABLE WEBLINK(id bigint PRIMARY KEY ,
                      title varchar(500) ,
-                     url varchar(250) NOT NULL ,
+                     url varchar(250)   ,
                      host varchar(250) ,
                      downloadstatus TINYINT,
                      htmlpage    varchar(255));

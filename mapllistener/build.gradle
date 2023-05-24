@@ -58,3 +58,12 @@ tasks.withType(JavaCompile) {
 test {
 	useTestNG()
 }
+
+jar {
+	manifest {
+		attributes(
+//				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+				'Main-Class': 'com.friendsofgroot.mapl.listener.ListenerApplication'
+		)
+	}
+}

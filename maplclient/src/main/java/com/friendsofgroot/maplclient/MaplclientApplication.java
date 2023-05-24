@@ -25,6 +25,10 @@ import reactor.core.publisher.Mono;
 @SpringBootApplication
 public class MaplclientApplication {
 
+
+	public static final String HTTP_LOCALHOST = "http://localhost:";
+	public static final String _PORT = "8889";
+
 	public static void main(String[] args) {
 		SpringApplication.run(MaplclientApplication.class, args);
 	}
@@ -41,7 +45,7 @@ public class MaplclientApplication {
 	@Bean
 	UserClient userClient(WebClient.Builder builder) {
 		return HttpServiceProxyFactory
-				.builder(WebClientAdapter.forClient(builder.baseUrl("http://localhost:8889").build()))
+				.builder(WebClientAdapter.forClient(builder.baseUrl(HTTP_LOCALHOST + _PORT).build()))
 				.build()
 				.createClient(UserClient.class);
 	}

@@ -2,8 +2,11 @@ package com.friendsofgroot.mapllistener;
 
 import com.friendsofgroot.mapllistener.services.PostJDBCService;
 import com.friendsofgroot.mapllistener.services.UserJDBCService;
+<<<<<<< HEAD
 import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
+=======
+>>>>>>> f5c72078f1133a85e50481cd6bc488ced892ac20
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

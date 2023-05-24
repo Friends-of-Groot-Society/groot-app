@@ -20,7 +20,8 @@ import java.util.Set;
 @Getter @Setter @ToString
 @Entity
 @Table(name = "users")
-public class User extends BaseModel  {
+public class
+User extends BaseModel  {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )

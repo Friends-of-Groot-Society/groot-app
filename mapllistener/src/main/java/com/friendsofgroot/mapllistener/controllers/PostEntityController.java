@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(path = "/api/posts")
+@RequestMapping(path = "/api/v1/posts")
 @CrossOrigin(origins = "*")
 @RestController
 public class PostEntityController {

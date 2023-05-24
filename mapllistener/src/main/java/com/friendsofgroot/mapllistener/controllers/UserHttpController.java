@@ -1,20 +1,26 @@
 package com.friendsofgroot.mapllistener.controllers;
 
 import com.friendsofgroot.mapllistener.models.User;
+<<<<<<< HEAD
 import com.friendsofgroot.mapllistener.services.UserJDBCService;
+=======
+//import com.friendsofgroot.mapllistener.services.UserJDBCService;
+import com.friendsofgroot.mapllistener.services.UserJDBCService;
+import com.friendsofgroot.mapllistener.services.UsersService;
+>>>>>>> f5c72078f1133a85e50481cd6bc488ced892ac20
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@Controller
-@RequestMapping("/api/v2/users")
+
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/api/users")
 @ResponseBody
 public class UserHttpController {
 

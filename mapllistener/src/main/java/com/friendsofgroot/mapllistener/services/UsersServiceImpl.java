@@ -22,14 +22,11 @@ public class UsersServiceImpl implements UsersService {
     private UsersRepository usersRepository;
 
     private   UserMapper userMapper;
-//    private   UserAccountRepository userAccountRepository;
 
     public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper
-//            , UserAccountRepository userAccountRepository
             ) {
         this.usersRepository = usersRepository;
         this.userMapper = userMapper;
-//        this.userAccountRepository = userAccountRepository;
     }
 
 

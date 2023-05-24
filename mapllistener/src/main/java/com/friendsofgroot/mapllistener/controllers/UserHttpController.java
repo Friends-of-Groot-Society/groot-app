@@ -1,10 +1,13 @@
 package com.friendsofgroot.mapllistener.controllers;
 
-import com.friendsofgroot.mapllistener.dto.UserDto;
 import com.friendsofgroot.mapllistener.models.User;
+<<<<<<< HEAD
+import com.friendsofgroot.mapllistener.services.UserJDBCService;
+=======
 //import com.friendsofgroot.mapllistener.services.UserJDBCService;
 import com.friendsofgroot.mapllistener.services.UserJDBCService;
 import com.friendsofgroot.mapllistener.services.UsersService;
+>>>>>>> f5c72078f1133a85e50481cd6bc488ced892ac20
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
 import org.springframework.beans.factory.annotation.Autowired;

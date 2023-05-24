@@ -1,8 +1,12 @@
 package com.friendsofgroot.mapllistener;
 
-//import com.friendsofgroot.DailyTechService;
 import com.friendsofgroot.mapllistener.services.PostJDBCService;
 import com.friendsofgroot.mapllistener.services.UserJDBCService;
+<<<<<<< HEAD
+import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+=======
+>>>>>>> f5c72078f1133a85e50481cd6bc488ced892ac20
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -14,12 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 public class ListenerApplication {
-//    Static final log = LogFactory.getLog(ListenerApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(ListenerApplication.class, args);
     }
-
 
     @Bean
     public ApplicationListener<ApplicationReadyEvent> readyEventApplicationListener(UserJDBCService us) {
@@ -35,7 +37,6 @@ public class ListenerApplication {
             ps.all().forEach(System.out::println);
         };
     }
-
 }
 
 

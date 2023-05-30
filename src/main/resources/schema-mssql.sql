@@ -149,17 +149,6 @@ create table METADATA
     #     primary key (nft_id)
     # );
 
-create sequence address_seq start with 10 increment by 50;
-create sequence attribute_seq start with 1000 increment by 50;
-create sequence chain_seq start with 101 increment by 50;
-create sequence cointable_seq start with 20 increment by 50;
-create sequence id_maker start with 1 increment by 50;
-create sequence metadata_seq start with 200 increment by 50;
-create sequence nft_ref_seq start with 500 increment by 50;
-create sequence nft_seq start with 600 increment by 50;
-create sequence roles_seq start with 700 increment by 50;
-create sequence weblinks_seq start with 800 increment by 50;
-
 -- MANY TO ON
 alter table attribute
     add constraint FKik918ybmves03ibw6l10jj8d2 foreign key (metadata_metadata_id) references metadata;

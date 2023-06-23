@@ -1,7 +1,5 @@
 package com.friendsofgroot.app.dataLoader;
-
-import com.friendsofgroot.app.dto.UserBookmark;
-import com.friendsofgroot.app.dto.UserCoinbuy;
+ 
 import com.friendsofgroot.app.dto.UserNftbuy;
 import com.friendsofgroot.app.models.*;
 import com.friendsofgroot.app.util.ReadWriteFile;
@@ -23,7 +21,6 @@ public class FileDataStore extends ReadWriteFile {
 	public static final int BOOKMARK_COUNT_PER_TYPE = 5;
 	public static final int BOOKMARK_TYPES_COUNT = 3;
 
-	public static List<Coin> coinsStatic = new ArrayList<>();
 	public static List<Nft> nftsStatic = new ArrayList<>();
 
 	public static int getCoinInventory() {
@@ -31,24 +28,16 @@ public class FileDataStore extends ReadWriteFile {
 	}
 
 	private static int TEST_USERS;
-	public static List<UserCoinbuy> userCoinbuys = new ArrayList<>();
 	public static List<UserNftbuy> userNftbuys = new ArrayList<>();
 	private static List<User> users = new ArrayList<>();
 	public static List<User> getUsers() {
 		return users;
 	}
 
-	public static List<Weblink> weblinks= new ArrayList<>();
-	public static List<Weblink> getBookmarksArray() {
-		return weblinks;
-	}
-	public static List<
-            UserBookmark> userBookmarks = new ArrayList<>();
 
 	public static void loadData() throws FileNotFoundException, UnsupportedEncodingException {
 		loadUsers();
-		loadWeblinks();
-		loadCoins();
+
 	}
 
 
@@ -66,88 +55,16 @@ public class FileDataStore extends ReadWriteFile {
 			return users;
 		}
 
-		public static List<Weblink> loadWeblinks() throws FileNotFoundException, UnsupportedEncodingException {
-//			bookmarks[0][0] = BookmarkManager.getInstance().createWeblink(2000,  "http://www.javaworld.com/article/2072759/core-java/taming-tiger--part-2.html","http://www.javaworld.com" );
-			List<String>  data = new ArrayList<>();
-			ReadWriteFile.readFromFilename(data, FILE_IN_WEBLINKS);
-
-			for (String row : data) {
-				String[] values = row.split(",");
-				//// STATIC DATA
-				Bookmark weblink = BookmarkManager.getInstance().createWeblink(Long.parseLong(values[0]), values[1],  values[2]);
-
-				if(weblink != null && weblink instanceof Weblink) {
-					weblinks.add((Weblink) weblink);
-				}
-			}
-			return weblinks;
-		}
-
-		public static List<Coin> loadCoins() throws FileNotFoundException, UnsupportedEncodingException {
-//		Coin coin1 = CoinManager.getInstance().createCoin(5000, CoinMake.TESLA, "Cyber-Truck", 37000.99, 0);
-			List<String> data =new ArrayList<>();
-			ReadWriteFile.readFromFilename(data, FILE_IN_COINS);
-			for (String row: data) {
-				String[] values = row.split(",");
-				Coin coin = CoinManager.getInstance().createCoin(Integer.parseInt(values[0]), values[1], values[2], Double.parseDouble(values[3]), Integer.parseInt(values[4]));
-
-				coinsStatic.add(coin);
-				COIN_COUNT = coinsStatic.size();
-				System.out.println("COIN_COUNT::::::: "+COIN_COUNT);
-			}
-			return coinsStatic;
-		};
-
 // TABLE JOIN
-	public static void add(UserBookmark userBookmark) {
-		userBookmarks.add(userBookmark);
-	}
-
-
-	public static void add(UserCoinbuy userCoinbuy) {
-		userCoinbuys.add(  userCoinbuy);
-	}
 	public static void add(UserNftbuy userNftbuy) {
 		userNftbuys.add( userNftbuy);
-	}
-
-
-	public static List<Coin> getCoins() {
-		return coinsStatic;
 	}
 
 	public static List<Nft> getNfts() {
 		return nftsStatic;
 	}
 
-	public static void saveLocalUserCoinbuy(User user, Coin coin) {
-		UserCoinbuy userCoinbuy = new UserCoinbuy();
-		userCoinbuy.setUser(user);
-		userCoinbuy.setCoin(coin);
-	}
 
-
-
-
-	public List<Coin> getLocalCoinsByUser(User user) {
-		List<Coin> coinsOwnedByUser = new ArrayList<>();
-		for(UserCoinbuy userCoinbuy : userCoinbuys) {
-			if(userCoinbuy.getUser() == user) {
-				coinsOwnedByUser.add(userCoinbuy.getCoin());
-			}
-		}
-		return coinsOwnedByUser;
-	}
-
-	public static List<Bookmark> getLocalUserBookmarksByUser(User user) {
-		List<Bookmark> bookmarksOwnedByUser = new ArrayList<>();
-		for(UserBookmark userbookmark: userBookmarks) {
-			if(userbookmark.getUser()==user) {
-				bookmarksOwnedByUser.add(userbookmark.getBookmark());
-			}
-		}
-		return bookmarksOwnedByUser;
-	}
 
 }
 

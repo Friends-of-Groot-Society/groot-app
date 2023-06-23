@@ -31,7 +31,7 @@ public class NftConfig {
     @Bean
     public Nft newNft() {
         String name = "_new_nft_";
-        int amount = 123;
+        double amount = 123;
                         // id, name, amount, metadata_id, nftAddress)
         return new Nft(0,name, amount,null,null);
     }

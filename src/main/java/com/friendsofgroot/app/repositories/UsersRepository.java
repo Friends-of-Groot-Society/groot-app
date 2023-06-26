@@ -13,9 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Repository
-//@RepositoryRestResource(collectionResourceRel="apiusers", path="apiusers")
-
+@RepositoryRestResource(collectionResourceRel="user", path="users")
 public interface UsersRepository extends JpaRepository<User, Integer> {
 
     User findByUsernameAndPassword(String username, String password);

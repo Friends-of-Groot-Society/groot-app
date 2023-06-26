@@ -22,11 +22,11 @@ public class NftAddress extends BaseModel {
 	private Float nativeToken;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "nftAddress")
-	@Column(name = "RAW_TOKEN")
+	@Column(name = "raw_token")
 	private List<RawToken> rawTokens;  //  "123.123456 BUSD  	// token name, token amount	@OneToOne
 
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "nftAddress" )
-	@Column(name = "NFT")
+	@Column(name = "nft")
 	private List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
 }
 

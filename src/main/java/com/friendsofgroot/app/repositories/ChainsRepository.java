@@ -8,10 +8,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
+
+@RepositoryRestResource(collectionResourceRel="chain", path = "chain")
 public interface ChainsRepository extends JpaRepository<Chain, Integer> {
 
     Page<Chain> findAll(Pageable pageable);

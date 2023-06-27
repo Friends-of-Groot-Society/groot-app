@@ -2,8 +2,6 @@ package com.friendsofgroot.app.controllerTests;
 
 import com.friendsofgroot.app.controllers.NftController;
 import com.friendsofgroot.app.dto.NftDto;
-import com.friendsofgroot.app.models.Metadata;
-import com.friendsofgroot.app.models.Nft;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;

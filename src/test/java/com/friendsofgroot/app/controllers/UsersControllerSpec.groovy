@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.controllers
 
 import com.friendsofgroot.app.dto.UserDto
-import com.friendsofgroot.app.security.AuthService
+import com.friendsofgroot.app.config.security.AuthService
 import com.friendsofgroot.app.service.UsersService
 import org.springframework.http.HttpStatus
 import org.springframework.security.crypto.password.PasswordEncoder

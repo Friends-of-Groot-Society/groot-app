@@ -1,6 +1,5 @@
 package com.friendsofgroot.app.serviceTests;
 
-import com.friendsofgroot.app.dto.AddressDto;
 import com.friendsofgroot.app.dto.NftDto;
 import com.friendsofgroot.app.service.NftService;
 import com.friendsofgroot.app.service.NftServiceImpl;

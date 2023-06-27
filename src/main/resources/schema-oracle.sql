@@ -1,5 +1,4 @@
-- key (id)
-);- drop table USERS_ROLES CASCADE  CONSTRAINTS;
+  drop table USERS_ROLES CASCADE  CONSTRAINTS;
   create table USERS_ROLES
   (
       id          NUMBER not null,
@@ -16,7 +15,6 @@
       chain_id NUMBER  not null,
       primary key (id)
   );
-
 
   -- drop table users CASCADE  CONSTRAINTS;
   create table users
@@ -41,7 +39,10 @@
   (
       id   NUMBER not null,
       name varchar(255),
-      primary
+      primary key (id)
+  );
+
+
 -- drop table chain CASCADE  CONSTRAINTS;
 create table chain
 (

@@ -95,31 +95,6 @@ create table nft_ref
     primary key (id)
 );
 
-create table COINTABLE
-(
-    coinid     INT not null,
-    coinsymbol varchar(255),
-    cointoken  varchar(255),
-    pricetotal INT ,
-    purchased  INT  ,
-    primary key (coinid)
-);
-CREATE TABLE WEBLINK(id BIGINT PRIMARY KEY ,
-                     title varchar(500) ,
-                     url varchar(250)   ,
-                     host varchar(250) ,
-                     downloadstatus TINYINT,
-                     htmlpage    varchar(255));
-
--- create table weblinks
--- (
---     id             INT not null,
---     downloadstatus smallint,
---     host           varchar(255),
---     htmlpage       varchar(255),
---     url            varchar(255),
---     primary key (id)
--- );
 
 create table ATTRIBUTE
 (

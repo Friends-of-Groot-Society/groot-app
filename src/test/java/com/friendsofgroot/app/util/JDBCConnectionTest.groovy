@@ -1,12 +1,9 @@
 package com.friendsofgroot.app.util
 
+import com.friendsofgroot.app.config.JDBCConnection
 import spock.lang.*
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 import java.sql.Connection
-import static org.mockito.Mockito.*
 
 class JDBCConnectionTest extends Specification {
     def testObj = new JDBCConnection()

@@ -3,7 +3,7 @@ package com.friendsofgroot.app;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.friendsofgroot.app.util.logger.LoggerImpl;
+import com.friendsofgroot.app.config.logger.LoggerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +16,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import com.friendsofgroot.app.consoles.MainDashboard;
 @ServletComponentScan("com.friendsofgroot.app")
 @EnableJpaRepositories("com.friendsofgroot.app.repositories")
 @EntityScan("com.friendsofgroot.app.models")
@@ -33,8 +32,7 @@ public class CliApplication {
 
 		logBeans(ctx);
 
-		// USER MAIN
-		MainDashboard.console(args);
+
 	}
 
 	@Profile(value={"dev"})

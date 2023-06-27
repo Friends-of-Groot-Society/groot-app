@@ -1,23 +1,26 @@
 package com.friendsofgroot.app.repositories;
 
-import com.friendsofgroot.app.dto.ChainUsers;
-import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.stereotype.Repository;
 import com.friendsofgroot.app.models.User;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-
-@Repository
-//@RepositoryRestResource(collectionResourceRel="apiusers", path="apiusers")
-
+@RepositoryRestResource(collectionResourceRel="users", path="users")
 public interface UsersRepository extends JpaRepository<User, Integer> {
 
+    // MULTIPLE
+    Page<User> findAllByUserType(Integer userType, Pageable pageable);
+    Page<User> findAllByIsActiveAfter(Integer userType, LocalDate date, Pageable pageable);
+
+
+    // SINGULAR
     User findByUsernameAndPassword(String username, String password);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);

@@ -1,6 +1,5 @@
 package com.friendsofgroot.app.util;
 
-import com.friendsofgroot.app.consoles.MainDashboard;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,20 +30,6 @@ public class Utilities {
         System.out.println("m.getClass().getInterfaces().length: " + o.getClass().getInterfaces().length);
         System.out.println("m.getClass().getSuperclass().getName(): " + o.getClass().getSuperclass().getName());
 
-    }
-    public static void _earlyQuit(String[] args) {
-        if (args.length < 1) return;
-        if (args.length < 2) {
-            if (args[0].matches("quit|exit|q")) {
-                MainDashboard.console();
-            }
-        } else {
-            for (String s : args) {
-                if (s.matches("quit|exit|q")) {
-                    MainDashboard.console();
-                }
-            }
-        }
     }
 
     public static boolean isAValidEmailAddress(String email) {

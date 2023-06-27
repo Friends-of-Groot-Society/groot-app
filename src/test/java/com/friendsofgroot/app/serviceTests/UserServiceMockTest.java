@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.friendsofgroot.app.dto.CoinDto;
 import com.friendsofgroot.app.dto.UserDto;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import org.junit.jupiter.api.*;

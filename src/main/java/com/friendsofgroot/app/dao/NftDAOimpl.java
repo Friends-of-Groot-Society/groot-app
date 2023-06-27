@@ -3,7 +3,7 @@ package com.friendsofgroot.app.dao;
 import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.dto.UserNftbuy;
-import com.friendsofgroot.app.util.JDBCConnection;
+import com.friendsofgroot.app.config.JDBCConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

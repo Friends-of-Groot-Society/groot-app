@@ -11,7 +11,7 @@ import java.util.List;
 
 
 import com.friendsofgroot.app.dto.JWTAuthResponse;
-import com.friendsofgroot.app.security.AuthService;
+import com.friendsofgroot.app.config.security.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

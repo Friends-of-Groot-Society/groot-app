@@ -20,6 +20,13 @@ Friends_of_Groot_Society - https://friendsofgroot.com</a>
 The mission of the app is to organize and persist Groot Fan Club News and NFT-related Activies.
 
 #### Features
+#### NOTES:
+ * 6/26 - Spring-Data-Rest 
+ * 6/27 - SpringDoc -- https://springdoc.org/v2/getting-started
+   * available at http://server:port/context-path/swagger-ui.html
+   * descriptioN: http://server:port/context-path/v3/api-docs
+   * docs: in YML: http://server:port/context-path/v3/api-docs.yaml
+   
 
 #### Data Structures
 

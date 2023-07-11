@@ -66,7 +66,7 @@ create table address
     id                 NUMBER not null,
     description        varchar(255),
     email              varchar(255),
-    address            varchar(255), -- nft_address
+    address            varchar(255), -- NFTADDRESS
     chain              varchar(255),
     icon_url           varchar(255),
     block_explorer_url varchar(255),
@@ -83,8 +83,8 @@ create table nft
     metadata_id NUMBER,
     primary key (id)
 );
--- drop table nft_address CASCADE  CONSTRAINTS;
-create table nft_address
+-- drop table NFTADDRESS CASCADE  CONSTRAINTS;
+create table NFTADDRESS
 (
     id           NUMBER not null,
     address      varchar(255),

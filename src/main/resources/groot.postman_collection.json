@@ -1037,7 +1037,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n        \"id\": 0,\r\n        \"name\": 0,\r\n        \"amount\": 0,\r\n        \"metadata\": null,\r\n        \"nft_address_id\": 0\r\n    }"
+					"raw": "    {\r\n        \"id\": 0,\r\n        \"name\": 0,\r\n        \"amount\": 0,\r\n        \"metadata\": null,\r\n        \"NFTADDRESS_id\": 0\r\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/addresses/nfts",

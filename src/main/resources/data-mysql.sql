@@ -14,16 +14,16 @@ Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PH
 INSERT INTO ROLES (id, name) VALUES (2,'ROLE_ADMIN');
 INSERT INTO ROLES (id, name) VALUES (1,'ROLE_USER');
 
-insert into USERS_ROLES(id, userid, role_id)values (1, 211, 2);
-insert into USERS_ROLES(id, userid, role_id)values (2, 212, 1);
-insert into USERS_ROLES(id, userid, role_id)values (3, 213, 1);
-insert into USERS_ROLES(id, userid, role_id)values (4, 214, 1);
-insert into USERS_ROLES(id, userid, role_id)values (5, 215, 1);
-insert into USERS_ROLES(id, userid, role_id)values (6, 216, 1);
-insert into USERS_ROLES(id, userid, role_id)values (7, 217, 1);
-insert into USERS_ROLES(id, userid, role_id)values (8, 218, 1);
-insert into USERS_ROLES(id, userid, role_id)values (9, 219, 2);
-insert into USERS_ROLES(id, userid, role_id)values (10,220 ,2);
+insert into USERS_ROLES(id, user_userid, role_id)values (1, 211, 2);
+insert into USERS_ROLES(id, user_userid, role_id)values (2, 212, 1);
+insert into USERS_ROLES(id, user_userid, role_id)values (3, 213, 1);
+insert into USERS_ROLES(id, user_userid, role_id)values (4, 214, 1);
+insert into USERS_ROLES(id, user_userid, role_id)values (5, 215, 1);
+insert into USERS_ROLES(id, user_userid, role_id)values (6, 216, 1);
+insert into USERS_ROLES(id, user_userid, role_id)values (7, 217, 1);
+insert into USERS_ROLES(id, user_userid, role_id)values (8, 218, 1);
+insert into USERS_ROLES(id, user_userid, role_id)values (9, 219, 2);
+insert into USERS_ROLES(id, user_userid, role_id)values (10,220 ,2);
 
 
 -- INSERT CHAIN
@@ -39,16 +39,16 @@ Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_U
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,ID, BLOCK_EXPLORER_URL)values (11951, 'pulsechain7', 'pls', 'pulsechain Mainnet', 'NFT - 0x1',        'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet',        'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',        'https://rpc.pulsechain.io', 23, null);
 
 -- -- INSERT PROJECT_user_RELATION
-insert into chain_users (id, userid, chain_id)values (1, 211, 11501);
-insert into chain_users (id, userid, chain_id)values (2, 212, 11551);
-insert into chain_users (id, userid, chain_id)values (3, 213, 11601);
-insert into chain_users (id, userid, chain_id)values (4, 214, 11651);
-insert into chain_users (id, userid, chain_id)values (5, 215, 11701);
-insert into chain_users (id, userid, chain_id)values (6, 216, 11751);
-insert into chain_users (id, userid, chain_id)values (7, 217, 11801);
-insert into chain_users (id, userid, chain_id)values (8, 218, 11851);
-insert into chain_users (id, userid, chain_id)values (9, 219, 11901);
-insert into chain_users (id, userid, chain_id)values (10,220, 11951);
+insert into CHAIN_USERS (id, userid, chain_id)values (1, 211, 11501);
+insert into CHAIN_USERS (id, userid, chain_id)values (2, 212, 11551);
+insert into CHAIN_USERS (id, userid, chain_id)values (3, 213, 11601);
+insert into CHAIN_USERS (id, userid, chain_id)values (4, 214, 11651);
+insert into CHAIN_USERS (id, userid, chain_id)values (5, 215, 11701);
+insert into CHAIN_USERS (id, userid, chain_id)values (6, 216, 11751);
+insert into CHAIN_USERS (id, userid, chain_id)values (7, 217, 11801);
+insert into CHAIN_USERS (id, userid, chain_id)values (8, 218, 11851);
+insert into CHAIN_USERS (id, userid, chain_id)values (9, 219, 11901);
+insert into CHAIN_USERS (id, userid, chain_id)values (10,220, 11951);
 
 
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )values (10001, 'description', 'Tom1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',             'ropstein', 'ICON_URL', 'BLOCK_EXPLORER_URL', 211,  11501);
@@ -63,26 +63,10 @@ Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXP
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )values (10010, 'description', 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A', 'goerli', 'ICON_URL', 'BLOCK_EXPLORER_URL',   220,  11951);
 
 
-
-
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (1, 'ethereum',   'ETH', 12000.22, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (2, 'polygon',    'MATIC', 9.22, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (3, 'binance',    'BNB', 19.22, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (4, 'avalanche',  'AVAX', 119.22, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (5, 'ethereum',   'ETH', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (6, 'ethereum',   'ETH', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (7, 'ethereum',   'ETH', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (8, 'ethereum',   'ETH', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (9, 'pulsechain', 'SAA', 123.33, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (10, 'Hex',        'HEX', 0.03, 1);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (11, 'ethereum',   'ETH', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (12, 'ethereum',   'ETH', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (13, 'ethereum',   'ETH', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (14, 'binance',    'bsc', 45000, 0);
-Insert into COINTABLE (COINID, COINTOKEN, COINSYMBOL, PRICETOTAL, PURCHASED)values (15, 'binance',    'bnb', 45000, 0);
-
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (1001,'ethereum',5656,1);
 INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (4001,'ethereum',5656,1);
 INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (4002,'polygon',454,  2);
 INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (4003,'avalanche',75757,3);
+INSERT INTO NFT (ID,NAME,AMOUNT,METADATA_ID) VALUES (4004,'ethereum',5656,1);
 
- 
+# INSERT INTO groot.NFTADDRESS (ID,ADDRESS_ID,NFT_ID) VALUES (10001,10001,1001);

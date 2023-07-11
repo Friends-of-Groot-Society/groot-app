@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "NFT_ADDRESS") /// ANGULAR's NFT.ts
+@Table(name = "NFTADDRESS") /// ANGULAR's NFT.ts
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NftAddress extends BaseModel {
 
@@ -29,6 +29,3 @@ public class NftAddress extends BaseModel {
 	@Column(name = "nft")
 	private List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
 }
-
-
-

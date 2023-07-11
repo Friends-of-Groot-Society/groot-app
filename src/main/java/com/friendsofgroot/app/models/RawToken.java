@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "raw_token")
+@Table(name = "RAW_TOKEN")
 public class RawToken implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -25,11 +25,11 @@ public class RawToken implements Serializable {
     @Id
     private Integer id;
 
-    @Column(name = "raw_token")
+    @Column(name = "RAW_TOKEN")
     private String rawToken;
 
     @ManyToOne
-    @JoinColumn(name = "nft_address_id")
+    @JoinColumn(name = "NFTADDRESS_ID")
     private NftAddress nftAddress;
 
 

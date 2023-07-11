@@ -14,12 +14,12 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "chain")
+@Table(name = "CHAIN")
 public class Chain  implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")
-    @Column(name = "chain_id", nullable = false, unique = true)
+    @Column(name = "CHAIN_ID", nullable = false, unique = true)
     private int chainId;
 
     private String name;
@@ -44,7 +44,7 @@ public class Chain  implements Serializable {
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
     @JoinTable(name="chain_users",
-            joinColumns=@JoinColumn(name="chain_id"),
+            joinColumns=@JoinColumn(name="CHAIN_ID"),
             inverseJoinColumns= @JoinColumn(name="userid")
     )
     @JsonIgnore

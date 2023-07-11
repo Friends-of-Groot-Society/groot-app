@@ -18,5 +18,5 @@ public class NftDto implements Serializable {
     private String name;
     private int amount;
     private MetadataDto metadataDto;
-    private int nft_address_id;
+    private int NFTADDRESS_id;
 }

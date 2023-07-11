@@ -81,7 +81,7 @@ CREATE TABLE nft
     PRIMARY KEY (id)
 );
 
-CREATE TABLE nft_address
+CREATE TABLE NFTADDRESS
 (
     id           NUMBER GENERATED ALWAYS AS IDENTITY,
     address      VARCHAR2(255),

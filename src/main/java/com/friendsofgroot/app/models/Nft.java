@@ -28,7 +28,7 @@ public class Nft  implements Serializable {
 	private Metadata metadata_id; // metadata_id
 
 	@ManyToOne //(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	@JoinColumn(name = "nft_address_id")
+	@JoinColumn(name = "NFTADDRESS_id")
 	private NftAddress nftAddress;
 
 }

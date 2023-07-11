@@ -12,7 +12,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-@Table(name = "user_accounts")
+@Table(name = "USER_ACCOUNTS")
 public class UserAccount extends BaseModel {
 //
 //	@Id

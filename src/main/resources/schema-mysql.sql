@@ -1,13 +1,13 @@
 create table ROLES
 (
-    id   INT not null,
+    id   INT not null auto_increment,
     name varchar(255),
     primary key (id)
 );
 
 create table USERS_ROLES
 (
-    id          INT not null,
+    id          INT not null auto_increment,
     role_id     INT not null,
     user_userid INT not null,
     primary key (id)
@@ -15,7 +15,7 @@ create table USERS_ROLES
 
 create table  USERS
 (
-    USERID      INT not null,
+    USERID      INT not null auto_increment,
     USERNAME    VARCHAR(255),
     PASSWORD    VARCHAR(120),
     LASTNAME    VARCHAR(255),
@@ -30,9 +30,9 @@ create table  USERS
     primary key (USERID)
 );
 
-create table chain
+create table CHAIN
 (
-    chain_id           INT not null,
+    chain_id           INT not null  auto_increment,
     name               varchar(255),
     symbol             varchar(255),
     description        varchar(255),
@@ -45,21 +45,21 @@ create table chain
     block_explorer_url varchar(255),
     primary key (chain_id)
 );
-create table chain_users
+create table CHAIN_USERS
 (
-    id       INT  not null,
+    id       INT  not null  auto_increment,
     chain_id INT                not null,
     userid   INT                not null,
     primary key (id)
 );
 --     create table attribute (attrid INT, trait_type varchar(255), valu varchar(255), metadata_metadata_id INT, primary key (attrid));
 
-create table address
+create table ADDRESS
 (
-    id                 INT not null,
+    id                 INT not null  auto_increment,
     description        varchar(255),
     email              varchar(255),
-    address            varchar(255), -- nft_address
+    address            varchar(255), -- NFTADDRESS
     chain              varchar(255),
     icon_url           varchar(255),
     block_explorer_url varchar(255),
@@ -67,26 +67,36 @@ create table address
     chain_id            INT,
     primary key (id)
 );
-create table nft
+create table NFT
 (
-    id          INT not null,
+    id          INT not null auto_increment,
     amount      INT,
     name        varchar(255),
     metadata_id INT,
     primary key (id)
 );
-create table nft_address
+create table NFTADDRESS
 (
-    id           INT not null,
+    id           INT not null auto_increment,
     address      varchar(255),
     native_token INT,
     native       INT,
     tokens       INT,
     primary key (id)
 );
-create table nft_ref
+create table NFT_REF
 (
-    id      INT not null,
+    id      INT not null auto_increment,
+    address varchar(255),
+    chain   varchar(255),
+    email   varchar(255),
+    name    varchar(255),
+    owner   varchar(255),
+    primary key (id)
+);
+create table NFT_TOKEN
+(
+    id      INT not null auto_increment,
     address varchar(255),
     chain   varchar(255),
     email   varchar(255),
@@ -95,35 +105,9 @@ create table nft_ref
     primary key (id)
 );
 
-create table COINTABLE
-(
-    coinid     INT not null,
-    coinsymbol varchar(255),
-    cointoken  varchar(255),
-    pricetotal INT ,
-    purchased  INT  ,
-    primary key (coinid)
-);
-CREATE TABLE WEBLINK(id bigint PRIMARY KEY ,
-                     title varchar(500) ,
-                     url varchar(250)   ,
-                     host varchar(250) ,
-                     downloadstatus TINYINT,
-                     htmlpage    varchar(255));
-
--- create table weblinks
--- (
---     id             INT not null,
---     downloadstatus smallint,
---     host           varchar(255),
---     htmlpage       varchar(255),
---     url            varchar(255),
---     primary key (id)
--- );
-
 create table ATTRIBUTE
 (
-    attrid               INT,
+    attrid               INT auto_increment,
     trait_type           varchar(255),
     valu                 varchar(255),
     metadata_metadata_id INT,
@@ -132,19 +116,10 @@ create table ATTRIBUTE
 
 create table METADATA
 (
-    metadata_id INT not null,
+    metadata_id INT not null auto_increment,
     description varchar(255),
     image       varchar(255),
     name        varchar(255),
     nft_id      INT,
     primary key (metadata_id)
 );
-#
-# create table NFT
-# (
-#     nft_id     INT not null,
-#     amount     INT,
-#     name       varchar(255),
-#     metadataid INT,
-#     primary key (nft_id)
-# );

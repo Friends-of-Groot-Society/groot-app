@@ -59,7 +59,7 @@ create table address
     id                 INT not null,
     description        varchar(255),
     email              varchar(255),
-    address            varchar(255), -- nft_address
+    address            varchar(255), -- NFTADDRESS
     chain              varchar(255),
     icon_url           varchar(255),
     block_explorer_url varchar(255),
@@ -67,7 +67,7 @@ create table address
     chain_id            INT,
     primary key (id)
 );
-create table nft
+create table NFT
 (
     id          INT not null,
     amount      INT,
@@ -75,7 +75,7 @@ create table nft
     metadata_id INT,
     primary key (id)
 );
-create table nft_address
+create table NFTADDRESS
 (
     id           INT not null,
     address      varchar(255),
@@ -84,7 +84,18 @@ create table nft_address
     tokens       INT,
     primary key (id)
 );
-create table nft_ref
+create table NFT_REF
+(
+    id      INT not null,
+    address varchar(255),
+    chain   varchar(255),
+    email   varchar(255),
+    name    varchar(255),
+    owner   varchar(255),
+    primary key (id)
+);
+
+create table NFT_TOKEN
 (
     id      INT not null,
     address varchar(255),
@@ -114,15 +125,6 @@ create table METADATA
     nft_id      INT,
     primary key (metadata_id)
 );
-#
-# create table NFT
-    # (
-    #     nft_id     INT not null,
-    #     amount     INT,
-    #     name       varchar(255),
-    #     metadataid INT,
-    #     primary key (nft_id)
-    # );
 
 -- MANY TO ON
 alter table attribute
@@ -133,7 +135,7 @@ alter table metadata
 alter table nft
     add constraint FK7w00r1rprr2020ho6cbmwc5kh foreign key (metadata_id) references metadata;
 alter table nft
-    add constraint FKav9aho8kdsp9rh22jdlocuy7r foreign key (id) references nft_address;
+    add constraint FKav9aho8kdsp9rh22jdlocuy7r foreign key (id) references NFTADDRESS;
 
  -- MANY TO MANY
 alter table chain_users

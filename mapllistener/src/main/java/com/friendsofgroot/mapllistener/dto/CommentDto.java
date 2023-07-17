@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link Comment} entity
+ * A Dto for the {@link Comment} entity
  */
 @Data
 public class CommentDto implements Serializable {

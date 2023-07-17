@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.mapper;
 
 import com.friendsofgroot.app.models.NftRef;
-import com.friendsofgroot.app.dto.NftRefDto;
+import com.friendsofgroot.app.models.dto.NftRefDto;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)

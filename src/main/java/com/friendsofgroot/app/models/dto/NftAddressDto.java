@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * DTO for {@link com.friendsofgroot.app.models.NftAddress}
+ * Dto for {@link com.friendsofgroot.app.models.NftAddress}
  */
 @Data
 @AllArgsConstructor

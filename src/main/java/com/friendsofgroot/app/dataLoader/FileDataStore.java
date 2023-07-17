@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.dataLoader;
- 
-import com.friendsofgroot.app.dto.UserNftbuy;
+
+import com.friendsofgroot.app.models.dto.UserNftbuy;
 import com.friendsofgroot.app.models.*;
 import com.friendsofgroot.app.util.ReadWriteFile;
 
@@ -67,13 +67,3 @@ public class FileDataStore extends ReadWriteFile {
 
 
 }
-
-
-
-
-
-
-
-
-
-

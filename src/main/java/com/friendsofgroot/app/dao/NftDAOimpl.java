@@ -2,7 +2,7 @@ package com.friendsofgroot.app.dao;
 
 import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Nft;
-import com.friendsofgroot.app.dto.UserNftbuy;
+import com.friendsofgroot.app.models.dto.UserNftbuy;
 import com.friendsofgroot.app.config.JDBCConnection;
 
 import java.sql.Connection;
@@ -26,10 +26,10 @@ public class NftDAOimpl  implements NftDAO {
 		return null;
 	}
 
-	public List<Nft> getAllNftsIOwn(String username) { 
+	public List<Nft> getAllNftsIOwn(String username) {
 
-	return null; 
-	} 
+	return null;
+	}
 
 ////////////// GET OFFLINE CARS AND OFFERS ///////////////////
 	@Override
@@ -41,10 +41,10 @@ public class NftDAOimpl  implements NftDAO {
 	public List<Nft> getAllNfts() {   // *Admin View of *all* nfts in NftLot (also purchased nfts).
 
 		return null;
-	} 
+	}
 
 //////////////GETALL (CUSTOMER VIEW)  ///////////////////
-	public List<Nft> getAllNftsCust() {    // *Customer View of NftLot (Only unpurchased nfts).
+	public List<Nft> getAllNftsCust() {    // *User View of NftLot (Only unpurchased nfts).
 
 		return null;
 	}
@@ -53,7 +53,7 @@ public class NftDAOimpl  implements NftDAO {
 	public boolean updateNft(Nft change) {
 
 		return false;
-	
+
 	}
 
 ////////////// DELETE ///////////////////  *Not to be used in order to preserve records.
@@ -79,5 +79,5 @@ public class NftDAOimpl  implements NftDAO {
 	}
 
 
-	 
+
 }

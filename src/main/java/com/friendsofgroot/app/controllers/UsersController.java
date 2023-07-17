@@ -1,8 +1,8 @@
 package com.friendsofgroot.app.controllers;
 
-import com.friendsofgroot.app.dto.LoginDto;
-import com.friendsofgroot.app.dto.RegisterDto;
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.LoginDto;
+import com.friendsofgroot.app.models.dto.RegisterDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.friendsofgroot.app.service.UsersService;
@@ -10,7 +10,7 @@ import com.friendsofgroot.app.service.UsersService;
 import java.util.List;
 
 
-import com.friendsofgroot.app.dto.JWTAuthResponse;
+import com.friendsofgroot.app.models.dto.JWTAuthResponse;
 import com.friendsofgroot.app.config.security.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

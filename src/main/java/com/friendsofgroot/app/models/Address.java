@@ -37,13 +37,13 @@ public class Address  implements Serializable {
     @Column(name="block_explorer_url")
     private String blockExplorerUrl;
 
-    @ManyToOne( fetch = FetchType.EAGER,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    @ManyToOne( fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name="users_userid")
     private User user;
     @Column(name="chain_id")
     private int chainId;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name="NFTADDRESS_id")
     private NftAddress nftAddress;
 }

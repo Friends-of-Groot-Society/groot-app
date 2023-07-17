@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,12 +15,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.nio.file.AccessDeniedException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
+    @ExceptionHandler
+    ResponseEntity handleJPAViolations(TransactionSystemException exception){
+        return ResponseEntity.badRequest().build();
+    }
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorDetailsDto> handleResourceNotFoundException(ResourceNotFoundException exception,
                                                                         WebRequest webRequest){
@@ -54,6 +61,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     /// Method from ResponseEntityExceptionHandler
     @Override
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
     protected  ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException notValidException,
                                                                            HttpHeaders headers,
                                                                            HttpStatusCode statusCode,
@@ -67,5 +75,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    ResponseEntity handleBindErrors(MethodArgumentNotValidException exception){
 
+        List errorList = exception.getFieldErrors().stream()
+                .map(fieldError -> {
+                    Map<String, String > errorMap = new HashMap<>();
+                    errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
+                    return errorMap;
+                }).collect(Collectors.toList());
+
+        return ResponseEntity.badRequest().body(errorList);
+    }
 }

@@ -1,19 +1,16 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.ChainUsers;
-import com.friendsofgroot.app.dto.RegisterDto;
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.RegisterDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
-import com.friendsofgroot.app.repositories.UserAccountRepository;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.repositories.UsersRepository;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +22,36 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private UserMapper userMapper;
 
+
+    public UsersServiceImpl() {
+        UserDto user1 = UserDto.builder()
+//                .userId(UUID.randomUUID()
+//                .name("User 1")
+//                .version(1)
+//                .createdDate(LocalDateTime.now())
+//                .updateDate(LocalDateTime.now())
+                .build();
+
+        UserDto user2 = UserDto.builder()
+//                .id(UUID.randomUUID())
+//                .name("User 2")
+//                .version(1)
+//                .createdDate(LocalDateTime.now())
+//                .updateDate(LocalDateTime.now())
+                .build();
+
+        UserDto user3 = UserDto.builder()
+//                .id(UUID.randomUUID())
+//                .name("User 3")
+//                .version(1)
+//                .createdDate(LocalDateTime.now())
+//                .updateDate(LocalDateTime.now())
+                .build();
+
+        usersRepository.save(userMapper.toEntity(user1));
+        usersRepository.save(userMapper.toEntity(user2));
+        usersRepository.save(userMapper.toEntity(user3));
+    }
 
     /**
      * @param user
@@ -42,17 +69,13 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UserDto registerUser(RegisterDto registerDto) {
 
-        UserDto newUser = new UserDto();
-        newUser.setUsername(registerDto.getUsername());
-        newUser.setPassword(registerDto.getPassword());
-        newUser.setLastName(registerDto.getLastName());
-        newUser.setFirstName(registerDto.getFirstName());
-        /// TODO: MOVE LOGIC TO REGISTERDTO
-        newUser.setUserType(2);
-        newUser.setEmail(registerDto.getEmail());
-        newUser.setPhone("1234567890");
-//        newUser.setRole(registerDto.getRole()); //  registerDto.setRole("USER");
-
+        UserDto newUser = UserDto.builder()
+                .lastName(registerDto.getLastName())
+                .username(registerDto.getUsername())
+                .password(registerDto.getPassword())
+//                .dateCreated(registerDto.getDateCreated())
+//                .lastUpdated(LocalDateTime.now())
+                .build();
         User u = usersRepository.save(userMapper.toEntity(newUser));
         return userMapper.toDto(u);
     }
@@ -191,6 +214,16 @@ public class UsersServiceImpl implements UsersService {
         return change;
     }
 
+    @Override
+    public Optional<UserDto> patchUserById(Integer userId, UserDto user) {
+        User existing = usersRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", userId.toString()));
+
+        if (!StringUtils.hasText(existing.getEmail())) {
+            existing.setEmail(user.getEmail() != null ? user.getEmail() : existing.getEmail());
+        }
+
+        return Optional.of(userMapper.toDto(usersRepository.save(existing)));
+    }
     /**
      * @param email
      * @return

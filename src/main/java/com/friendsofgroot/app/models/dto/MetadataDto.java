@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 
 import com.friendsofgroot.app.models.Metadata;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * A DTO for the {@link Metadata} entity
+ * A Dto for the {@link Metadata} entity
  */
 @Data
 public class MetadataDto implements Serializable {

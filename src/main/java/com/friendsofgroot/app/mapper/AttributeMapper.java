@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.mapper;
 
 import com.friendsofgroot.app.models.Attribute;
-import com.friendsofgroot.app.dto.AttributeDto;
+import com.friendsofgroot.app.models.dto.AttributeDto;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {MetadataMapper.class})

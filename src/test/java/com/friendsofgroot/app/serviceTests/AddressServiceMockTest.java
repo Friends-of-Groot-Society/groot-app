@@ -1,8 +1,8 @@
 package com.friendsofgroot.app.serviceTests;
 
-import com.friendsofgroot.app.dto.AddressDto;
+import com.friendsofgroot.app.models.dto.AddressDto;
 import com.friendsofgroot.app.service.AddressesService;
-import com.friendsofgroot.app.service.AddressesServiceImpl; 
+import com.friendsofgroot.app.service.AddressesServiceImpl;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

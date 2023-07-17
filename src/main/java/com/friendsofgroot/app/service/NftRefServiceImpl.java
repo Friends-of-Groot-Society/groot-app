@@ -1,11 +1,10 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.NftRefDto;
+import com.friendsofgroot.app.models.dto.NftRefDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.NftRefMapper;
 import com.friendsofgroot.app.models.NftRef;
 import com.friendsofgroot.app.repositories.NftRefRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class NftRefServiceImpl implements NftRefService {
         List<NftRefDto> nftRefDtos = adds.stream().map(nftRefMapper::toDto).collect(Collectors.toList());
         return nftRefDtos;
     }
- 
+
 
     public boolean updateNftRef(NftRefDto change) {
         try {

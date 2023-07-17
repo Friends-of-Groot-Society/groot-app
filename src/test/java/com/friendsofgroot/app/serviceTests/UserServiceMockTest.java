@@ -4,20 +4,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import org.junit.jupiter.api.*;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersService;
 
-import java.util.Arrays;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)

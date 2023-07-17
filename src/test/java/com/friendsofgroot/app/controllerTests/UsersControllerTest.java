@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.controllerTests;
 
 import com.friendsofgroot.app.controllers.UsersController;
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.service.UsersService;
 

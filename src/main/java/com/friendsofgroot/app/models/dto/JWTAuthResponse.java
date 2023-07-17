@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

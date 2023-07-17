@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.serviceTests;
 
-import com.friendsofgroot.app.dto.ChainDto;
+import com.friendsofgroot.app.models.dto.ChainDto;
 import com.friendsofgroot.app.service.ChainsService;
 import com.friendsofgroot.app.service.ChainsServiceImpl;
 import org.junit.jupiter.api.AfterAll;

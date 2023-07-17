@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import com.friendsofgroot.app.models.Role;
 import lombok.*;
@@ -11,7 +11,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class UserDto  implements Serializable {
+
     static final long serialVersionUID = 1L;
     private int userId; // userId;
     private String username;

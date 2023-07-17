@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.config.security;
 
 //import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.service.UsersServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

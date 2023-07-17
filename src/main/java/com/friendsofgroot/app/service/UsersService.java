@@ -1,9 +1,7 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.ChainUsers;
-import com.friendsofgroot.app.dto.LoginDto;
-import com.friendsofgroot.app.dto.RegisterDto;
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.RegisterDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.models.User;
 
 import java.util.List;
@@ -29,7 +27,10 @@ public interface UsersService {
 
 	public List<User> getUsersWithCoins();
 	public UserDto getUserByPassword(String username, String password);
-	public boolean deleteUser(String username);
+
+    Optional<UserDto> patchUserById(Integer userId, UserDto user);
+
+    public boolean deleteUser(String username);
 
 	boolean deleteUser(UserDto user);
 

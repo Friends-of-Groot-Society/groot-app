@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.AddressDto;
+import com.friendsofgroot.app.models.dto.AddressDto;
 import com.friendsofgroot.app.mapper.AddressMapper;
 import com.friendsofgroot.app.models.Address;
 
@@ -100,4 +100,3 @@ public class AddressesServiceImpl implements AddressesService {
         return addressDtos;
     }
 }
-

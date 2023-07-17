@@ -6,9 +6,9 @@ package com.friendsofgroot.app.controllers.consoles;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.friendsofgroot.app.dto.ChainDto;
-import com.friendsofgroot.app.dto.LoginDto;
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.ChainDto;
+import com.friendsofgroot.app.models.dto.LoginDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.service.ChainsService;
 import com.friendsofgroot.app.service.UsersService;
 import org.springframework.beans.factory.annotation.Value;

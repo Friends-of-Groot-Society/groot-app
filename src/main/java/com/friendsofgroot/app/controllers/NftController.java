@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.controllers;
 
-import com.friendsofgroot.app.dto.NftDto;
+import com.friendsofgroot.app.models.dto.NftDto;
 import com.friendsofgroot.app.service.NftService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,9 +1,6 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.AddressDto;
-import com.friendsofgroot.app.dto.ChainDto;
-import com.friendsofgroot.app.dto.NftDto;
-import com.friendsofgroot.app.models.Address;
+import com.friendsofgroot.app.models.dto.AddressDto;
 
 import java.util.List;
 

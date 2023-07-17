@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.models.User;

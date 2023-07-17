@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * DTO for {@link com.friendsofgroot.app.models.RawToken}
+ * Dto for {@link com.friendsofgroot.app.models.RawToken}
  */
 @Data
 @AllArgsConstructor

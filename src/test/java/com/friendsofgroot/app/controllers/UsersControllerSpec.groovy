@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.controllers
 
-import com.friendsofgroot.app.dto.UserDto
+import com.friendsofgroot.app.models.dto.UserDto
 import com.friendsofgroot.app.config.security.AuthService
 import com.friendsofgroot.app.service.UsersService
 import org.springframework.http.HttpStatus
@@ -160,4 +160,3 @@ class UsersControllerSpec extends Specification {
         0      || null
     }
 }
-

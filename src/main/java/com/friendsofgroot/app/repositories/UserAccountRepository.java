@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.repositories;
 
-import com.friendsofgroot.app.dto.ChainUsers;
+import com.friendsofgroot.app.models.dto.ChainUsers;
 import com.friendsofgroot.app.models.UserAccount;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;

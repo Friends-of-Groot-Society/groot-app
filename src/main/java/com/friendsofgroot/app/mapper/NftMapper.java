@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.mapper;
 
-import com.friendsofgroot.app.dto.NftDto;
+import com.friendsofgroot.app.models.dto.NftDto;
 import com.friendsofgroot.app.models.Nft;
 import org.mapstruct.*;
 

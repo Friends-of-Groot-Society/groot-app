@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.mapper;
 
-import com.friendsofgroot.app.dto.UserDto;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.models.User;
 import org.mapstruct.*;
 

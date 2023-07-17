@@ -138,11 +138,11 @@ CliLogger => [Singleton Logger Log4j]
 * As a system, it will notify members if an event is upcoming.
 * As a system, it will notify members of a co-awarded badge.
 --------------
-* As a customer, I can view the nfts on the lot. 
-* As a customer, I can make an offer for a nft. 
-* As a customer, I am alerted if offer APPROVED/DECLINED
-* As a customer, I can view the nfts that I own. 
-* As a customer, I can view my remaining payments for a nft(s) I own.
+* As a user, I can view the nfts on the lot. 
+* As a user, I can make an offer for a nft. 
+* As a user, I am alerted if offer APPROVED/DECLINED
+* As a user, I can view the nfts that I own. 
+* As a user, I can view my remaining payments for a nft(s) I own.
 ```
 ** Software **
 
@@ -175,5 +175,3 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## JSON SERVER
 npm install -g json-server
 json-server info.json --watch
-
-  

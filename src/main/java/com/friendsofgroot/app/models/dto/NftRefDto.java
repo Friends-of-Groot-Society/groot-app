@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.friendsofgroot.app.models.NftRef;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link NftRef} entity
+ * A Dto for the {@link NftRef} entity
  */
 @Data
 @AllArgsConstructor

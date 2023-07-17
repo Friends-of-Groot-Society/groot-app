@@ -14,12 +14,12 @@ import java.util.Optional;
 public interface UserMapper   {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    UserDto userToUserDto(User user);
+    UserDto toDto(User user);
 
     UserDto toDto(User u);
 
 //    @InheritInverseConfiguration
-    User userDtoToUser(UserDto userDto);
+    User toEntity(UserDto userDto);
 
     User toEntity(UserDto user);
 

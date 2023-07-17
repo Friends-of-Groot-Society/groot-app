@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import com.friendsofgroot.app.models.Attribute;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link Attribute} entity
+ * A Dto for the {@link Attribute} entity
  */
 @Data
 public class AttributeDto implements Serializable {

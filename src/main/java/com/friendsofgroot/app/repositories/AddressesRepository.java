@@ -1,13 +1,7 @@
 package com.friendsofgroot.app.repositories;
 
-import com.friendsofgroot.app.dto.AddressResponse;
-import com.friendsofgroot.app.dto.ChartData;
 import com.friendsofgroot.app.models.Address;
-import com.friendsofgroot.app.models.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;

@@ -1,10 +1,13 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
+import com.friendsofgroot.app.models.Role;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

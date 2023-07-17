@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link PostEntity} entity
+ * A Dto for the {@link PostEntity} entity
  */
 @Getter
 @Setter

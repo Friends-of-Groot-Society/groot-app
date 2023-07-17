@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.controllerTests;
 
 import com.friendsofgroot.app.controllers.NftController;
-import com.friendsofgroot.app.dto.NftDto;
+import com.friendsofgroot.app.models.dto.NftDto;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.NftDto;
-import com.friendsofgroot.app.dto.NftRefDto;
+import com.friendsofgroot.app.models.dto.NftRefDto;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.serviceTests;
 
-import com.friendsofgroot.app.dto.NftDto;
+import com.friendsofgroot.app.models.dto.NftDto;
 import com.friendsofgroot.app.service.NftService;
 import com.friendsofgroot.app.service.NftServiceImpl;
 import org.junit.jupiter.api.AfterAll;

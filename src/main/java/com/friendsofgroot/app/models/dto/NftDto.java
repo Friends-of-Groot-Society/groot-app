@@ -1,11 +1,11 @@
-package com.friendsofgroot.app.dto;
+package com.friendsofgroot.app.models.dto;
 
 import lombok.*;
 
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link com.friendsofgroot.app.models.Nft} entity
+ * A Dto for the {@link com.friendsofgroot.app.models.Nft} entity
  */
 @Data
 @NoArgsConstructor

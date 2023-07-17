@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.mapper;
 
-import com.friendsofgroot.app.dto.RawTokenDto;
+import com.friendsofgroot.app.models.dto.RawTokenDto;
 import com.friendsofgroot.app.models.RawToken;
 import org.mapstruct.*;
 

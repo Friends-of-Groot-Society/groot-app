@@ -56,7 +56,7 @@ public class UsersServiceImpl implements UsersService {
 //        newUser.setPassword(registerDto.getPassword());
 //        newUser.setLastName(registerDto.getLastName());
 //        newUser.setFirstName(registerDto.getFirstName());
-//        /// TODO: MOVE LOGIC TO REGISTERDTO
+//        /// TODO: MOVE LOGIC TO REGISTERDto
 //        newUser.setUserType(2);
 //        newUser.setEmail(registerDto.getEmail());
 //        newUser.setAddresses(List.of(new Address()));

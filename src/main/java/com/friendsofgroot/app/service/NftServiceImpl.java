@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.service;
 
-import com.friendsofgroot.app.dto.NftDto;
+import com.friendsofgroot.app.models.dto.NftDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.NftMapper;
 import com.friendsofgroot.app.models.Nft;
@@ -48,7 +48,7 @@ public class NftServiceImpl implements NftService {
         List<NftDto> nftDtos = adds.stream().map(nftMapper::toDto).collect(Collectors.toList());
         return nftDtos;
     }
- 
+
 
     public boolean updateNft(NftDto change) {
         try {

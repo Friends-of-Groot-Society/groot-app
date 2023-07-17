@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.serviceTests
 
-import com.friendsofgroot.app.dto.RegisterDto
-import com.friendsofgroot.app.dto.UserDto
+import com.friendsofgroot.app.models.dto.RegisterDto
+import com.friendsofgroot.app.models.dto.UserDto
 
 import com.friendsofgroot.app.models.Address
 import com.friendsofgroot.app.models.Attribute
@@ -310,4 +310,3 @@ class UsersServiceImplSpec extends Specification {
         expectedResult << [null]
     }
 }
-

@@ -38,11 +38,11 @@ public class PostServiceImpl implements PostService {
 		Category cat = categoryRepository.findById(postEntityDto.getCategoryId()).orElseThrow(
 				() -> new ResourceNotFoundException("Category", "id", Long.toString(postEntityDto.getCategoryId())));
 		System.out.println("cat: " + postEntityDto.getCategoryId());
-		PostEntity postEntity = postEntityMapper.PostEntityDTOToPostEntity(postEntityDto);
+		PostEntity postEntity = postEntityMapper.PostEntityDtoToPostEntity(postEntityDto);
 		postEntity.setCategory(cat);
 		PostEntity newPostEntity = pr.save(postEntity);
 
-		PostEntityDto postResponse = postEntityMapper.PostEntityToPostEntityDTO(newPostEntity);
+		PostEntityDto postResponse = postEntityMapper.PostEntityToPostEntityDto(newPostEntity);
 		return postResponse;
 	}
 	@Override
@@ -58,7 +58,7 @@ public class PostServiceImpl implements PostService {
 
 		// get content for page object
 		List<PostEntity> listOfPosts = posts.getContent();
-		List<PostEntityDto> content= listOfPosts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDTO(post)).collect(Collectors.toList());
+		List<PostEntityDto> content= listOfPosts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDto(post)).collect(Collectors.toList());
 
 		PostEntityResponse postResponse = new PostEntityResponse();
 		postResponse.setContent(content);
@@ -84,7 +84,7 @@ public class PostServiceImpl implements PostService {
 		// get content for page object
 		List<PostEntity> listOfPosts = posts.getContent();
 
-		List<PostEntityDto> content= listOfPosts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDTO(post)).collect(Collectors.toList());
+		List<PostEntityDto> content= listOfPosts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDto(post)).collect(Collectors.toList());
 
 		PostEntityResponse postResponse = new PostEntityResponse();
 		postResponse.setContent(content);
@@ -107,13 +107,13 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public PostEntityDto getPostById(long id) {
 		PostEntity post = pr.findById(id).orElseThrow(() -> new ResourceNotFoundException("PostEntity", "id", Long.toString(id)));
-		return postEntityMapper.PostEntityToPostEntityDTO(post);
+		return postEntityMapper.PostEntityToPostEntityDto(post);
  	}
 
 	@Override
 	public PostEntityDto getPostByDid(String did) {
 		PostEntity post = pr.findByDid(did).orElseThrow(() -> new ResourceNotFoundException("PostEntity", "did", did));
-		return postEntityMapper.PostEntityToPostEntityDTO(post);
+		return postEntityMapper.PostEntityToPostEntityDto(post);
 	}
 
 
@@ -126,7 +126,7 @@ public class PostServiceImpl implements PostService {
 		Category category = categoryRepository.findById(categoryId).orElseThrow(
 				() -> new ResourceNotFoundException("Category", "id", Long.toString(categoryId)));
 		List<PostEntity> posts = pr.findByCategoryId(categoryId);
-		return posts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDTO(post)).collect(Collectors.toList());
+		return posts.stream().map(post -> postEntityMapper.PostEntityToPostEntityDto(post)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class PostServiceImpl implements PostService {
 		System.out.println("cat: " + cat.toString());
 
 		PostEntity updatedPost = pr.save(postOld);
-		return postEntityMapper.PostEntityToPostEntityDTO(updatedPost);
+		return postEntityMapper.PostEntityToPostEntityDto(updatedPost);
 	}
 	@Override
 	public boolean deletePostById(long id) {

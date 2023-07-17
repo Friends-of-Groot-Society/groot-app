@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -15,6 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @MappedSuperclass
 public class BaseModel implements Serializable {
         @Serial
@@ -22,27 +24,19 @@ public class BaseModel implements Serializable {
 
         @GeneratedValue(strategy = GenerationType.AUTO)
         @Column(name = "id" )
-        @Id
-        private int id;
+        private Integer id;
 
-        @Version
-        private Integer version;
-
-        // DATE
+        @CreationTimestamp
         @Column(name = "date_created", nullable = false, updatable = false)
         private Date dateCreated;
 
+        @UpdateTimestamp
         @Column(name = "last_updated")
-        private Date lastUpdated;
-
-
-        // TIMESTAMP
-        @Column(name = "created_at", nullable = false, updatable = false)
-        @CreationTimestamp
-        private Timestamp createdAt;
+        private LocalDateTime lastUpdated;
 
         @Column(name = "updated_at")
         @UpdateTimestamp
         private Timestamp updatedAt;
+
 
 }

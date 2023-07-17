@@ -15,13 +15,13 @@ public interface PostEntityMapper {
 //    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     PostEntity partialUpdate(PostEntityDto postEntityDto, @MappingTarget PostEntity postEntity);
 
-    PostEntityDto PostEntityToPostEntityDTO(PostEntity postByUsernameAndId);
+    PostEntityDto PostEntityToPostEntityDto(PostEntity postByUsernameAndId);
 
-    List<PostEntity> PostEntitysToPostEntityDTOs(List<PostEntity> allPostsByUsername);
+    List<PostEntity> PostEntitysToPostEntityDtos(List<PostEntity> allPostsByUsername);
 
-    PostEntity PostEntityDTOToPostEntity(PostEntityDto postEntityDto);
+    PostEntity PostEntityDtoToPostEntity(PostEntityDto postEntityDto);
 
 
-//    List<PostEntity> PostEntityDTOsToPostEntitys(List<PostEntityDto> postEntityDtos);
+//    List<PostEntity> PostEntityDtosToPostEntitys(List<PostEntityDto> postEntityDtos);
 
 }

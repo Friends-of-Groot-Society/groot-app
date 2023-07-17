@@ -1,53 +1,155 @@
 package com.friendsofgroot.app.service;
 
 
-import com.friendsofgroot.app.dto.ChainDto;
+import com.friendsofgroot.app.models.dto.ChainDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.mapper.ChainMapper;
+import com.friendsofgroot.app.models.dto.Symbol;
 import com.friendsofgroot.app.repositories.ChainsRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
+import static com.friendsofgroot.app.service.ChainServiceJPA.DEFAULT_PAGE;
+import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZE;
+
+@Slf4j
 @Service
 public class ChainsServiceImpl implements ChainsService {
 
-private final ChainsRepository chainsRepository;
+    private static final int DEFAULT_PAGE =0 ;
+    private final ChainsRepository chainsRepository;
 
-private final ChainMapper chainMapper;
+    private final ChainMapper chainMapper;
+
 
     public ChainsServiceImpl(ChainsRepository chainsRepository, ChainMapper chainMapper) {
         this.chainsRepository = chainsRepository;
         this.chainMapper = chainMapper;
+
+        Chain chain1 = Chain.builder()
+                .chainId(UUID.randomUUID())
+                .version(1)
+                .name("Ethereum")
+                .symbol(Symbol.ETH)
+                .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                .category("Smart Contract")
+                .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                .build();
+
+        Chain chain2 = Chain.builder()
+                .chainId(UUID.randomUUID())
+                .version(1)
+                .name("Bitcoin")
+                .symbol(Symbol.BTC)
+                        .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                        .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                        .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                        .category("Smart Contract")
+                        .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                        .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                        .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                        .build();
+
+        Chain chain3 = Chain.builder()
+                .chainId(UUID.randomUUID())
+                .version(1)
+                .name("PulseChain")
+                .symbol(Symbol.PLS)
+                .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                .category("Smart Contract")
+                .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                .build();
+
+        Chain newChain = chainsRepository.save(chain1);
+        Chain newChain2 = chainsRepository.save(chain2);
+        Chain newChain3 = chainsRepository.save(chain3);
+
+
     }
 
     /**
-     * @param c
      * @return
      */
 
     @Override
-    public ChainDto createChain(ChainDto cd) {
-        Chain chain = chainMapper.toEntity(cd);
+    public ChainDto saveNewChain(ChainDto chainDto) {
+        ChainDto savedChain = ChainDto.builder()
+                .chainId(UUID.randomUUID())
+                .version(1)
+                .createdDate(LocalDateTime.now())
+                .updateDate(LocalDateTime.now()).build();
+
+        Chain chain = chainMapper.toEntity(chainDto);
         Chain newChain = chainsRepository.save(chain);
 
         ChainDto newChainDto = chainMapper.toOneDto(newChain);
-         return newChainDto;
+        return newChainDto;
     }
+
     @Override
-    public ChainDto getChain(int id) {
-        Chain chain = chainsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", Integer.toString(id)));
-            return chainMapper.toOneDto(chain);
+    public ChainDto getChain(int chainId) {
+        return null;
+    }
+
+
+    @Override
+    public Optional<ChainDto> getChainByChainId(UUID chainId) {
+        log.debug("Get Chain by Id - in service. Id: " + chainId.toString());
+
+        return Optional.of(chainMapper.toOneDto(chainsRepository.findChainByChainId(chainId))); //
+    }
+
+    @Override
+    public Page<ChainDto> listChains(String name, Symbol symbol, Boolean showInventory, Integer pageNumber, Integer pageSize) {
+        return null;
+    }
+
+    @Override
+    public ChainDto getChain(UUID chainId) {
+        Chain chain = chainsRepository.findById(chainId).orElseThrow(() -> new ResourceNotFoundException("not found", "not found",chainId.toString()));
+        return chainMapper.toOneDto(chain);
     }
 //    @Autowired
 //    public List<Chain> getAllChainsIOwn(String username) {
 //        return null; //(List<Chain>)  chainsRepository.findByUsername(username);
 //    }
 
+//    /**
+//     * @return
+//     */
+//    @Override
+//    public List<ChainDto> findByCategory(String cat) {
+//        List<Chain> chains = chainsRepository.findByCategory(cat);
+//        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
+//        return content;
+//    }
+
+    /**
+     * @param name
+     * @return
+     */
+    @Override
+    public List<ChainDto> findByName(String name) {
+        List<Chain> chains = chainsRepository.findByName(name);
+        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
+        return content;
+    }
     @Override
     public List<ChainDto> getAllChains() {
         List<Chain> chains = chainsRepository.findAll();
@@ -65,6 +167,38 @@ private final ChainMapper chainMapper;
     }
 
     @Override
+    public Page<ChainDto> listChains(String name, Symbol symbol,  Integer pageNumber, Integer pageSize){
+
+
+        PageRequest pageRequest = buildPageRequest(pageNumber, pageSize);
+        Page<Chain> chainPage;
+        if(StringUtils.hasText(name) && symbol == null) {
+            chainPage = listChainsByName(name, pageRequest);
+        } else if (!StringUtils.hasText(name) && symbol != null){
+            chainPage = listChainsBySymbol(symbol, pageRequest); //, pageRequest);
+        } else if (StringUtils.hasText(name) && symbol != null){
+            chainPage = listChainsByNameAndSymbol(name, symbol, pageRequest);
+        } else {
+            chainPage = chainsRepository.findAll(pageRequest);
+        }
+        return chainPage.map(chainMapper::toOneDto);
+
+    }
+    public  Page<Chain>  listChainsByNameAndSymbol(String name, Symbol symbol, Pageable  pageable) {
+        return chainsRepository.findAllByChainNameIsLikeIgnoreCaseAndSymbol("%" + name + "%",
+                symbol, pageable);
+    }
+
+    public Page<Chain>  listChainsByName(String name, Pageable pageable) {
+        return chainsRepository.findAllByChainNameIsLikeIgnoreCase("%" + name + "%", pageable);
+    }
+
+    private Page<Chain>  listChainsBySymbol(Symbol symbol, Pageable pageable) {
+
+        return chainsRepository.findAllBySymbol(symbol, pageable);
+   }
+
+    @Override
     public ChainDto getChainByName(String name) {
 
         List<Chain> c = chainsRepository.findByName(name);
@@ -72,60 +206,122 @@ private final ChainMapper chainMapper;
     }
 
     @Override
-    public ChainDto updateChain(ChainDto change) {
-        try {
-            Chain chainUpdate = chainMapper.toEntity(change);
+    public Optional<ChainDto> updateChainByChainId(UUID chainId, ChainDto change) {
+        return null;
+    }
 
-            chainUpdate = chainsRepository.findById(change.getId()).get();
-            chainUpdate.setName(change.getName());
-            chainUpdate.setSymbol(change.getSymbol());
-            chainUpdate.setDescription(change.getDescription());
-            chainUpdate.setLongDescription(change.getLongDescription());
-            chainUpdate.setChainListIcon(change.getChainListIcon());
-            chainUpdate.setChainId(change.getChainId());
-            chainUpdate.setCategory(change.getCategory());
-            chainUpdate.setRpcUrl(change.getRpcUrl());
-            chainUpdate.setIconUrl(change.getIconUrl());
-            chainUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
+    @Override
+    public Optional<ChainDto> updateChainById(UUID chainId, ChainDto change) {
+        AtomicReference<Optional<ChainDto>> atomicReference = new AtomicReference<>();
 
-            Chain chainDone = chainsRepository.save(chainUpdate);
+             chainsRepository.findById(chainId).ifPresentOrElse(chainUpdate -> {
+                if (StringUtils.hasText(change.getName())) {
+                    chainUpdate.setName(change.getName());
+                }
+                if (StringUtils.hasText(String.valueOf(change.getSymbol()))) {
+                    chainUpdate.setSymbol(change.getSymbol());
+                }
+                if (StringUtils.hasText(change.getDescription())) {
+                    chainUpdate.setDescription(change.getDescription());
+                }
+                if (StringUtils.hasText(change.getLongDescription())) {
+                    chainUpdate.setLongDescription(change.getLongDescription());
+                }
+                if (StringUtils.hasText(change.getChainListIcon())) {
+                    chainUpdate.setChainListIcon(change.getChainListIcon());
+                }
+                if (StringUtils.hasText(change.getCategory())) {
+                    chainUpdate.setCategory(change.getCategory());
+                }
+                if (StringUtils.hasText(change.getRpcUrl())) {
+                    chainUpdate.setRpcUrl(change.getRpcUrl());
+                }
+                if (StringUtils.hasText(change.getIconUrl())) {
+                    chainUpdate.setIconUrl(change.getIconUrl());
+                }
+                if (StringUtils.hasText(change.getBlockExplorerUrl())) {
+                    chainUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
+                }
+                chainUpdate.setVersion(chainUpdate.getVersion() + 1);
+                Chain chainDone = chainsRepository.save(chainUpdate);
+                atomicReference.set(Optional.of(chainMapper.toOneDto(chainDone)));
+            }, () -> {
+                atomicReference.set(Optional.empty());
+             });
 
-            return chainMapper.toOneDto(chainDone);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+        return atomicReference.get();
+    }
+
+
+    @Override
+    public Optional<ChainDto> patchChainById(UUID chainId, ChainDto chain) {
+
+        Chain chainUpdate = chainsRepository.findById(chainId).get();
+        if (StringUtils.hasText(chain.getName())) {
+            chainUpdate.setName(chain.getName());
         }
 
+        if (chain.getSymbol() != null) {
+            chainUpdate.setSymbol(chain.getSymbol());
+        }
+        if (chain.getSymbol() != null) {
+            chainUpdate.setCategory(chain.getCategory());
+        }
+        if (StringUtils.hasText(chain.getDescription())) {
+            chainUpdate.setDescription(chain.getDescription());
+        }
+        if (StringUtils.hasText(chain.getLongDescription())) {
+            chainUpdate.setLongDescription(chain.getLongDescription());
+        }
+        if (StringUtils.hasText(chain.getChainListIcon())) {
+            chainUpdate.setChainListIcon(chain.getChainListIcon());
+        }
+        if (StringUtils.hasText(chain.getRpcUrl())) {
+            chainUpdate.setRpcUrl(chain.getRpcUrl());
+        }
+        if (StringUtils.hasText(chain.getIconUrl())) {
+            chainUpdate.setIconUrl(chain.getIconUrl());
+        }
+        if (StringUtils.hasText(chain.getBlockExplorerUrl())) {
+            chainUpdate.setBlockExplorerUrl(chain.getBlockExplorerUrl());
+        }
+        Chain chainDone = chainsRepository.save(chainUpdate);
+
+        return Optional.of(chainMapper.toOneDto(chainDone));
     }
+
     @Override
-    public boolean deleteChain(int id) {
-        try {
-            chainsRepository.deleteById(id);
+    public boolean deleteById(UUID chainId) {
+        if (chainsRepository.existsById(chainId)) {
+            chainsRepository.deleteById(chainId);
             return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         }
+            return false;
+
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public List<ChainDto> findByCategory(String cat) {
-        List<Chain> chains = chainsRepository.findByCategory(cat);
-        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
-        return content;
-    }
+    public PageRequest buildPageRequest(Integer pageNumber, Integer pageSize) {
+        int queryPageNumber;
+        int queryPageSize;
 
-    /**
-     * @param name
-     * @return
-     */
-    @Override
-    public List<ChainDto> findByName(String name) {
-        List<Chain> chains = chainsRepository.findByName(name);
-        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
-        return content;
+        if (pageNumber != null && pageNumber > 0) {
+            queryPageNumber = pageNumber - 1;
+        } else {
+            queryPageNumber = DEFAULT_PAGE;
+        }
+
+        if (pageSize == null) {
+            queryPageSize = DEFAULT_PAGE_SIZE;
+        } else {
+            if (pageSize > 1000) {
+                queryPageSize = 1000;
+            } else {
+                queryPageSize = pageSize;
+            }
+        }
+
+        Sort sort = Sort.by(Sort.Order.asc("chainName"));
+
+        return PageRequest.of(queryPageNumber, queryPageSize, sort);
     }
 }

@@ -16,6 +16,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter @ToString
+@Builder
 @Entity
 @Table(name = "USERS")
 public class User  implements Serializable{
@@ -48,7 +49,7 @@ public class User  implements Serializable{
 
     @NotBlank
 //    @Email(message="*Must be a valid email address")
-    @Column(name="email"  , unique = true)
+    @Column(name="email", length = 255, unique = true)
     private String email;
     @Column(name="cusurl")
     private String cusUrl;
@@ -69,7 +70,7 @@ public class User  implements Serializable{
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
-    @JoinTable(name="chain_users",
+    @JoinTable(name="CHAIN_USERS",
             joinColumns=@JoinColumn(name="userid"),
             inverseJoinColumns= @JoinColumn(name="chain_id")
     )
@@ -78,6 +79,11 @@ public class User  implements Serializable{
     @ManyToMany(fetch = FetchType.EAGER)
    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+
+    @Builder.Default
+    @OneToMany(mappedBy = "user")
+    private Set<ChainOrder> chainOrders = new HashSet<>();
 
     public User(int userid, String username, String password, String lastname, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType) {
 

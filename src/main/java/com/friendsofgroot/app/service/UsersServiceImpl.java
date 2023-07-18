@@ -11,6 +11,7 @@ import com.friendsofgroot.app.repositories.UsersRepository;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
@@ -112,8 +113,8 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UserDto getUser(int id) {
         try {
-            User u = usersRepository.findById(id).get();
-            return userMapper.toDto(u);
+            return  userMapper
+                    .toDto(usersRepository.findById(id).orElse(null));
         } catch (Exception e) {
             return null;
         }
@@ -213,16 +214,38 @@ public class UsersServiceImpl implements UsersService {
         }
         return change;
     }
+    @Override
+    public Optional<UserDto> updateUserById(Integer userId, UserDto user) {
+        AtomicReference<Optional<UserDto>> atomicReference = new AtomicReference<>();
 
+        usersRepository.findById(userId).ifPresentOrElse(foundUser -> {
+            foundUser.setUsername(user.getUsername());
+            atomicReference.set(Optional.of(userMapper
+                    .toDto(usersRepository.save(foundUser))));
+        }, () -> {
+            atomicReference.set(Optional.empty());
+        });
+
+        return atomicReference.get();
+    }
     @Override
     public Optional<UserDto> patchUserById(Integer userId, UserDto user) {
-        User existing = usersRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", userId.toString()));
+        AtomicReference<Optional<UserDto>> atomicReference = new AtomicReference<>();
 
-        if (!StringUtils.hasText(existing.getEmail())) {
-            existing.setEmail(user.getEmail() != null ? user.getEmail() : existing.getEmail());
-        }
+        usersRepository.findById(userId).ifPresentOrElse(foundUser -> {
+            if (StringUtils.hasText(user.getUsername())){
+                foundUser.setUsername(user.getUsername());
+            }
+            if (StringUtils.hasText(user.getEmail())){
+                foundUser.setEmail(user.getEmail());
+            }
+            atomicReference.set(Optional.of(userMapper
+                    .toDto(usersRepository.save(foundUser))));
+        }, () -> {
+            atomicReference.set(Optional.empty());
+        });
 
-        return Optional.of(userMapper.toDto(usersRepository.save(existing)));
+        return atomicReference.get();
     }
     /**
      * @param email

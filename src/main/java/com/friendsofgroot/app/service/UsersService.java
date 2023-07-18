@@ -28,7 +28,9 @@ public interface UsersService {
 	public List<User> getUsersWithCoins();
 	public UserDto getUserByPassword(String username, String password);
 
-    Optional<UserDto> patchUserById(Integer userId, UserDto user);
+	Optional<UserDto> updateUserById(Integer userId, UserDto user);
+
+	Optional<UserDto> patchUserById(Integer userId, UserDto user);
 
     public boolean deleteUser(String username);
 

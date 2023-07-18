@@ -25,17 +25,17 @@ class ChainRepositoryTest {
 
     @Test
     void testGetChainListByName() {
-        Page<Chain> list = chainRepository.findAllByChainNameIsLikeIgnoreCase("%IPA%", null);
+        Page<Chain> list = chainRepository.findAllByNameIsLikeIgnoreCase("%IPA%", null);
 
         assertThat(list.getContent().size()).isEqualTo(336);
     }
 
     @Test
-    void testSaveChainNameTooLong() {
+    void testSaveNameTooLong() {
 
         assertThrows(ConstraintViolationException.class, () -> {
             Chain savedChain = chainRepository.save(Chain.builder()
-                    .chainName("My Chain 0123345678901233456789012334567890123345678901233456789012334567890123345678901233456789")
+                    .name("My Chain 0123345678901233456789012334567890123345678901233456789012334567890123345678901233456789")
                     .symbol(Symbol.PALE_ALE)
                     .upc("234234234234")
                     .price(new BigDecimal("11.99"))
@@ -48,7 +48,7 @@ class ChainRepositoryTest {
     @Test
     void testSaveChain() {
         Chain savedChain = chainRepository.save(Chain.builder()
-                        .chainName("My Chain")
+                        .name("My Chain")
                         .symbol(Symbol.PALE_ALE)
                         .upc("234234234234")
                         .price(new BigDecimal("11.99"))

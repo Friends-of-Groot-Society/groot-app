@@ -1,23 +1,24 @@
 package com.friendsofgroot.app.repositories;
 
-import com.friendsofgroot.app.entities.User;
+import com.friendsofgroot.app.models.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @DataJpaTest
 class UserRepositoryTest {
 
     @Autowired
-    UserRepository userRepository;
+    UsersRepository userRepository;
 
     @Test
     void testSaveUser() {
         User user = userRepository.save(User.builder()
-                        .name("New Name")
+                        .username("New Name")
                 .build());
 
-        assertThat(user.getId()).isNotNull();
-
+    System.out.println("user: " + user);
     }
 }

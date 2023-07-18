@@ -25,6 +25,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -52,12 +54,21 @@ public class ChainOrderLine {
     private Long version;
 
     @CreationTimestamp
-    @Column(updatable = false)
-    private Timestamp createdDate;
+    @Column(name = "created_date", nullable = false, updatable = false)
+    private Date dateCreated;
+
+    @CreationTimestamp
+    @Column(name = "date_created", nullable = false, updatable = false)
+    private LocalDateTime createdDate;
+
 
     @UpdateTimestamp
-    private Timestamp lastModifiedDate;
+    @Column(name = "last_updated")
+    private LocalDateTime lastUpdated;
 
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Timestamp updatedAt;
     public boolean isNew() {
         return this.id == null;
     }
@@ -68,6 +79,4 @@ public class ChainOrderLine {
     @ManyToOne
     private Chain chain;
 
-    private Integer orderQuantity = 0;
-    private Integer quantityAllocated = 0;
 }

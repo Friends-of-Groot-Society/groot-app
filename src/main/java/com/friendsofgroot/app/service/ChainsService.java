@@ -32,7 +32,8 @@ public interface ChainsService {
     ChainDto  getChainByName(String name);
 
     public ChainDto updateChain(ChainDto change);
-    Optional<ChainDto>  updateChainById(UUID chainId, ChainDto chain);
+
+    Optional<ChainDto> updateChainByChainId(UUID chainId, ChainDto change);
 
     Optional<ChainDto> patchChainById(UUID chainId, ChainDto chain);
     boolean deleteById(UUID chainId);

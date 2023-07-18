@@ -17,7 +17,6 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-import static com.friendsofgroot.app.service.ChainServiceJPA.DEFAULT_PAGE;
 import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZE;
 
 @Slf4j
@@ -92,8 +91,9 @@ public class ChainsServiceImpl implements ChainsService {
         ChainDto savedChain = ChainDto.builder()
                 .chainId(UUID.randomUUID())
                 .version(1)
+                .dateCreated(Date.from(java.time.ZonedDateTime.now().toInstant()))
                 .createdDate(LocalDateTime.now())
-                .updateDate(LocalDateTime.now()).build();
+                .build();
 
         Chain chain = chainMapper.toEntity(chainDto);
         Chain newChain = chainsRepository.save(chain);
@@ -113,11 +113,6 @@ public class ChainsServiceImpl implements ChainsService {
         log.debug("Get Chain by Id - in service. Id: " + chainId.toString());
 
         return Optional.of(chainMapper.toOneDto(chainsRepository.findChainByChainId(chainId))); //
-    }
-
-    @Override
-    public Page<ChainDto> listChains(String name, Symbol symbol, Boolean showInventory, Integer pageNumber, Integer pageSize) {
-        return null;
     }
 
     @Override
@@ -185,12 +180,12 @@ public class ChainsServiceImpl implements ChainsService {
 
     }
     public  Page<Chain>  listChainsByNameAndSymbol(String name, Symbol symbol, Pageable  pageable) {
-        return chainsRepository.findAllByChainNameIsLikeIgnoreCaseAndSymbol("%" + name + "%",
+        return chainsRepository.findAllByNameIsLikeIgnoreCaseAndSymbol("%" + name + "%",
                 symbol, pageable);
     }
 
     public Page<Chain>  listChainsByName(String name, Pageable pageable) {
-        return chainsRepository.findAllByChainNameIsLikeIgnoreCase("%" + name + "%", pageable);
+        return chainsRepository.findAllByNameIsLikeIgnoreCase("%" + name + "%", pageable);
     }
 
     private Page<Chain>  listChainsBySymbol(Symbol symbol, Pageable pageable) {
@@ -206,12 +201,13 @@ public class ChainsServiceImpl implements ChainsService {
     }
 
     @Override
-    public Optional<ChainDto> updateChainByChainId(UUID chainId, ChainDto change) {
+    public ChainDto updateChain(ChainDto change) {
         return null;
     }
 
+
     @Override
-    public Optional<ChainDto> updateChainById(UUID chainId, ChainDto change) {
+    public Optional<ChainDto> updateChainByChainId(UUID chainId, ChainDto change) {
         AtomicReference<Optional<ChainDto>> atomicReference = new AtomicReference<>();
 
              chainsRepository.findById(chainId).ifPresentOrElse(chainUpdate -> {
@@ -320,7 +316,7 @@ public class ChainsServiceImpl implements ChainsService {
             }
         }
 
-        Sort sort = Sort.by(Sort.Order.asc("chainName"));
+        Sort sort = Sort.by(Sort.Order.asc("name"));
 
         return PageRequest.of(queryPageNumber, queryPageSize, sort);
     }

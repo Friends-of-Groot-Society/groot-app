@@ -18,10 +18,10 @@ import java.util.Map;
 @Table(name = "NFT_REF")
 public class NftRef extends BaseModel   {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private int id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "id", nullable = false)
+//    private int id;
     private String name;
     private String owner;
     private String email;

@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.models.dto;
 
 import com.opencsv.bean.CsvBindByName;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,40 +18,41 @@ public class ChainCSVRecord {
     private Integer row;
 
     @CsvBindByName(column = "count.x")
-    private Integer count;
+    private Integer version;
 
     @CsvBindByName
-    private String abv;
+    private String name;
 
     @CsvBindByName
-    private String ibu;
+    private  Symbol symbol;
+
+    @CsvBindByName
+    private String description;
+
+    @CsvBindByName
+    private String longDescription;
+
+    @CsvBindByName
+    private String iconUrl;
+
+    @CsvBindByName(column = "chain_list_icon")
+    private String chainListIcon;
+
+    @CsvBindByName(column = "rpc_url")
+    private String rpcUrl;
 
     @CsvBindByName
     private Integer id;
 
-    @CsvBindByName
-    private String chain;
+    @CsvBindByName(column = "block_explorer_url")
+    private String blockExplorerUrl;
+
 
     @CsvBindByName
-    private String style;
-
-    @CsvBindByName(column = "brewery_id")
-    private Integer breweryId;
-
-    @CsvBindByName
-    private Float ounces;
-
-    @CsvBindByName
-    private String style2;
+    private Float price;
 
     @CsvBindByName(column = "count.y")
     private String count_y;
-
-    @CsvBindByName
-    private String city;
-
-    @CsvBindByName
-    private String state;
 
     @CsvBindByName
     private String label;

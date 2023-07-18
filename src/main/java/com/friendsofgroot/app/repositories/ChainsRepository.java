@@ -38,17 +38,17 @@ public interface ChainsRepository extends JpaRepository<Chain, UUID> {
     public List<ChartData> getChainCategories(); //ChartData is a custom class`
 
 
-//    @Query("SELECT name as chainName, start_date as startDate, end_date as endDate"
+//    @Query("SELECT name as name, start_date as startDate, end_date as endDate"
 //            + " FROM chain WHERE start_date is not null")
 //    public List<TimeChartData> getTimeData();
 
     List<Chain> findByName(String name);
 
-    Page<Chain> findAllByChainNameIsLikeIgnoreCase(String chainName, Pageable pageable);
+    Page<Chain> findAllByNameIsLikeIgnoreCase(String name, Pageable pageable);
 
     Page<Chain> findAllBySymbol(Symbol symbol, Pageable pageable);
 
-    Page<Chain> findAllByChainNameIsLikeIgnoreCaseAndSymbol(String chainName, Symbol symbol, Pageable pageable);
+    Page<Chain> findAllByNameIsLikeIgnoreCaseAndSymbol(String name, Symbol symbol, Pageable pageable);
 
 
     Chain findChainByChainId(UUID chainId);

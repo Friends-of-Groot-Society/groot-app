@@ -31,6 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -115,7 +116,7 @@ class ChainsControllerIT {
     @Test
     void tesListChainsByName() throws Exception {
         mockMvc.perform(get(ChainsController.CHAIN_PATH)
-                .queryParam("chainName", "IPA")
+                .queryParam("name", "BNB")
                 .queryParam("pageSize", "800"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.size()", is(336)));
@@ -126,7 +127,7 @@ class ChainsControllerIT {
         Chain chain = chainRepository.findAll().get(0);
 
         Map<String, Object> chainMap = new HashMap<>();
-        chainMap.put("chainName", "New Name 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
+        chainMap.put("name", "New Name 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
 
         mockMvc.perform(patch(ChainsController.CHAIN_PATH_ID, chain.getId())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -170,14 +171,14 @@ class ChainsControllerIT {
         ChainDto chainDto = chainMapper.toOneDto(chain);
         chainDto.setId(null);
         chainDto.setVersion(null);
-        final String chainName = "UPDATED";
-        chainDto.setName(chainName);
+        final String name = "UPDATED";
+        chainDto.setName(name);
 
         ResponseEntity responseEntity = chainController.updateById(chain.getChainId(), chainDto);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(204));
 
         Chain updatedChain = chainRepository.findById(chain.getChainId()).get();
-        assertThat(updatedChain.getName()).isEqualTo(chainName);
+        assertThat(updatedChain.getName()).isEqualTo(name);
     }
 
     @Rollback
@@ -202,7 +203,7 @@ class ChainsControllerIT {
 
     @Test
     void testChainIdNotFound() {
-        assertThrows(NotFoundException.class, () -> {
+        assertThrows(ResourceNotFoundException.class, () -> {
             chainController.getChainByChainId(UUID.randomUUID());
         });
     }

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@RepositoryRestResource(collectionResourceRel="users", path="users")
+@RepositoryRestResource(collectionResourceRel="user", path="users")
 public interface UsersRepository extends JpaRepository<User, Integer> {
 
     // MULTIPLE
@@ -21,9 +21,12 @@ public interface UsersRepository extends JpaRepository<User, Integer> {
 
 
     // SINGULAR
+
     User findByUsernameAndPassword(String username, String password);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
+
+
     Optional<User> findByEmail(String email);
     Optional<User> findByEmailAndPassword(String email, String password);
 

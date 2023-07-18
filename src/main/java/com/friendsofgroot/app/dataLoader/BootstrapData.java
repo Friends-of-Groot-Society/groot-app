@@ -4,8 +4,8 @@ import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.dto.ChainCSVRecord;
 import com.friendsofgroot.app.models.dto.Symbol;
-import com.friendsofgroot.app.repositories.ChainRepository;
-import com.friendsofgroot.app.repositories.UserRepository;
+import com.friendsofgroot.app.repositories.ChainsRepository;
+import com.friendsofgroot.app.repositories.UsersRepository;
 import com.friendsofgroot.app.service.ChainCsvService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +17,9 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -28,8 +31,8 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class BootstrapData implements CommandLineRunner {
-    private final ChainRepository chainRepository;
-    private final UserRepository userRepository;
+    private final ChainsRepository chainRepository;
+    private final UsersRepository userRepository;
     private final ChainCsvService chainCsvService;
 
     @Transactional
@@ -42,30 +45,37 @@ public class BootstrapData implements CommandLineRunner {
 
     private void loadCsvData() throws FileNotFoundException {
         if (chainRepository.count() < 10){
-            File file = ResourceUtils.getFile("classpath:csvdata/chains.csv");
+            File file = ResourceUtils.getFile("classpath:data/chains.csv");
 
             List<ChainCSVRecord> recs = chainCsvService.convertCSV(file);
 
             recs.forEach(chainCSVRecord -> {
-                Symbol symbol = switch (chainCSVRecord.getSymbol()) {
-                    case "American Pale Lager" -> Symbol.LAGER;
-                    case "American Pale Ale (APA)", "American Black Ale", "Belgian Dark Ale", "American Blonde Ale" ->
-                            Symbol.ALE;
-                    case "American IPA", "American Double / Imperial IPA", "Belgian IPA" -> Symbol.IPA;
-                    case "American Porter" -> Symbol.PORTER;
-                    case "Oatmeal Stout", "American Stout" -> Symbol.STOUT;
-                    case "Saison / Farmhouse Ale" -> Symbol.SAISON;
-                    case "Fruit / Vegetable Chain", "Winter Warmer", "Berliner Weissbier" -> Symbol.WHEAT;
-                    case "English Pale Ale" -> Symbol.PALE_ALE;
-                    default -> Symbol.PILSNER;
+                Symbol symbol = switch (chainCSVRecord.getSymbol().toString()) {
+                    case "Ethereum" -> Symbol.ETH;
+                    case "Wrapped Bitcoin", "Bitcoin" ->
+                            Symbol.BTC;
+                    case "ChainLink", "Ethereum from Polygon", "Polygon" -> Symbol.MATIC;
+                    case "Pulsechain", "Hex from Pulsechain" -> Symbol.PLS;
+                    case "Solana Chain", "Solana" -> Symbol.SOL;
+                    case "Binance Chain" -> Symbol.BNB;
+                    case "avalanche", "Avalanche Mainnet", "Avalanche" -> Symbol.AVAX;
+                    case "XRP", "Ripple" -> Symbol.XRP;
+                    default -> Symbol.ETH;
                 };
 
                 chainRepository.save(Chain.builder()
-                                .chainName(StringUtils.abbreviate(chainCSVRecord.getChain(), 50))
+                                .name(StringUtils.abbreviate(chainCSVRecord.getName(), 250))
                                 .symbol(symbol)
-                                .price(BigDecimal.TEN)
-                                .upc(chainCSVRecord.getRow().toString())
-                                .quantityOnHand(chainCSVRecord.getCount())
+                                .iconUrl(chainCSVRecord.getIconUrl())
+                                .description(chainCSVRecord.getDescription())
+                                .longDescription(chainCSVRecord.getLongDescription())
+//                                .category(chainCSVRecord.getCategory())
+                                .chainListIcon(chainCSVRecord.getChainListIcon())
+                                .rpcUrl(chainCSVRecord.getRpcUrl())
+                                .id(chainCSVRecord.getId())
+                                .blockExplorerUrl(chainCSVRecord.getBlockExplorerUrl())
+                                .dateCreated(new Date(2021,10,10))
+                                .lastUpdated(LocalDateTime.now())
                         .build());
             });
         }
@@ -73,34 +83,36 @@ public class BootstrapData implements CommandLineRunner {
 
     private void loadChainData() {
         if (chainRepository.count() == 0){
-            Chain chain1 = Chain.builder()
-                    .chainName("Galaxy Cat")
-                    .symbol(Symbol.PALE_ALE)
-                    .upc("12356")
-                    .price(new BigDecimal("12.99"))
-                    .quantityOnHand(122)
-                    .createdDate(LocalDateTime.now())
-                    .updateDate(LocalDateTime.now())
+            Chain  chain1 = Chain.builder()
+                    .name("Galaxy Cat")
+                    .symbol(Symbol.PLS)
+                    .dateCreated(Date.valueOf(LocalDate.now()))
+                    .createdDate( (LocalDateTime.now()))
+                    .lastUpdated(LocalDateTime.now())
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
 
             Chain chain2 = Chain.builder()
-                    .chainName("Crank")
-                    .symbol(Symbol.PALE_ALE)
-                    .upc("12356222")
-                    .price(new BigDecimal("11.99"))
-                    .quantityOnHand(392)
-                    .createdDate(LocalDateTime.now())
-                    .updateDate(LocalDateTime.now())
+                    .name("Crank")
+                    .symbol(Symbol.ETH)
+//                    .price(new BigDecimal("1131.199"))
+//                    .quantityOnHand(392))
+                    .dateCreated(Date.valueOf(LocalDate.now()))
+                    .createdDate( (LocalDateTime.now()))
+                    .lastUpdated(LocalDateTime.now())
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
 
             Chain chain3 = Chain.builder()
-                    .chainName("Sunshine City")
-                    .symbol(Symbol.IPA)
-                    .upc("12356")
-                    .price(new BigDecimal("13.99"))
-                    .quantityOnHand(144)
+                    .name("Sunshine City")
+                    .symbol(Symbol.SOL)
+                    .id(12356)
+//                    .price(new BigDecimal("1313.3199"))
+//                    .quantityOnHand(144)
+                    .dateCreated(Date.valueOf(LocalDate.now()))
                     .createdDate(LocalDateTime.now())
-                    .updateDate(LocalDateTime.now())
+                    .lastUpdated(LocalDateTime.now())
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
 
             chainRepository.save(chain1);
@@ -114,27 +126,24 @@ public class BootstrapData implements CommandLineRunner {
 
         if (userRepository.count() == 0) {
             User user1 = User.builder()
-                    .id(UUID.randomUUID())
-                    .name("User 1")
-                    .version(1)
-                    .createdDate(LocalDateTime.now())
-                    .updateDate(LocalDateTime.now())
+                    .userId((int) Math.floor(Math.random()))
+                    .username("User 3")
+//                    .createdDate(LocalDateTime.now())
+//                    .updateDate(LocalDateTime.now())
                     .build();
 
             User user2 = User.builder()
-                    .id(UUID.randomUUID())
-                    .name("User 2")
-                    .version(1)
-                    .createdDate(LocalDateTime.now())
-                    .updateDate(LocalDateTime.now())
+                    .userId((int) Math.floor(Math.random()))
+                    .username("User 3")
+//                    .createdDate(LocalDateTime.now())
+//                    .updateDate(LocalDateTime.now())
                     .build();
 
             User user3 = User.builder()
-                    .id(UUID.randomUUID())
-                    .name("User 3")
-                    .version(1)
-                    .createdDate(LocalDateTime.now())
-                    .updateDate(LocalDateTime.now())
+                    .userId((int) Math.floor(Math.random()))
+                    .username("User 3")
+//                    .createdDate(LocalDateTime.now())
+//                    .updateDate(LocalDateTime.now())
                     .build();
 
             userRepository.saveAll(Arrays.asList(user1, user2, user3));

@@ -8,11 +8,16 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -25,7 +30,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "CHAIN")
-public class Chain  extends BaseModel implements Serializable  {
+public class Chain implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -46,13 +51,13 @@ public class Chain  extends BaseModel implements Serializable  {
     @Column(length = 250)
     private String name;
 
-    @Column(name="symbol")
+    @Column(name = "symbol")
     private Symbol symbol;
 
     private String description;
     @Column(name = "long_description")
     private String longDescription;
-    @Column(name= "icon_url")
+    @Column(name = "icon_url")
     private String iconUrl;
 
     private String category;
@@ -63,14 +68,14 @@ public class Chain  extends BaseModel implements Serializable  {
 
     @Column(name = "block_explorer_url")
     private String blockExplorerUrl;
-
+    private Integer id;
 
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
-    @JoinTable(name="CHAIN_USERS",
-            joinColumns=@JoinColumn(name="CHAIN_ID"),
-            inverseJoinColumns= @JoinColumn(name="userid")
+    @JoinTable(name = "CHAIN_USERS",
+            joinColumns = @JoinColumn(name = "CHAIN_ID"),
+            inverseJoinColumns = @JoinColumn(name = "userid")
     )
     @JsonIgnore
     private List<User> users;
@@ -84,4 +89,22 @@ public class Chain  extends BaseModel implements Serializable  {
             joinColumns = @JoinColumn(name = "chain_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
+
+
+    @CreationTimestamp
+    @Column(name = "created_date", nullable = false, updatable = false)
+    private Date dateCreated;
+
+    @CreationTimestamp
+    @Column(name = "date_created", nullable = false, updatable = false)
+    private LocalDateTime createdDate;
+
+
+    @UpdateTimestamp
+    @Column(name = "last_updated")
+    private LocalDateTime lastUpdated;
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Timestamp updatedAt;
 }

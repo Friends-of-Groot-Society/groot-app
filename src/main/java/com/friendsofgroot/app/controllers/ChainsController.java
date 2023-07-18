@@ -14,8 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-import com.friendsofgroot.app.mapper.ChainMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -86,7 +84,7 @@ public class ChainsController {
     /////////////////////////////// PUT
     @PutMapping(CHAIN_PATH_ID)
     public ResponseEntity updateById(@PathVariable("chainId") UUID chainId, @Validated @RequestBody ChainDto chain) {
-        if (chainService.updateChainById(chainId, chain).isEmpty()) {
+        if (chainService.updateChainByChainId(chainId, chain).isEmpty()) {
             throw new ResourceNotFoundException();
         }
         return new ResponseEntity(HttpStatus.NO_CONTENT);

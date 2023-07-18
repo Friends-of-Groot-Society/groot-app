@@ -30,13 +30,13 @@ public class BaseModel implements Serializable {
         @Column(name = "date_created", nullable = false, updatable = false)
         private Date dateCreated;
 
-        @UpdateTimestamp
-        @Column(name = "last_updated")
-        private LocalDateTime lastUpdated;
 
         @Column(name = "updated_at")
         @UpdateTimestamp
         private Timestamp updatedAt;
 
+        @UpdateTimestamp
+        @Column(name = "last_updated")
+        private LocalDateTime lastUpdated;
 
 }

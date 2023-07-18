@@ -43,7 +43,7 @@ public class NftDAOimpl  implements NftDAO {
 		return null;
 	}
 
-//////////////GETALL (CUSTOMER VIEW)  ///////////////////
+//////////////GETALL (USER VIEW)  ///////////////////
 	public List<Nft> getAllNftsCust() {    // *User View of NftLot (Only unpurchased nfts).
 
 		return null;

@@ -1,4 +1,4 @@
-package com.friendsofgroot.app.config.security;
+package com.friendsofgroot.app.dataLoader;
 
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.repositories.UsersRepository;

@@ -22,9 +22,9 @@ public class BaseModel implements Serializable {
         @Serial
         private static final long serialVersionUID = 1L;
 
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name = "id" )
-        private Integer id;
+        @Version
+        private Long version;
+
 
         @CreationTimestamp
         @Column(name = "date_created", nullable = false, updatable = false)

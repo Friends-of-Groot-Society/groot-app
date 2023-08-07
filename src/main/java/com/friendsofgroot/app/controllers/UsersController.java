@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.controllers;
 
+import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.dto.LoginDto;
 import com.friendsofgroot.app.models.dto.RegisterDto;
 import com.friendsofgroot.app.models.dto.UserDto;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.friendsofgroot.app.service.UsersService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -79,16 +81,9 @@ public class UsersController {
 //////////////////////////////////////////////////////////////
      //// GENERAL API for user management ////
     /////////////////////////////////////////////////////////
-    @PostMapping("/users")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return new ResponseEntity<>(
-                usersService.createUser( userDto) ,
-                 HttpStatus.CREATED);
-    }
-
     @PostMapping(USER_PATH)
-    public ResponseEntity handlePost(@RequestBody UserDto user){
-        UserDto savedUser = usersService.createUser(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        UserDto savedUser = usersService.createUser(userDto);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", USER_PATH + "/" + savedUser.getUserId());
@@ -108,9 +103,14 @@ public class UsersController {
 
     @GetMapping(USER_PATH)
     public ResponseEntity<List<UserDto>> getUsers() {
-        return new ResponseEntity<>(
-                        usersService.getUsers(),
-                HttpStatus.OK);
+        List<UserDto> users = new ArrayList<>();
+        try {
+             users =  usersService.getUsers();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(  users,  HttpStatus.OK);
     }
 
     @PutMapping(value=USER_PATH, consumes="application/json")  // userId in body

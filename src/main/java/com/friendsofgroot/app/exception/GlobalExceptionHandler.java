@@ -1,10 +1,12 @@
 package com.friendsofgroot.app.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.TransactionSystemException;
+import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,10 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.nio.file.AccessDeniedException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
@@ -58,8 +57,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 webRequest.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException e){
+        List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
 
-    /// Method from ResponseEntityExceptionHandler
+        e.getConstraintViolations().forEach(constraintViolation -> {
+            errors.add(constraintViolation.getPropertyPath() + " : " + constraintViolation.getMessage());
+        });
+
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity<List> handleBindException(BindException ex){
+        return new ResponseEntity(ex.getAllErrors(), HttpStatus.BAD_REQUEST);
+    }
+    /// handle Bind Errors Method from ResponseEntityExceptionHandler
     @Override
 //    @ExceptionHandler(MethodArgumentNotValidException.class)
     protected  ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException notValidException,
@@ -75,16 +88,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    ResponseEntity handleBindErrors(MethodArgumentNotValidException exception){
-
-        List errorList = exception.getFieldErrors().stream()
-                .map(fieldError -> {
-                    Map<String, String > errorMap = new HashMap<>();
-                    errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-                    return errorMap;
-                }).collect(Collectors.toList());
-
-        return ResponseEntity.badRequest().body(errorList);
-    }
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    ResponseEntity<Object> handleBindErrors(MethodArgumentNotValidException exception){
+//
+//        List errorList = exception.getFieldErrors().stream()
+//                .map(fieldError -> {
+//                    Map<String, String > errorMap = new HashMap<>();
+//                    errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
+//                    return errorMap;
+//                }).collect(Collectors.toList());
+//
+//        return ResponseEntity.badRequest().body(errorList);
+//    }
 }

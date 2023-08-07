@@ -9,6 +9,7 @@ import com.friendsofgroot.app.repositories.UsersRepository;
 import com.friendsofgroot.app.service.ChainCsvService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,127 +27,198 @@ import java.util.List;
 import java.util.UUID;
 
 /**
-*
+ *
  */
 @Component
 @RequiredArgsConstructor
 public class BootstrapData implements CommandLineRunner {
-    private final ChainsRepository chainRepository;
-    private final UsersRepository userRepository;
-    private final ChainCsvService chainCsvService;
+    @Autowired
+    private   ChainsRepository chainRepository;
+    @Autowired
+    private   UsersRepository usersRepository;
+    @Autowired
+    private   ChainCsvService chainCsvService;
 
-    @Transactional
+    public BootstrapData(ChainsRepository chainRepository, UsersRepository usersRepository, ChainCsvService chainCsvService) {
+        this.chainRepository = chainRepository;
+        this.usersRepository = usersRepository;
+        this.chainCsvService = chainCsvService;
+    }
+//    @Transactional
     @Override
     public void run(String... args) throws Exception {
-        loadChainData();
-        loadCsvData();
-        loadUserData();
+//        loadChainData();
+//        loadCsvData();
+//        loadUserData();
     }
 
     private void loadCsvData() throws FileNotFoundException {
-        if (chainRepository.count() < 10){
+        if (chainRepository.count() < 1) {
             File file = ResourceUtils.getFile("classpath:data/chains.csv");
 
             List<ChainCSVRecord> recs = chainCsvService.convertCSV(file);
 
             recs.forEach(chainCSVRecord -> {
                 Symbol symbol = switch (chainCSVRecord.getSymbol().toString()) {
-                    case "Ethereum" -> Symbol.ETH;
-                    case "Wrapped Bitcoin", "Bitcoin" ->
-                            Symbol.BTC;
-                    case "ChainLink", "Ethereum from Polygon", "Polygon" -> Symbol.MATIC;
-                    case "Pulsechain", "Hex from Pulsechain" -> Symbol.PLS;
-                    case "Solana Chain", "Solana" -> Symbol.SOL;
-                    case "Binance Chain" -> Symbol.BNB;
-                    case "avalanche", "Avalanche Mainnet", "Avalanche" -> Symbol.AVAX;
-                    case "XRP", "Ripple" -> Symbol.XRP;
+                    case "ETH", "Ethereum" -> Symbol.ETH;
+                    case "BTC", "Wrapped Bitcoin", "Bitcoin" -> Symbol.BTC;
+                    case "MATIC", "ChainLink", "Ethereum from Polygon", "Polygon" -> Symbol.MATIC;
+                    case "PLS", "Pulsechain", "Hex from Pulsechain" -> Symbol.PLS;
+                    case "SOL", "Solana Chain", "Solana" -> Symbol.SOL;
+                    case "BNB", "Binance Chain" -> Symbol.BNB;
+                    case "AVAX", "avalanche", "Avalanche Mainnet", "Avalanche" -> Symbol.AVAX;
+                    case "XRP", "xrp", "Ripple" -> Symbol.XRP;
                     default -> Symbol.ETH;
                 };
 
                 chainRepository.save(Chain.builder()
-                                .name(StringUtils.abbreviate(chainCSVRecord.getName(), 250))
-                                .symbol(symbol)
-                                .iconUrl(chainCSVRecord.getIconUrl())
-                                .description(chainCSVRecord.getDescription())
-                                .longDescription(chainCSVRecord.getLongDescription())
-//                                .category(chainCSVRecord.getCategory())
-                                .chainListIcon(chainCSVRecord.getChainListIcon())
-                                .rpcUrl(chainCSVRecord.getRpcUrl())
-                                .id(chainCSVRecord.getId())
-                                .blockExplorerUrl(chainCSVRecord.getBlockExplorerUrl())
-                                .dateCreated(new Date(2021,10,10))
-                                .lastUpdated(LocalDateTime.now())
+                        .name(StringUtils.abbreviate(chainCSVRecord.getName(), 250))
+                        .symbol(symbol)
+                        .description(chainCSVRecord.getDescription())
+                        .longDescription(chainCSVRecord.getLongDescription())
+                        .iconUrl(chainCSVRecord.getIconUrl())
+                        .category(chainCSVRecord.getCategory())
+                        .chainListIcon(chainCSVRecord.getChainListIcon())
+                        .rpcUrl(chainCSVRecord.getRpcUrl())
+                        .id(chainCSVRecord.getId())
+                        .blockExplorerUrl(chainCSVRecord.getBlockExplorerUrl())
+                        .dateCreated(new Date(2021, 10, 10))
+                        .createdDate(LocalDateTime.now())
+                        .lastUpdated(LocalDateTime.now())
+                        .updatedAt(new Timestamp(System.currentTimeMillis()))
                         .build());
             });
         }
     }
 
     private void loadChainData() {
-        if (chainRepository.count() == 0){
-            Chain  chain1 = Chain.builder()
-                    .name("Galaxy Cat")
+        Chain chain = chainRepository.count() == 0 ? null : chainRepository.findAll().get(0);
+        if (chain != null) {
+            Chain pls = Chain.builder()
+                    .name("Pulsechain")
                     .symbol(Symbol.PLS)
-                    .dateCreated(Date.valueOf(LocalDate.now()))
-                    .createdDate( (LocalDateTime.now()))
-                    .lastUpdated(LocalDateTime.now())
-                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
-                    .build();
-
-            Chain chain2 = Chain.builder()
-                    .name("Crank")
-                    .symbol(Symbol.ETH)
-//                    .price(new BigDecimal("1131.199"))
-//                    .quantityOnHand(392))
-                    .dateCreated(Date.valueOf(LocalDate.now()))
-                    .createdDate( (LocalDateTime.now()))
-                    .lastUpdated(LocalDateTime.now())
-                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
-                    .build();
-
-            Chain chain3 = Chain.builder()
-                    .name("Sunshine City")
-                    .symbol(Symbol.SOL)
-                    .id(12356)
-//                    .price(new BigDecimal("1313.3199"))
-//                    .quantityOnHand(144)
+                    .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .category("Smart Contract")
+                    .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
                     .dateCreated(Date.valueOf(LocalDate.now()))
                     .createdDate(LocalDateTime.now())
                     .lastUpdated(LocalDateTime.now())
                     .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .id(12356)
                     .build();
 
-            chainRepository.save(chain1);
-            chainRepository.save(chain2);
-            chainRepository.save(chain3);
+            Chain eth = Chain.builder()
+                    .name("Ethereum")
+                    .symbol(Symbol.ETH)
+                    .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .category("Smart Contract")
+                    .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .dateCreated(Date.valueOf(LocalDate.now()))
+                    .createdDate((LocalDateTime.now()))
+                    .lastUpdated(LocalDateTime.now())
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .id(12356)
+                    .build();
+
+            Chain sol = Chain.builder()
+                    .name("Solana")
+                    .symbol(Symbol.SOL)
+                    .id(12356)
+                    .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .category("Smart Contract")
+                    .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .dateCreated(Date.valueOf(LocalDate.now()))
+                    .createdDate(LocalDateTime.now())
+                    .lastUpdated(LocalDateTime.now())
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .id(12356)
+                    .build();
+
+            Chain matic = Chain.builder()
+                    .chainId(UUID.randomUUID())
+                    .version(1)
+                    .name("Polygon")
+                    .symbol(Symbol.MATIC)
+                    .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .category("Smart Contract")
+                    .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .dateCreated(Date.valueOf(LocalDate.now()))
+                    .createdDate(LocalDateTime.now())
+                    .lastUpdated(LocalDateTime.now())
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .id(12356)
+                    .build();
+
+            Chain btc = Chain.builder()
+                    .chainId(UUID.randomUUID())
+                    .version(1)
+                    .name("Bitcoin")
+                    .symbol(Symbol.BTC)
+                    .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .category("Smart Contract")
+                    .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
+                    .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
+                    .dateCreated(Date.valueOf(LocalDate.now()))
+                    .createdDate(LocalDateTime.now())
+                    .lastUpdated(LocalDateTime.now())
+                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+                    .id(12356)
+                    .build();
+
+
+            chainRepository.save(pls);
+            chainRepository.save(eth);
+            chainRepository.save(sol);
+            chainRepository.save(matic);
+            chainRepository.save(btc);
         }
 
     }
 
     private void loadUserData() {
 
-        if (userRepository.count() == 0) {
+        if (usersRepository.count() == 0) {
             User user1 = User.builder()
-                    .userId((int) Math.floor(Math.random()))
-                    .username("User 3")
-//                    .createdDate(LocalDateTime.now())
-//                    .updateDate(LocalDateTime.now())
+                    .userId((int) Math.floor(Math.random() * 100))
+                    .username("thomasm1.maestas@gmail.com")
+                    .email("thomasm1.maestas@gmail.com")
                     .build();
 
             User user2 = User.builder()
-                    .userId((int) Math.floor(Math.random()))
-                    .username("User 3")
-//                    .createdDate(LocalDateTime.now())
-//                    .updateDate(LocalDateTime.now())
+                    .userId((int) Math.floor(Math.random() * 100))
+                    .username("thomasm2.maestas@gmail.com")
+                    .email("thomasm2.maestas@gmail.com")
                     .build();
 
             User user3 = User.builder()
-                    .userId((int) Math.floor(Math.random()))
-                    .username("User 3")
-//                    .createdDate(LocalDateTime.now())
-//                    .updateDate(LocalDateTime.now())
+                    .userId((int) Math.floor(Math.random() * 100))
+                    .username("thomasm3.maestas@gmail.com")
+                    .email("thomasm3.maestas@gmail.com")
                     .build();
 
-            userRepository.saveAll(Arrays.asList(user1, user2, user3));
+            usersRepository.save(user1);
+            usersRepository.save(user2);
+            usersRepository.save(user3);
+            usersRepository.saveAll(Arrays.asList(user1, user2, user3));
         }
 
     }

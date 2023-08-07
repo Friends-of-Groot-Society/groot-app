@@ -5,29 +5,30 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "USER_ACCOUNTS")
-public class UserAccount extends BaseModel {
-//
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_accounts_seq")
-//	@Column(name = "user_id")
-//	private int userId;
+public class UserAccount extends User {
 
-	@Column(name = "username")
+	@Column( unique = true )
 	private String username;
 
+	@Column( unique = true )
 	private String email;
 
 	private String password;
 
-	private boolean enabled = true;
+	private int isActive = 1;
+
 
 	@Override
 	public boolean equals(Object o) {

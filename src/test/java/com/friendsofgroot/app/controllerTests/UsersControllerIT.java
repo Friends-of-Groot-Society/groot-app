@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class UsersControllerIT {
 
     @Autowired
-    UsersRepository userRepository;
+    UsersRepository usersRepository;
 
     @Autowired
     UsersController usersController;
@@ -34,12 +34,12 @@ class UsersControllerIT {
     @Transactional
     @Test
     void deleteByIdFound() {
-        User user = userRepository.findAll().get(0);
+        User user = usersRepository.findAll().get(0);
 
         ResponseEntity responseEntity = usersController.deleteUser(user.getUserId());
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(204));
 
-        assertThat(userRepository.findById(user.getUserId()).isEmpty());
+        assertThat(usersRepository.findById(user.getUserId()).isEmpty());
     }
 
     @Test
@@ -60,7 +60,7 @@ class UsersControllerIT {
     @Transactional
     @Test
     void updateExistingChain() {
-        User user = userRepository.findAll().get(0);
+        User user = usersRepository.findAll().get(0);
         UserDto userDto = userMapper.toDto(user);
         userDto.setUserId(1000);
         final String userName = "UPDATED";
@@ -69,7 +69,7 @@ class UsersControllerIT {
         ResponseEntity responseEntity = usersController.updateUser(user.getUserId(), userDto);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(204));
 
-        User updatedUser = userRepository.findById(user.getUserId()).get();
+        User updatedUser = usersRepository.findById(user.getUserId()).get();
         assertThat(updatedUser.getUsername()).isEqualTo(userName);
     }
 
@@ -81,7 +81,7 @@ class UsersControllerIT {
                .username("TEST")
                .build();
 
-        ResponseEntity responseEntity = usersController.handlePost(userDto);
+        ResponseEntity responseEntity = usersController.createUser(userDto);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(201));
         assertThat(responseEntity.getHeaders().getLocation()).isNotNull();
@@ -89,7 +89,7 @@ class UsersControllerIT {
         String[] locationID = responseEntity.getHeaders().getLocation().getPath().split("/");
         Integer savedID = Integer.parseInt(locationID[4]);
 
-        User user = userRepository.findById(savedID).get();
+        User user = usersRepository.findById(savedID).get();
         assertThat(user).isNotNull();
     }
 
@@ -97,7 +97,7 @@ class UsersControllerIT {
     @Transactional
     @Test
     void testListAllEmptyList() {
-        userRepository.deleteAll();
+        usersRepository.deleteAll();
         List<UserDto> dtos = usersController.getUsers().getBody();
 
         assertThat(dtos.size()).isEqualTo(0);
@@ -119,7 +119,7 @@ class UsersControllerIT {
 
     @Test
     void testGetById() {
-        User user = userRepository.findAll().get(0);
+        User user = usersRepository.findAll().get(0);
         UserDto userDto = usersController.getUser(user.getUserId()).getBody();
         assertThat(userDto).isNotNull();
     }

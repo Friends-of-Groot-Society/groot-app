@@ -30,21 +30,65 @@ create table  USERS
     primary key (USERID)
 );
 
-create table CHAIN
+CREATE TABLE CATEGORY
 (
-    chain_id           INT not null  auto_increment,
-    name               varchar(255),
-    symbol             varchar(255),
-    description        varchar(255),
-    long_description   varchar(255),
-    icon_url           varchar(255),
-    category           varchar(255),
-    chain_list_icon    varchar(255),
-    rpc_url            varchar(255),
-    id                 INT,
-    block_explorer_url varchar(255),
-    primary key (chain_id)
+    id                 VARCHAR(36)  NOT NULL,
+    version            BIGINT       NULL,
+    created_date       datetime     NULL,
+    last_modified_date datetime     NULL,
+    `description`      VARCHAR(255) NULL,
+    CONSTRAINT pk_category PRIMARY KEY (id)
 );
+
+CREATE TABLE CHAIN
+(
+    chain_id           VARCHAR(36)  NOT NULL,
+    version            INT          NULL,
+    name               VARCHAR(250) NOT NULL,
+    symbol             INT          NULL,
+    `description`      VARCHAR(255) NULL,
+    long_description   VARCHAR(255) NULL,
+    icon_url           VARCHAR(255) NULL,
+    category           VARCHAR(255) NULL,
+    chain_list_icon    VARCHAR(255) NULL,
+    rpc_url            VARCHAR(255) NULL,
+    block_explorer_url VARCHAR(255) NULL,
+    id                 INT          NULL,
+    created_date       datetime     NOT NULL,
+    date_created       datetime     NOT NULL,
+    last_updated       datetime     NULL,
+    updated_at         datetime     NULL,
+    CONSTRAINT pk_chain PRIMARY KEY (chain_id)
+);
+
+CREATE TABLE CHAIN_ORDER
+(
+    id          VARCHAR(36)  NOT NULL,
+    user_ref    VARCHAR(255) NULL,
+    user_userid INT          NULL,
+    CONSTRAINT pk_chainorder PRIMARY KEY (id)
+);
+
+CREATE TABLE CHAIN_ORDER_LINE
+(
+    id             VARCHAR(36) NOT NULL,
+    version        BIGINT      NULL,
+    created_date   datetime    NOT NULL,
+    date_created   datetime    NOT NULL,
+    last_updated   datetime    NULL,
+    updated_at     datetime    NULL,
+    chain_order_id VARCHAR(36) NULL,
+    chain_chain_id VARCHAR(36) NULL,
+    CONSTRAINT pk_chainorderline PRIMARY KEY (id)
+);
+
+CREATE TABLE CHAIN_CATEGORY
+(
+    category_id VARCHAR(36) NOT NULL,
+    chain_id    VARCHAR(36) NOT NULL,
+    CONSTRAINT pk_chain_category PRIMARY KEY (category_id, chain_id)
+);
+
 create table CHAIN_USERS
 (
     id       INT  not null  auto_increment,

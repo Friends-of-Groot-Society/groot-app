@@ -43,12 +43,12 @@ public class ChainsController {
 
 /////////////////////////////// GET
 
-    @GetMapping(value = CHAIN_PATH)
-    public Page<ChainDto> listChains(@RequestParam(required = false) String name,
-                                     @RequestParam(required = false) Symbol symbol,
+    @GetMapping(value = CHAIN_PATH+"/search")
+    public Page<ChainDto> listChains(@RequestParam String name,
+                                     @RequestParam(required = false) String symbol,
                                      @RequestParam(required = false) Integer pageNumber,
                                      @RequestParam(required = false) Integer pageSize) {
-        return chainService.listChains(name, symbol, pageNumber, pageSize);
+        return chainService.listChains(name, Symbol.valueOf(symbol), pageNumber, pageSize);
     }
 
     @GetMapping(value = CHAIN_PATH)
@@ -87,21 +87,21 @@ public class ChainsController {
         if (chainService.updateChainByChainId(chainId, chain).isEmpty()) {
             throw new ResourceNotFoundException();
         }
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     /////////////////////////////// PATCH
     @PatchMapping(CHAIN_PATH_ID)
     public ResponseEntity updateChainPatchById(@PathVariable("chainId") UUID chainId, @RequestBody ChainDto chain) {
         chainService.patchChainById(chainId, chain);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
     /////////////////////////////// DELETE
     @DeleteMapping(value = CHAIN_PATH_ID)
     public ResponseEntity<Boolean> deleteChain(@PathVariable("chainId") UUID chainId) {
-        Boolean response = false;
+        boolean response = false;
 
         if(! chainService.deleteById(chainId)){
 //            response = false;
@@ -109,7 +109,7 @@ public class ChainsController {
             throw new ResourceNotFoundException();
         }
         response = true;
-        return new ResponseEntity(response, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
     }
 
 

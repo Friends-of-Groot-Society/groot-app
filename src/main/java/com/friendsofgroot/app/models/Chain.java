@@ -42,6 +42,7 @@ public class Chain implements Serializable {
     private UUID chainId;
 //    @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")
 
+
     @Version
     private Integer version;
 
@@ -81,7 +82,7 @@ public class Chain implements Serializable {
     private List<User> users;
 
 
-    @OneToMany(mappedBy = "chain")
+    @OneToMany(mappedBy = "chain", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ChainOrderLine> chainOrderLines;
 
     @ManyToMany
@@ -91,12 +92,13 @@ public class Chain implements Serializable {
     private Set<Category> categories;
 
 
-    @CreationTimestamp
-    @Column(name = "created_date", nullable = false, updatable = false)
-    private Date dateCreated;
 
     @CreationTimestamp
     @Column(name = "date_created", nullable = false, updatable = false)
+    private Date dateCreated;
+
+    @CreationTimestamp
+    @Column(name = "created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
 
@@ -104,7 +106,8 @@ public class Chain implements Serializable {
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
-    @Column(name = "updated_at")
     @UpdateTimestamp
+    @Column(name = "updated_at")
     private Timestamp updatedAt;
+
 }

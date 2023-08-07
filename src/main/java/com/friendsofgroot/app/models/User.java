@@ -18,13 +18,13 @@ import java.util.*;
 @Getter @Setter @ToString
 @Builder
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "USERS")
-public class User  implements Serializable{
+public class User extends BaseModel implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )
     @SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="userid", nullable = false, unique = true)
     private int userId;
 
@@ -68,13 +68,13 @@ public class User  implements Serializable{
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "id"  , orphanRemoval = true)
     private List<Address> addresses;
 
+//    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
     @JoinTable(name="CHAIN_USERS",
             joinColumns=@JoinColumn(name="userid"),
             inverseJoinColumns= @JoinColumn(name="chain_id")
     )
-    @JsonIgnore
     private List<Chain> chains = new ArrayList<>();
     @ManyToMany(fetch = FetchType.EAGER)
    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))

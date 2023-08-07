@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.models.dto;
 
 /**
-* C
+* Symbol enum
  */
 
 public enum Symbol {

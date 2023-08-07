@@ -1,10 +1,7 @@
 package com.friendsofgroot.app.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -20,7 +17,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Category {
+@Builder
+public class Category extends BaseModel {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -29,8 +27,6 @@ public class Category {
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false )
     private UUID id;
 
-    @Version
-    private Long version;
 
     @CreationTimestamp
     @Column(updatable = false)

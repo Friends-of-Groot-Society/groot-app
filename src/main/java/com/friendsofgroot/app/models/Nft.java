@@ -14,20 +14,23 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "NFT")
-public class Nft  implements Serializable {
+public class Nft implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
-
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_MAKER")
+	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+	@Column(name = "id" )
 	private Integer id;
+
+
 
 	private String name;
 	private Double amount; // TODO needs DOUBLE PRCISION
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Metadata metadata_id; // metadata_id
 
-	@ManyToOne //(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	@JoinColumn(name = "NFTADDRESS_id")
 	private NftAddress nftAddress;
 

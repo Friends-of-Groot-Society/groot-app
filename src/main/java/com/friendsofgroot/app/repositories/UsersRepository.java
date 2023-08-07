@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.repositories;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,10 +13,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@RepositoryRestResource(collectionResourceRel="user", path="users")
+//@RepositoryRestResource(collectionResourceRel="user", path="users")
 public interface UsersRepository extends JpaRepository<User, Integer> {
 
     // MULTIPLE
+    @NotNull List<User> findAll();
     Page<User> findAllByUserType(Integer userType, Pageable pageable);
     Page<User> findAllByIsActiveAfter(Integer userType, LocalDate date, Pageable pageable);
 

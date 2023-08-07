@@ -13,9 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "NFTADDRESS") /// ANGULAR's NFT.ts
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class NftAddress extends BaseModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_MAKER")
+	@SequenceGenerator(name = "ID_MAKER", sequenceName = "ID_MAKER", allocationSize = 1)
+	@Column(name = "id" )
+	private Integer id;
 
+	@Column(name = "address", unique = true) // VARCHAR(255)
 	private String address;  // VARCHAR(2550
 
 	@Column(name = "native_token") // NUMBER (10,6)

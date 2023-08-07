@@ -14,19 +14,19 @@ import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel="chain", path = "chain")
 public interface ChainsRepository extends JpaRepository<Chain, UUID> {
-
+    long count();
     Page<Chain> findAll(Pageable pageable);
 
 
     List<Chain> findByCategory(String category);
 
-    @Query(value = "SELECT * FROM CHAIN c WHERE c.NAME LIKE '%?1%' OR c.SYMBOL LIKE '%?1%'", nativeQuery = true)
-    List<Chain> search(String keyword);
+//    @Query(value = "SELECT * FROM CHAIN c WHERE c.NAME LIKE '%?1%' OR c.SYMBOL LIKE '%?1%'", nativeQuery = true)
+//    List<Chain> search(String keyword);
 
     // SQL Query
     @Query(nativeQuery=true, value="SELECT NAME as label, " +
             "COUNT(*) as value " +
-            "FROM chain " +
+            "FROM CHAIN " +
             "GROUP BY NAME")
     public List<ChartData> getNames(); //ChartData is a custom class
 

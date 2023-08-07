@@ -17,7 +17,7 @@ INSERT INTO ROLES (id, name) VALUES (1,'ROLE_USER');
 insert into USERS_ROLES(id, user_userid, role_id)values (1, 211, 2);
 insert into USERS_ROLES(id, user_userid, role_id)values (2, 212, 1);
 insert into USERS_ROLES(id, user_userid, role_id)values (3, 213, 1);
-insert into USERS_ROLES(id, user_userid, role_id)values (4, 214, 1);
+insert into  USERS_ROLES(id, user_userid, role_id)values (4, 214, 1);
 insert into USERS_ROLES(id, user_userid, role_id)values (5, 215, 1);
 insert into USERS_ROLES(id, user_userid, role_id)values (6, 216, 1);
 insert into USERS_ROLES(id, user_userid, role_id)values (7, 217, 1);

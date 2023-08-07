@@ -28,8 +28,6 @@ public class UserDto  implements Serializable {
     private String photoPath;
     private int isActive;
     private int contactType;
-    // parent of many
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AddressDto> addresses;
 
     private List<ChainDto> chains;

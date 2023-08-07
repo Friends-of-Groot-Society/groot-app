@@ -1,9 +1,5 @@
 package com.friendsofgroot.app.controllers.consoles;
 
-
-
-
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.models.dto.ChainDto;
@@ -12,6 +8,7 @@ import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.service.ChainsService;
 import com.friendsofgroot.app.service.UsersService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Profile("mysql")
 public class IndexController {
 
     @Value("${version}")

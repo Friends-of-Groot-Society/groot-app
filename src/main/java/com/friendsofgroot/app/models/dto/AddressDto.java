@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.models.dto;
 
+import com.friendsofgroot.app.models.NftAddressDto;
 import lombok.*;
 
 import java.io.Serializable;

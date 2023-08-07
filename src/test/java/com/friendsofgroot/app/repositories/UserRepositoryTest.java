@@ -8,14 +8,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @DataJpaTest
-class UserRepositoryTest {
+class UsersRepositoryTest {
 
     @Autowired
-    UsersRepository userRepository;
+    UsersRepository usersRepository;
 
     @Test
     void testSaveUser() {
-        User user = userRepository.save(User.builder()
+        User user = usersRepository.save(User.builder()
                         .username("New Name")
                 .build());
 

@@ -25,7 +25,7 @@ class BootstrapDataTest {
     ChainsRepository chainRepository;
 
     @Autowired
-    UsersRepository userRepository;
+    UsersRepository usersRepository;
 
     @Autowired
     ChainCsvService csvService;
@@ -34,13 +34,13 @@ class BootstrapDataTest {
 
     @BeforeEach
     void setUp() {
-        bootstrapData = new BootstrapData(chainRepository, userRepository, csvService);
+        bootstrapData = new BootstrapData(chainRepository, usersRepository, csvService);
     }
 
     @Test
     void Testrun() throws Exception {
         bootstrapData.run(null);
-long users= (long) userRepository.count() ;
+long users= (long) usersRepository.count() ;
         System.out.println("users: " + users);
     }
 

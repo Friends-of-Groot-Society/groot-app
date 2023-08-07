@@ -25,33 +25,7 @@ public class UsersServiceImpl implements UsersService {
 
 
     public UsersServiceImpl() {
-        UserDto user1 = UserDto.builder()
-//                .userId(UUID.randomUUID()
-//                .name("User 1")
-//                .version(1)
-//                .createdDate(LocalDateTime.now())
-//                .updateDate(LocalDateTime.now())
-                .build();
 
-        UserDto user2 = UserDto.builder()
-//                .id(UUID.randomUUID())
-//                .name("User 2")
-//                .version(1)
-//                .createdDate(LocalDateTime.now())
-//                .updateDate(LocalDateTime.now())
-                .build();
-
-        UserDto user3 = UserDto.builder()
-//                .id(UUID.randomUUID())
-//                .name("User 3")
-//                .version(1)
-//                .createdDate(LocalDateTime.now())
-//                .updateDate(LocalDateTime.now())
-                .build();
-
-        usersRepository.save(userMapper.toEntity(user1));
-        usersRepository.save(userMapper.toEntity(user2));
-        usersRepository.save(userMapper.toEntity(user3));
     }
 
     /**
@@ -135,22 +109,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     /**
-     * @return
+     * @return  List<UserDto>
      */
     @Override
-    public List<UserDto> getUsers() {
+     public List<UserDto> getUsers() {
         List<UserDto> userDtos = new ArrayList<>();
-       try {
            List<User> users = usersRepository.findAll();
-           if (users == null) {
-               throw new ResourceNotFoundException("not found", "not found", "not found");
-           }   else {
-               return users.stream().map(userMapper::toDto).collect(Collectors.toList());
-           }
-       } catch (NullPointerException e) {
-           e.printStackTrace();
-           return new ArrayList<>();
-       }
+        return users.stream().map(userMapper::toDto).collect(Collectors.toList());
 
     }
 

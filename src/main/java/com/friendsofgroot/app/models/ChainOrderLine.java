@@ -30,7 +30,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Created by jt on 2019-01-26.
+ *
  */
 @Getter
 @Setter
@@ -38,7 +38,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Builder
-public class ChainOrderLine {
+public class ChainOrderLine extends BaseModel {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -50,31 +50,15 @@ public class ChainOrderLine {
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false )
     private UUID id;
 
-    @Version
-    private Long version;
-
-    @CreationTimestamp
-    @Column(name = "created_date", nullable = false, updatable = false)
-    private Date dateCreated;
-
-    @CreationTimestamp
-    @Column(name = "date_created", nullable = false, updatable = false)
-    private LocalDateTime createdDate;
-
-
-    @UpdateTimestamp
-    @Column(name = "last_updated")
-    private LocalDateTime lastUpdated;
-
-    @Column(name = "updated_at")
-    @UpdateTimestamp
-    private Timestamp updatedAt;
     public boolean isNew() {
         return this.id == null;
     }
 
     @ManyToOne
     private ChainOrder chainOrder;
+
+    @ManyToOne
+    private ChainOrderHeader chainOrderHeader;
 
     @ManyToOne
     private Chain chain;

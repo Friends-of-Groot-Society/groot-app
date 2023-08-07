@@ -35,7 +35,7 @@ public class CliApplication {
 
 	}
 
-	@Profile(value={"dev"})
+	@Profile(value={"mysql","dev"})
 	private static void logBeans(ApplicationContext ctx) {
 		log.info("logbeans ____dev____XXXXXX");
 		log.info("****log.info*** Bean Count *******");

@@ -1,8 +1,11 @@
 package com.friendsofgroot.app.exception;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
+@EqualsAndHashCode(callSuper = true)
+@Data
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException{
     private String resourceName;
@@ -32,7 +35,7 @@ public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException() {
     }
 
-    public ResourceNotFoundException(String message) {
+    public ResourceNotFoundException(String message)      {
         super(message);
     }
 

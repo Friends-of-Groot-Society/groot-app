@@ -16,27 +16,13 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
 @MappedSuperclass
-public class BaseModel implements Serializable {
+public abstract class BaseModel  {
+
         @Serial
         private static final long serialVersionUID = 1L;
 
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name = "id" )
-        private Integer id;
-
-        @CreationTimestamp
-        @Column(name = "date_created", nullable = false, updatable = false)
-        private Date dateCreated;
-
-
-        @Column(name = "updated_at")
-        @UpdateTimestamp
-        private Timestamp updatedAt;
-
-        @UpdateTimestamp
-        @Column(name = "last_updated")
-        private LocalDateTime lastUpdated;
+        @Version
+        private Integer version;
 
 }

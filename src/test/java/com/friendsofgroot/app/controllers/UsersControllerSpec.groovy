@@ -51,8 +51,8 @@ class UsersControllerSpec extends Specification {
         when:
         expectedResult = testObj.registerUser(email, password, firstName, lastName)
 
-        then: "then"
         authService.register(_) >> code
+        then: "then"
         expectedResult.statusCode == code
 
         where: "where"

@@ -45,11 +45,11 @@ public class ChainDto implements Serializable {
 
 
     @CreationTimestamp
-    @Column(name = "created_date", nullable = false, updatable = false)
+    @Column(name = "date_created", nullable = false, updatable = false)
     private Date dateCreated;
 
     @CreationTimestamp
-    @Column(name = "date_created", nullable = false, updatable = false)
+    @Column(name = "created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
 

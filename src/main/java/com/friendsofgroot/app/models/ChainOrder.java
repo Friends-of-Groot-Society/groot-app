@@ -34,7 +34,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ChainOrder {
+public class ChainOrder extends BaseModel  {
 
     @Id
     @GeneratedValue(generator = "UUID")

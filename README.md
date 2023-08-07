@@ -49,7 +49,7 @@ Address -> NftAddress -> nfts[] Nft-> Metadata
 ## ENVIRONMENT PRODUCTION
 ### AWS-RDS _  ORACLE
 
-DBMS: Oracle (ver. Oracle Database 19c Standard Edition 2 Release 19.0.0.0.0 - Production
+DBMS: Oracle (ver. Oracle Database 19c Standard Edition 2 Release 19.0.0.0.0 - Chainion
 Version 19.15.0.0.0)
 Case sensitivity: plain=upper, delimited=exact
 Driver: Oracle JDBC driver (ver. 21.5.0.0.0, JDBC4.3)

@@ -26,7 +26,7 @@ public class RegisterDto implements Serializable {
         this.password = password;
         this.firstName = firstName;
 
-        this.username = makeUsername(email);
+        this.username = this.username!=null ? this.username : makeUsername(email);
     }
 
     String makeUsername(String email) {

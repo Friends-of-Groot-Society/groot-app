@@ -6,16 +6,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
 *
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChainCSVRecord {
+public class ChainCSVRecord  implements Serializable {
 
-    @CsvBindByName
-    private Integer row;
+    static long serialVersionUID = 1L;
+
+    @CsvBindByName(column = "chain_id")
+    private UUID chainId;
 
     @CsvBindByName(column = "count.x")
     private Integer version;
@@ -55,6 +60,7 @@ public class ChainCSVRecord {
     private String count_y;
 
     @CsvBindByName
-    private String label;
+    private String category;
+
 
 }

@@ -1,6 +1,8 @@
 package com.friendsofgroot.app.services;
 
 import com.friendsofgroot.app.models.dto.ChainCSVRecord;
+import com.friendsofgroot.app.service.ChainCsvService;
+import com.friendsofgroot.app.service.ChainCsvServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.ResourceUtils;
 
@@ -17,7 +19,7 @@ class ChainCsvServiceImplTest {
     @Test
     void convertCSV() throws FileNotFoundException {
 
-        File file = ResourceUtils.getFile("classpath:csvdata/chains.csv");
+        File file = ResourceUtils.getFile("classpath:data/chains.csv");
 
         List<ChainCSVRecord> recs = chainCsvService.convertCSV(file);
 

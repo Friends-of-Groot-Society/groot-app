@@ -6,7 +6,7 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring", uses = {RawTokenMapper.class, NftMapper.class})
 public interface NftAddressMapper {
-    NftAddress toEntity(NftAddressDto nftAddressDto);
+    NftAddress toEntity(NftAddressDto nftAddressDto);CNTRL-F 
 
     NftAddressDto toDto(NftAddress nftAddress);
 

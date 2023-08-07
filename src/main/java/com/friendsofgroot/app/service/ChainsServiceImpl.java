@@ -7,7 +7,10 @@ import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.mapper.ChainMapper;
 import com.friendsofgroot.app.models.dto.Symbol;
 import com.friendsofgroot.app.repositories.ChainsRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -21,6 +24,7 @@ import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZ
 
 @Slf4j
 @Service
+@Primary
 public class ChainsServiceImpl implements ChainsService {
 
     private static final int DEFAULT_PAGE =0 ;
@@ -28,62 +32,17 @@ public class ChainsServiceImpl implements ChainsService {
 
     private final ChainMapper chainMapper;
 
-
+    @Autowired
     public ChainsServiceImpl(ChainsRepository chainsRepository, ChainMapper chainMapper) {
         this.chainsRepository = chainsRepository;
         this.chainMapper = chainMapper;
 
-        Chain chain1 = Chain.builder()
-                .chainId(UUID.randomUUID())
-                .version(1)
-                .name("Ethereum")
-                .symbol(Symbol.ETH)
-                .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
-                .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                .category("Smart Contract")
-                .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
-                .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
-                .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                .build();
-
-        Chain chain2 = Chain.builder()
-                .chainId(UUID.randomUUID())
-                .version(1)
-                .name("Bitcoin")
-                .symbol(Symbol.BTC)
-                        .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
-                        .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                        .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                        .category("Smart Contract")
-                        .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
-                        .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
-                        .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                        .build();
-
-        Chain chain3 = Chain.builder()
-                .chainId(UUID.randomUUID())
-                .version(1)
-                .name("PulseChain")
-                .symbol(Symbol.PLS)
-                .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
-                .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                .category("Smart Contract")
-                .longDescription("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
-                .description("Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third-party interference.")
-                .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
-                .build();
-
-        Chain newChain = chainsRepository.save(chain1);
-        Chain newChain2 = chainsRepository.save(chain2);
-        Chain newChain3 = chainsRepository.save(chain3);
-
-
     }
 
     /**
-     * @return
+
+
+
      */
 
     @Override

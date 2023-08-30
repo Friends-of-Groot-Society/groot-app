@@ -10,6 +10,8 @@ _underscores_ & *asterisks* ~tildes~ today* will display as **[bold]** and [ital
 |--------|:---------:|-----:|--------|:--------:|----------------:|
 | GET    | localhost | 8080 | /users |  /email  | ?page=0&size=10 |
 | GET    | localhost | 8080 | /chain |  center  |            $120 |
+| GET    | localhost | 8080 | /addresses |  center  |            $120 |
+| GET    | localhost | 8080 | / |  center  |            $120 |
 
 ###   
 

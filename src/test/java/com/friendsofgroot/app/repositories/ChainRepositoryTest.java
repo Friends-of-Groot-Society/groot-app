@@ -1,8 +1,8 @@
 package com.friendsofgroot.app.repositories;
 
 import com.friendsofgroot.app.bootstrap.BootstrapData;
-import com.friendsofgroot.app.entities.Chain;
-import com.friendsofgroot.app.models.Symbol;
+import com.friendsofgroot.app.models.Chain;
+import com.friendsofgroot.app.models.dto.Symbol;
 import com.friendsofgroot.app.service.ChainCsvServiceImpl;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
@@ -21,11 +21,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ChainRepositoryTest {
 
     @Autowired
-    ChainRepository chainRepository;
+    ChainsRepository chainRepository;
 
     @Test
     void testGetChainListByName() {
-        Page<Chain> list = chainRepository.findAllByNameIsLikeIgnoreCase("%IPA%", null);
+        Page<Chain> list = chainRepository.findAllByNameIsLikeIgnoreCase("%ETH%", null);
 
         assertThat(list.getContent().size()).isEqualTo(336);
     }
@@ -36,9 +36,7 @@ class ChainRepositoryTest {
         assertThrows(ConstraintViolationException.class, () -> {
             Chain savedChain = chainRepository.save(Chain.builder()
                     .name("My Chain 0123345678901233456789012334567890123345678901233456789012334567890123345678901233456789")
-                    .symbol(Symbol.PALE_ALE)
-                    .upc("234234234234")
-                    .price(new BigDecimal("11.99"))
+                    .symbol(Symbol.PLS)
                     .build());
 
             chainRepository.flush();
@@ -49,9 +47,7 @@ class ChainRepositoryTest {
     void testSaveChain() {
         Chain savedChain = chainRepository.save(Chain.builder()
                         .name("My Chain")
-                        .symbol(Symbol.PALE_ALE)
-                        .upc("234234234234")
-                        .price(new BigDecimal("11.99"))
+                        .symbol(Symbol.ETH)
                 .build());
 
         chainRepository.flush();

@@ -12,10 +12,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "NFTADDRESS") /// ANGULAR's NFT.ts
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NftAddress extends BaseModel {
-
+public class NftAddress  {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	private int id;
 	private String address;  // VARCHAR(2550
 
 	@Column(name = "native_token") // NUMBER (10,6)

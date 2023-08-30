@@ -4,6 +4,7 @@ import com.friendsofgroot.app.models.dto.RegisterDto;
 import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
+import org.apache.catalina.realm.AuthenticatedUserRealm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.models.User;
@@ -17,12 +18,14 @@ import java.util.stream.Collectors;
 @Service
 public class UsersServiceImpl implements UsersService {
 
-
-    @Autowired
     private UsersRepository usersRepository;
-    @Autowired
-    private UserMapper userMapper;
 
+    private UserMapper userMapper;
+    @Autowired
+  UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper) {
+      this.userMapper = userMapper;
+      this.usersRepository = usersRepository;
+  }
 
     public UsersServiceImpl() {
         UserDto user1 = UserDto.builder()

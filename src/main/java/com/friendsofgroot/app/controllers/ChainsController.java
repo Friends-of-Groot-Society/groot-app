@@ -43,13 +43,13 @@ public class ChainsController {
 
 /////////////////////////////// GET
 
-    @GetMapping(value = CHAIN_PATH)
-    public Page<ChainDto> listChains(@RequestParam(required = false) String name,
-                                     @RequestParam(required = false) Symbol symbol,
-                                     @RequestParam(required = false) Integer pageNumber,
-                                     @RequestParam(required = false) Integer pageSize) {
-        return chainService.listChains(name, symbol, pageNumber, pageSize);
-    }
+//    @GetMapping(value = CHAIN_PATH)
+//    public Page<ChainDto> listChains(@RequestParam(required = false, defaultValue = "Ethereum") String name,
+//                                     @RequestParam(required = false) Symbol symbol,
+//                                     @RequestParam(required = false) Integer pageNumber,
+//                                     @RequestParam(required = false) Integer pageSize) {
+//        return chainService.listChains(name, symbol, pageNumber, pageSize);
+//    }
 
     @GetMapping(value = CHAIN_PATH)
     public ResponseEntity<List<ChainDto>> getAllChains() {

@@ -10,6 +10,7 @@ import com.friendsofgroot.app.service.ChainCsvService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
@@ -23,12 +24,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
+
 
 /**
 *
  */
 @Component
+@Profile("!prod")
 @RequiredArgsConstructor
 public class BootstrapData implements CommandLineRunner {
     private final ChainsRepository chainRepository;

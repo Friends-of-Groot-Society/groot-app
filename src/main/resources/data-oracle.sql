@@ -4,7 +4,6 @@ Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PH
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (213,'Tom3@gmail.com', 'password', 'Smith', 'Tom3', 3,  '5055087707', 'Tom3@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a3.jpg', 'photoPath',  0, 1);
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (214,'Tom4@gmail.com', 'password', 'Smith', 'Tom4', 0, '5055087707', 'Tom4@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a4.jpg', 'photoPath',  0, 0);
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (215, 'Tom5@gmail.com', 'password', 'Smith', 'Tom5', 3, '5055087707','Tom5@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a6.jpg', 'photoPath',  0,    1);
-Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (215, 'Tom6@gmail.com', 'password', 'Smith', 'Tom6', 3, '5055087707','Tom6@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a7.jpg', 'photoPath',  0,    1);
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (216,'tom7@gmail.com', 'password', 'maestas', 'tom7', 4, '999-999-9999','tom7@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath',  0, 1);
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (217,'Tom8@gmail.com', 'password', 'Smith', 'Tom8', 3,  '5055087707','Tom8@gmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 0,     1);
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH, ISACTIVE, CONTACTTYPE)values (218, 'thomas.maestas@hotmail.com', 'password', 'Maestas', 'thomas', 0, '5055087707','thomas.maestas@hotmail.com',        'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath',  0, 0);
@@ -14,16 +13,16 @@ Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, USERTYPE, PH
 INSERT INTO ROLES (id, name) VALUES (2,'ROLE_ADMIN');
 INSERT INTO ROLES (id, name) VALUES (1,'ROLE_USER');
 
-insert into USERS_ROLES(id, userid, role_id)values (1, 211, 2);
-insert into USERS_ROLES(id, userid, role_id)values (2, 212, 1);
-insert into USERS_ROLES(id, userid, role_id)values (3, 213, 1);
-insert into USERS_ROLES(id, userid, role_id)values (4, 214, 1);
-insert into USERS_ROLES(id, userid, role_id)values (5, 215, 1);
-insert into USERS_ROLES(id, userid, role_id)values (6, 215, 1);
-insert into USERS_ROLES(id, userid, role_id)values (7, 216, 1);
-insert into USERS_ROLES(id, userid, role_id)values (8, 217, 1);
-insert into USERS_ROLES(id, userid, role_id)values (9, 218, 2);
-insert into USERS_ROLES(id, userid, role_id)values (10,219,2);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (1,2,211,211);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (2,2,212,212);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (3,2,213,213);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (4,2,214,214);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (5,2,215,215);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (6,2,216,216);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (7,2,217,217);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (8,2,218,218);
+INSERT into USERS_ROLES (ID, ROLE_ID, USER_USERID, USERID) VALUES (9,2,219,219);
+
 
 
 -- INSERT CHAIN
@@ -39,16 +38,16 @@ Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_U
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,ID, BLOCK_EXPLORER_URL)values (11951, 'pulsechain7', 'pls', 'pulsechain Mainnet', 'NFT - 0x1',        'https://s3.amazonaws.com/tmm.net/img/pulsechain.png', 'Mainnet',        'https://friends-of-groot-society.s3.amazonaws.com/assets/android-chrome-384x384.png',        'https://rpc.pulsechain.io', 23, null);
 
 -- -- INSERT PROJECT_user_RELATION
-insert into chain_users (id, userid, chain_id)values (1, 211, 11501);
-insert into chain_users (id, userid, chain_id)values (2, 212, 11551);
-insert into chain_users (id, userid, chain_id)values (3, 213, 11601);
-insert into chain_users (id, userid, chain_id)values (4, 214, 11651);
-insert into chain_users (id, userid, chain_id)values (5, 215, 11701);
-insert into chain_users (id, userid, chain_id)values (6, 215, 11751);
-insert into chain_users (id, userid, chain_id)values (7, 216, 11801);
-insert into chain_users (id, userid, chain_id)values (8, 217, 11851);
-insert into chain_users (id, userid, chain_id)values (9, 218, 11901);
-insert into chain_users (id, userid, chain_id)values (10, 219,11951);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (1, 211, 11501);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (2, 212, 11551);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (3, 213, 11601);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (4, 214, 11651);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (5, 215, 11701);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (6, 215, 11751);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (7, 216, 11801);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (8, 217, 11851);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (9, 218, 11901);
+insert into chain_users (CHAIN_USERS.id, userid, chain_id)values (10, 219,11951);
 
 
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )values (address_seq.nextval, 'description', 'Tom1@gmail.com', '0x900bE021E38B8d08435A03c05657C8cFA837cAeF',             'ropstein', 'ICON_URL', 'BLOCK_EXPLORER_URL', 1, 101);

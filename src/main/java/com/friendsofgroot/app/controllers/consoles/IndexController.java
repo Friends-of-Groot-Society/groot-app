@@ -12,6 +12,7 @@ import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.service.ChainsService;
 import com.friendsofgroot.app.service.UsersService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,35 +41,39 @@ public class IndexController {
     }
 
     @GetMapping(value = {"/v1", "/v1/"})
-    public String consoleHome(Model model ) throws JsonProcessingException {
+    public String consoleHome(Model model) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>();
-
         model.addAttribute("versionNumber",ver);
 
-        // Query database for chain-links
-        List<ChainDto> chains = chainsService.getAllChains();
-        model.addAttribute("chains", chains);
+        List<ChainDto> chains;
+        List<UserDto> users;
+        List<ChainDto> dataCat;
+        if(model.getAttribute("authenticated") == "true") {
+            // Query database for chain-links
+            chains = chainsService.getAllChains();
+            model.addAttribute("chains", chains);
 
-        List<UserDto> users =  usersService.getUsers();
-        model.addAttribute("users", users);
-        model.addAttribute("map", map);
+            users = usersService.getUsers();
+            model.addAttribute("users", users);
+            model.addAttribute("map", map);
 
-        List<ChainDto> dataCat= chainsService.findByName("ethereum");
+            dataCat = chainsService.findByName("ethereum");
 
-        LoginDto loginDto = new LoginDto();
-        model.addAttribute("loginDto",loginDto);
-        // convert chain data object into json
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonString = objectMapper.writeValueAsString(dataCat);
+            LoginDto loginDto = new LoginDto();
+            model.addAttribute("loginDto",loginDto);
+            // convert chain data object into json
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonString = objectMapper.writeValueAsString(dataCat);
 //        String json = objectMapper.writeValueAsString(data);
-        model.addAttribute("dataCat", jsonString);
+            model.addAttribute("dataCat", jsonString);
 
             // query for users
 //        List<ChainUsers> userChainCnt = usersService.getUserChains();
 //        model.addAttribute("userChainCnt", userChainCnt);
-        // query for users
+            // query for users
 //        List<UserChain> userChainCnt = usersService.getUserChains();
 //        model.addAttribute("userChainCnt", userChainCnt);
+        }
 
         // i.e. src/main/resources/templates/index.html
         return "index";

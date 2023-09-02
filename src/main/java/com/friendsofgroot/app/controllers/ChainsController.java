@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -33,12 +32,12 @@ public class ChainsController {
 //    public ResponseEntity<ChainDto> createChain(@RequestBody ChainDto cd) {
 //        return new ResponseEntity<>(chainService.createChain(cd), HttpStatus.CREATED);//    }
     @PostMapping(CHAIN_PATH)
-    public ResponseEntity handlePost(@Validated @RequestBody ChainDto chain) {
+    public ResponseEntity<ChainDto> handlePost(@Validated @RequestBody ChainDto chain) {
         ChainDto savedChain = chainService.saveNewChain(chain);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", CHAIN_PATH + "/" + savedChain.getId().toString());
+        headers.add("Location", CHAIN_PATH + "/" + savedChain.getId());
 
-        return new ResponseEntity(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedChain, headers, HttpStatus.CREATED);
     }
 
 /////////////////////////////// GET
@@ -63,7 +62,7 @@ public class ChainsController {
     }
 
     @GetMapping(value = CHAIN_PATH_ID)
-    public ChainDto getChainByChainId(@PathVariable("chainId") UUID chainId) {
+    public ChainDto getChainByChainId(@PathVariable("chainId") Integer chainId) {
 
 
         log.debug("Get Chain by Id - in controller");
@@ -83,7 +82,7 @@ public class ChainsController {
 
     /////////////////////////////// PUT
     @PutMapping(CHAIN_PATH_ID)
-    public ResponseEntity updateById(@PathVariable("chainId") UUID chainId, @Validated @RequestBody ChainDto chain) {
+    public ResponseEntity updateById(@PathVariable("chainId") Integer chainId, @Validated @RequestBody ChainDto chain) {
         if (chainService.updateChainByChainId(chainId, chain).isEmpty()) {
             throw new ResourceNotFoundException();
         }
@@ -92,7 +91,7 @@ public class ChainsController {
 
     /////////////////////////////// PATCH
     @PatchMapping(CHAIN_PATH_ID)
-    public ResponseEntity updateChainPatchById(@PathVariable("chainId") UUID chainId, @RequestBody ChainDto chain) {
+    public ResponseEntity updateChainPatchById(@PathVariable("chainId") Integer chainId, @RequestBody ChainDto chain) {
         chainService.patchChainById(chainId, chain);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
@@ -100,7 +99,7 @@ public class ChainsController {
 
     /////////////////////////////// DELETE
     @DeleteMapping(value = CHAIN_PATH_ID)
-    public ResponseEntity<Boolean> deleteChain(@PathVariable("chainId") UUID chainId) {
+    public ResponseEntity<Boolean> deleteChain(@PathVariable("chainId") Integer chainId) {
         Boolean response = false;
 
         if(! chainService.deleteById(chainId)){

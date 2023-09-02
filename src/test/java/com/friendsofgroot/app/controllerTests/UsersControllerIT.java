@@ -81,7 +81,7 @@ class UsersControllerIT {
                .username("TEST")
                .build();
 
-        ResponseEntity responseEntity = usersController.handlePost(userDto);
+        ResponseEntity responseEntity = usersController.createUser(userDto);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(201));
         assertThat(responseEntity.getHeaders().getLocation()).isNotNull();

@@ -4,11 +4,13 @@ import com.friendsofgroot.app.models.dto.LoginDto;
 import com.friendsofgroot.app.models.dto.RegisterDto;
 import com.friendsofgroot.app.models.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.friendsofgroot.app.service.UsersService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 
 @CrossOrigin(origins = "*")
@@ -36,10 +39,10 @@ public class UsersController {
     public static final String USER_PATH = "/api/users";
     public static final String USER_PATH_ID = USER_PATH + "/{userId}";
 
-
+    @Autowired
     public UsersController(AuthService authService,UsersService usersService, PasswordEncoder bcrypt) {
         this.bcrypt = bcrypt;
-                this.authService = authService;
+        this.authService = authService;
         this.usersService=usersService;
     }
 
@@ -79,39 +82,39 @@ public class UsersController {
 //////////////////////////////////////////////////////////////
      //// GENERAL API for user management ////
     /////////////////////////////////////////////////////////
-    @PostMapping("/users")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return new ResponseEntity<>(
-                usersService.createUser( userDto) ,
-                 HttpStatus.CREATED);
-    }
 
-    @PostMapping(USER_PATH)
-    public ResponseEntity handlePost(@RequestBody UserDto user){
-        UserDto savedUser = usersService.createUser(user);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", USER_PATH + "/" + savedUser.getUserId());
-
-        return new ResponseEntity(headers, HttpStatus.CREATED);
+    @GetMapping(USER_PATH)
+    public ResponseEntity<List<UserDto>> getUsers() {
+        List<UserDto> users = new ArrayList<>();
+        try {
+            users = usersService.getUsers();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return new ResponseEntity<>(users ,
+                HttpStatus.OK);
     }
     @GetMapping(value=USER_PATH_ID)
     public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
         return new ResponseEntity<>(  usersService.getUser(userId), HttpStatus.OK);
     }
-    @GetMapping(value="/users/email/{email}")
+    @GetMapping(value="/api/users/email/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         return new ResponseEntity<>(
-                        usersService.getUser(email),
+                usersService.getUser(email),
                 HttpStatus.OK);
     }
 
-    @GetMapping(USER_PATH)
-    public ResponseEntity<List<UserDto>> getUsers() {
-        return new ResponseEntity<>(
-                        usersService.getUsers(),
-                HttpStatus.OK);
+    @PostMapping(USER_PATH)
+    public ResponseEntity createUser(@RequestBody UserDto user){
+        UserDto savedUser = usersService.createUser(user);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", USER_PATH + "/" + savedUser.getUserId());
+
+        return new ResponseEntity(savedUser, headers, HttpStatus.CREATED);
     }
+
 
     @PutMapping(value=USER_PATH, consumes="application/json")  // userId in body
     public ResponseEntity<UserDto> updateUser(@PathVariable("userId") int userId, @RequestBody UserDto userDto) {
@@ -143,6 +146,7 @@ public class UsersController {
         }
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
+
 
 
 //    public List<String> getUsersByCoins();

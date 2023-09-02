@@ -1,5 +1,18 @@
-  drop table USERS_ROLES CASCADE  CONSTRAINTS;
-  create table USERS_ROLES
+
+DROP TABLE CHAIN_USERS  CASCADE CONSTRAINTS ;
+DROP TABLE METADATA CASCADE CONSTRAINTS ;
+DROP TABLE ATTRIBUTE CASCADE CONSTRAINTS ;
+DROP TABLE NFTADDRESS CASCADE CONSTRAINTS ;
+DROP TABLE nft_ref CASCADE CONSTRAINTS ;
+DROP TABLE USERS_ROLES CASCADE CONSTRAINTS ;
+DROP TABLE roles CASCADE CONSTRAINTS ;
+DROP TABLE USERS CASCADE CONSTRAINTS ;
+DROP TABLE ADDRESS CASCADE CONSTRAINTS ;
+DROP TABLE CHAIN CASCADE CONSTRAINTS ;
+DROP TABLE NFT CASCADE CONSTRAINTS ;
+
+
+create table USERS_ROLES
   (
       id          NUMBER not null,
       role_id     NUMBER not null,
@@ -148,18 +161,18 @@ create table METADATA
     nft_id      NUMBER,
     primary key (metadata_id)
 );
-
- create sequence address_seq start with 10 increment by 50;
- create sequence attribute_seq start with 1000 increment by 50;
- create sequence chain_seq start with 101 increment by 50;
- create sequence cointable_seq start with 20 increment by 50;
- create sequence id_maker start with 1 increment by 50;
- create sequence metadata_seq start with 200 increment by 50;
- create sequence nft_ref_seq start with 500 increment by 50;
- create sequence nft_seq start with 600 increment by 50;
- create sequence roles_seq start with 700 increment by 50;
- create sequence weblinks_seq start with 800 increment by 50;
- create sequence bookmark_seq start with 800 increment by 50;
+--
+--  create sequence address_seq start with 10 increment by 1;
+--  create sequence attribute_seq start with 1000 increment by 1;
+--  create sequence chain_seq start with 101 increment by 1;
+--  create sequence cointable_seq start with 20 increment by 1;
+--  create sequence id_maker start with 1 increment by 1;
+--  create sequence metadata_seq start with 200 increment by 1;
+--  create sequence nft_ref_seq start with 500 increment by 1;
+--  create sequence nft_seq start with 600 increment by 1;
+--  create sequence roles_seq start with 700 increment by 1;
+--  create sequence weblinks_seq start with 800 increment by 1;
+-- create sequence user_accounts_seq start with 800 increment by 1;
 
 -- MANY TO ON
 -- alter table attribute

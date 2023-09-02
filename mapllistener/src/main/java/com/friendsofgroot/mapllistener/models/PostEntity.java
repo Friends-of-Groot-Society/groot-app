@@ -14,7 +14,7 @@ import jakarta.persistence.*;
 @Table(
 		name = "POST_ENTITY", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})}
 )
-public class PostEntity  extends BaseModel {
+public class PostEntity  implements Serializable {
 	private static final long serialVersionUID = 1L;
  //	public interface SimplePost {
 //		String getTitle();

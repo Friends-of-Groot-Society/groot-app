@@ -35,17 +35,16 @@ public class Chain implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @JdbcTypeCode(SqlTypes.CHAR)
-    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, name = "CHAIN_ID", nullable = false, unique = true)
-    private UUID chainId;
-//    @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+//    @JdbcTypeCode(SqlTypes.CHAR)
+//    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, name = "CHAIN_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")
+    private Integer chainId;
 
     @Version
     private Integer version;
 
-    @NotNull
     @NotBlank
     @Size(max = 250)
     @Column(length = 250)
@@ -69,7 +68,8 @@ public class Chain implements Serializable {
     @Column(name = "block_explorer_url")
     private String blockExplorerUrl;
     private Integer id;
-
+    private Date dateCreated;
+ 
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
@@ -84,27 +84,7 @@ public class Chain implements Serializable {
     @OneToMany(mappedBy = "chain")
     private Set<ChainOrderLine> chainOrderLines;
 
-    @ManyToMany
-    @JoinTable(name = "chain_category",
-            joinColumns = @JoinColumn(name = "chain_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
 
 
-    @CreationTimestamp
-    @Column(name = "created_date", nullable = false, updatable = false)
-    private Date dateCreated;
 
-    @CreationTimestamp
-    @Column(name = "date_created", nullable = false, updatable = false)
-    private LocalDateTime createdDate;
-
-
-    @UpdateTimestamp
-    @Column(name = "last_updated")
-    private LocalDateTime lastUpdated;
-
-    @Column(name = "updated_at")
-    @UpdateTimestamp
-    private Timestamp updatedAt;
 }

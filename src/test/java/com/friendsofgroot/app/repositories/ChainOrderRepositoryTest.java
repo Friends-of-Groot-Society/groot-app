@@ -1,8 +1,8 @@
 package com.friendsofgroot.app.repositories;
 
-import com.friendsofgroot.app.entities.Chain;
-import com.friendsofgroot.app.entities.ChainOrder;
-import com.friendsofgroot.app.entities.User;
+import com.friendsofgroot.app.models.Chain;
+import com.friendsofgroot.app.models.ChainOrder;
+import com.friendsofgroot.app.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ class ChainOrderRepositoryTest {
     ChainOrderRepository chainOrderRepository;
 
     @Autowired
-    UserRepository userRepository;
+    UsersRepository userRepository;
 
     @Autowired
-    ChainRepository chainRepository;
+    ChainsRepository chainRepository;
 
     User testUser;
     Chain testChain;

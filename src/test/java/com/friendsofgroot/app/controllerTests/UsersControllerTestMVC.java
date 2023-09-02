@@ -136,7 +136,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
         given(userService.getUser(any(Integer.class))).willReturn(null);
 
-        mockMvc.perform(get(UsersController.USER_PATH_ID, UUID.randomUUID()))
+        mockMvc.perform(get(UsersController.USER_PATH_ID, (int) Math.floor(Math.random()*31)))
                 .andExpect(status().isNotFound());
     }
 

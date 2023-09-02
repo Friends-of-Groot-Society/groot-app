@@ -11,7 +11,7 @@ import lombok.*;
 @Getter
 @Entity
 @Table(name = "comments")
-public class Comment  extends BaseModel {
+public class Comment  implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // MUST BE AUTO; IDENTITY NO-GO with ORACLE

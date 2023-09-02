@@ -6,13 +6,37 @@ function fn() {
   }
   var config = {
     env: env,
-    myVarName: 'someValue'
+    myVarName: 'someValue',
+    username: 'guest',
+    password: 'guest',
+    _url: 'http://localhost:8080',
+
   }
   if (env == 'dev') {
     // customize
     // e.g. config.foo = 'bar';
+    config.username = 'author';
+    config.password = 'authorpassword';
   } else if (env == 'e2e') {
-    // customize
+    config.username = 'user';
+    config.password = 'userpassword';
+  } else if (env == 'staging') {
+    // Initialize the config for staging
+    config.username = 'stagingadmin1';
+    config.password = 'stagingwelcome';
+    //config._url= 'http://staging.localhost:9898';
+    config._url= 'http://localhost:9898';
+  } else if (env == 'preprod') {
+    // Initialize the config for preprod
+    config.username = 'preprodadmin1';
+    config.password = 'preprodwelcome';
+    config._url= 'http://preprod.localhost:9898';
+  } else if (env == 'prod') {
+    // Initialize the config for prod
+    config.username = 'prodadmin1';
+    config.password = 'prodwelcome';
+    config._url= 'http://localhost:9898';
   }
+
   return config;
 }

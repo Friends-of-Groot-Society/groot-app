@@ -55,9 +55,10 @@ public class SecurityConfig {
     }
 
 
+
     // DISABLE WHEN CONNECTED TO LDAP or DB
     @Bean
-    @Profile(value={"dev"})
+    @Profile(value={"!prod"})
     InMemoryUserDetailsManager createUserDetailsManager() {
         log.info("createUserDetailsManager");
 
@@ -65,7 +66,7 @@ public class SecurityConfig {
 
         UserDetails userDetails2 = User.builder()
                 .username("guest")
-                .password(passwordMaplEncoder().encode("password"))
+                .password(passwordMaplEncoder().encode("guest"))
                 .authorities(new SimpleGrantedAuthority("USER"))
                 .build();
         return new InMemoryUserDetailsManager(userDetails1, userDetails2);
@@ -109,6 +110,12 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ThymeLeaf UI
                                 .requestMatchers(HttpMethod.GET, "/rest/**").permitAll() // Spring Rest API
+
+                                .requestMatchers(HttpMethod.POST, "/api/**").permitAll() //  API
+                                .requestMatchers(HttpMethod.PUT, "/api/**").permitAll() //  API
+                                .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll() //  API
+
+
                                 .requestMatchers(HttpMethod.GET, "/v3/api-docs**", "/swagger-ui/**", "/swagger-ui.html").permitAll() // Open API
                                 .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // H2
                                 .anyRequest().authenticated()
@@ -151,33 +158,7 @@ public class SecurityConfig {
         return currentUsername;
     }
 
-    static boolean checkDbUsernameAndPassword(String un, String pw) {
 
-        UsersServiceImpl usersService = new UsersServiceImpl();
-        System.out.println("checkDbUsernameAndPassword"+usersService.getUsers());
-       // returns null if not in DB params: EMAIL
-        UserDto login = new UserDto();
-        try {
-              login = usersService.getUserByEmail(un);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-      //	    VALIDATION #2 - Check targeted DB User against logged-in Username & password
-        if (login != null && (un.contentEquals(
-                login.getEmail())
-                && pw.contentEquals(  login.getPassword()  )
-        )) {
-            System.out.println(
-                    "...grreat, password checks out! *" + un + "* #1, now logging you into your Dashboard");
-            String name = (login.getFirstName() != null) ? login.getFirstName() : un;
-            System.out.println("Welcome, *" + name + "*\n  " +
-                    "  ... now preparing your Dashboard");
-            return true;
-        } else {
-            System.out.println("...sorry, password does not match our records for *" + un + "* #1");
-        }
-        return false;
-    }
 
     static boolean hardCodedAdminNameAndPassword(String un, String pw) {
         log.info("hardCodedAdminNameAndPassword"+" un: "+un+" pw: "+pw+" ADMIN: "+ADMIN+" ADMIN_PASSWORD: "+ADMIN_PASSWORD);

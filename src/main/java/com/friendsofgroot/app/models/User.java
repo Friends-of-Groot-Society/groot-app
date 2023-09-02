@@ -65,25 +65,28 @@ public class User  implements Serializable{
 
 
     // parent of many
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id"  , orphanRemoval = true)
-    private List<Address> addresses;
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id"  , orphanRemoval = true)
+//    private List<Address> addresses;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
-            fetch = FetchType.LAZY)
-    @JoinTable(name="CHAIN_USERS",
-            joinColumns=@JoinColumn(name="userid"),
-            inverseJoinColumns= @JoinColumn(name="chain_id")
-    )
-    @JsonIgnore
-    private List<Chain> chains = new ArrayList<>();
+//    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+//            fetch = FetchType.LAZY)
+//    @JoinTable(name="CHAIN_USERS",
+//            joinColumns=@JoinColumn(name="userid"),
+//            inverseJoinColumns= @JoinColumn(name="chain_id")
+//    )
+//    @JsonIgnore
+//    @ToString.Exclude
+//    private List<Chain> chains = new ArrayList<>();
+
     @ManyToMany(fetch = FetchType.EAGER)
-   @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
 
-    @Builder.Default
-    @OneToMany(mappedBy = "user")
-    private Set<ChainOrder> chainOrders = new HashSet<>();
+//    @Builder.Default
+//    @OneToMany(mappedBy = "user")
+//    @ToString.Exclude
+//    private Set<ChainOrder> chainOrders = new HashSet<>();
 
     public User(int userid, String username, String password, String lastname, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType) {
 

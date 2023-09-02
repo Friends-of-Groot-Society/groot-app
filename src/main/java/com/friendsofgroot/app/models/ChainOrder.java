@@ -57,7 +57,7 @@ public class ChainOrder {
 
     public void setUser(User user) {
         this.user = user;
-        user.getChainOrders().add(this);
+//        user.getChainOrders().add(this);
     }
 
 

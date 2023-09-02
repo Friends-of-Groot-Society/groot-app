@@ -1,6 +1,8 @@
-package com.friendsofgroot.app.services;
+package com.friendsofgroot.app.serviceTests;
 
 import com.friendsofgroot.app.models.dto.ChainCSVRecord;
+import com.friendsofgroot.app.service.ChainCsvService;
+import com.friendsofgroot.app.service.ChainCsvServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.ResourceUtils;
 
@@ -11,7 +13,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ChainCsvServiceImplTest {
-
     ChainCsvService chainCsvService = new ChainCsvServiceImpl();
 
     @Test

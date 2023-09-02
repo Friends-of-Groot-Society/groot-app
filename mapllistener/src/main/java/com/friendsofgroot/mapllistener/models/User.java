@@ -21,7 +21,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class
-User extends BaseModel  {
+User implements Serializable  {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ID_MAKER" )

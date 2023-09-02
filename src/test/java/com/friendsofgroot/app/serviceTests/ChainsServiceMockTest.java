@@ -51,7 +51,7 @@ public class ChainsServiceMockTest {      // *NOTE: change PK coinnames before s
     @Test
     public void get_chain() {
         ChainDto c = new ChainDto( );    // PASSES
-        c.setChainId(UUID.randomUUID());
+        c.setChainId((int) Math.floor(Math.random()*31));
         when( chainsServiceMockTest.getChain(c.getChainId())).thenReturn(assertInstanceOf(ChainDto.class, c));
         assertEquals( chainsServiceMockTest.getChain(c.getChainId()), c); // chainsServiceMockTest.getChain(c.getId())); // Check not null bc dynamic int ID
 
@@ -77,7 +77,7 @@ public class ChainsServiceMockTest {      // *NOTE: change PK coinnames before s
     @Test
     public void delete_chain() {                                          // PASSES
         ChainDto c = new ChainDto( );
-        c.setChainId(UUID.randomUUID());
+        c.setChainId((int) Math.floor(Math.random()*31));
 		when( chainsServiceMockTest.deleteById(c.getChainId())).thenReturn(assertInstanceOf(Boolean.class, true));
         assertTrue( chainsServiceMockTest.deleteById(c.getChainId()));
     }

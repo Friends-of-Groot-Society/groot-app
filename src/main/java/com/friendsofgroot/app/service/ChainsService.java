@@ -25,7 +25,7 @@ public interface ChainsService {
 
     Page<ChainDto> getAllChainsPageable(Pageable page);
 
-    Optional<ChainDto> getChainByChainId(UUID chainId);
+    Optional<ChainDto> getChainByChainId(Integer chainId);
 
 //    Page<ChainDto> listChains(Pageable page);
 
@@ -33,12 +33,12 @@ public interface ChainsService {
 
     public ChainDto updateChain(ChainDto change);
 
-    Optional<ChainDto> updateChainByChainId(UUID chainId, ChainDto change);
+    Optional<ChainDto> updateChainByChainId(Integer chainId, ChainDto change);
 
-    Optional<ChainDto> patchChainById(UUID chainId, ChainDto chain);
-    boolean deleteById(UUID chainId);
+    Optional<ChainDto> patchChainById(Integer chainId, ChainDto chain);
+    boolean deleteById(Integer chainId);
 
-    ChainDto getChain(UUID chainId);
+    ChainDto getChain(Integer chainId);
 
 //    List<ChainDto> findByCategory(String cat);
 

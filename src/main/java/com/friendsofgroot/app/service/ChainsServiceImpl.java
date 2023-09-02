@@ -34,7 +34,7 @@ public class ChainsServiceImpl implements ChainsService {
         this.chainMapper = chainMapper;
 
         Chain chain1 = Chain.builder()
-                .chainId(UUID.randomUUID())
+                .chainId((int) Math.floor(Math.random()*31))
                 .version(1)
                 .name("Ethereum")
                 .symbol(Symbol.ETH)
@@ -48,7 +48,7 @@ public class ChainsServiceImpl implements ChainsService {
                 .build();
 
         Chain chain2 = Chain.builder()
-                .chainId(UUID.randomUUID())
+                .chainId((int) Math.floor(Math.random()*31))
                 .version(1)
                 .name("Bitcoin")
                 .symbol(Symbol.BTC)
@@ -62,7 +62,7 @@ public class ChainsServiceImpl implements ChainsService {
                         .build();
 
         Chain chain3 = Chain.builder()
-                .chainId(UUID.randomUUID())
+                .chainId((int) Math.floor(Math.random()*31))
                 .version(1)
                 .name("PulseChain")
                 .symbol(Symbol.PLS)
@@ -75,9 +75,9 @@ public class ChainsServiceImpl implements ChainsService {
                 .iconUrl("https://www.cryptocompare.com/media/37746251/eth.png")
                 .build();
 
-        Chain newChain = chainsRepository.save(chain1);
-        Chain newChain2 = chainsRepository.save(chain2);
-        Chain newChain3 = chainsRepository.save(chain3);
+//        Chain newChain = chainsRepository.save(chain1);
+//        Chain newChain2 = chainsRepository.save(chain2);
+//        Chain newChain3 = chainsRepository.save(chain3);
 
 
     }
@@ -89,10 +89,10 @@ public class ChainsServiceImpl implements ChainsService {
     @Override
     public ChainDto saveNewChain(ChainDto chainDto) {
         ChainDto savedChain = ChainDto.builder()
-                .chainId(UUID.randomUUID())
+                .chainId((int) Math.floor(Math.random()*31))
                 .version(1)
-                .dateCreated(Date.from(java.time.ZonedDateTime.now().toInstant()))
-                .createdDate(LocalDateTime.now())
+//                .dateCreated(Date.from(java.time.ZonedDateTime.now().toInstant()))
+//                .createdDate(LocalDateTime.now())
                 .build();
 
         Chain chain = chainMapper.toEntity(chainDto);
@@ -109,14 +109,14 @@ public class ChainsServiceImpl implements ChainsService {
 
 
     @Override
-    public Optional<ChainDto> getChainByChainId(UUID chainId) {
+    public Optional<ChainDto> getChainByChainId(Integer chainId) {
         log.debug("Get Chain by Id - in service. Id: " + chainId.toString());
 
         return Optional.of(chainMapper.toOneDto(chainsRepository.findChainByChainId(chainId))); //
     }
 
     @Override
-    public ChainDto getChain(UUID chainId) {
+    public ChainDto getChain(Integer chainId) {
         Chain chain = chainsRepository.findById(chainId).orElseThrow(() -> new ResourceNotFoundException("not found", "not found",chainId.toString()));
         return chainMapper.toOneDto(chain);
     }
@@ -207,7 +207,7 @@ public class ChainsServiceImpl implements ChainsService {
 
 
     @Override
-    public Optional<ChainDto> updateChainByChainId(UUID chainId, ChainDto change) {
+    public Optional<ChainDto> updateChainByChainId(Integer chainId, ChainDto change) {
         AtomicReference<Optional<ChainDto>> atomicReference = new AtomicReference<>();
 
              chainsRepository.findById(chainId).ifPresentOrElse(chainUpdate -> {
@@ -250,7 +250,7 @@ public class ChainsServiceImpl implements ChainsService {
 
 
     @Override
-    public Optional<ChainDto> patchChainById(UUID chainId, ChainDto chain) {
+    public Optional<ChainDto> patchChainById(Integer chainId, ChainDto chain) {
 
         Chain chainUpdate = chainsRepository.findById(chainId).get();
         if (StringUtils.hasText(chain.getName())) {
@@ -287,7 +287,7 @@ public class ChainsServiceImpl implements ChainsService {
     }
 
     @Override
-    public boolean deleteById(UUID chainId) {
+    public boolean deleteById(Integer chainId) {
         if (chainsRepository.existsById(chainId)) {
             chainsRepository.deleteById(chainId);
             return true;

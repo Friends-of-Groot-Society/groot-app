@@ -22,40 +22,12 @@ public class UsersServiceImpl implements UsersService {
 
     private UserMapper userMapper;
     @Autowired
-  UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper) {
+    public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper) {
       this.userMapper = userMapper;
       this.usersRepository = usersRepository;
   }
 
-    public UsersServiceImpl() {
-        UserDto user1 = UserDto.builder()
-//                .userId(UUID.randomUUID()
-//                .name("User 1")
-//                .version(1)
-//                .createdDate(LocalDateTime.now())
-//                .updateDate(LocalDateTime.now())
-                .build();
-
-        UserDto user2 = UserDto.builder()
-//                .id(UUID.randomUUID())
-//                .name("User 2")
-//                .version(1)
-//                .createdDate(LocalDateTime.now())
-//                .updateDate(LocalDateTime.now())
-                .build();
-
-        UserDto user3 = UserDto.builder()
-//                .id(UUID.randomUUID())
-//                .name("User 3")
-//                .version(1)
-//                .createdDate(LocalDateTime.now())
-//                .updateDate(LocalDateTime.now())
-                .build();
-
-        usersRepository.save(userMapper.toEntity(user1));
-        usersRepository.save(userMapper.toEntity(user2));
-        usersRepository.save(userMapper.toEntity(user3));
-    }
+    public UsersServiceImpl() {     }
 
     /**
      * @param user
@@ -142,7 +114,7 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public List<UserDto> getUsers() {
-        List<UserDto> userDtos = new ArrayList<>();
+        List<UserDto> userDtos =null;
        try {
            List<User> users = usersRepository.findAll();
            if (users == null) {
@@ -180,15 +152,15 @@ public class UsersServiceImpl implements UsersService {
         return userMapper.toDto(u);
     }
 
-    public List<User> getUsersWithCoins() {
-        if (usersRepository.findAll().size() == 0) return null;
-        return usersRepository.findAll()
-                .stream()
-                .filter(u ->
-                        u.getAddresses().size() > 0 && u.getIsActive() != 0
-                )
-                .collect(Collectors.toList());
-    }
+//    public List<User> getUsersWithCoins() {
+//        if (usersRepository.findAll().size() == 0) return null;
+//        return usersRepository.findAll()
+//                .stream()
+//                .filter(u ->
+//                        u.getAddresses().size() > 0 && u.getIsActive() != 0
+//                )
+//                .collect(Collectors.toList());
+//    }
 
 
     /**

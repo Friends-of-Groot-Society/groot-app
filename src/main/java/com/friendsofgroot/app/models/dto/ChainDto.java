@@ -1,13 +1,12 @@
 package com.friendsofgroot.app.models.dto;
 
+import com.friendsofgroot.app.models.BaseModel;
 import com.friendsofgroot.app.models.Chain;
 import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,19 +19,19 @@ import java.util.UUID;
 /**
  * A Dto for the {@link Chain} entity
  */
-@Data
+@Setter
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChainDto implements Serializable {
     static long serialVersionUID = 1L;
-    private UUID chainId;
+    private Integer chainId;
     private Integer version;
 
     @NotBlank
     @NotNull
     private String name;
-    @NotNull
     private Symbol symbol;
     private String description;
     private String longDescription;
@@ -40,28 +39,12 @@ public class ChainDto implements Serializable {
     private String category;
     private String chainListIcon;
     private String rpcUrl;
+    @NotNull
     private Integer id;
     private String blockExplorerUrl;
 
 
-    @CreationTimestamp
-    @Column(name = "created_date", nullable = false, updatable = false)
-    private Date dateCreated;
-
-    @CreationTimestamp
-    @Column(name = "date_created", nullable = false, updatable = false)
-    private LocalDateTime createdDate;
-
-
-    @UpdateTimestamp
-    @Column(name = "last_updated")
-    private LocalDateTime lastUpdated;
-
-    @Column(name = "updated_at")
-    @UpdateTimestamp
-    private Timestamp updatedAt;
-
-    //    private String nativeCurrency;
+       //    private String nativeCurrency;
 //    private String nativeCurrencySymbol;
 //    private String nativeCurrencyDecimals;
 //    private String chainType;

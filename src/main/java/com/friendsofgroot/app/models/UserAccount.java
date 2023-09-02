@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
@@ -13,10 +14,11 @@ import java.util.Objects;
 @ToString
 @Entity
 @Table(name = "USER_ACCOUNTS")
-public class UserAccount extends BaseModel {
+public class UserAccount implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_accounts_seq")
+	@SequenceGenerator(name = "user_accounts_seq", sequenceName = "user_accounts_seq", allocationSize = 1)
 	@Column(name = "user_id")
 	private int userId;
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel="chain", path = "chain")
-public interface ChainsRepository extends JpaRepository<Chain, UUID> {
+public interface ChainsRepository extends JpaRepository<Chain, Integer> {
 
     Page<Chain> findAll(Pageable pageable);
 
@@ -26,15 +26,15 @@ public interface ChainsRepository extends JpaRepository<Chain, UUID> {
     // SQL Query
     @Query(nativeQuery=true, value="SELECT NAME as label, " +
             "COUNT(*) as value " +
-            "FROM chain " +
+            "FROM CHAIN " +
             "GROUP BY NAME")
     public List<ChartData> getNames(); //ChartData is a custom class
 
     // SQL Query
     @Query(value = "SELECT category as label, " +
             "COUNT(*) as value " +
-            "FROM chain " +
-            "GROUP BY category", nativeQuery = true)
+            "FROM CHAIN " +
+            "GROUP BY CATEGORY", nativeQuery = true)
     public List<ChartData> getChainCategories(); //ChartData is a custom class`
 
 
@@ -51,5 +51,5 @@ public interface ChainsRepository extends JpaRepository<Chain, UUID> {
     Page<Chain> findAllByNameIsLikeIgnoreCaseAndSymbol(String name, Symbol symbol, Pageable pageable);
 
 
-    Chain findChainByChainId(UUID chainId);
+    Chain findChainByChainId(Integer chainId);
 }

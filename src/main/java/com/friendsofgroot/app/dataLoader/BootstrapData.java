@@ -76,8 +76,8 @@ public class BootstrapData implements CommandLineRunner {
                                 .rpcUrl(chainCSVRecord.getRpcUrl())
                                 .id(chainCSVRecord.getId())
                                 .blockExplorerUrl(chainCSVRecord.getBlockExplorerUrl())
-                                .dateCreated(new Date(2021,10,10))
-                                .lastUpdated(LocalDateTime.now())
+//                                .dateCreated(new Date(2021,10,10))
+//                                .lastUpdated(LocalDateTime.now())
                         .build());
             });
         }
@@ -88,33 +88,29 @@ public class BootstrapData implements CommandLineRunner {
             Chain  chain1 = Chain.builder()
                     .name("Galaxy Cat")
                     .symbol(Symbol.PLS)
-                    .dateCreated(Date.valueOf(LocalDate.now()))
-                    .createdDate( (LocalDateTime.now()))
-                    .lastUpdated(LocalDateTime.now())
-                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+//                    .dateCreated(Date.valueOf(LocalDate.now()))
+//                    .createdDate( (LocalDateTime.now()))
+//                    .lastUpdated(LocalDateTime.now())
+//                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
 
             Chain chain2 = Chain.builder()
                     .name("Crank")
                     .symbol(Symbol.ETH)
-//                    .price(new BigDecimal("1131.199"))
-//                    .quantityOnHand(392))
-                    .dateCreated(Date.valueOf(LocalDate.now()))
-                    .createdDate( (LocalDateTime.now()))
-                    .lastUpdated(LocalDateTime.now())
-                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+//                    .dateCreated(Date.valueOf(LocalDate.now()))
+//                    .createdDate( (LocalDateTime.now()))
+//                    .lastUpdated(LocalDateTime.now())
+//                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
 
             Chain chain3 = Chain.builder()
                     .name("Sunshine City")
                     .symbol(Symbol.SOL)
                     .id(12356)
-//                    .price(new BigDecimal("1313.3199"))
-//                    .quantityOnHand(144)
-                    .dateCreated(Date.valueOf(LocalDate.now()))
-                    .createdDate(LocalDateTime.now())
-                    .lastUpdated(LocalDateTime.now())
-                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
+//                    .dateCreated(Date.valueOf(LocalDate.now()))
+//                    .createdDate(LocalDateTime.now())
+//                    .lastUpdated(LocalDateTime.now())
+//                    .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                     .build();
 
             chainRepository.save(chain1);
@@ -152,6 +148,4 @@ public class BootstrapData implements CommandLineRunner {
         }
 
     }
-
-
 }

@@ -1,6 +1,6 @@
 package com.friendsofgroot.app.repositories;
 
-import com.friendsofgroot.app.bootstrap.BootstrapData;
+import com.friendsofgroot.app.dataLoader.BootstrapData;
 import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.models.dto.Symbol;
 import com.friendsofgroot.app.service.ChainCsvServiceImpl;

@@ -148,9 +148,16 @@ public class ChainsServiceImpl implements ChainsService {
     @Override
     public List<ChainDto> getAllChains() {
         List<Chain> chains = chainsRepository.findAll();
-        List<ChainDto> content = chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
+        log.info(chains.toString());
+        List<ChainDto> content = new ArrayList<>();
+                try {
+                  content =  chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
+                    log.info(content.toString());
 
-        return content;
+                } catch (Exception e) {
+                    log.info(e.getMessage());
+                }
+                       return content;
     }
 
     @Override

@@ -88,12 +88,12 @@ public class User  implements Serializable{
 //    @ToString.Exclude
 //    private Set<ChainOrder> chainOrders = new HashSet<>();
 
-    public User(int userid, String username, String password, String lastname, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType) {
+    public User(int userid, String username, String password, String lastName, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType) {
 
         this.userId = userid;
         this.username = username;
         this.password = password;
-        this.lastName = lastname;
+        this.lastName = lastName;
         this.firstName = firstName;
         this.userType = userType;
         this.phone = phone;

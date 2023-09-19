@@ -20,17 +20,18 @@ public class NftAddress  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
-	private int id;
+	private Integer id;
 	private String address;  // VARCHAR(2550
 
 	@Column(name = "native_token") // NUMBER (10,6)
 	private Float nativeToken;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "nftAddress")
-	@Column(name = "raw_token")
+	@Column(name = "tokens")
 	private List<RawToken> rawTokens;  //  "123.123456 BUSD  	// token name, token amount	@OneToOne
 
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "nftAddress" )
-	@Column(name = "nft")
-	private List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
+// USING UNI-DIRECTIONAL, B/C BI-DIRECTION NEEDED CURRENTLY
+//	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "nftAddress" )
+//	@Column(name = "nft")
+//	private List<Nft> nfts; // nft id, nft name,  nft amount, metadata_id
 }

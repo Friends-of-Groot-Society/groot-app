@@ -60,6 +60,7 @@ create table USERS_ROLES
 create table chain
 (
     chain_id           NUMBER not null,
+    version            NUMBER,
     name               varchar(255),
     symbol             varchar(255),
     description        varchar(255),
@@ -70,6 +71,7 @@ create table chain
     rpc_url            varchar(255),
     id                 NUMBER,
     block_explorer_url varchar(255),
+    date_created       date,
     primary key (chain_id)
 );
 

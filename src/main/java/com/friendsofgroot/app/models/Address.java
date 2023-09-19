@@ -43,7 +43,7 @@ public class Address  implements Serializable {
     @Column(name="chain_id")
     private int chainId;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-    @JoinColumn(name="NFTADDRESS_id")
-    private NftAddress nftAddress;
+//    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+//    @JoinColumn(name="id")
+//    private NftAddress nftAddress;
 }

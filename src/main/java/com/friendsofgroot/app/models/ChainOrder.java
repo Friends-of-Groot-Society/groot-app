@@ -61,10 +61,5 @@ public class ChainOrder {
     }
 
 
-    @OneToMany(mappedBy = "chainOrder")
-    private Set<ChainOrderLine> chainOrderLines;
-
-
-
 
 }

@@ -18,8 +18,8 @@ public interface NftAddressMapper {
         nftAddress.getRawTokens().forEach(rawToken -> rawToken.setNftAddress(nftAddress));
     }
 
-    @AfterMapping
-    default void linkNfts(@MappingTarget NftAddress nftAddress) {
-        nftAddress.getNfts().forEach(nft -> nft.setNftAddress(nftAddress));
-    }
+//    @AfterMapping
+//    default void linkNfts(@MappingTarget NftAddress nftAddress) {
+//        nftAddress.getNfts().forEach(nft -> nft.setNftAddress(nftAddress));
+//    }
 }

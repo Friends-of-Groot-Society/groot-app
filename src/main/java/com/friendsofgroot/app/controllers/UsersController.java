@@ -82,7 +82,6 @@ public class UsersController {
 //////////////////////////////////////////////////////////////
      //// GENERAL API for user management ////
     /////////////////////////////////////////////////////////
-
     @GetMapping(USER_PATH)
     public ResponseEntity<List<UserDto>> getUsers() {
         List<UserDto> users = new ArrayList<>();

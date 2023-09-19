@@ -29,8 +29,8 @@ public class ChainDto implements Serializable {
     private Integer chainId;
     private Integer version;
 
-    @NotBlank
-    @NotNull
+//    @NotBlank
+//    @NotNull
     private String name;
     private Symbol symbol;
     private String description;
@@ -39,9 +39,10 @@ public class ChainDto implements Serializable {
     private String category;
     private String chainListIcon;
     private String rpcUrl;
-    @NotNull
+//    @NotNull
     private Integer id;
     private String blockExplorerUrl;
+    private Date dateCreated;
 
 
        //    private String nativeCurrency;

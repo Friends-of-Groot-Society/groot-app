@@ -67,7 +67,7 @@ User implements Serializable  {
    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(long userid, String username, String password, String lastname, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType) {
+    public User(long userid, String username, String password, String lastName, String firstName, int userType, String phone, String email, String cusUrl, String photoPath, int isActive, int contactType) {
 
         this.userId = userid;
         this.username = username;

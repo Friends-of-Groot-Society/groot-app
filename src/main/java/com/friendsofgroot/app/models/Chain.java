@@ -70,19 +70,19 @@ public class Chain implements Serializable {
     private Integer id;
     private Date dateCreated;
  
-
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
-            fetch = FetchType.LAZY)
-    @JoinTable(name = "CHAIN_USERS",
-            joinColumns = @JoinColumn(name = "CHAIN_ID"),
-            inverseJoinColumns = @JoinColumn(name = "userid")
-    )
-    @JsonIgnore
-    private List<User> users;
-
-
-    @OneToMany(mappedBy = "chain")
-    private Set<ChainOrderLine> chainOrderLines;
+//
+//    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+//            fetch = FetchType.LAZY)
+//    @JoinTable(name = "CHAIN_USERS",
+//            joinColumns = @JoinColumn(name = "CHAIN_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "userid")
+//    )
+//    @JsonIgnore
+//    private List<User> users;
+//
+//
+//    @OneToMany(mappedBy = "chain")
+//    private Set<ChainOrderLine> chainOrderLines;
 
 
 

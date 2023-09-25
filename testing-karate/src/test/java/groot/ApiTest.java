@@ -2,16 +2,18 @@ package groot;
 
 import com.intuit.karate.Results;
 import com.intuit.karate.Runner;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class ExamplesTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class ApiTest {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:examples")
+        Results results = Runner.path("classpath:groot")
                 //.outputCucumberJson(true)
-                .parallel(5);
+                .parallel(1);
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 

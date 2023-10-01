@@ -170,7 +170,7 @@ class ChainsControllerIT {
         Chain chain = chainRepository.findAll().get(0);
         ChainDto chainDto = chainMapper.toOneDto(chain);
         chainDto.setId(null);
-        chainDto.setVersion(null);
+//        chainDto.setVersion(null);
         final String name = "UPDATED";
         chainDto.setName(name);
 

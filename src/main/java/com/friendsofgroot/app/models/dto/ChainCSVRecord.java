@@ -24,7 +24,7 @@ public class ChainCSVRecord {
     private String name;
 
     @CsvBindByName
-    private  Symbol symbol;
+    private  String symbol;
 
     @CsvBindByName
     private String description;

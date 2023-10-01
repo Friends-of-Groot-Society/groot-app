@@ -27,12 +27,12 @@ import java.util.UUID;
 public class ChainDto implements Serializable {
     static long serialVersionUID = 1L;
     private Integer chainId;
-    private Integer version;
+//    private Integer version;
 
 //    @NotBlank
 //    @NotNull
     private String name;
-    private Symbol symbol;
+    private String symbol;
     private String description;
     private String longDescription;
     private String iconUrl;
@@ -42,7 +42,7 @@ public class ChainDto implements Serializable {
 //    @NotNull
     private Integer id;
     private String blockExplorerUrl;
-    private Date dateCreated;
+//    private Date dateCreated;
 
 
        //    private String nativeCurrency;

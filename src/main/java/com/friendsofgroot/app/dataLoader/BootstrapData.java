@@ -52,22 +52,22 @@ public class BootstrapData implements CommandLineRunner {
             List<ChainCSVRecord> recs = chainCsvService.convertCSV(file);
 
             recs.forEach(chainCSVRecord -> {
-                Symbol symbol = switch (chainCSVRecord.getSymbol().toString()) {
-                    case "Ethereum" -> Symbol.ETH;
-                    case "Wrapped Bitcoin", "Bitcoin" ->
-                            Symbol.BTC;
-                    case "ChainLink", "Ethereum from Polygon", "Polygon" -> Symbol.MATIC;
-                    case "Pulsechain", "Hex from Pulsechain" -> Symbol.PLS;
-                    case "Solana Chain", "Solana" -> Symbol.SOL;
-                    case "Binance Chain" -> Symbol.BNB;
-                    case "avalanche", "Avalanche Mainnet", "Avalanche" -> Symbol.AVAX;
-                    case "XRP", "Ripple" -> Symbol.XRP;
-                    default -> Symbol.ETH;
-                };
+//                String symbol = switch (chainCSVRecord.getSymbol().toString()) {
+//                    case "Ethereum" -> Symbol.ETH;
+//                    case "Wrapped Bitcoin", "Bitcoin" ->
+//                            Symbol.BTC;
+//                    case "ChainLink", "Ethereum from Polygon", "Polygon" -> Symbol.MATIC;
+//                    case "Pulsechain", "Hex from Pulsechain" -> Symbol.PLS;
+//                    case "Solana Chain", "Solana" -> Symbol.SOL;
+//                    case "Binance Chain" -> Symbol.BNB;
+//                    case "avalanche", "Avalanche Mainnet", "Avalanche" -> Symbol.AVAX;
+//                    case "XRP", "Ripple" -> Symbol.XRP;
+//                    default -> Symbol.ETH;
+//                };
 
                 chainRepository.save(Chain.builder()
                                 .name(StringUtils.abbreviate(chainCSVRecord.getName(), 250))
-                                .symbol(symbol)
+                                .symbol(chainCSVRecord.getSymbol())
                                 .iconUrl(chainCSVRecord.getIconUrl())
                                 .description(chainCSVRecord.getDescription())
                                 .longDescription(chainCSVRecord.getLongDescription())
@@ -87,7 +87,7 @@ public class BootstrapData implements CommandLineRunner {
         if (chainRepository.count() == 0){
             Chain  chain1 = Chain.builder()
                     .name("Galaxy Cat")
-                    .symbol(Symbol.PLS)
+                    .symbol("PLS")
 //                    .dateCreated(Date.valueOf(LocalDate.now()))
 //                    .createdDate( (LocalDateTime.now()))
 //                    .lastUpdated(LocalDateTime.now())
@@ -96,7 +96,7 @@ public class BootstrapData implements CommandLineRunner {
 
             Chain chain2 = Chain.builder()
                     .name("Crank")
-                    .symbol(Symbol.ETH)
+                    .symbol("ETH")
 //                    .dateCreated(Date.valueOf(LocalDate.now()))
 //                    .createdDate( (LocalDateTime.now()))
 //                    .lastUpdated(LocalDateTime.now())
@@ -105,7 +105,7 @@ public class BootstrapData implements CommandLineRunner {
 
             Chain chain3 = Chain.builder()
                     .name("Sunshine City")
-                    .symbol(Symbol.SOL)
+                    .symbol("SOL")
                     .id(12356)
 //                    .dateCreated(Date.valueOf(LocalDate.now()))
 //                    .createdDate(LocalDateTime.now())

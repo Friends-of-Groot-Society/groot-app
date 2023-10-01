@@ -1,7 +1,7 @@
 package com.friendsofgroot.app.models;
 
 public enum Symbol {
-ETH,
+    ETH,
     MATIC,
     BNB,
     PLS,

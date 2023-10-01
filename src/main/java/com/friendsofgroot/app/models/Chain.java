@@ -16,6 +16,7 @@ import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -38,20 +39,20 @@ public class Chain implements Serializable {
 //    @GeneratedValue(generator = "UUID")
 //    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 //    @JdbcTypeCode(SqlTypes.CHAR)
-//    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, name = "CHAIN_ID", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO) //IDENTITY, generator = "chain_seq")
+    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, name = "CHAIN_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "chain_seq")
     private Integer chainId;
 
-    @Version
-    private Integer version;
+//    @Version
+//    private Integer version;
 
-    @NotBlank
+//    @NotBlank
     @Size(max = 250)
     @Column(length = 250)
     private String name;
 
     @Column(name = "symbol")
-    private Symbol symbol;
+    private String symbol;
 
     private String description;
     @Column(name = "long_description")
@@ -68,9 +69,11 @@ public class Chain implements Serializable {
     @Column(name = "block_explorer_url")
     private String blockExplorerUrl;
     private Integer id;
-    private Date dateCreated;
- 
+
+//    @Column(name = "DATE_CREATED")
+//    private Date dateCreated;
 //
+////
 //    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
 //            fetch = FetchType.LAZY)
 //    @JoinTable(name = "CHAIN_USERS",

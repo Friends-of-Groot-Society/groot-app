@@ -44,5 +44,5 @@ public interface ChainsService {
 
     List<ChainDto> findByName(String ethereum);
 
-    Page<ChainDto> listChains(String name, Symbol symbol, Integer pageNumber, Integer pageSize);
+    Page<ChainDto> listChains(String name, String symbol, Integer pageNumber, Integer pageSize);
 }

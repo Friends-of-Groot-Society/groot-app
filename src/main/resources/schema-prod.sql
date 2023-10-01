@@ -14,13 +14,13 @@ DROP TABLE NFT CASCADE CONSTRAINTS ;
 
 create table USERS_ROLES
   (
-      id          NUMBER not null,
+      id NUMBER not null,
+       userid NUMBER not null,
       role_id     NUMBER not null,
-      user_userid NUMBER not null,
-      primary key (id)
+    primary key (id)
   );
 
-  -- drop table chain_users CASCADE  CONSTRAINTS;
+--   drop table chain_users CASCADE  CONSTRAINTS;
   create table chain_users
   (
       id       NUMBER  not null,
@@ -29,7 +29,7 @@ create table USERS_ROLES
       primary key (id)
   );
 
-  -- drop table users CASCADE  CONSTRAINTS;
+--   drop table users CASCADE  CONSTRAINTS;
   create table users
   (
       USERID      NUMBER not null,
@@ -47,7 +47,7 @@ create table USERS_ROLES
       primary key (USERID)
   );
 
-  -- drop table roles CASCADE  CONSTRAINTS;
+--   drop table roles CASCADE  CONSTRAINTS;
   create table  roles
   (
       id   NUMBER not null,
@@ -60,7 +60,6 @@ create table USERS_ROLES
 create table chain
 (
     chain_id           NUMBER not null,
-    version            NUMBER,
     name               varchar(255),
     symbol             varchar(255),
     description        varchar(255),
@@ -71,7 +70,6 @@ create table chain
     rpc_url            varchar(255),
     id                 NUMBER,
     block_explorer_url varchar(255),
-    date_created       date,
     primary key (chain_id)
 );
 

@@ -5,13 +5,14 @@ import com.friendsofgroot.app.models.dto.ChainDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.models.Chain;
 import com.friendsofgroot.app.mapper.ChainMapper;
-import com.friendsofgroot.app.models.dto.Symbol;
+//import com.friendsofgroot.app.models.dto.Symbol;
 import com.friendsofgroot.app.repositories.ChainsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -35,9 +36,8 @@ public class ChainsServiceImpl implements ChainsService {
 
         Chain chain1 = Chain.builder()
                 .chainId((int) Math.floor(Math.random()*31))
-                .version(1)
                 .name("Ethereum")
-                .symbol(Symbol.ETH)
+                .symbol("ETH")
                 .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
                 .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
                 .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
@@ -49,9 +49,8 @@ public class ChainsServiceImpl implements ChainsService {
 
         Chain chain2 = Chain.builder()
                 .chainId((int) Math.floor(Math.random()*31))
-                .version(1)
                 .name("Bitcoin")
-                .symbol(Symbol.BTC)
+                .symbol("BTC")
                         .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
                         .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
                         .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
@@ -63,9 +62,8 @@ public class ChainsServiceImpl implements ChainsService {
 
         Chain chain3 = Chain.builder()
                 .chainId((int) Math.floor(Math.random()*31))
-                .version(1)
                 .name("PulseChain")
-                .symbol(Symbol.PLS)
+                .symbol("PLS")
                 .chainListIcon("https://www.cryptocompare.com/media/37746251/eth.png")
                 .rpcUrl("https://www.cryptocompare.com/media/37746251/eth.png")
                 .blockExplorerUrl("https://www.cryptocompare.com/media/37746251/eth.png")
@@ -90,7 +88,6 @@ public class ChainsServiceImpl implements ChainsService {
     public ChainDto saveNewChain(ChainDto chainDto) {
         ChainDto savedChain = ChainDto.builder()
                 .chainId((int) Math.floor(Math.random()*31))
-                .version(1)
 //                .dateCreated(Date.from(java.time.ZonedDateTime.now().toInstant()))
 //                .createdDate(LocalDateTime.now())
                 .build();
@@ -148,16 +145,20 @@ public class ChainsServiceImpl implements ChainsService {
     @Override
     public List<ChainDto> getAllChains() {
         List<Chain> chains = chainsRepository.findAll();
-        log.info(chains.toString());
-        List<ChainDto> content = new ArrayList<>();
-                try {
-                  content =  chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
-                    log.info(content.toString());
 
-                } catch (Exception e) {
-                    log.info(e.getMessage());
-                }
-                       return content;
+        List<ChainDto> content = new ArrayList<>();
+    if(chains != null) {
+        log.info(chains.size() + " chains_______________");
+        try {
+            content =  chains.stream().map(chainMapper::toOneDto).collect(Collectors.toList());
+            log.info(content.toString());
+
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+    }
+        log.info(content.size() + " chainDTO_______________");
+        return content;
     }
 
     @Override
@@ -169,7 +170,7 @@ public class ChainsServiceImpl implements ChainsService {
     }
 
     @Override
-    public Page<ChainDto> listChains(String name, Symbol symbol,  Integer pageNumber, Integer pageSize){
+    public Page<ChainDto> listChains(String name, String symbol,  Integer pageNumber, Integer pageSize){
 
 
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize);
@@ -186,7 +187,7 @@ public class ChainsServiceImpl implements ChainsService {
         return chainPage.map(chainMapper::toOneDto);
 
     }
-    public  Page<Chain>  listChainsByNameAndSymbol(String name, Symbol symbol, Pageable  pageable) {
+    public  Page<Chain>  listChainsByNameAndSymbol(String name, String symbol, Pageable  pageable) {
         return chainsRepository.findAllByNameIsLikeIgnoreCaseAndSymbol("%" + name + "%",
                 symbol, pageable);
     }
@@ -195,7 +196,7 @@ public class ChainsServiceImpl implements ChainsService {
         return chainsRepository.findAllByNameIsLikeIgnoreCase("%" + name + "%", pageable);
     }
 
-    private Page<Chain>  listChainsBySymbol(Symbol symbol, Pageable pageable) {
+    private Page<Chain>  listChainsBySymbol(String symbol, Pageable pageable) {
 
         return chainsRepository.findAllBySymbol(symbol, pageable);
    }
@@ -245,7 +246,7 @@ public class ChainsServiceImpl implements ChainsService {
                 if (StringUtils.hasText(change.getBlockExplorerUrl())) {
                     chainUpdate.setBlockExplorerUrl(change.getBlockExplorerUrl());
                 }
-                chainUpdate.setVersion(chainUpdate.getVersion() + 1);
+//                chainUpdate.setVersion(chainUpdate.getVersion() + 1);
                 Chain chainDone = chainsRepository.save(chainUpdate);
                 atomicReference.set(Optional.of(chainMapper.toOneDto(chainDone)));
             }, () -> {

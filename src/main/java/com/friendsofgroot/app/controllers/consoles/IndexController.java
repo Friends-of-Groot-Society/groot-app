@@ -24,7 +24,7 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
-    @Value("${version}")
+    @Value("${app.version}")
     private String ver;
 
 

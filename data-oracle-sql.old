@@ -64,7 +64,7 @@ values (nextval('ID_MAKER'), 'thomasm1.maestas@gmail.com', 'password', 'Maestas'
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 Insert into CHAIN (CHAIN_ID, NAME, SYMBOL, DESCRIPTION, LONG_DESCRIPTION, ICON_URL, CATEGORY, CHAIN_LIST_ICON, RPC_URL,
                    ID, BLOCK_EXPLORER_URL)
-values (nextval('chain_seq'), 'polygon', 'MATIC_2', 'matic  Chain', 'NFT - 0x1',
+values (nextval('chain_seq'), 'polygon', 'MATIC', 'matic  Chain', 'NFT - 0x1',
         'https://s3.amazonaws.com/tmm.net/img/polygon.jpg', 'Mainnet', null, 'https://api.matic.network/ext/bc/C/rpc',
         2402, null);
 -- SQLINES LICENSE FOR EVALUATION USE ONLY

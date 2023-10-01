@@ -35,8 +35,8 @@ class ChainRepositoryTest {
 
         assertThrows(ConstraintViolationException.class, () -> {
             Chain savedChain = chainRepository.save(Chain.builder()
-                    .name("My Chain 0123345678901233456789012334567890123345678901233456789012334567890123345678901233456789")
-                    .symbol(Symbol.PLS)
+                    .name("My Chain TOOO LONG  DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDddddddddddddd")
+                    .symbol("PLS")
                     .build());
 
             chainRepository.flush();
@@ -47,7 +47,7 @@ class ChainRepositoryTest {
     void testSaveChain() {
         Chain savedChain = chainRepository.save(Chain.builder()
                         .name("My Chain")
-                        .symbol(Symbol.ETH)
+                        .symbol("ETH")
                 .build());
 
         chainRepository.flush();

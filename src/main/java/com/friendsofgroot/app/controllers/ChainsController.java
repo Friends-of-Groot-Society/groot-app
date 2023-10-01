@@ -44,7 +44,7 @@ public class ChainsController {
 
 //    @GetMapping(value = CHAIN_PATH)
 //    public Page<ChainDto> listChains(@RequestParam(required = false, defaultValue = "Ethereum") String name,
-//                                     @RequestParam(required = false) Symbol symbol,
+//                                     @RequestParam(required = false) String symbol,
 //                                     @RequestParam(required = false) Integer pageNumber,
 //                                     @RequestParam(required = false) Integer pageSize) {
 //        return chainService.listChains(name, symbol, pageNumber, pageSize);

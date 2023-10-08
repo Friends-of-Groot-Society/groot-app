@@ -28,6 +28,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
+import static com.friendsofgroot.app.config.security.SecurityConfig.passwordMaplEncoder;
+
 @Service
 public class AuthServiceImpl  implements AuthService {
 

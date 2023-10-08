@@ -26,7 +26,6 @@ public interface UsersService {
 	UserDto getUserByEmailAndPassword(String email, String pw);
 
 //	public List<User> getUsersWithCoins();
-	public UserDto getUserByPassword(String username, String password);
 
 	Optional<UserDto> updateUserById(Integer userId, UserDto user);
 
@@ -36,4 +35,5 @@ public interface UsersService {
 
 	boolean deleteUser(UserDto user);
 
+	UserDto getUserByEmail(String email);
 }

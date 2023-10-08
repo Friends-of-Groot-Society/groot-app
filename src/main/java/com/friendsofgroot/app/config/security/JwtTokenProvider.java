@@ -4,6 +4,8 @@ import com.friendsofgroot.app.exception.*;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import java.util.Date;
 @Component
 @Primary
 public class JwtTokenProvider {
+    static final Logger log = LoggerFactory.getLogger(JwtTokenProvider.class);
 
     @Value("${app.jwt-secret}")
     private String jwtSecret;
@@ -26,7 +29,7 @@ public class JwtTokenProvider {
     // generate JWT token
     public String generateToken(Authentication authentication){
         String username = authentication.getName();
-
+log.info("Generating JWT token========================");
         Date currentDate = new Date();
 
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
@@ -48,6 +51,7 @@ public class JwtTokenProvider {
 
     // get username from Jwt token
     public String getUsername(String token){
+        log.info("getUsername -============= {} ", token);
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key())
                 .build()
@@ -59,6 +63,7 @@ public class JwtTokenProvider {
 
     // validate Jwt token
     public boolean validateToken(String token){
+        log.info("validateToken=============== {} ", token);
         try{
             Jwts.parserBuilder()
                     .setSigningKey(key())

@@ -9,6 +9,8 @@ import com.friendsofgroot.app.repositories.UsersRepository;
 import com.friendsofgroot.app.service.ChainCsvService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -33,6 +35,8 @@ import java.util.List;
 @Profile("!prod")
 @RequiredArgsConstructor
 public class BootstrapData implements CommandLineRunner {
+
+    private static final Logger log = LoggerFactory.getLogger(BootstrapData.class);
     private final ChainsRepository chainRepository;
     private final UsersRepository userRepository;
     private final ChainCsvService chainCsvService;

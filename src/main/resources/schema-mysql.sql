@@ -7,9 +7,9 @@ create table ROLES
 
 create table USERS_ROLES
 (
-    id          INT not null auto_increment,
-    role_id     INT not null,
-    user_userid INT not null,
+    ID      INT not null auto_increment,
+    USERID  INT not null,
+    ROLE_ID INT not null,
     primary key (id)
 );
 

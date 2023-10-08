@@ -7,13 +7,13 @@ create table ROLES
 
 create table USERS_ROLES
 (
-    id          INT not null,
-    role_id     INT not null,
-    user_userid INT not null,
-    primary key (id)
+    ID      INT not null,
+    USERID  INT not null,
+    ROLE_ID INT not null,
+    primary key  (id)
 );
 
-create table  USERS
+create table USERS
 (
     USERID      INT not null,
     USERNAME    VARCHAR(255),
@@ -47,9 +47,9 @@ create table chain
 );
 create table chain_users
 (
-    id       INT  not null,
-    chain_id INT                not null,
-    userid   INT                not null,
+    id       INT not null,
+    chain_id INT not null,
+    userid   INT not null,
     primary key (id)
 );
 --     create table attribute (attrid INT, trait_type varchar(255), valu varchar(255), metadata_metadata_id INT, primary key (attrid));
@@ -64,7 +64,7 @@ create table address
     icon_url           varchar(255),
     block_explorer_url varchar(255),
     userid             INT,
-    chain_id            INT,
+    chain_id           INT,
     primary key (id)
 );
 create table NFT
@@ -137,7 +137,7 @@ alter table nft
 alter table nft
     add constraint FKav9aho8kdsp9rh22jdlocuy7r foreign key (id) references NFTADDRESS;
 
- -- MANY TO MANY
+-- MANY TO MANY
 alter table chain_users
     add constraint FKc12l3fx8me9k15hv0epjpjpbl foreign key (chain_id) references chain;
 alter table chain_users

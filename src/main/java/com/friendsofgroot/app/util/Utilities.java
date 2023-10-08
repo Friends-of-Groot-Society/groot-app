@@ -1,6 +1,9 @@
 package com.friendsofgroot.app.util;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +11,7 @@ import java.util.List;
 
 public class Utilities {
 
+    private static final Logger log = LoggerFactory.getLogger(Utilities.class);
     public static String startupTime() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());

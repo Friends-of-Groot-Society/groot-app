@@ -1,5 +1,7 @@
 package com.friendsofgroot.app.config.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import java.util.Set;
 @RequestMapping("/login")
 @SessionAttributes("name")
 public class KeysController {
+
+	private static final Logger log = LoggerFactory.getLogger(____.class);
 	HashMap<String, String> map = new HashMap<>();
 //
 //	@GetMapping(value="/")

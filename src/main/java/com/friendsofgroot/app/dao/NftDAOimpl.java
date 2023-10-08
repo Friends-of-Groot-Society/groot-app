@@ -4,6 +4,8 @@ import com.friendsofgroot.app.dataLoader.FileDataStore;
 import com.friendsofgroot.app.models.Nft;
 import com.friendsofgroot.app.models.dto.UserNftbuy;
 import com.friendsofgroot.app.config.JDBCConnection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class NftDAOimpl  implements NftDAO {
+
+	private static final Logger log = LoggerFactory.getLogger(NftDAOimpl.class);
 
 	public static Connection conn = JDBCConnection.getConnection();
 

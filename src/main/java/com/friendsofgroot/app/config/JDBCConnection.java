@@ -1,5 +1,7 @@
 package com.friendsofgroot.app.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Connection;
@@ -9,6 +11,8 @@ import java.util.Map;
 //public static Connection conn = JDBCConnection.getConnection();
 
 public class JDBCConnection {
+
+	private static final Logger log = LoggerFactory.getLogger(____.class);
 	@Value("${spring.datasource.driver-class-name}") // dev 		// org.h2.Driver
 	private static String DRIVER;
 

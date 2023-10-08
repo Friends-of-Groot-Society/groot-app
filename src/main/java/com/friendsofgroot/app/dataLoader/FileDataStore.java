@@ -3,6 +3,8 @@ package com.friendsofgroot.app.dataLoader;
 import com.friendsofgroot.app.models.dto.UserNftbuy;
 import com.friendsofgroot.app.models.*;
 import com.friendsofgroot.app.util.ReadWriteFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -14,6 +16,7 @@ import static com.friendsofgroot.app.util.constants.Datum.*;
 
 public class FileDataStore extends ReadWriteFile {
 
+	private static final Logger log = LoggerFactory.getLogger(FileDataStore.class);
 	public static int USER_BOOKMARK_LIMIT = 5; // Non-member User
 //	public   int USER_BOOKMARK_LIMIT = Integer.MAX_VALUE; //Premium -member
 	// DATA SOURCES

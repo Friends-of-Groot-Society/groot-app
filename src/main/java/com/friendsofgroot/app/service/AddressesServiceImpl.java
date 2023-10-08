@@ -5,6 +5,8 @@ import com.friendsofgroot.app.mapper.AddressMapper;
 import com.friendsofgroot.app.models.Address;
 
 import com.friendsofgroot.app.repositories.AddressesRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class AddressesServiceImpl implements AddressesService {
-
+    private static final Logger log = LoggerFactory.getLogger(AddressesServiceImpl.class);
     private final AddressesRepository addressesRepository;
     private final AddressMapper addressMapper;
 

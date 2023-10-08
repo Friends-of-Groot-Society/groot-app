@@ -1,10 +1,10 @@
 package com.friendsofgroot.app.config.security;
 
 //import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
-import com.friendsofgroot.app.models.dto.UserDto;
-import com.friendsofgroot.app.service.UsersServiceImpl;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -32,63 +32,28 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import java.util.function.Function;
 
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private static final Logger log = LoggerFactory.getLogger(____.class);
+
     private static final Logger log =
             LoggerFactory.getLogger(SecurityConfig.class);
-
-    private UserDetailsService userDetailsService;
 
     private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
     private JwtAuthenticationFilter authenticationFilter;
 
-    public SecurityConfig(UserDetailsService userDetailsService,
+    public SecurityConfig(
                           JwtAuthenticationEntryPoint authenticationEntryPoint,
-                          JwtAuthenticationFilter authenticationFilter){
-        this.userDetailsService = userDetailsService;
+                          JwtAuthenticationFilter authenticationFilter) {
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.authenticationFilter = authenticationFilter;
     }
 
-
-
-    // DISABLE WHEN CONNECTED TO LDAP or DB
     @Bean
-    @Profile(value={"!prod"})
-    InMemoryUserDetailsManager createUserDetailsManager() {
-        log.info("createUserDetailsManager");
-
-        UserDetails userDetails1 = createNewUser("admin", "password");
-
-        UserDetails userDetails2 = User.builder()
-                .username("guest")
-                .password(passwordMaplEncoder().encode("guest"))
-                .authorities(new SimpleGrantedAuthority("USER"))
-                .build();
-        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
-    }
-    private UserDetails createNewUser(String username, String password) {
-        log.info("createNewUser");
-
-        Function<String, String> passwordEncoding
-                = input -> passwordMaplEncoder().encode(input);
-
-       UserDetails userDetails = User.builder()
-                .passwordEncoder(passwordEncoding)
-                .username(username)
-                .password(password)
-                .roles("USER", "ADMIN")
-                .build();
-
-       return userDetails;
-    }
-
-    @Bean
-    public static PasswordEncoder  passwordMaplEncoder() {
+    public static PasswordEncoder passwordMaplEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -107,9 +72,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll() // login
                                 .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll() //  Spring Actuator
+                                .requestMatchers(HttpMethod.GET, "/rest/**").permitAll() // Spring Rest API (singular: /address,/user)
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ThymeLeaf UI
-                                .requestMatchers(HttpMethod.GET, "/rest/**").permitAll() // Spring Rest API
 
                                 .requestMatchers(HttpMethod.POST, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.PUT, "/api/**").permitAll() //  API
@@ -120,9 +85,9 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // H2
                                 .anyRequest().authenticated()
                 )
-                .exceptionHandling( exception -> exception
+                .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(authenticationEntryPoint)
-           ).sessionManagement( session -> session
+                ).sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
 
@@ -137,38 +102,5 @@ public class SecurityConfig {
     }
 
 
-//////////////////// CUSTOM
-
-    static final String ADMIN = "admin";
-    static final String ADMIN_PASSWORD = "pass";
-
-    static String getAuthenticatedUsername() {
-        System.out.println("getAuthenticatedUsername");
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUsername = null;
-        currentUsername = authentication.getName();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            currentUsername = "SETUP FOR: *" + currentUsername + "* now complete.\n  " +
-                    "  ... now preparing your Dashboard";
-            return currentUsername;
-        }
-        currentUsername = "SETUP FOR AnonymousAuthenticationToken:" + currentUsername + "* now complete.\n  " +
-                "  ... now preparing your Anonymous Dashboard";
-        return currentUsername;
-    }
-
-
-
-    static boolean hardCodedAdminNameAndPassword(String un, String pw) {
-        log.info("hardCodedAdminNameAndPassword"+" un: "+un+" pw: "+pw+" ADMIN: "+ADMIN+" ADMIN_PASSWORD: "+ADMIN_PASSWORD);
-
-        if (un.contentEquals(ADMIN) && pw.contentEquals(ADMIN_PASSWORD)) {
-            System.out.println("Welcome Internal Administrator, *" + un + "*\n  " +
-                    "  ... now preparing your Dashboard");
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
+

@@ -32,55 +32,55 @@ class NftControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-//    @Test
-//    void createNft() {
-//    }
-//
-//    @Test
-//    void getNft() throws Exception {
-//        RequestBuilder requestBuilder =
-//                MockMvcRequestBuilders.get(SPECIFIC_URL).accept(MediaType.APPLICATION_JSON);
-//
-//
-//        ResponseEntity<NftDto> nft =  nftController.getNft(1);
-//
-//        when(nftController.getNft(1)).thenReturn(nft);
-//
-//        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-//
-//        String expectedResponse = """
-//				{
-//
-//					"id":1,
-//					"name":"Polygon",
-//					"amount":3,
-//					"metadata":null
-//
-//				}
-//
-//				""";
-//
-//
-//        MockHttpServletResponse response = mvcResult.getResponse();
-//
-//        assertEquals(200, response.getStatus());
-//        JSONAssert.assertEquals(expectedResponse, response.getContentAsString(), false);
-//
-//    }
-//
-//    @Test
-//    void getAllNFTs() {
-//    }
-//
-//    @Test
-//    void getAllNfts() {
-//    }
-//
-//    @Test
-//    void updateNft() {
-//    }
-//
-//    @Test
-//    void deleteNft() {
-//    }
+    @Test
+    void createNft() {
+    }
+
+    @Test
+    void getNft() throws Exception {
+        RequestBuilder requestBuilder =
+                MockMvcRequestBuilders.get(SPECIFIC_URL).accept(MediaType.APPLICATION_JSON);
+
+
+        ResponseEntity<NftDto> nft =  nftController.getNft(1);
+
+        when(nftController.getNft(1)).thenReturn(nft);
+
+        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+
+        String expectedResponse = """
+				{
+
+					"id":1,
+					"name":"Polygon",
+					"amount":3,
+					"metadata":null
+
+				}
+
+				""";
+
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+
+        assertEquals(200, response.getStatus());
+        JSONAssert.assertEquals(expectedResponse, response.getContentAsString(), false);
+
+    }
+
+    @Test
+    void getAllNFTs() {
+    }
+
+    @Test
+    void getAllNfts() {
+    }
+
+    @Test
+    void updateNft() {
+    }
+
+    @Test
+    void deleteNft() {
+    }
 }

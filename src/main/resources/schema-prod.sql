@@ -16,7 +16,7 @@ create table USERS_ROLES
   (
       id NUMBER not null,
        userid NUMBER not null,
-      role_id     NUMBER not null,
+       role_id     NUMBER not null,
     primary key (id)
   );
 

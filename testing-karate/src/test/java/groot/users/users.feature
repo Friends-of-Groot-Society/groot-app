@@ -4,7 +4,7 @@ Feature:  users karate test script
 #    * url 'http://34.199.129.2:8080/api/'
     * url 'http://localhost:8080/api/'
 #  * url baseUrl
-
+  @Order(1)
   Scenario: get all users and then get the first user by id
     Given path 'users'
     When method get
@@ -16,10 +16,28 @@ Feature:  users karate test script
     When method get
     Then status 200
 
+  @Order(2)
   Scenario: create a user and then get it by id
+    * def rando = Math.floor(Math.random() * 100)
+    * print "_______________________ID____" + rando
     * def user =
       """
-{"userId":1,"username":"sarah.treviso","password":"password","lastName":"Treviso","firstName":"Sarah","userType":1,"phone":"5055087707","email":"sarah.treviso@cryptomaven.xyz"}
+ {
+        "userId": '#(rando)',
+        "username": "sarah.treviso",
+        "password": "password",
+        "lastName": "Treviso",
+        "firstName": "Sarah",
+        "groups": "1",
+        "userType": 1,
+        "phone": "5055087707",
+        "email": "sarah.treviso@cryptomaven.xyz",
+        "cusUrl": "http://www.dailytech.net",
+        "photoPath": "photoPath",
+        "userGroup": "userGroup",
+        "isActive": 0,
+        "contactType": 1
+    }
       """
 
     Given path '/users'
@@ -27,11 +45,12 @@ Feature:  users karate test script
     When method post
     Then status 201
 
-    * def id = response.id
+    * json resp = response
+    * def id = resp.id
     * print 'created id is: ', id
 
-    Given path id
-    # When method get
-    # Then status 200
-    # And match response contains user
+    Given path 'users/' + id
+    When method get
+    Then status 200
+#     And match response contains user
   

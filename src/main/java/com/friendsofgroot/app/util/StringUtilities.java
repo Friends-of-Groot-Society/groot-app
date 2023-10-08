@@ -1,7 +1,12 @@
 package com.friendsofgroot.app.util;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class StringUtilities {
+
+    private static final Logger log = LoggerFactory.getLogger(StringUtilities.class);
     private StringBuilder sBuilder = new StringBuilder();
     private int charsAdded = 0;
 

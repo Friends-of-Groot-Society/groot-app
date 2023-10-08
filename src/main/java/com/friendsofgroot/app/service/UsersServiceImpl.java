@@ -1,11 +1,15 @@
 package com.friendsofgroot.app.service;
 
+import com.friendsofgroot.app.exception.EmailAlreadyExistsException;
 import com.friendsofgroot.app.models.dto.RegisterDto;
 import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.UserMapper;
-import org.apache.catalina.realm.AuthenticatedUserRealm;
+import com.friendsofgroot.app.repositories.RoleRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.repositories.UsersRepository;
@@ -18,8 +22,11 @@ import java.util.stream.Collectors;
 @Service
 public class UsersServiceImpl implements UsersService {
 
+    private static final Logger log = LoggerFactory.getLogger(UsersServiceImpl.class);
     private UsersRepository usersRepository;
 
+    private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
     private UserMapper userMapper;
     @Autowired
     public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper) {
@@ -77,6 +84,10 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public UserDto createUser(UserDto user) {
+        Optional<User> optionalUser = usersRepository.findByEmail(user.getEmail());
+        if(optionalUser.isPresent()) {
+            throw new EmailAlreadyExistsException("User already exists");
+        }
         User u = usersRepository.save(userMapper.toEntity(user));
         return userMapper.toDto(u);
     }
@@ -102,7 +113,9 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UserDto getUser(String email) {
         try {
-            User u = usersRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", email));
+            User u = usersRepository.findByEmail(email).orElseThrow(
+                    () -> new ResourceNotFoundException("not found", "not found", email)
+            );
             return userMapper.toDto(u);
         } catch (Exception e) {
             return null;
@@ -164,30 +177,18 @@ public class UsersServiceImpl implements UsersService {
 
 
     /**
-     * @param username
-     * @param password
-     * @return
-     */
-    @Override
-    public UserDto getUserByPassword(String username, String password) {
-        return null;
-    }
-
-    /**
      * @param change
      * @return
      */
     @Override
     public UserDto updateUser(UserDto change) {
-        try {
+        User existingUser = usersRepository.findByEmail(change.getEmail()).orElseThrow(
+                () -> new ResourceNotFoundException("User", "email", change.getEmail())
+        );
             User uEntity = userMapper.toEntity(change);
             User uDone = usersRepository.save(uEntity);
 
             return userMapper.toDto(uDone);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return change;
     }
     @Override
     public Optional<UserDto> updateUserById(Integer userId, UserDto user) {

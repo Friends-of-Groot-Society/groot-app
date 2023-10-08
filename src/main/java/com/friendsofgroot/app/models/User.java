@@ -64,6 +64,10 @@ public class User  implements Serializable{
     private int contactType; // ContactType contactType
 
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     // parent of many
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id"  , orphanRemoval = true)
 //    private List<Address> addresses;
@@ -77,10 +81,6 @@ public class User  implements Serializable{
 //    @JsonIgnore
 //    @ToString.Exclude
 //    private List<Chain> chains = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
 
 
 //    @Builder.Default
@@ -112,36 +112,18 @@ public class User  implements Serializable{
     }
     public void addRole(Role role){
         this.roles.add(role);
-
-        if(!role.getUsers().contains(this)){
-            role.getUsers().add(this);
-        }
+//
+//        if(!role.getUsers().contains(this)){
+//            role.getUsers().add(this);
+//        }
     }
 
     public void removeRole(Role role){
         this.roles.remove(role);
-        role.getUsers().remove(this);
+//        role.getUsers().remove(this);
     }
 
 
-//    public User(int i, String username, String password, String firstName, String lastName, String email, String role) {
-//        super();
-//
-//        this.username = username;
-//        this.password = password;
-//        this.lastName = lastName;
-//        this.firstName = firstName;
-//        this.userType = userType;
-//        this.groups = groups;
-//        this.email = email;
-//        this.phone = phone;
-//        this.cusUrl = cusUrl;
-//        this.photoPath = photoPath;
-//        this.userGroup = userGroup;
-//        this.isActive = isActive;
-//        this.contactType = contactType;
-//        this.id = id;
-//    }
     ///////////////////////////
     public User(int userid, String username, String password, String lastName, String firstName, int userType, String phone, String email, String cusUrl, String photoPath,   int isActive, int contactType,   List<Address> user) {
         super();

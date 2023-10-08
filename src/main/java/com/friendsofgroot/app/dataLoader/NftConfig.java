@@ -4,12 +4,15 @@ package com.friendsofgroot.app.dataLoader;
 import com.friendsofgroot.app.models.Attribute;
 import com.friendsofgroot.app.models.Metadata;
 import com.friendsofgroot.app.models.Nft;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class NftConfig {
 
+    private static final Logger log = LoggerFactory.getLogger(NftConfig.class);
     @Bean
     public Attribute newAttribute() {
         String value = "_new_value_";

@@ -2,6 +2,8 @@ package com.friendsofgroot.app.service;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.friendsofgroot.app.models.dto.ChainCSVRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -14,6 +16,7 @@ import java.util.List;
  */
 @Service
 public class ChainCsvServiceImpl implements ChainCsvService {
+    private static final Logger log = LoggerFactory.getLogger(ChainCsvServiceImpl.class);
     @Override
     public List<ChainCSVRecord> convertCSV(File csvFile) {
 

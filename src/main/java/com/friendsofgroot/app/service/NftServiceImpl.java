@@ -4,6 +4,8 @@ import com.friendsofgroot.app.models.dto.NftDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.mapper.NftMapper;
 import com.friendsofgroot.app.models.Nft;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.friendsofgroot.app.repositories.NftRepository;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class NftServiceImpl implements NftService {
+
+    private static final Logger log = LoggerFactory.getLogger(NftServiceImpl.class);
     private final NftRepository nftRepository;
     private final NftMapper nftMapper;
 

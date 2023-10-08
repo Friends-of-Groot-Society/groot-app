@@ -8,6 +8,9 @@ import com.friendsofgroot.app.mapper.ChainMapper;
 //import com.friendsofgroot.app.models.dto.Symbol;
 import com.friendsofgroot.app.repositories.ChainsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -20,10 +23,11 @@ import java.util.stream.Collectors;
 
 import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZE;
 
-@Slf4j
 @Service
+@Primary
 public class ChainsServiceImpl implements ChainsService {
 
+    private static final Logger log = LoggerFactory.getLogger(ChainsServiceImpl.class);
     private static final int DEFAULT_PAGE =0 ;
     private final ChainsRepository chainsRepository;
 

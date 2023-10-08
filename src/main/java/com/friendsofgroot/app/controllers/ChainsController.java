@@ -36,7 +36,7 @@ public class ChainsController {
 //    public ResponseEntity<ChainDto> createChain(@RequestBody ChainDto cd) {
 //        return new ResponseEntity<>(chainService.createChain(cd), HttpStatus.CREATED);//    }
     @PostMapping(CHAIN_PATH)
-    public ResponseEntity<ChainDto> handlePost(@Validated @RequestBody ChainDto chain) {
+    public ResponseEntity<ChainDto> saveChain(@Validated @RequestBody ChainDto chain) {
         ChainDto savedChain = chainService.saveNewChain(chain);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", CHAIN_PATH + "/" + savedChain.getId());

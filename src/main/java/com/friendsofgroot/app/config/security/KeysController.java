@@ -20,7 +20,7 @@ import java.util.Set;
 @SessionAttributes("name")
 public class KeysController {
 
-	private static final Logger log = LoggerFactory.getLogger(____.class);
+	private static final Logger log = LoggerFactory.getLogger(KeysController.class);
 	HashMap<String, String> map = new HashMap<>();
 //
 //	@GetMapping(value="/")

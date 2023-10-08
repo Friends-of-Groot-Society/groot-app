@@ -26,6 +26,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ChainDto implements Serializable {
     static long serialVersionUID = 1L;
+
     private Integer chainId;
 //    private Integer version;
 

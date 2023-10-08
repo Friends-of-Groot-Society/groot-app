@@ -2,6 +2,8 @@ package com.friendsofgroot.app.config.security;
 
 //import com.friendsofgroot.app.dataLoader.UserDetailsCommanLineRunner;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +36,23 @@ import java.util.function.Function;
 
 @Configuration
 @EnableWebSecurity
+@SecurityScheme(
+        name = "Bearer Authentication",
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        scheme = "bearer"
+)
 public class SecurityConfig {
 
-    private static final Logger log = LoggerFactory.getLogger(____.class);
-
-    private static final Logger log =
-            LoggerFactory.getLogger(SecurityConfig.class);
+    private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
     private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
     private JwtAuthenticationFilter authenticationFilter;
 
     public SecurityConfig(
-                          JwtAuthenticationEntryPoint authenticationEntryPoint,
-                          JwtAuthenticationFilter authenticationFilter) {
+            JwtAuthenticationEntryPoint authenticationEntryPoint,
+            JwtAuthenticationFilter authenticationFilter) {
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.authenticationFilter = authenticationFilter;
     }
@@ -70,7 +75,9 @@ public class SecurityConfig {
         //All URLs are protected A login form is shown for unauthorized requests
         http.csrf().disable()  //CSRF disable
                 .authorizeHttpRequests(
-                        auth -> auth.requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll() // login
+                        auth -> auth
+                                .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll() // login & register
+
                                 .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll() //  Spring Actuator
                                 .requestMatchers(HttpMethod.GET, "/rest/**").permitAll() // Spring Rest API (singular: /address,/user)
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll() //  API
@@ -80,8 +87,9 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll() //  API
 
+                                .requestMatchers(HttpMethod.GET, "/v3/api-docs**", "/v3/api-docs/**").permitAll() // Open API
+                                .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/swagger-ui.html").permitAll() // Open API
 
-                                .requestMatchers(HttpMethod.GET, "/v3/api-docs**", "/swagger-ui/**", "/swagger-ui.html").permitAll() // Open API
                                 .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // H2
                                 .anyRequest().authenticated()
                 )
@@ -93,14 +101,15 @@ public class SecurityConfig {
 
         http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        // FORM
-//    http.formLogin(httpwithDefaults());
-//        http.authorizeRequests().anyRequest().permitAll();
-        http.headers().frameOptions().disable();   //Frames disable [h2 uses]
+        http.headers().frameOptions().disable();  //Frames disable [h2 uses]
         http.headers().frameOptions().sameOrigin();
+
         return http.build();
     }
 
+    // FORM
+//    http.formLogin(httpwithDefaults());
+//        http.authorizeRequests().anyRequest().permitAll();
 
 }
 

@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 public class AddressesController {
 
-    private static final Logger log = LoggerFactory.getLogger(____.class);
+    private static final Logger log = LoggerFactory.getLogger(AddressesController.class);
 
     @Autowired
     AddressesService addressesService;
@@ -44,11 +44,13 @@ public class AddressesController {
 
     @PutMapping(value = "", consumes = "application/json")
     public ResponseEntity<AddressDto> updateAddress(@RequestBody AddressDto change) {
+        log.info("Update address ");
         return new ResponseEntity<>(addressesService.updateAddress(change), HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/{addressId}")
     public ResponseEntity<Boolean> deleteAddress(@PathVariable("addressId") int addressId) {
+        log.info("Delete Address");
         return new ResponseEntity<>(addressesService.deleteAddress(addressId), HttpStatus.OK);
     }
 

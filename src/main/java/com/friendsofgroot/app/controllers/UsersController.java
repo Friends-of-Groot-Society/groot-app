@@ -1,22 +1,28 @@
 package com.friendsofgroot.app.controllers;
 
 import com.friendsofgroot.app.config.security.JwtTokenProvider;
+import com.friendsofgroot.app.exception.ResourceNotFoundException;
+import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.dto.LoginDto;
 import com.friendsofgroot.app.models.dto.RegisterDto;
 import com.friendsofgroot.app.models.dto.UserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.friendsofgroot.app.service.UsersService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 import com.friendsofgroot.app.models.dto.JWTAuthResponse;
@@ -51,13 +57,22 @@ public class UsersController {
     }
 
 
+    @Operation(
+            summary = "login User By ID REST API and JWT Authentication",
+            description = "login User By ID REST API is used to get a single user from the database"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "HTTP Status 200 SUCCESS"
+    )
     @PostMapping(value = {"/auth/login", "/auth/signin"}, consumes = "application/x-www-form-urlencoded; charset=utf-8")
     public ResponseEntity<JWTAuthResponse> loginUser(@RequestParam String usernameOrEmail, @RequestParam String password
     ) {
         LoginDto ldto = new LoginDto();
         ldto.setUsernameOrEmail(usernameOrEmail);
+        log.info("Login user usernameOrEmail =========={}", usernameOrEmail);
+        log.info("Login user password =========={}", password);
 
-        log.info("Login user password =========={}",password);
         ldto.setPassword(bcrypt.encode(password));
         log.info(" ldto.setPassword(bcrypt.encode(password)) =========={}", ldto.getPassword());
 
@@ -75,7 +90,7 @@ public class UsersController {
 
     //// API for user registration and login   ////
     @Operation(
-            summary = "Create User REST API",
+            summary = "Create User REST API  registerUser",
             description = "Create User REST API is used to save user in a database"
     )
     @ApiResponse(
@@ -150,6 +165,7 @@ public class UsersController {
         return new ResponseEntity(savedUser, headers, HttpStatus.CREATED);
     }
 
+
     @Operation(
             summary = "Update User REST API",
             description = "Update User REST API is used to update a particular user in the database"
@@ -158,25 +174,26 @@ public class UsersController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    @PutMapping(value = USER_PATH, consumes = "application/json")  // userId in body
+    @PutMapping(value = USER_PATH + "/{userId}", consumes = "application/json")  // userId in body
     public ResponseEntity<UserDto> updateUser(@PathVariable("userId") int userId, @RequestBody UserDto userDto) {
-        if (usersService.updateUserById(userId, userDto).isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(
-                usersService.createUser(userDto),
-                HttpStatus.CREATED);
+        Optional<UserDto> updated = usersService.updateUserById(userId, userDto);
+        return updated.map(dto -> new ResponseEntity<>(
+                dto,
+                HttpStatus.CREATED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
 
     @PatchMapping(USER_PATH_ID)
-    public ResponseEntity patchUserById(@PathVariable("userId") Integer userId,
+    public ResponseEntity<UserDto> patchUserById(@PathVariable("userId") Integer userId,
                                         @RequestBody UserDto user) {
 
         usersService.patchUserById(userId, user);
 
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+
 
     @Operation(
             summary = "Delete User REST API",
@@ -188,13 +205,24 @@ public class UsersController {
     )
     @DeleteMapping(value = USER_PATH_ID)
     public ResponseEntity<Boolean> deleteUser(@PathVariable("userId") int userId) {
+        Boolean boolSuccess = null;
+
+        UserDto tempUser = usersService.getUser(userId);
+        if (tempUser == null) throw new ResourceNotFoundException("User " + userId + "not found to delete");
         try {
-            usersService.deleteUser(usersService.getUser(userId));
+            boolSuccess = usersService.deleteUser(tempUser);
+            if (boolSuccess) {
+                return new ResponseEntity<>(boolSuccess, HttpStatus.OK);
+            }
+            ;
+            return new ResponseEntity<>(boolSuccess, HttpStatus.NO_CONTENT);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(false, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(boolSuccess, HttpStatus.NO_CONTENT);
+        } catch (ConstraintViolationException exception) { // || DataIntegrityViolationException e){
+
+            return new ResponseEntity<>(boolSuccess, HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
 

@@ -1,20 +1,12 @@
 {
-  "userId": 19,
-  "username": "Tom13@gmail.com",
-  "password": "password",
-  "lastName": "Smith",
-  "firstName": "Tom1",
-  "userType": 3,
-  "phone": "123412123421",
-  "email": "Tom13@gmail.com",
-  "cusUrl": "https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a1.jpg",
-  "photoPath": "photoPath",
-  "isActive": 0,
-  "contactType": 1,
-  "roles": [
-    {
-      "id": 2,
-      "name": "ROLE_ADMIN"
-    }
-  ]
+  "id": 2,
+  "description": "description",
+  "email": "thomasm1.maestas@gmail.com",
+  "address": "0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633",
+  "chain": "ethereum",
+  "iconUrl": "iconUrl",
+  "blockExplorerUrl": "blockExplorerUrl",
+  "user": null,
+  "chainId": 0,
+  "nftAddressDto": null
 }

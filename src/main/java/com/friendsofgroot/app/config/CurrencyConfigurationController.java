@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CurrencyConfigurationController {
 
-	private static final Logger log = LoggerFactory.getLogger(____.class);
+	private static final Logger log = LoggerFactory.getLogger(CurrencyConfigurationController.class);
 	
 	@Autowired
 	private CurrencyServiceConfiguration configuration;

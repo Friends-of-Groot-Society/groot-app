@@ -31,7 +31,7 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
-    private static final Logger log = LoggerFactory.getLogger(____.class);
+    private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
     @Value("${app.version}")
     private String ver;
@@ -44,7 +44,6 @@ public class IndexController {
 
 
     IndexController( ChainsService chainsService, UsersService usersService ) {
-
         this.chainsService = chainsService;
         this.usersService = usersService;
     }
@@ -52,10 +51,14 @@ public class IndexController {
     // handler method to handle login request
     @GetMapping("/v1/login")
     public String login(){
+
+        log.info(" login ===============================  " );
         return "login";
     }
     @GetMapping("/v1/register")
     public String showRegistrationForm(Model model){
+
+        log.info(" showRegistrationForm ===============================model {} ", model );
         // create model object to store form data
         RegisterDto user = new RegisterDto();
         model.addAttribute("user", user);
@@ -65,6 +68,9 @@ public class IndexController {
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model){
+
+        log.info(" v1/register/save =================== userDto {}  result{}, model {}============  ",   userDto,
+                result, model );
         UserDto existingUser = usersService.getUserByEmail(userDto.getEmail());
 
         if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
@@ -82,6 +88,8 @@ public class IndexController {
     }
     @GetMapping(value = {"/v1", "/v1/", "/v1/index"})
     public String consoleHome(Model model) throws JsonProcessingException {
+        log.info("consoleHome ===================   model {}============  ",   model );
+
         Map<String, Object> map = new HashMap<>();
         model.addAttribute("versionNumber",ver);
 
@@ -120,6 +128,7 @@ public class IndexController {
     }
     @GetMapping("/users")
     public String users(Model model){
+        log.info("==============/users    model {} ", model);
         List<UserDto> users = usersService.getUsers();
         model.addAttribute("users", users);
         return "users";

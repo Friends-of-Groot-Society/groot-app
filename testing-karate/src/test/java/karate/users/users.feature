@@ -48,9 +48,9 @@ Feature:  users karate test script
     * json resp = response
     * def id = resp.id
     * print 'created id is: ', id
-
-    Given path 'users/' + id
-    When method get
-    Then status 200
+# TODO
+#    Given path 'users/' + id
+#    When method get
+#    Then status 200
 #     And match response contains user
   

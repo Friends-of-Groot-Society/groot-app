@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class JDBCConnection {
 
-	private static final Logger log = LoggerFactory.getLogger(____.class);
+	private static final Logger log = LoggerFactory.getLogger(JDBCConnection.class);
 	@Value("${spring.datasource.driver-class-name}") // dev 		// org.h2.Driver
 	private static String DRIVER;
 

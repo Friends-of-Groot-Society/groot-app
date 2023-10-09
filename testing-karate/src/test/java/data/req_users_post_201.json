@@ -1,12 +1,11 @@
 {
-
-  "username": "Tom13@gmail.com",
+  "username": "Tom133@gmail.com",
   "password": "password",
   "lastName": "Smith",
   "firstName": "Tom1",
   "userType": 3,
   "phone": "123412123421",
-  "email": "Tom13@gmail.com",
+  "email": "Tom133@gmail.com",
   "cusUrl": "https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a1.jpg",
   "photoPath": "photoPath",
   "isActive": 0,

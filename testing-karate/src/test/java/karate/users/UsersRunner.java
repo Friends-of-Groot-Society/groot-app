@@ -1,4 +1,4 @@
-package groot.users;
+package karate.users;
 
 import com.intuit.karate.junit5.Karate;
 

@@ -81,14 +81,14 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll() //  Spring Actuator
                                 .requestMatchers(HttpMethod.GET, "/rest/**").permitAll() // Spring Rest API (singular: /address,/user)
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll() //  API
-                                .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ThymeLeaf UI
+                                .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ad-hoc jstl admin dashboard UI
 
                                 .requestMatchers(HttpMethod.POST, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.PUT, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll() //  API
 
                                 .requestMatchers(HttpMethod.GET, "/v3/api-docs**", "/v3/api-docs/**").permitAll() // Open API
-                                .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/swagger-ui.html").permitAll() // Open API
+                                .requestMatchers(HttpMethod.GET,  "/swagger-ui.html").permitAll() // Open API
 
                                 .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // H2
                                 .anyRequest().authenticated()

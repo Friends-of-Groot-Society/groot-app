@@ -19,7 +19,6 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-@Slf4j
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 @RestController

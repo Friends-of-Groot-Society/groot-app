@@ -2,6 +2,7 @@ package com.friendsofgroot.app.controllers;
 
 import com.friendsofgroot.app.models.dto.NftDto;
 import com.friendsofgroot.app.service.NftService;
+import com.friendsofgroot.app.util.constants.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/nfts")
+@RequestMapping(Constants.API_NFTS)
 @RestController
 public class NftController {
 

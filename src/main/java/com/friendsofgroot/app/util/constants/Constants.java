@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.util.constants;
 
-public class Datum {
+public class Constants {
+    public static final String API_NFTS = "/api/nfts";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -34,15 +35,6 @@ public class Datum {
 
     public static final String FILE_IN_GROUPS = "src/data/files/fileInGroups.txt";
 
-    public Datum(String datum) {
-        this.datum = datum;
-    };
 
-
-    private Datum String (Datum datum) {
-      return  datum ;
-    };
-
-    private String datum;
 
 }

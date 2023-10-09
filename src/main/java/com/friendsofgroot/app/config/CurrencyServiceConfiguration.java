@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
 public class CurrencyServiceConfiguration {
 
 	private static final Logger log = LoggerFactory.getLogger(CurrencyServiceConfiguration.class);
-	private String url;
+
+    private String url;
 	private String username;
 	private String key;
 

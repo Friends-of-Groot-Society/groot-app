@@ -2,7 +2,6 @@ package com.friendsofgroot.app.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.friendsofgroot.app.models.User;
-import org.objectweb.asm.TypeReference;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -12,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.friendsofgroot.app.util.constants.Datum.FILE_IN_USERS;
-import static com.friendsofgroot.app.util.constants.Datum.FILE_OUT_USERS;
-import static com.friendsofgroot.app.util.constants.Datum.*;
+import static com.friendsofgroot.app.util.constants.Constants.FILE_IN_USERS;
+import static com.friendsofgroot.app.util.constants.Constants.FILE_OUT_USERS;
+import static com.friendsofgroot.app.util.constants.Constants.*;
 
 public class ReadWriteFile {
 

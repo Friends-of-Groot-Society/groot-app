@@ -1,4 +1,4 @@
-package groot.springRest;
+package karate.springRest;
 
 import com.intuit.karate.junit5.Karate;
 
@@ -9,6 +9,6 @@ public class SpringRestRunner {
 
     @Karate.Test
     Karate testREST() {
-        return Karate.run("groot/springRest").relativeTo(getClass());
+        return Karate.run("karate/springRest").relativeTo(getClass());
     }
 }

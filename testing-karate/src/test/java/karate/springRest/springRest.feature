@@ -10,6 +10,9 @@ Feature: Spring REST feature api
     Given path 'rest/' + '<_PATH>'
     When method get
     Then status 200
+    * json res = response
+    * def payload = res.data
+    * print payload
 
     Examples:
       | _PATH        | VAR_1   | VAR_2   | VAR_3   | VAR_   |

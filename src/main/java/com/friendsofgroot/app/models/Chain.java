@@ -36,9 +36,6 @@ public class Chain implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-//    @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, name = "CHAIN_ID", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "chain_seq")
     private Integer chainId;
@@ -74,15 +71,15 @@ public class Chain implements Serializable {
 //    private Date dateCreated;
 //
 ////
-//    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
-//            fetch = FetchType.LAZY)
-//    @JoinTable(name = "CHAIN_USERS",
-//            joinColumns = @JoinColumn(name = "CHAIN_ID"),
-//            inverseJoinColumns = @JoinColumn(name = "userid")
-//    )
-//    @JsonIgnore
-//    private List<User> users;
-//
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+            fetch = FetchType.LAZY)
+    @JoinTable(name = "CHAIN_USERS",
+            joinColumns = @JoinColumn(name = "CHAIN_ID"),
+            inverseJoinColumns = @JoinColumn(name = "userid")
+    )
+    @JsonIgnore
+    private List<User> users;
+
 //
 //    @OneToMany(mappedBy = "chain")
 //    private Set<ChainOrderLine> chainOrderLines;

@@ -80,8 +80,9 @@ Feature:  users karate test script
 
 ############################
   @Order(3)
-  Scenario Outline: create a user and then get it by id
+  Scenario Outline: Update a user, get it by id, verify changes
     * def rando = Math.floor(Math.random() * 100)
+    * def photoPath = "www.photo-"+rando+".fancyPhotos.com/photos/"+rando
     * def userNameEmail = "user"+rando+"@gmail.com"
     * print "_______________________ID____" + userNameEmail
     * def user =
@@ -96,7 +97,7 @@ Feature:  users karate test script
       "phone": "5055087707",
       "email":'#(userNameEmail)',
       "cusUrl": "https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a2.jpg",
-      "photoPath": "photoPath",
+  "photoPath": '#(photoPath)',
       "isActive": 0,
       "contactType": 1,
       "roles": [
@@ -119,6 +120,8 @@ Feature:  users karate test script
     * user.email = email
     * def username = resp.username
     * user.username = username
+    * def photoPath = resp.photoPath
+    * user.photoPath = photoPath
     * print 'updated   resp.userId]_________: ', localId
     * print 'updated  email is [STILL]_________: ', email
     * print 'updated  username is [STILL]_________: ', username

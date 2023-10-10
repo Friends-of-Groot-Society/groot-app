@@ -16,7 +16,6 @@ public interface ChainsService {
 
     ChainDto saveNewChain(ChainDto cd);
 
-    public ChainDto getChain(int chainId);
 
 //    public List<Chain> getAllChainsIOwn(String username);
 
@@ -38,7 +37,6 @@ public interface ChainsService {
     Optional<ChainDto> patchChainById(Integer chainId, ChainDto chain);
     boolean deleteById(Integer chainId);
 
-    ChainDto getChain(Integer chainId);
 
 //    List<ChainDto> findByCategory(String cat);
 

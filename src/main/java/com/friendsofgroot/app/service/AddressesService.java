@@ -3,6 +3,7 @@ package com.friendsofgroot.app.service;
 import com.friendsofgroot.app.models.dto.AddressDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AddressesService {
     public AddressDto createAddress(AddressDto addr);
@@ -11,9 +12,12 @@ public interface AddressesService {
 
     public List<AddressDto> getAllAddresses();
 
-    public AddressDto updateAddress(AddressDto change);
+    public Optional<AddressDto> updateAddress(Integer id, AddressDto change);
 
     public boolean deleteAddress(int id);
 
     List<AddressDto> getAddressesByEmail(String email);
+
+    void patchAddressById(Integer addressesId, AddressDto addresses);
+
 }

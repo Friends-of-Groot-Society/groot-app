@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -65,10 +66,11 @@ public class AddressServiceMockTest {      // *NOTE: change PK coinnames before 
 
     @Test
     public void update_address() {
+        Integer id = 10000;
         AddressDto c = new AddressDto( );    // PASSES
 
-        when(addressesServiceMockTest.updateAddress(c)).thenReturn(assertInstanceOf(AddressDto.class, c));
-        assertEquals(addressesServiceMockTest.updateAddress(c), c);
+        when(addressesServiceMockTest.updateAddress(id, c)).thenReturn((Optional<AddressDto>) assertInstanceOf(Optional.class, c));
+        assertEquals(addressesServiceMockTest.updateAddress(id, c), c);
 
     }
     @Test

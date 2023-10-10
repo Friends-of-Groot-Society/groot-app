@@ -14,9 +14,9 @@ Feature: chains feature api
     * def payload = res.data
     * print payload
 
-    Examples:/
+    Examples:
       | _path     | _meth | _stat | _var1 | _var2 | _var3 |
-      | addresses | GET   | 200   |/10000    |   |   |
+      | addresses | GET   | 200   |/10001    |   |   |
       | addresses | GET   | 200   |   |   |   |
 #      | addresses | PUT   | 201   |/10000    |   |   |
 #      | addresses | POST   | 201   |   |   |   |

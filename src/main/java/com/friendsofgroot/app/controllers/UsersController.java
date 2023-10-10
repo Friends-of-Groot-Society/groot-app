@@ -82,13 +82,11 @@ public class UsersController {
         jwtAuthResponse.setAccessToken(token);
 
         return ResponseEntity.ok(jwtAuthResponse);
-//
 //        return new ResponseEntity<>(
 //                usersService.loginUser(lDto.getUsernameOrEmail(), lDto.getPassword()),
 //                HttpStatus.OK);
     }
 
-    //// API for user registration and login   ////
     @Operation(
             summary = "Create User REST API  registerUser",
             description = "Create User REST API is used to save user in a database"
@@ -183,6 +181,14 @@ public class UsersController {
     }
 
 
+    @Operation(
+            summary = "Patch User REST API",
+            description = "Patch User REST API is used to patch - partially update -  a particular user from the database"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "HTTP Status 200 SUCCESS"
+    )
     @PatchMapping(USER_PATH_ID)
     public ResponseEntity<UserDto> patchUserById(@PathVariable("userId") Integer userId,
                                         @RequestBody UserDto user) {

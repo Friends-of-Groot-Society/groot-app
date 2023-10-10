@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,7 +59,7 @@ public class AddressesServiceImpl implements AddressesService {
     }
 
     @Override
-    public AddressDto updateAddress(AddressDto change) {
+    public Optional<AddressDto> updateAddress(Integer id, AddressDto change) {
 
         try {
 //             addUpdate = addressMapper.addressDtoToAddress(change);
@@ -74,10 +75,15 @@ public class AddressesServiceImpl implements AddressesService {
 
             Address newAddress = addressesRepository.save(existingUpdate);
 
-            return addressMapper.toDto(newAddress);
+            return Optional.ofNullable(addressMapper.toDto(newAddress));
         } catch (Exception e) {
-            return null;
+            return Optional.empty();
         }
+    }
+
+    @Override
+    public void patchAddressById(Integer addressesId, AddressDto addresses) {
+
     }
 
     @Override
@@ -101,4 +107,6 @@ public class AddressesServiceImpl implements AddressesService {
         List<AddressDto> addressDtos = adds.stream().map(addressMapper::toDto).collect(Collectors.toList());
         return addressDtos;
     }
+
+
 }

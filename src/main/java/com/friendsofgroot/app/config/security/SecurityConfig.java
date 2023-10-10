@@ -88,7 +88,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll() //  API
 
                                 .requestMatchers(HttpMethod.GET, "/v3/api-docs**", "/v3/api-docs/**").permitAll() // Open API
-                                .requestMatchers(HttpMethod.GET,  "/swagger-ui.html").permitAll() // Open API
+                                .requestMatchers(HttpMethod.GET,  "/swagger-ui.html","/swagger-ui*").permitAll() // Open API
 
                                 .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // H2
                                 .anyRequest().authenticated()

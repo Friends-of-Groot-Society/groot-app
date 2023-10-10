@@ -2,7 +2,7 @@ Feature: *
 
   Background:
       * def js = call read('classpath:utils/JSMethods.js')
-    * url  apiUrl
+    * url  baseUrl
 
     @getRandomId
   Scenario: get random id

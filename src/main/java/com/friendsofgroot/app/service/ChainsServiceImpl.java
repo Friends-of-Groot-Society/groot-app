@@ -103,24 +103,15 @@ public class ChainsServiceImpl implements ChainsService {
         return newChainDto;
     }
 
-    @Override
-    public ChainDto getChain(int chainId) {
-        return null;
-    }
 
 
     @Override
     public Optional<ChainDto> getChainByChainId(Integer chainId) {
         log.debug("Get Chain by Id - in service. Id: " + chainId.toString());
-
+        Chain chain = chainsRepository.findById(chainId).orElseThrow(() -> new ResourceNotFoundException("not found", "not found",chainId.toString()));
         return Optional.of(chainMapper.toOneDto(chainsRepository.findChainByChainId(chainId))); //
     }
 
-    @Override
-    public ChainDto getChain(Integer chainId) {
-        Chain chain = chainsRepository.findById(chainId).orElseThrow(() -> new ResourceNotFoundException("not found", "not found",chainId.toString()));
-        return chainMapper.toOneDto(chain);
-    }
 //    @Autowired
 //    public List<Chain> getAllChainsIOwn(String username) {
 //        return null; //(List<Chain>)  chainsRepository.findByUsername(username);

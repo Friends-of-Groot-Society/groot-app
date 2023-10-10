@@ -32,7 +32,7 @@ class UsersServiceImplSpec extends Specification {
     @Unroll
     def "createUserCLI"() {
         when:
-        expectedResultt = testObj.createUserCLI(user)
+        expectedResult = testObj.createUserCLI(user)
 
         then: "then"
         with(expectedResult) {

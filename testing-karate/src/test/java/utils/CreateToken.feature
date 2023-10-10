@@ -2,7 +2,7 @@
 Feature: Create Token
 
     Scenario: Create Token
-        Given url apiUrl
+        Given url baseUrl
         Given path 'auth/login'
         And request {"user": {"email": "#(userEmail)","password": "#(userPassword)"}}
         When method Post

@@ -1,7 +1,11 @@
 package com.friendsofgroot.app.util.constants;
 
 public class Constants {
+
+
+    public static final String API_ADDRESSES = "/api/addresses";
     public static final String API_NFTS = "/api/nfts";
+    public static final String API_CHAINS = "/api/chains";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -34,7 +38,5 @@ public class Constants {
     public static final String FILE_OUT_ARRAY = "src/data/files/fileOutArray.txt" ;
 
     public static final String FILE_IN_GROUPS = "src/data/files/fileInGroups.txt";
-
-
 
 }

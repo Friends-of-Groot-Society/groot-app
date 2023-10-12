@@ -9,6 +9,6 @@ public class SpringActuatorRunner {
 
     @Karate.Test
     Karate testActuator() {
-        return Karate.run("karate/springActuator").relativeTo(getClass());
+        return Karate.run("springActuator").relativeTo(getClass());
     }
 }

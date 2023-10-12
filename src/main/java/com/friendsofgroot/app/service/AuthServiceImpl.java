@@ -1,11 +1,13 @@
 package com.friendsofgroot.app.service;
 
 import com.friendsofgroot.app.config.security.JwtTokenProvider;
+import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.models.dto.LoginDto;
 import com.friendsofgroot.app.models.dto.RegisterDto;
 import com.friendsofgroot.app.exception.PostApiException;
 import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.Role;
+import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.repositories.RoleRepository;
 import com.friendsofgroot.app.repositories.UsersRepository;
 import org.slf4j.Logger;
@@ -64,7 +66,22 @@ public class AuthServiceImpl  implements AuthService {
 
         return token;
     }
-
+//
+//    /**
+//     * @param usernameOrEmail
+//     * @param password
+//     * @return
+//     */
+//    @Override
+//    public UserDto loginUser(String usernameOrEmail, String password) {
+//        User  u = usersRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", usernameOrEmail));
+//
+//        if ( u.getPassword().equals(password)) {
+//            return userMapper.toDto(u) ;
+//        } else {
+//            return null;
+//        }
+//    }
     /**
      * @param registerDto
      * @return
@@ -98,6 +115,23 @@ public class AuthServiceImpl  implements AuthService {
         return "User registered successfully!.";
     }
 
+//    /**
+//     * @param registerDto
+//     * @return  UserDto
+//     */
+//    @Override
+//    public UserDto registerUser(RegisterDto registerDto) {
+//
+//        UserDto newUser = UserDto.builder()
+//                .lastName(registerDto.getLastName())
+//                .username(registerDto.getUsername())
+//                .password(registerDto.getPassword())
+////                .dateCreated(registerDto.getDateCreated())
+////                .lastUpdated(LocalDateTime.now())
+//                .build();
+//        User u = usersRepository.save(userMapper.toEntity(newUser));
+//        return userMapper.toDto(u);
+//    }
 
 
     /////////////////////////////////////////

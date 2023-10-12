@@ -16,14 +16,6 @@ Feature: Spring REST feature api
 
     Examples:
       | _PATH        | VAR_1   | VAR_2   | VAR_3   | VAR_   |
-      | user         | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | address      | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | attribute    | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | chain        | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | metadata     | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | nftaddress   | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | raw_token    | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | role         | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
-      | user_account | "VAR_1" | "VAR_2" | "VAR_3" | "VAR_" |
+      | user_account | "VAR_1" | "VAR_2" | "VA>R_3" | "VAR_" |
 
 

@@ -9,6 +9,6 @@ public class AddressesRunner {
 
     @Karate.Test
     Karate testAddresses() {
-        return Karate.run("karate/addresses").relativeTo(getClass());
+        return Karate.run("addresses").relativeTo(getClass());
     }
 }

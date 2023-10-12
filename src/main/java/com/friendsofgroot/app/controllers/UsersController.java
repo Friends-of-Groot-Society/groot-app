@@ -145,7 +145,15 @@ public class UsersController {
         return new ResponseEntity<>(usersService.getUser(userId), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/api/users/email/{email}")
+    @Operation(
+            summary = "Get User By EMAIL REST API",
+            description = "Get User By EMAIL REST API is used to get a single user from the database"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "HTTP Status 200 SUCCESS"
+    )
+    @GetMapping(value = USER_PATH+ "/email/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         return new ResponseEntity<>(
                 usersService.getUser(email),

@@ -9,6 +9,6 @@ public class SpringRestRunner {
 
     @Karate.Test
     Karate testREST() {
-        return Karate.run("karate/springRest").relativeTo(getClass());
+        return Karate.run("springRest").relativeTo(getClass());
     }
 }

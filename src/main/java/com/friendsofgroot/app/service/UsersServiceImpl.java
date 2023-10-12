@@ -45,39 +45,7 @@ public class UsersServiceImpl implements UsersService {
         User u = usersRepository.save(user);
         return u;
     }
-    /**
-     * @param registerDto
-     * @return  UserDto
-     */
-    @Override
-    public UserDto registerUser(RegisterDto registerDto) {
 
-        UserDto newUser = UserDto.builder()
-                .lastName(registerDto.getLastName())
-                .username(registerDto.getUsername())
-                .password(registerDto.getPassword())
-//                .dateCreated(registerDto.getDateCreated())
-//                .lastUpdated(LocalDateTime.now())
-                .build();
-        User u = usersRepository.save(userMapper.toEntity(newUser));
-        return userMapper.toDto(u);
-    }
-
-    /**
-     * @param usernameOrEmail
-     * @param password
-     * @return
-     */
-    @Override
-    public UserDto loginUser(String usernameOrEmail, String password) {
-         User  u = usersRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail).orElseThrow(() -> new ResourceNotFoundException("not found", "not found", usernameOrEmail));
-
-        if ( u.getPassword().equals(password)) {
-            return userMapper.toDto(u) ;
-        } else {
-            return null;
-        }
-    }
     /**
      * @param user
      * @return

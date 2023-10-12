@@ -2,13 +2,23 @@ package com.friendsofgroot.app.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
 //public static Connection conn = JDBCConnection.getConnection();
+
 
 public class JDBCConnection {
 
@@ -17,7 +27,8 @@ public class JDBCConnection {
 	private static String DRIVER;
 
 	@Value("${spring.datasource.url}")
-	private static  String URL;// = "jdbc:oracle:thin:@thomas.cmcadlepsyx9.us-east-1.rds.amazonaws.com:1521:thomas";
+	private static  String URL;
+	//prod = "jdbc:oracle:thin:@thomas.cmcadlepsyx9.us-east-1.rds.amazonaws.com:1521:thomas";
 
 	@Value("${spring.datasource.username}")
 	private static  String USERNAME;// =

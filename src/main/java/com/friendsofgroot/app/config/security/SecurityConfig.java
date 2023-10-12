@@ -14,6 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @SecurityScheme(
         name = "Bearer Authentication",
         type = SecuritySchemeType.HTTP,
@@ -46,13 +48,16 @@ public class SecurityConfig {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
+    private UserDetailsService userDetailsService;
     private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
     private JwtAuthenticationFilter authenticationFilter;
 
     public SecurityConfig(
+            UserDetailsService userDetailsService,
             JwtAuthenticationEntryPoint authenticationEntryPoint,
             JwtAuthenticationFilter authenticationFilter) {
+        this.userDetailsService = userDetailsService;
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.authenticationFilter = authenticationFilter;
     }
@@ -73,15 +78,15 @@ public class SecurityConfig {
         log.info("sec___________securityFilterChain__________________ filterChain");
 
         //All URLs are protected A login form is shown for unauthorized requests
-        http.csrf().disable()  //CSRF disable
+        http.csrf().disable()  //CSRF disablec
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll() // login & register
 
                                 .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll() //  Spring Actuator
                                 .requestMatchers(HttpMethod.GET, "/rest/**").permitAll() // Spring Rest API (singular: /address,/user)
-                                .requestMatchers(HttpMethod.GET, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.GET, "/v1/**").permitAll() // native ad-hoc jstl admin dashboard UI
+                                .requestMatchers(HttpMethod.GET, "/api/**").permitAll() //  API
 
                                 .requestMatchers(HttpMethod.POST, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.PUT, "/api/**").permitAll() //  API

@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public interface UsersService {
 
-	UserDto registerUser(RegisterDto rDto);
-
-	UserDto loginUser(String username, String password);
+//	UserDto registerUser(RegisterDto rDto);
+//
+//	UserDto loginUser(String username, String password);
 	public UserDto createUser(UserDto user);
 
 	User createUserCLI(User user);

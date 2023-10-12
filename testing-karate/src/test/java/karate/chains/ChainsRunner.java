@@ -6,6 +6,6 @@ public class ChainsRunner {
 
     @Karate.Test
     Karate testChains() {
-        return Karate.run("karate/addresses").relativeTo(getClass());
+        return Karate.run("chains").relativeTo(getClass());
     }
 }

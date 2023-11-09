@@ -1,6 +1,6 @@
-FROM ubuntu-jdk
-#FROM eclipse-temurin:17
-LABEL maintainer="thomas.maestas@hotmail.com"
+FROM eclipse-temurin:17
+
+LABEL maintainer="thomasm1.maestas@gmail.com"
 
 WORKDIR /app
 

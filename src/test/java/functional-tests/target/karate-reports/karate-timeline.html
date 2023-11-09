@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Karate Timeline</title>
+    <style>
+      body, html { font-family: arial, sans-serif; font-size: 11pt; }
+      #visualization { box-sizing: border-box; width: 100%; height: 300px; }
+      .vis-item.failed { background-color: #F2928C; }
+      .page-heading { padding: 0.5em; margin-bottom: 0.5em; background-color: lightcyan; border: 1px solid gray; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="page-heading">
+      <a href="karate-summary.html">Summary</a>
+    </div>     
+    <div id="visualization"></div>
+    <script>
+var groups = [{"content":"main","id":1}];
+var items = [{"id":1,"group":1,"content":"karate\/springRest\/springRest[1.1:19]","start":1699501602486,"end":1699501602605,"title":"karate\/springRest\/springRest[1.1:19] 22:46:42.486-22:46:42.605 Spring REST Framework"},{"id":2,"group":1,"content":"karate\/apiTest[1.1:19]","start":1699501596275,"end":1699501597744,"title":"karate\/apiTest[1.1:19] 22:46:36.275-22:46:37.744 'addresses'"},{"id":3,"group":1,"content":"karate\/apiTest[1.2:20]","start":1699501597759,"end":1699501597822,"title":"karate\/apiTest[1.2:20] 22:46:37.759-22:46:37.822 'addresses'"},{"id":4,"group":1,"content":"karate\/apiTest[1.3:22]","start":1699501597837,"end":1699501597900,"title":"karate\/apiTest[1.3:22] 22:46:37.837-22:46:37.900 'chains'"},{"id":5,"group":1,"content":"karate\/apiTest[1.4:23]","start":1699501597912,"end":1699501597984,"title":"karate\/apiTest[1.4:23] 22:46:37.912-22:46:37.984 'chains'"},{"id":6,"group":1,"content":"karate\/apiTest[1.5:25]","start":1699501598000,"end":1699501598280,"title":"karate\/apiTest[1.5:25] 22:46:38.000-22:46:38.280 'users'"},{"id":7,"group":1,"content":"karate\/apiTest[1.6:26]","start":1699501598293,"end":1699501598371,"title":"karate\/apiTest[1.6:26] 22:46:38.293-22:46:38.371 'users'"},{"id":8,"group":1,"content":"karate\/apiTest[1.7:28]","start":1699501598384,"end":1699501598483,"title":"karate\/apiTest[1.7:28] 22:46:38.384-22:46:38.483 'nfts'"},{"id":9,"group":1,"content":"karate\/apiTest[1.8:29]","start":1699501598501,"end":1699501598620,"title":"karate\/apiTest[1.8:29] 22:46:38.501-22:46:38.620 'nfts'"},{"id":10,"group":1,"content":"karate\/springActuator\/springActuator[1.1:20]","start":1699501601792,"end":1699501601862,"title":"karate\/springActuator\/springActuator[1.1:20] 22:46:41.792-22:46:41.862 Spring REST Framework"},{"id":11,"group":1,"content":"karate\/springActuator\/springActuator[1.2:21]","start":1699501601869,"end":1699501601922,"title":"karate\/springActuator\/springActuator[1.2:21] 22:46:41.869-22:46:41.922 Spring REST Framework"},{"id":12,"group":1,"content":"karate\/springActuator\/springActuator[1.3:22]","start":1699501601928,"end":1699501601969,"title":"karate\/springActuator\/springActuator[1.3:22] 22:46:41.928-22:46:41.969 Spring REST Framework"},{"id":13,"group":1,"content":"karate\/springActuator\/springActuator[1.4:23]","start":1699501601977,"end":1699501602000,"title":"karate\/springActuator\/springActuator[1.4:23] 22:46:41.977-22:46:42.000 Spring REST Framework"},{"id":14,"group":1,"content":"karate\/springActuator\/springActuator[1.5:24]","start":1699501602007,"end":1699501602049,"title":"karate\/springActuator\/springActuator[1.5:24] 22:46:42.007-22:46:42.049 Spring REST Framework"},{"id":15,"group":1,"content":"karate\/chains\/chains[1.1:20]","start":1699501601407,"end":1699501601503,"title":"karate\/chains\/chains[1.1:20] 22:46:41.407-22:46:41.503 'chains'"},{"id":16,"group":1,"content":"karate\/chains\/chains[1.2:21]","start":1699501601513,"end":1699501601579,"title":"karate\/chains\/chains[1.2:21] 22:46:41.513-22:46:41.579 'chains'"},{"id":17,"group":1,"content":"karate\/addresses\/addresses[1.1:19]","start":1699501600748,"end":1699501600859,"title":"karate\/addresses\/addresses[1.1:19] 22:46:40.748-22:46:40.859"},{"id":18,"group":1,"content":"karate\/addresses\/addresses[1.2:20]","start":1699501600869,"end":1699501601189,"title":"karate\/addresses\/addresses[1.2:20] 22:46:40.869-22:46:41.189"},{"id":19,"group":1,"content":"karate\/users\/users[1:9]","start":1699501602704,"end":1699501603028,"title":"karate\/users\/users[1:9] 22:46:42.704-22:46:43.028 get all users and then get the first user by id"},{"id":20,"group":1,"content":"karate\/users\/users[2:21]","start":1699501603034,"end":1699501603341,"title":"karate\/users\/users[2:21] 22:46:43.034-22:46:43.341 create a user and then get it by id","className":"failed"},{"id":21,"group":1,"content":"karate\/users\/users[3.1:156]","start":1699501603348,"end":1699501603572,"title":"karate\/users\/users[3.1:156] 22:46:43.348-22:46:43.572 Update a user, get it by id, verify changes","className":"failed"}];
+</script>
+    <script>
+      var container = document.getElementById('visualization');
+      var timeline = new vis.Timeline(container);
+      timeline.setOptions({groupOrder: 'content'});
+      timeline.setGroups(new vis.DataSet(groups));
+      timeline.setItems(new vis.DataSet(items));
+    </script>
+  </body>
+</html>

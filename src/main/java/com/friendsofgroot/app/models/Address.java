@@ -38,9 +38,9 @@ public class Address  implements Serializable {
     private String blockExplorerUrl;
 
     @ManyToOne( fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-    @JoinColumn(name="users_userid")
+    @JoinColumn(name="userid")
     private User user;
-    @Column(name="chain_id")
+    @Column(name="CHAIN_ID")
     private int chainId;
 
 //    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})

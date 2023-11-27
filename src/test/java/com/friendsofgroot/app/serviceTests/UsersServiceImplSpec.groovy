@@ -1,16 +1,9 @@
 package com.friendsofgroot.app.serviceTests
 
-import com.friendsofgroot.app.models.dto.RegisterDto
-import com.friendsofgroot.app.models.dto.UserDto
-
-import com.friendsofgroot.app.models.Address
-import com.friendsofgroot.app.models.Attribute
-import com.friendsofgroot.app.models.Chain
-import com.friendsofgroot.app.models.Metadata
-import com.friendsofgroot.app.models.Nft
-import com.friendsofgroot.app.models.NftAddress
 import com.friendsofgroot.app.models.Role
 import com.friendsofgroot.app.models.User
+import com.friendsofgroot.app.models.dto.RegisterDto
+import com.friendsofgroot.app.models.dto.UserDto
 import com.friendsofgroot.app.repositories.UserAccountRepository
 import com.friendsofgroot.app.repositories.UsersRepository
 import com.friendsofgroot.app.service.UsersServiceImpl
@@ -19,29 +12,39 @@ import spock.lang.*
 class UsersServiceImplSpec extends Specification {
     def testObj = new UsersServiceImpl()
     def usersRepository = Mock(UsersRepository)
-    def userMapper = Mock(UserMapper)
+//    def userMapper = Mock(UserMapper)
     def userAccountRepository = Mock(UserAccountRepository)
     def expectedResult
     def setup() {
 
         testObj.usersRepository = usersRepository
-        testObj.userMapper = userMapper
-        testObj.userAccountRepository = userAccountRepository
+//        testObj.userMapper = userMapper
     }
 
     @Unroll
     def "createUserCLI"() {
         when:
-        expectedResult = testObj.createUserCLI(user)
+        User user = new User (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+
+        expectedResult = testObj.createUserCLI(user as User)
 
         then: "then"
         with(expectedResult) {
+//               id == 0
+                username =="username"
+//            password == null
+//                lastName == null
+//                firstName == null
+//                phone == 0
+//                email == null
+//                cusUrl == null
+//                photoPath == null
+//                nftAddress == null
+//                chainId == 0
+//                addresses == [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", null, 0)] as Set<Role>
+        }
 
         }
-        where: "where"
-        user                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 || expectedResult
-        new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", null, 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [null])], [new Role(0, "name", [null] as Set<User>)] as Set<Role>) || new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", null, 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [null])], [new Role(0, "name", [null] as Set<User>)] as Set<Role>)
-    }
 
     @Unroll
     def "registerUser"() {
@@ -68,7 +71,7 @@ class UsersServiceImplSpec extends Specification {
         given: "given"
 
         and: "_mock"
-        usersRepository.findByUsernameOrEmail(_, _) >> null
+        usersRepository.findByUsernameOrEmail(_ as String, _) >> null
         userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, "idToken", [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [null], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [null])], [new Role(0, "name", [null] as Set<User>)] as Set<Role>), 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", null, 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [null], [new Role(0, "name", [null] as Set<User>)] as Set<Role>)])], [new Role(0, "name", [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", null, 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [null])], [null] as Set<Role>)] as Set<User>)] as Set<Role>)
 
         when:
@@ -80,6 +83,10 @@ class UsersServiceImplSpec extends Specification {
         }
         where: "where"
         password   | usernameOrEmail   || expectedResult
+        userBuilder()
+    }
+
+    private void userBuilder() {
         "password" | "usernameOrEmail" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, "idToken", [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [null], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [null])], [new Role(0, "name", [null] as Set<User>)] as Set<Role>), 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", null, 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [null], [new Role(0, "name", [null] as Set<User>)] as Set<Role>)])], [new Role(0, "name", [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Address(0, "description", "email", "address", "chain", "iconUrl", "blockExplorerUrl", null, 0, new NftAddress(0, "address", 0d, 0d, 1.1f, [new Nft(0, "name", 0, new Metadata(0, "name", "description", "image", null, [new Attribute(0, "valu", "trait_type", null)]), null)]))], [new Chain(0, "name", "symbol", "description", "longDescription", "iconUrl", "category", "chainListIcon", "rpcUrl", 0, "blockExplorerUrl", [null])], [null] as Set<Role>)] as Set<User>)] as Set<Role>)
     }
 

@@ -92,8 +92,9 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/api/**").permitAll() //  API
                                 .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll() //  API
 
-                                .requestMatchers(HttpMethod.GET, "/v3/api-docs**", "/v3/api-docs/**").permitAll() // Open API
-                                .requestMatchers(HttpMethod.GET,  "/swagger-ui.html","/swagger-ui*").permitAll() // Open API
+                                .requestMatchers(HttpMethod.GET, "/v3/api-docs").permitAll() // Open API
+                                .requestMatchers(HttpMethod.GET, "/v3/api-docs", "/v3/api-docs/**").permitAll() // Open API
+                                .requestMatchers(HttpMethod.GET,  "/swagger-ui/**","/swagger-ui/index.html" ).permitAll() // Open API
 
                                 .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll() // H2
                                 .anyRequest().authenticated()
@@ -117,4 +118,3 @@ public class SecurityConfig {
 //        http.authorizeRequests().anyRequest().permitAll();
 
 }
-

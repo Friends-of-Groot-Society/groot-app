@@ -42,8 +42,7 @@ public class UsersServiceImpl implements UsersService {
      */
     @Override
     public User createUserCLI(User user) {
-        User u = usersRepository.save(user);
-        return u;
+        return usersRepository.save(user);
     }
 
     /**

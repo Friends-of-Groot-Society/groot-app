@@ -34,7 +34,7 @@ public class ChainsController {
     public static final String CHAIN_PATH_ID = CHAIN_PATH + "/{chainId}";
 
     private final ChainsService chainService;
- 
+
     @Operation(
             summary = "Create Chain REST API  registerChain",
             description = "Create Chain REST API is used to save chain in a database"
@@ -73,7 +73,7 @@ public class ChainsController {
             description = "HTTP Status 200 SUCCESS"
     )
     @GetMapping(value = CHAIN_PATH + "/page")
-    public ResponseEntity<Page<ChainDto>> getAllChainsPageable(Pageable page) {
+    public ResponseEntity<Page<ChainDto>> getAllChainsPageable(@RequestBody  Pageable page) {
 
         return new ResponseEntity<>(chainService.getAllChainsPageable(page), HttpStatus.OK);
     }

@@ -3,9 +3,7 @@ package com.friendsofgroot.app.controllers;
 import com.friendsofgroot.app.config.security.JwtTokenProvider;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
 import com.friendsofgroot.app.models.User;
-import com.friendsofgroot.app.models.dto.LoginDto;
-import com.friendsofgroot.app.models.dto.RegisterDto;
-import com.friendsofgroot.app.models.dto.UserDto;
+import com.friendsofgroot.app.models.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.ConstraintViolationException;
@@ -25,7 +23,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-import com.friendsofgroot.app.models.dto.JWTAuthResponse;
 import com.friendsofgroot.app.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -162,13 +159,13 @@ public class UsersController {
 
     /// Non-Register Creation Request
     @PostMapping(USER_PATH)
-    public ResponseEntity createUser(@RequestBody UserDto user) {
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
         UserDto savedUser = usersService.createUser(user);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", USER_PATH + "/" + savedUser.getUserId());
 
-        return new ResponseEntity(savedUser, headers, HttpStatus.CREATED);
+        return new ResponseEntity<> (savedUser, headers, HttpStatus.CREATED);
     }
 
 

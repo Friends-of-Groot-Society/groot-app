@@ -94,7 +94,7 @@ public class AddressesController {
             description = "HTTP Status 200 SUCCESS"
     )
     @PutMapping(ADDRESSES_PATH_ID)
-    public ResponseEntity updateAddress(@PathVariable("id") Integer id, @RequestBody AddressDto addressDto) {
+    public ResponseEntity<AddressDto> updateAddress(@PathVariable("id") Integer id, @RequestBody AddressDto addressDto) {
         Optional<AddressDto> updated = addressesService.updateAddress(id, addressDto);
         return updated.map(dto -> new ResponseEntity<>(
                 dto,
@@ -110,7 +110,7 @@ public class AddressesController {
             description = "HTTP Status 200 SUCCESS"
     )
     @PatchMapping(ADDRESSES_PATH_ID)
-    public ResponseEntity updateAddressPatchById(@PathVariable("addressesId") Integer addressesId, @RequestBody AddressDto addresses) {
+    public ResponseEntity updateAddressPatchById(@PathVariable("id") Integer addressesId, @RequestBody AddressDto addresses) {
         addressesService.patchAddressById(addressesId, addresses);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

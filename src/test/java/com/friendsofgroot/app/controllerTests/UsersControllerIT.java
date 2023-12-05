@@ -36,7 +36,7 @@ class UsersControllerIT {
     void deleteByIdFound() {
         User user = userRepository.findAll().get(0);
 
-        ResponseEntity responseEntity = usersController.deleteUser(user.getUserId());
+        ResponseEntity<Boolean> responseEntity = usersController.deleteUser(user.getUserId());
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(204));
 
         assertThat(userRepository.findById(user.getUserId()).isEmpty());
@@ -81,7 +81,7 @@ class UsersControllerIT {
                .username("TEST")
                .build();
 
-        ResponseEntity responseEntity = usersController.createUser(userDto);
+        ResponseEntity responseEntity = usersController.registerUser(userDto);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(201));
         assertThat(responseEntity.getHeaders().getLocation()).isNotNull();

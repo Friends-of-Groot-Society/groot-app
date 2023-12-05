@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @SessionAttributes("name")
-//@Api(tags={"Users"})
+@Api(tags={"Users"})
 public class UsersController {
     static final Logger log = LoggerFactory.getLogger(UsersController.class);
 
@@ -159,8 +159,8 @@ public class UsersController {
 
     /// Non-Register Creation Request
     @PostMapping(USER_PATH)
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
-        UserDto savedUser = usersService.createUser(user);
+    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto user) {
+        UserDto savedUser = usersService.registerUser(user);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", USER_PATH + "/" + savedUser.getUserId());
@@ -235,6 +235,8 @@ public class UsersController {
             return new ResponseEntity<>(boolSuccess, HttpStatus.NO_CONTENT);
         }
     }
+
+
 
 
 //    public List<String> getUsersByCoins();

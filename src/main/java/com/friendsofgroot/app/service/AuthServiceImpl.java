@@ -84,7 +84,7 @@ public class AuthServiceImpl  implements AuthService {
 //    }
     /**
      * @param registerDto
-     * @return
+     * @return String
      */
     @Override
     public String register(RegisterDto registerDto) {
@@ -142,14 +142,12 @@ public class AuthServiceImpl  implements AuthService {
         Function<String, String> passwordEncoding
                 = input -> passwordMaplEncoder().encode(input);
 
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+        return org.springframework.security.core.userdetails.User.builder()
                 .passwordEncoder(passwordEncoding)
                 .username(username)
                 .password(password)
                 .roles("USER", "ADMIN")
                 .build();
-
-        return userDetails;
     }
 
     // DISABLE WHEN CONNECTED TO LDAP or DB

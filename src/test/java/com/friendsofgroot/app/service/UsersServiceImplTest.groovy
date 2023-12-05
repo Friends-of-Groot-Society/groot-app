@@ -48,7 +48,7 @@ class UsersServiceImplTest extends Specification {
         when(userMapper.toDto(any())).thenReturn(new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>))
 
         when:
-        UserDto result = usersServiceImpl.createUser(new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>))
+        UserDto result = usersServiceImpl.registerUser(new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>))
 
         then:
         result == new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)

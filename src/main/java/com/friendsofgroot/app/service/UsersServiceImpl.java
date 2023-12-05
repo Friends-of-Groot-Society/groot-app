@@ -1,6 +1,7 @@
 package com.friendsofgroot.app.service;
 
 import com.friendsofgroot.app.exception.EmailAlreadyExistsException;
+import com.friendsofgroot.app.models.Role;
 import com.friendsofgroot.app.models.dto.RegisterDto;
 import com.friendsofgroot.app.models.dto.UserDto;
 import com.friendsofgroot.app.exception.ResourceNotFoundException;
@@ -23,7 +24,8 @@ import java.util.stream.Collectors;
 public class UsersServiceImpl implements UsersService {
 
     private static final Logger log = LoggerFactory.getLogger(UsersServiceImpl.class);
-    private UsersRepository usersRepository;
+    public UsersRepository usersRepository;
+
 
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
@@ -37,31 +39,54 @@ public class UsersServiceImpl implements UsersService {
     public UsersServiceImpl() {     }
 
     /**
-     * @param user
-     * @return
+     * @param user;
+     * @return User
      */
     @Override
     public User createUserCLI(User user) {
         return usersRepository.save(user);
     }
 
+
     /**
-     * @param user
-     * @return
+     * @param username;
+     * @param password;
+     * @return UserDto
+     */
+    public UserDto loginUser(String username, String password){
+        Optional<User> optionalUser = usersRepository.findByUsernameOrEmail(username, username);
+        if(optionalUser.isPresent()) {
+            User u = optionalUser.get();
+            if (passwordEncoder.matches(password, u.getPassword())) {
+                return userMapper.toDto(u);
+            }
+        } else {
+            throw new ResourceNotFoundException("User", "username", username);
+        }
+        return userMapper.toDto(optionalUser.get());
+    }
+    /**
+     * @param userDto;
+     * @return UserDto
      */
     @Override
-    public UserDto createUser(UserDto user) {
-        Optional<User> optionalUser = usersRepository.findByEmail(user.getEmail());
+    public UserDto registerUser(UserDto userDto) {
+        Optional<User> optionalUser = usersRepository.findByEmail(userDto.getEmail());
         if(optionalUser.isPresent()) {
             throw new EmailAlreadyExistsException("User already exists");
         }
-        User u = usersRepository.save(userMapper.toEntity(user));
+        User user = userMapper.toEntity(userDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role role = roleRepository.findByName("ROLE_USER").orElseThrow(() -> new ResourceNotFoundException("Role", "name", "ROLE_USER"));
+
+        user.setRoles(Collections.singleton(role));
+        User u = usersRepository.save(user);
         return userMapper.toDto(u);
     }
 
     /**
      * @param id
-     * @return
+     * @return UserDto
      */
     @Override
     public UserDto getUser(int id) {
@@ -74,8 +99,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     /**
-     * @param email
-     * @return
+     * @param email;
+     * @return UserDto
      */
     @Override
     public UserDto getUser(String email) {
@@ -90,7 +115,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     /**
-     * @return
+     * @return List<UserDto>
      */
     @Override
     public List<UserDto> getUsers() {
@@ -108,7 +133,11 @@ public class UsersServiceImpl implements UsersService {
        }
 
     }
-
+    /**
+     * @param email;
+     * @param pw;
+     * @return UserDto
+     */
     @Override
     public UserDto getUserByEmailAndPassword(String email, String pw) {
         User u;
@@ -120,7 +149,10 @@ public class UsersServiceImpl implements UsersService {
         }
         return userMapper.toDto(u);
     }
-
+    /**
+     * @param email;
+     * @return UserDto
+     */
     public UserDto getUserByEmail(String email) {
         User u;
         try {
@@ -144,8 +176,8 @@ public class UsersServiceImpl implements UsersService {
 
 
     /**
-     * @param change
-     * @return
+     * @param change;
+     * @return UserDto
      */
     @Override
     public UserDto updateUser(UserDto change) {
@@ -157,6 +189,10 @@ public class UsersServiceImpl implements UsersService {
 
             return userMapper.toDto(uDone);
     }
+    /**
+     * @param userId;
+     * @param user;
+     */
     @Override
     public Optional<UserDto> updateUserById(Integer userId, UserDto user) {
         AtomicReference<Optional<UserDto>> atomicReference = new AtomicReference<>();
@@ -171,6 +207,11 @@ public class UsersServiceImpl implements UsersService {
 
         return atomicReference.get();
     }
+    /**
+     * @param userId;
+     * @param user;
+     * @return UserDto
+     */
     @Override
     public Optional<UserDto> patchUserById(Integer userId, UserDto user) {
         AtomicReference<Optional<UserDto>> atomicReference = new AtomicReference<>();
@@ -191,8 +232,8 @@ public class UsersServiceImpl implements UsersService {
         return atomicReference.get();
     }
     /**
-     * @param email
-     * @return
+     * @param email;
+     * @return boolean
      */
     @Override
     public boolean deleteUser(String email) {
@@ -207,8 +248,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     /**
-     * @param user
-     * @return
+     * @param user;
+     * @return boolean
      */
     @Override
     public boolean deleteUser(UserDto user) {

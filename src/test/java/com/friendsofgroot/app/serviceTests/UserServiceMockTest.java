@@ -30,15 +30,15 @@ public class UserServiceMockTest {
     private UsersServiceImpl usersServiceImpl;
 
     @BeforeAll
-    public final static void setup() {
+    public static void setup() {
 //        MockitoAnnotations.openMocks(UsersServiceImpl.class);
     }
 //    TODO mockito Service INJECTION
     @Test
     public void add_new_user() {
         UserDto u = new UserDto( );
-        when(userServiceMock.createUser(u)).thenReturn(assertInstanceOf(UserDto.class, u));
-        assertEquals(userServiceMock.createUser(u), u);
+        when(userServiceMock.registerUser(u)).thenReturn(assertInstanceOf(UserDto.class, u));
+        assertEquals(userServiceMock.registerUser(u), u);
      }
 
 
@@ -68,7 +68,7 @@ public class UserServiceMockTest {
     public void delete_user() {
         UserDto u = new UserDto( );    // PASSES
         u.setEmail("email@email.com");
-//        when(userServiceMock.createUser(u)).thenReturn(assertInstanceOf(UserDto.class, u));
+//        when(userServiceMock.registerUser(u)).thenReturn(assertInstanceOf(UserDto.class, u));
         when(userServiceMock.deleteUser(u.getEmail())).thenReturn( assertInstanceOf(Boolean.class, true));
 
         assertTrue(userServiceMock.deleteUser(u.getEmail()));

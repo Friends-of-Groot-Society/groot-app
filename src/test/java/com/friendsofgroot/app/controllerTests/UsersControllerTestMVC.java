@@ -104,12 +104,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     }
 
     @Test
-    void testCreateUser() throws Exception {
+    void testRegisterUser() throws Exception {
         UserDto user = userServiceImpl.getUsers().get(0);
         user.setUserId(444);
 
 
-        given(userService.createUser(any(UserDto.class)))
+        given(userService.registerUser(any(UserDto.class)))
                 .willReturn(userServiceImpl.getUsers().get(1));
 
         mockMvc.perform(post(UsersController.USER_PATH).contentType(MediaType.APPLICATION_JSON)

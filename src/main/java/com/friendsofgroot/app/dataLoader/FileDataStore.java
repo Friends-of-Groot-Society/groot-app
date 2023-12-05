@@ -45,7 +45,7 @@ public class FileDataStore extends ReadWriteFile {
 
 
 		static List<User> loadUsers() throws FileNotFoundException, UnsupportedEncodingException {
-//		users[0] = UserManager.getInstance().createUser(500,  "user0", "password", "Smith", "Tom", Group.MALE,  UserType.USER, "user0@cryptomaven.xyz",  "5055087707" ,"http://www.dailytech.net", "1000");
+//		users[0] = UserManager.getInstance().registerUser(500,  "user0", "password", "Smith", "Tom", Group.MALE,  UserType.USER, "user0@cryptomaven.xyz",  "5055087707" ,"http://www.dailytech.net", "1000");
  	List<String> data = new ArrayList<>();
 			ReadWriteFile.readFromFilename(data,  FILE_IN_USERS);
 			System.out.println("TEST_USERS::::::: "+FILE_IN_USERS+data.toString());

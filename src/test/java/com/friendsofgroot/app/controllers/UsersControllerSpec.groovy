@@ -66,7 +66,7 @@ class UsersControllerSpec extends Specification {
         def code = v_exp
 
         when:
-        expectedResult = testObj.createUser(v1)
+        expectedResult = testObj.registerUser(v1)
 
         then: "then"
         expectedResult.statusCode == code
@@ -127,10 +127,10 @@ class UsersControllerSpec extends Specification {
 
 
         when:
-        expectedResult = testObj.updateUser(userDto)
+        expectedResult = testObj.updateUser(1, userDto)
 
         then: "then"
-        usersService.createUser(_) >> new UserDto()
+        usersService.registerUser(_ as UserDto) >> new UserDto()
 
         with(expectedResult) {
             it != null
@@ -145,8 +145,8 @@ class UsersControllerSpec extends Specification {
         given: "given"
 
         and: "_mock"
-        usersService.getUser(_) >> new UserDto()
-        usersService.deleteUser(_) >> true
+        usersService.getUser(_ as String) >> new UserDto()
+        usersService.deleteUser(_ as String) >> true
 
         when:
         expectedResult = testObj.deleteUser(userId)

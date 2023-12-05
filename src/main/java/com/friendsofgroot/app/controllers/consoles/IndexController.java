@@ -83,7 +83,7 @@ public class IndexController {
             return "/api/register";
         }
 
-        usersService.createUser(userDto);
+        usersService.registerUser(userDto);
         return "redirect:/api/register?success";
     }
     @GetMapping(value = {"/v1", "/v1/", "/v1/index"})

@@ -1,5 +1,6 @@
 package com.friendsofgroot.app.repositories;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +22,7 @@ public interface UsersRepository extends JpaRepository<User, Integer> {
 
 
     // SINGULAR
-
+    @NotNull Optional<User> findById(@NotNull Integer id);
     User findByUsernameAndPassword(String username, String password);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);

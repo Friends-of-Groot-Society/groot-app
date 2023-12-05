@@ -63,12 +63,15 @@ public class User  implements Serializable{
     @Column(name="contacttype")
     private int contactType; // ContactType contactType
 
-
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "USERS_ROLES", joinColumns = @JoinColumn(name = "userid", referencedColumnName = "userid"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    @JoinTable(
+            name = "USERS_ROLES",
+            joinColumns = {@JoinColumn(name = "userid", referencedColumnName = "userid")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+    )
     private Set<Role> roles = new HashSet<>();
 
-    // parent of many
+
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id"  , orphanRemoval = true)
 //    private List<Address> addresses;
 

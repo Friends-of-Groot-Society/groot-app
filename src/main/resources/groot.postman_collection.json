@@ -171,7 +171,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " { \r\n        \"userId\": 741,\r\n        \"username\": \"u152013331\",\r\n        \"password\": \"password\",\r\n        \"lastName\": \"thomasm1\",\r\n        \"firstName\": \"thomasm1\",\r\n        \"groups\": \"groups\",\r\n        \"userType\": 1,\r\n        \"phone\": \"5055087707\",\r\n        \"email\": \"thomas.maestas@gmail.com\",\r\n        \"cusUrl\": \"http://www.dailytech.net\",\r\n        \"photoPath\": \"photoPath\",\r\n        \"userGroup\": \"userGroup\",\r\n        \"isActive\": 0,\r\n        \"contactType\": 1,\r\n        \"id\": 4444,\r\n        \"addresses\":[ \r\n             { \r\n        \"description\": \"description\",\r\n        \"owner\": \"owner\",\r\n        \"address\": \"address\",\r\n        \"chain\": \"chain\",\r\n        \"iconUrl\": \"iconUrl\",\r\n        \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n \r\n        \"chainId\": 0\r\n    }\r\n        ]\r\n    }"
+					"raw": " { \r\n        \"userId\": 741,\r\n        \"username\": \"u152013331\",\r\n        \"password\": \"password\",\r\n        \"lastName\": \"thomas1\",\r\n        \"firstName\": \"thomas1\",\r\n        \"groups\": \"groups\",\r\n        \"userType\": 1,\r\n        \"phone\": \"5055087707\",\r\n        \"email\": \"thomas.maestas@gmail.com\",\r\n        \"cusUrl\": \"http://www.dailytech.net\",\r\n        \"photoPath\": \"photoPath\",\r\n        \"userGroup\": \"userGroup\",\r\n        \"isActive\": 0,\r\n        \"contactType\": 1,\r\n        \"id\": 4444,\r\n        \"addresses\":[ \r\n             { \r\n        \"description\": \"description\",\r\n        \"owner\": \"owner\",\r\n        \"address\": \"address\",\r\n        \"chain\": \"chain\",\r\n        \"iconUrl\": \"iconUrl\",\r\n        \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n \r\n        \"chainId\": 0\r\n    }\r\n        ]\r\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/users",
@@ -270,7 +270,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/users/email/thomasm1.maestas@gmail.com",
+					"raw": "localhost:8080/api/users/email/thomas1.maestas@gmail.com",
 					"host": [
 						"localhost"
 					],
@@ -279,7 +279,7 @@
 						"api",
 						"users",
 						"email",
-						"thomasm1.maestas@gmail.com"
+						"thomas1.maestas@gmail.com"
 					]
 				}
 			},
@@ -292,7 +292,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": 741,\r\n    \"username\": \"thomasm1.maestas@gmail.com\",\r\n    \"password\": null,\r\n    \"lastName\": \"Maestas\",\r\n    \"firstName\": \"Thomasm\",\r\n    \"groups\": 0,\r\n    \"userType\": 0,\r\n    \"email\": \"thomasm1.maestas@gmail.com\",\r\n    \"phone\": null,\r\n    \"cusUrl\": null,\r\n    \"photoPath\": \"photoPath\",\r\n    \"userGroup\": \"userGroup\",\r\n    \"isActive\": 0,\r\n    \"contactType\": 0,\r\n    \"id\": \"4444\",\r\n    \"addresses\": [\r\n        {\r\n            \"id\": 661,\r\n            \"description\": \"description\",\r\n            \"owner\": \"thomasm1.maestas@gmail.com\",\r\n            \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n            \"chain\": \"polygon\",\r\n            \"iconUrl\": \"iconUrl\",\r\n            \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n            \"user\": null,\r\n            \"chainId\": 0,\r\n            \"nftAddress\": null\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"userId\": 741,\r\n    \"username\": \"thomas1.maestas@gmail.com\",\r\n    \"password\": null,\r\n    \"lastName\": \"Maestas\",\r\n    \"firstName\": \"Thomasm\",\r\n    \"groups\": 0,\r\n    \"userType\": 0,\r\n    \"email\": \"thomas1.maestas@gmail.com\",\r\n    \"phone\": null,\r\n    \"cusUrl\": null,\r\n    \"photoPath\": \"photoPath\",\r\n    \"userGroup\": \"userGroup\",\r\n    \"isActive\": 0,\r\n    \"contactType\": 0,\r\n    \"id\": \"4444\",\r\n    \"addresses\": [\r\n        {\r\n            \"id\": 661,\r\n            \"description\": \"description\",\r\n            \"owner\": \"thomas1.maestas@gmail.com\",\r\n            \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n            \"chain\": \"polygon\",\r\n            \"iconUrl\": \"iconUrl\",\r\n            \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n            \"user\": null,\r\n            \"chainId\": 0,\r\n            \"nftAddress\": null\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -723,7 +723,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    { \r\n    \r\n        \"address\": \"0x900bE021E38B8d08435A03c05657C8cFA837cAeF\",\r\n        \"chain\": \"polygon\",\r\n        \"owner\":\"thomasm1.maestas@gmail.com\"\r\n    }"
+					"raw": "    { \r\n    \r\n        \"address\": \"0x900bE021E38B8d08435A03c05657C8cFA837cAeF\",\r\n        \"chain\": \"polygon\",\r\n        \"owner\":\"thomas1.maestas@gmail.com\"\r\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/addresses",
@@ -754,7 +754,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"chain\": \"polygon\",\r\n    \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n    \"owner\": \"thomasm1.maestas@gmail.com\",\r\n    \"nft\": {\r\n        \"native\": \"0.0\",\r\n        \"tokens\": {\"zero\":0,\"one\":1},\r\n        \"nfts\": []\r\n    }\r\n}"
+					"raw": "{\r\n    \"chain\": \"polygon\",\r\n    \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n    \"owner\": \"thomas1.maestas@gmail.com\",\r\n    \"nft\": {\r\n        \"native\": \"0.0\",\r\n        \"tokens\": {\"zero\":0,\"one\":1},\r\n        \"nfts\": []\r\n    }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/addresses",
@@ -836,7 +836,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n  \"id\": 598,\r\n        \"description\": null,\r\n        \"owner\": \"thomasm1.maestas@gmail.com\",\r\n        \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n        \"chain\": \"ropstein\",\r\n        \"iconUrl\": null,\r\n        \"blockExplorerUrl\": null,\r\n        \"user\": null,\r\n        \"chainId\": 0 \r\n}"
+					"raw": "{ \r\n  \"id\": 598,\r\n        \"description\": null,\r\n        \"owner\": \"thomas1.maestas@gmail.com\",\r\n        \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n        \"chain\": \"ropstein\",\r\n        \"iconUrl\": null,\r\n        \"blockExplorerUrl\": null,\r\n        \"user\": null,\r\n        \"chainId\": 0 \r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/addresses",

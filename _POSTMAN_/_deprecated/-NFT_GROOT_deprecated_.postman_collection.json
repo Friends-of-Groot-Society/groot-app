@@ -110,7 +110,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"thomasm1.maestas@gmail.com\",\r\n    \"fName\": \"Thoms\",\r\n    \"groupType\": \"Admin\",\r\n    \"id\": 0,\r\n    \"lName\": \"Milton\",\r\n    \"memberSince\": \"02-04-2020\",\r\n    \"password\": \"pass\",\r\n    \"tokenId\": \"string\",\r\n    \"userId\": \"string\"\r\n}",
+					"raw": "{\r\n    \"email\": \"thomas1.maestas@gmail.com\",\r\n    \"fName\": \"Thoms\",\r\n    \"groupType\": \"Admin\",\r\n    \"id\": 0,\r\n    \"lName\": \"Milton\",\r\n    \"memberSince\": \"02-04-2020\",\r\n    \"password\": \"pass\",\r\n    \"tokenId\": \"string\",\r\n    \"userId\": \"string\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,7 +141,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"email\":\"thomasm1.maestas@gmail.com\",\r\n    \"address\":\"0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156\",\r\n    \"chain\":\"pulsechain23\"\r\n}",
+					"raw": "{ \"email\":\"thomas1.maestas@gmail.com\",\r\n    \"address\":\"0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156\",\r\n    \"chain\":\"pulsechain23\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -171,7 +171,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"address\": \"0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156\",\r\n        \"chain\": \"avalanche-212\",\r\n        \"email\":\"thomasm1.maestas@gmail.com\"\r\n    }",
+					"raw": "{\r\n        \"address\": \"0xc8d6A88EF3627C7B666117Da5F6d23Ac0B01b156\",\r\n        \"chain\": \"avalanche-212\",\r\n        \"email\":\"thomas1.maestas@gmail.com\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -300,7 +300,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"email\":\"thomasm1.maestas@gmail.com\",\r\n\"password\":\"pass\"\r\n}",
+					"raw": "{\"email\":\"thomas1.maestas@gmail.com\",\r\n\"password\":\"pass\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

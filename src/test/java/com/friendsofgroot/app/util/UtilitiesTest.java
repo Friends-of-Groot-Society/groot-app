@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class UtilitiesTest {
-    public static final String THOMASM_1_MAESTAS_GMAIL_COM = "Thomasm1.maestas@gmail.com";
+    public static final String THOMASM_1_MAESTAS_GMAIL_COM = "thomas1.maestas@gmail.com";
 
-    public static final String INVALID_NO_ASTERISK_COM = "Thomasm1.maestasgmail.com";
+    public static final String INVALID_NO_ASTERISK_COM = "thomas1.maestasgmail.com";
 
     @BeforeEach
     void setUp() {

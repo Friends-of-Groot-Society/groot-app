@@ -216,12 +216,12 @@
 			"response": []
 		},
 		{
-			"name": "/api/users/email/thomasm1.maestas@gmail.com",
+			"name": "/api/users/email/thomas1.maestas@gmail.com",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/api/users/email/thomasm1.maestas@gmail.com",
+					"raw": "{{baseUrl}}/api/users/email/thomas1.maestas@gmail.com",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -229,7 +229,7 @@
 						"api",
 						"users",
 						"email",
-						"thomasm1.maestas@gmail.com"
+						"thomas1.maestas@gmail.com"
 					]
 				}
 			},
@@ -242,7 +242,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": 1,\r\n    \"userName\": \"thomasm1.maestas@gmail.com\",\r\n    \"password\": null,\r\n    \"lastName\": \"Maestas\",\r\n    \"firstName\": \"Thomasm\",\r\n    \"groups\": 0,\r\n    \"userType\": 0,\r\n    \"email\": \"thomasm1.maestas@gmail.com\",\r\n    \"phone\": null,\r\n    \"cusUrl\": null,\r\n    \"photoPath\": \"photoPath\",\r\n    \"userGroup\": \"userGroup\",\r\n    \"isActive\": 0,\r\n    \"contactType\": 0,\r\n    \"id\": \"4444\",\r\n    \"addresses\": [\r\n        {\r\n            \"id\": 661,\r\n            \"description\": \"description\",\r\n            \"owner\": \"thomasm1.maestas@gmail.com\",\r\n            \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n            \"chain\": \"polygon\",\r\n            \"iconUrl\": \"iconUrl\",\r\n            \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n            \"user\": null,\r\n            \"chainId\": 0,\r\n            \"nftAddress\": null\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"userName\": \"thomas1.maestas@gmail.com\",\r\n    \"password\": null,\r\n    \"lastName\": \"Maestas\",\r\n    \"firstName\": \"Thomasm\",\r\n    \"groups\": 0,\r\n    \"userType\": 0,\r\n    \"email\": \"thomas1.maestas@gmail.com\",\r\n    \"phone\": null,\r\n    \"cusUrl\": null,\r\n    \"photoPath\": \"photoPath\",\r\n    \"userGroup\": \"userGroup\",\r\n    \"isActive\": 0,\r\n    \"contactType\": 0,\r\n    \"id\": \"4444\",\r\n    \"addresses\": [\r\n        {\r\n            \"id\": 661,\r\n            \"description\": \"description\",\r\n            \"owner\": \"thomas1.maestas@gmail.com\",\r\n            \"address\": \"0x399EEc3B8e889a2E0853dd254f09C4535061693A\",\r\n            \"chain\": \"polygon\",\r\n            \"iconUrl\": \"iconUrl\",\r\n            \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n            \"user\": null,\r\n            \"chainId\": 0,\r\n            \"nftAddress\": null\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1320,7 +1320,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " \r\n{ \r\n    \"title\": \"https://www.thomasmaestas.com/title\",\r\n    \"profileUrl\": \"thomasmaestas.net/profileUrl.html\",\r\n   \"ownerEmail\":   \"thomasm1.maestas@gmail.com\",\r\n    \"url\": \"thomasmaestas.net/index.html\",\r\n    \"host\": \"thomasmaestas.net\",\r\n    \"htmlPage\": \"<html><head></head><body>hey thomasmaestas!!!!!</body></html>\",\r\n    \"downloadStatus\": \"SUCCESS\",\r\n    \"itemData\": \"<item><type>WebLink</type><title>https://www.thomasmaestas.com</title><url>thomasmaestas.net/index.html</url><host>thomasmaestas.net</host></item>\",\r\n    \"web3Link\": true\r\n}"
+					"raw": " \r\n{ \r\n    \"title\": \"https://www.thomasmaestas.com/title\",\r\n    \"profileUrl\": \"thomasmaestas.net/profileUrl.html\",\r\n   \"ownerEmail\":   \"thomas1.maestas@gmail.com\",\r\n    \"url\": \"thomasmaestas.net/index.html\",\r\n    \"host\": \"thomasmaestas.net\",\r\n    \"htmlPage\": \"<html><head></head><body>hey thomasmaestas!!!!!</body></html>\",\r\n    \"downloadStatus\": \"SUCCESS\",\r\n    \"itemData\": \"<item><type>WebLink</type><title>https://www.thomasmaestas.com</title><url>thomasmaestas.net/index.html</url><host>thomasmaestas.net</host></item>\",\r\n    \"web3Link\": true\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/api/weblinks",
@@ -1349,7 +1349,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " \r\n{ \r\n    \"title\": \"https://www.thomasmaestas.com/title\",\r\n    \"profileUrl\": \"thomasmaestas.net/profileUrl.html\",\r\n   \"ownerEmail\":   \"thomasm1.maestas@gmail.com\",\r\n    \"url\": \"thomasmaestas.net/index.html\",\r\n    \"host\": \"thomasmaestas.net\",\r\n    \"htmlPage\": \"<html><head></head><body>hey thomasmaestas!!!!!</body></html>\",\r\n    \"downloadStatus\": \"SUCCESS\",\r\n    \"itemData\": \"<item><type>WebLink</type><title>https://www.thomasmaestas.com</title><url>thomasmaestas.net/index.html</url><host>thomasmaestas.net</host></item>\",\r\n    \"web3Link\": true\r\n}"
+					"raw": " \r\n{ \r\n    \"title\": \"https://www.thomasmaestas.com/title\",\r\n    \"profileUrl\": \"thomasmaestas.net/profileUrl.html\",\r\n   \"ownerEmail\":   \"thomas1.maestas@gmail.com\",\r\n    \"url\": \"thomasmaestas.net/index.html\",\r\n    \"host\": \"thomasmaestas.net\",\r\n    \"htmlPage\": \"<html><head></head><body>hey thomasmaestas!!!!!</body></html>\",\r\n    \"downloadStatus\": \"SUCCESS\",\r\n    \"itemData\": \"<item><type>WebLink</type><title>https://www.thomasmaestas.com</title><url>thomasmaestas.net/index.html</url><host>thomasmaestas.net</host></item>\",\r\n    \"web3Link\": true\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/api/weblinks",

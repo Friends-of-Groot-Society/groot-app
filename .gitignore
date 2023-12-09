@@ -5,7 +5,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 .gradle
-.war
+#.war
 .jar
 #GROOT!
 /.gradle

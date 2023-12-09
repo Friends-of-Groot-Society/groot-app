@@ -58,7 +58,7 @@ Driver: Oracle JDBC driver (ver. 21.5.0.0.0, JDBC4.3)
 ### Containerization
 ### Docker MySQL
 
-mysql thomasm1/mysql9
+mysql thomas1/mysql9
 DBMS: MySQL (ver. 8.0.31)
 Case sensitivity: plain=exact, delimited=exact
 Driver: MySQL Connector/J (ver. mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0), JDBC4.2)

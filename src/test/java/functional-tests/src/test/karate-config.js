@@ -5,8 +5,7 @@ function fn() {
         env = 'prod';
     }
     karate.log('karate.env system property was:', env);
-    var system = karate.
-    var baseUrl = karate.baseUrl || "http://localhost:8080"
+    var system = karate.baseUrl = karate.baseUrl || "http://localhost:8080"
     var pw = process.env.ORACLE_DB_PASSWORD
     console.log("----------pw----------" + pw)
     var spring_datasource_url = karate.spring_datasource_url || ''
@@ -26,7 +25,7 @@ function fn() {
         spring_datasource_url = "jdbc:oracle:thin:@thomas.cmcadlepsyx9.us-east-1.rds.amazonaws.com:1521:thomas";
         spring_datasource_username = "thomas"
         spring_datasource_password = pw
-        
+
         var config = {
             env: env,
             baseUrl: baseUrl,
@@ -40,3 +39,4 @@ function fn() {
         // karate.configure('headers', {Authorization: 'Token ' + accessToken})
         return config;
     }
+}

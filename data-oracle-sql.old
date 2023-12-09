@@ -55,7 +55,7 @@ values (nextval('ID_MAKER'), 'thomas.maestas@hotmail.com', 'password', 'Maestas'
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 Insert into USERS (USERID, USERNAME, PASSWORD, LASTNAME, FIRSTNAME, GROUPS, USERTYPE, PHONE, EMAIL, CUSURL, PHOTOPATH,
                    USERGROUP, ISACTIVE, CONTACTTYPE, ID)
-values (nextval('ID_MAKER'), 'thomasm1.maestas@gmail.com', 'password', 'Maestas', 'thomasm1', 3, 1, '5055087707','thomasm1.maestas@gmail.com',
+values (nextval('ID_MAKER'), 'thomas1.maestas@gmail.com', 'password', 'Maestas', 'thomas1', 3, 1, '5055087707','thomas1.maestas@gmail.com',
         'https://doggywood-veterinary.s3.amazonaws.com/assets/Animals/random_a8.jpg', 'photoPath', 'userGroup', 0, 1,
         '1');
 
@@ -198,7 +198,7 @@ values (nextval('address_seq'), 'description', 'thomas.maestas@hotmail.com', '0x
         'polygon',  'ICON_URL', 'BLOCK_EXPLORER_URL',  401, 501);
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 Insert into ADDRESS (ID, DESCRIPTION, EMAIL, ADDRESS, CHAIN, ICON_URL, BLOCK_EXPLORER_URL, USERID, CHAIN_ID )
-values (nextval('address_seq'), 'description', 'thomasm1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
+values (nextval('address_seq'), 'description', 'thomas1.maestas@gmail.com', '0x399EEc3B8e889a2E0853dd254f09C4535061693A',
         'goerli', 'ICON_URL', 'BLOCK_EXPLORER_URL', 451, 551);
 
 

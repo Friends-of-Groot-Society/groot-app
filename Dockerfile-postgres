@@ -10,6 +10,6 @@ ENV jdbcurl=jdbc:postgresql://pmadatabaseaws.cngquqqjuc9v.us-east-1.rds.amazonaw
 
 WORKDIR /usr/local/bin
 
-ADD target/pma-app.jar .
+ADD target/friendsofgroot.war .
 
 ENTRYPOINT ["java", "-jar", "pma-app.jar"]

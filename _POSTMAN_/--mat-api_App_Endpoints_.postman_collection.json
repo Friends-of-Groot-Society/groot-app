@@ -171,12 +171,12 @@
 			"response": []
 		},
 		{
-			"name": "/api/users/email/thomasm1.maestas@gmail.com",
+			"name": "/api/users/email/thomas1.maestas@gmail.com",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/api/users/email/thomasm1.maestas@gmail.com",
+					"raw": "{{baseUrl}}/api/users/email/thomas1.maestas@gmail.com",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -184,7 +184,7 @@
 						"api",
 						"users",
 						"email",
-						"thomasm1.maestas@gmail.com"
+						"thomas1.maestas@gmail.com"
 					]
 				}
 			},
@@ -329,7 +329,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    { \r\n        \"description\": \"description\",\r\n        \"email\": \"thomasm1.maestas@gmail.com\",\r\n        \"address\": \"0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633\",\r\n        \"chain\": \"ethereum\",\r\n        \"iconUrl\": \"iconUrl\",\r\n        \"blockExplorerUrl\": \"blockExplorerUrl\", \r\n        \"chainId\": 0\r\n    }"
+					"raw": "    { \r\n        \"description\": \"description\",\r\n        \"email\": \"thomas1.maestas@gmail.com\",\r\n        \"address\": \"0xcfCa3FEBAceA3AbB643bA90C670D7c4E6D74b633\",\r\n        \"chain\": \"ethereum\",\r\n        \"iconUrl\": \"iconUrl\",\r\n        \"blockExplorerUrl\": \"blockExplorerUrl\", \r\n        \"chainId\": 0\r\n    }"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/api/addresses",
@@ -358,7 +358,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    { \r\n    \r\n        \"address\": \"0x900bE021E38B8d08435A03c05657C8cFA837cAeF\",\r\n        \"chain\": \"polygon\",\r\n        \"email\":\"thomasm1.maestas@gmail.com\"\r\n    }"
+					"raw": "    { \r\n    \r\n        \"address\": \"0x900bE021E38B8d08435A03c05657C8cFA837cAeF\",\r\n        \"chain\": \"polygon\",\r\n        \"email\":\"thomas1.maestas@gmail.com\"\r\n    }"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/api/addresses",
@@ -387,7 +387,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n    \"description\": \"description\",\r\n           \"email\": \"thomasm1.maestas@gmail.com\",\r\n    \"address\": \"address\",\r\n    \"chain\": \"chain\",\r\n    \"iconUrl\": \"iconUrl\",\r\n    \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n    \"user\":  { \r\n              \"username\": \"thomasm1.maestas@gmail.com\",\r\n        \"photoPath\": \"photoPath\",\r\n        \"groupType\": \"userGroup\",\r\n        \"email\": \"thomas.maestas@hotmail.com\",\r\n        \"userId\": \"1\",\r\n        \"lname\": \"Smith\",\r\n        \"fname\": \"Tom\"\r\n    },\r\n    \"chainId\": 0\r\n}"
+					"raw": "{ \r\n    \"description\": \"description\",\r\n           \"email\": \"thomas1.maestas@gmail.com\",\r\n    \"address\": \"address\",\r\n    \"chain\": \"chain\",\r\n    \"iconUrl\": \"iconUrl\",\r\n    \"blockExplorerUrl\": \"blockExplorerUrl\",\r\n    \"user\":  { \r\n              \"username\": \"thomas1.maestas@gmail.com\",\r\n        \"photoPath\": \"photoPath\",\r\n        \"groupType\": \"userGroup\",\r\n        \"email\": \"thomas.maestas@hotmail.com\",\r\n        \"userId\": \"1\",\r\n        \"lname\": \"Smith\",\r\n        \"fname\": \"Tom\"\r\n    },\r\n    \"chainId\": 0\r\n}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}/api/addresses",

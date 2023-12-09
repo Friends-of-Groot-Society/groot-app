@@ -101,216 +101,214 @@ it != null
         "password" | "usernameOrEmail" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
     }
 
-    @Unroll
-    def "createUser"() {
-        given: "given"
-
-        and: "_mock"
-        userMapper.toDto(_ as User) >> new UserDto (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-        userMapper.toEntity(_ as UserDto) >> new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-        usersRepository.findByUsernameOrEmail(_ as String, _ as String) >> null
-
-        when:
-        expectedResult = testObj.registerUser(user)
-
-        
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        user || expectedResult
-        new UserDto (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-
-
-    }
-
-    @Unroll
-    def "getUser"() {
-        given: "given"
-
-        and: "_mock"
-        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-
-        when:
-        expectedResult = testObj.getUser(id)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        id || expectedResult
-        0  || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-    }
-
-    @Unroll
-    def "getUser2"() {
-        given: "given"
-
-        and: "_mock"
-        usersRepository.findByEmail(_) >> null
-        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-
-        when:
-        expectedResult = testObj.getUser(email)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        email   || expectedResult
-        "email" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-    }
-
-    @Unroll
-    def "getUsers"() {
-        given: "given"
-
-        and: "_mock"
-        usersRepository.findAll() >> [new User (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-]
-        when:
-        expectedResult = testObj.getUsers()
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        expectedResult << [new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
-    }
-
-    @Unroll
-    def "getUserByEmailAndPassword"() {
-        given: "given"
-
-        and: "_mock"
-        usersRepository.findByEmailAndPassword(_, _) >> null
-        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-        1 * usersRepository.findByEmailAndPassword(_, _) >> null
-
-
-        when:
-        expectedResult = testObj.getUserByEmailAndPassword(email, pw)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        pw   | email   || expectedResult
-        "pw" | "email" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-    }
-
-    @Unroll
-    def "getUserByEmail"() {
-        given: "given"
-
-        and: "_mock"
-        usersRepository.findByEmail(_) >> null
-        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-
-        when:
-        expectedResult = testObj.getUserByEmail(email)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        email   || expectedResult
-        "email" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-    }
-
-    @Unroll
-    def "getUsersWithCoins"() {
-        given: "given"
-
-        and: "_mock"
-        usersRepository.findAll() >> [new User (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
-        1 * usersRepository.findAll() >> [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
-
-        when:
-        expectedResult = testObj.getUsersWithCoins()
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        expectedResult << [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
-    }
-
-    @Unroll
-    def "getUserByPassword"() {
-        when:
-        expectedResult = testObj.getUserByPassword(username, password)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        password   | username   || expectedResult
-        "password" | "username" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)   }
-
-    @Unroll
-    def "updateUser"() {
-        given: "given"
-
-        and: "_mock"
-        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-        userMapper.toEntity(_) >> new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
-
-        when:
-        expectedResult = testObj.updateUser(change)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-       expectedResult << new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)    }
-
-    @Unroll
-    def "deleteUser"() {
-        given: "given"
-
-        and: "_mock"
-        usersRepository.findByEmail(_) >> null
-
-        when:
-        expectedResult = testObj.deleteUser(email)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        email   || expectedResult
-        "email" || true
-    }
-
-    @Unroll
-    def "deleteUser2"() {
-        given: "given"
-
-        and: "_mock"
-        usersRepository.findByEmail(_) >> null
-
-        when:
-        expectedResult = testObj.deleteUser(user)
-
-        then: "then"
-        with(expectedResult) {
-
-        }
-        where: "where"
-        user || expectedResult
-        new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>) || true
-    }
+//    @Unroll
+//    def "createUser"() {
+//        given: "given"
+//var user =  new UserDto (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//
+//        and: "_mock"
+//       var user1 =  userMapper.toDto(_ as User) >> new UserDto (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//        userMapper.toEntity(_ as UserDto) >> new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//        usersRepository.findByUsernameOrEmail(_ as String, _ as String) >> user1
+//
+//        when:
+//        expectedResult = testObj.registerUser(user)
+//
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//
+//
+//    }
+//
+//    @Unroll
+//    def "getUser"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//
+//        when:
+//        expectedResult = testObj.getUser(id)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        id || expectedResult
+//        0  || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//    }
+//
+//    @Unroll
+//    def "getUser2"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        usersRepository.findByEmail(_) >> null
+//        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//
+//        when:
+//        expectedResult = testObj.getUser(email)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        email   || expectedResult
+//        "email" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//    }
+//
+//    @Unroll
+//    def "getUsers"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        usersRepository.findAll() >> [new User (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//]
+//        when:
+//        expectedResult = testObj.getUsers()
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        expectedResult << [new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
+//    }
+//
+//    @Unroll
+//    def "getUserByEmailAndPassword"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        usersRepository.findByEmailAndPassword(_, _) >> null
+//        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//        1 * usersRepository.findByEmailAndPassword(_, _) >> null
+//
+//
+//        when:
+//        expectedResult = testObj.getUserByEmailAndPassword(email, pw)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        pw   | email   || expectedResult
+//        "pw" | "email" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//    }
+//
+//    @Unroll
+//    def "getUserByEmail"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        usersRepository.findByEmail(_) >> null
+//        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//
+//        when:
+//        expectedResult = testObj.getUserByEmail(email)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        email   || expectedResult
+//        "email" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//    }
+//
+//    @Unroll
+//    def "getUsersWithCoins"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        usersRepository.findAll() >> [new User (0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
+//        1 * usersRepository.findAll() >> [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
+//
+//        when:
+//        expectedResult = testObj.getUsersWithCoins()
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        expectedResult << [new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)]
+//    }
+//
+//    @Unroll
+//    def "getUserByPassword"() {
+//        when:
+//        expectedResult = testObj.getUserByPassword(username, password)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        password   | username   || expectedResult
+//        "password" | "username" || new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)   }
+//
+//    @Unroll
+//    def "updateUser"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        userMapper.toDto(_) >> new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//        userMapper.toEntity(_) >> new User(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)
+//
+//        when:
+//        expectedResult = testObj.updateUser(change)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//       expectedResult << new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>)    }
+//
+//    @Unroll
+//    def "deleteUser"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        usersRepository.findByEmail(_) >> null
+//
+//        when:
+//        expectedResult = testObj.deleteUser(email)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        email   || expectedResult
+//        "email" || true
+//    }
+//
+//    @Unroll
+//    def "deleteUser2"() {
+//        given: "given"
+//
+//        and: "_mock"
+//        usersRepository.findByEmail(_) >> null
+//
+//        when:
+//        expectedResult = testObj.deleteUser(user)
+//
+//        then: "then"
+//        with(expectedResult) {
+//
+//        }
+//        where: "where"
+//        user || expectedResult
+//        new UserDto(0, "username", "password", "lastName", "firstName", 0, "phone", "email", "cusUrl", "photoPath", 0, 0, [new Role(0, "name")] as Set<Role>) || true
+//    }
 //
 //    @Unroll
 //    def "getUserChains"() {

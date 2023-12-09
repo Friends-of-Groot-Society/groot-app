@@ -6,6 +6,7 @@ import com.friendsofgroot.app.models.User;
 import com.friendsofgroot.app.models.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -35,7 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @SessionAttributes("name")
-@Api(tags={"Users"})
+@Tag(name="Users")
 public class UsersController {
     static final Logger log = LoggerFactory.getLogger(UsersController.class);
 
@@ -135,7 +136,7 @@ public class UsersController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    // build get user by id REST API
+    // build get user by id REST API        aa
     // http://localhost:8080/api/users/1
     @GetMapping(value = USER_PATH_ID)
     public ResponseEntity<UserDto> getUser(@PathVariable("userId") int userId) {
